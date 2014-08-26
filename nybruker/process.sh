@@ -19,7 +19,8 @@ function finished() {
 	ssh root@p.foreningenbs.no sss_cache -UG
 
 	# fjern cache på bruker-APIet
-	rm /var/www/users-api/app/cache/userdata.tmp
+	F=/var/www/users-api/app/cache/userdata.tmp
+	if [ -f "$F" ]; then rm "$F"; fi
 }
 
 if [[ "$USER" != "root" ]]; then
@@ -129,8 +130,8 @@ else
 		fi
 	done
 
-	smbldap-useradd -a -N \'"$FIRSTNAME"\' -S \'"$LASTNAME"\' \'"$USERNAME"\'
-	ldapaddusertogroup \'"$USERNAME"\' \'"$GROUP"\'
+	smbldap-useradd -a -N "$FIRSTNAME" -S "$LASTNAME" "$USERNAME"
+	ldapaddusertogroup "$USERNAME" "$GROUP"
 
 	addchange "mail" "$MAIL"
 	if [[ "$PHONE" != "" ]]; then
