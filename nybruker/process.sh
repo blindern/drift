@@ -1,3 +1,4 @@
+#!/bin/bash
 # TODO: kunne oppdatere navn på en bruker
 
 function addchange() {
