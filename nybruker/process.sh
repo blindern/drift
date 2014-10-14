@@ -20,7 +20,7 @@ function finished() {
 	ssh root@p.foreningenbs.no sss_cache -UG
 
 	# fjern cache på bruker-APIet
-	F=/var/www/users-api/app/cache/userdata.tmp
+	F=/var/www/aliases/users-api/app/cache/userdata.tmp
 	if [ -f "$F" ]; then rm "$F"; fi
 }
 
