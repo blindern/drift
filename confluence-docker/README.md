@@ -24,3 +24,10 @@ Data blir da persistert i `/var/atlassian/confluence`-mappa.
 TODO: Dokumenter dette. Se også https://confluence.atlassian.com/doc/upgrading-confluence-4578.html
 (men gjelder det egentlig når vi bruker Docker?)
 
+## Flere detaljer rundt oppsettet
+
+Database: Confluence bruker MySQL på Athene, som er Docker-hosten. Det er en egen database som
+heter `confluence` for dette formålet.
+
+Innstillingene til dette kan også sees i filen `/var/atlassian/confluence/confluence.cfg.xml`.
+
