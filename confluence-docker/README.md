@@ -4,20 +4,19 @@ Se også https://github.com/cptactionhank/docker-atlassian-confluence/
 
 Se Dockerfile for hva vi gjør ekstra i oppsettet
 
+## Bygging
+
+Se `build.sh`.
+
 ## Kjøre Confluence
 
 Normalt skal dette være satt opp på maskina allerede, og automatisk starte opp.
 
 Dersom det er behov for å sette opp på nytt:
 
-```bash
-sudo docker run --restart=always \
-  --name blindern-confluence \
-  -v /var/atlassian/confluence:/var/atlassian/confluence \
-  blindern/confluence-docker
-```
+Se `run.sh`.
 
-Data blir da persistert i `/var/atlassian/confluence`-mappa.
+Data blir persistert i `/var/atlassian/confluence`-mappa.
 
 ## Oppdater Confluence
 
@@ -30,4 +29,3 @@ Database: Confluence bruker MySQL på Athene, som er Docker-hosten. Det er en eg
 heter `confluence` for dette formålet.
 
 Innstillingene til dette kan også sees i filen `/var/atlassian/confluence/confluence.cfg.xml`.
-
