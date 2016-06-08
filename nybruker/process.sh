@@ -50,10 +50,19 @@ echo
 
 CHANGESET="changetype: modify"
 FIRST=1
-	
 
-EXISTS=$(id "$USERNAME" 2>/dev/null | wc -l)
-if [ $EXISTS -eq 1 ]; then
+
+EMAILEXISTS=$(ldapsearch -x -LLL -H ldapi:/// -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail | wc -l)
+USEREXISTS=$(id "$USERNAME" 2>/dev/null | wc -l)
+
+if [ $EMAILEXISTS -gt 0 ] && [ $USEREXISTS -eq 0 ]; then
+	echo "E-postadressen er allerede registrert på en annen bruker:"
+	ldapsearch -x -LLL -H ldapi:/// -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail
+	echo "En e-postadresse kan ikke tilhøre flere brukere!"
+	exit 1
+fi
+
+if [ $USEREXISTS -eq 1 ]; then
 	DATA=$(ldapfinger "$USERNAME")
 	
 	echo "Bruker finnes fra før!"
