@@ -21,7 +21,7 @@ def getUsers():
     return result
 
 def findMatch(lookupValue, listOfNames):
-    closeMatches = difflib.get_close_matches(lookupValue, listOfNames, n=2, cutoff=0.6)
+    closeMatches = difflib.get_close_matches(lookupValue, listOfNames, n=4, cutoff=0.4)
     if len(closeMatches) == 0:
         return False
 
@@ -40,7 +40,7 @@ def findMatch(lookupValue, listOfNames):
 
         found = True
         for word in shortname.split():
-            if difflib.get_close_matches(word, longname.split(), n=1, cutoff=0.9):
+            if difflib.get_close_matches(word, longname.split(), n=1, cutoff=0.8):
                 continue
 
             # take into account that the name may be abbreviated
