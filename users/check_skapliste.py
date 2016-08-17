@@ -95,7 +95,7 @@ if __name__ == '__main__':
                     if elm['realname'] == match:
                         user = elm
                 if 'utflyttet' in user['groups']:
-                    print('Flyttet ut:    %-30s skap %s (%s)' % (locker['name'], locker['locker'], locker['location']))
+                    print('Flyttet ut?    %-30s skap %s (%s)' % (locker['name'], locker['locker'], locker['location']))
                     continue
 
             print('Ukjent:        %-30s skap %s (%s)' % (locker['name'], locker['locker'], locker['location']))
