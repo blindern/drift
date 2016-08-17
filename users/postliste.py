@@ -77,7 +77,7 @@ class PostlisteParser():
 
                     for person in people:
                         if name[0] == person['lastname'] and name[1] == person['firstname']:
-                            print("Found duplicate entry of %s %s - skipping" % (name[1], name[0]), file=sys.stderr)
+                            print("Found duplicate entry of %s %s (room %s)" % (name[1], name[0], room), file=sys.stderr)
                             break
 
                     people.append({
