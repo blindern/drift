@@ -10,15 +10,6 @@ import sys
 import tempfile
 
 class PostlisteParser():
-    employeeRooms = [
-        '207',  # husfar
-        '201',  # daglig leder
-        '202',  # kjøkkenet
-        '203',  # oldfrue
-        '200',  # resepsjonen
-        '206',  # vedlikehold
-    ]
-
     @staticmethod
     def parseName(name):
         # the list often misses a space after the comma
@@ -61,6 +52,7 @@ class PostlisteParser():
 
     def loadFromCsv(self, csvFile):
         people = []
+        others_col = None
 
         with open(csvFile, 'r') as f:
             reader = csv.reader(f)
@@ -72,9 +64,13 @@ class PostlisteParser():
                     name = row[coli-1]
                     room = PostlisteParser.parseRoom(row[coli])
 
-                    if name.strip() == '' or 'ADMINIS' in name or 'PORTEN' in name \
-                                          or room in self.employeeRooms:
-
+                    # if we hit "PORTEN" we skip later rows in that col
+                    if others_col != None and coli == others_col:
+                        continue
+                    elif others_col == None and 'PORTEN' in name:
+                        others_col = coli
+                        continue
+                    elif 'ADMINIS' in name or name == '':
                         continue
 
                     name = PostlisteParser.parseName(name)
