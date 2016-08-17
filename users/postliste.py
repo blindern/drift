@@ -89,10 +89,6 @@ class PostlisteParser():
         people = sorted(people, key=lambda person: person['lastname'] + person['firstname'])
         return people
 
-    def storeAsJson(self, fileName):
-        with open(fileName, 'w') as f:
-            json.dump(self.people, f)
-
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
         print("Missing input file (Excel file to parse)")
