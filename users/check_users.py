@@ -60,11 +60,17 @@ def findMatch(lookupValue, listOfNames):
     return False
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 1:
-        print("Syntax: %s <beboerliste.json>" % sys.argv[0])
+    if len(sys.argv) <= 1 or (sys.argv[1] == '-v' and len(sys.argv) <= 2):
+        print("Syntaks: %s [-v] <beboerliste.json>" % sys.argv[0])
         sys.exit(1)
 
-    with open(sys.argv[1], 'r') as f:
+    verbose = False
+    fname = sys.argv[1]
+    if fname == '-v':
+        verbose = True
+        fname = sys.argv[2]
+
+    with open(fname, 'r') as f:
         people = sorted(json.load(f), key=lambda person: '%s %s' % (person['firstname'], person['lastname']))
 
     users = getUsers()
@@ -73,6 +79,9 @@ if __name__ == '__main__':
     people_found = []
     users_found = []
 
+    count_not_found = 0
+    count_moved_out = 0
+
     for person in people:
         name = '%s %s' % (person['firstname'], person['lastname'])
 
@@ -80,9 +89,8 @@ if __name__ == '__main__':
         if match == False:
             continue
         if name != match:
-            print("Found similar name %-30s registered as %s" % (name, match))
-
-        people_found.append(person)
+            if verbose:
+                print("Fant tilsvarende navn %-30s registrert som %s" % (name, match))
 
         user = None
         for elm in users:
@@ -90,13 +98,21 @@ if __name__ == '__main__':
             if elm['realname'] == match:
                 users_found.append(elm)
                 user = elm
+
         if 'beboer' not in user['groups']:
-            print("Moved back in? %s (%s)" % (name, user['username']))
+            print("Flyttet inn igjen? %s registrert som %s (%s)" % (name, user['realname'], user['username']))
+        else:
+            people_found.append(person)
 
     for person in people:
         if person not in people_found:
-            print("Unregistered person: %s %s" % (person['firstname'], person['lastname']))
+            print("Ikke-registrert person: %s %s" % (person['firstname'], person['lastname']))
+            count_not_found += 1
 
     for user in users:
         if 'beboer' in user['groups'] and user not in users_found:
             print("./utflyttet.sh %-20s  # %s" % (user['username'], user['realname']))
+            count_moved_out += 1
+
+    print("%d personer i beboerliste. %d allerede registrert, %d mangler. %d flyttet ut" %
+            (len(people), len(people_found), count_not_found, count_moved_out))
