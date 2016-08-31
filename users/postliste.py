@@ -102,5 +102,9 @@ if __name__ == '__main__':
         with open(sys.argv[2], 'w') as f:
             json.dump(parser.people, f, indent=2)
             print("Found %d people. Save to %s" % (len(parser.people), sys.argv[2]))
+
+        # replace the modification date to what is stored in the Excel file
+        os.system("touch -d \"$(file -b '%s' | tr ',' '\\n' | grep 'Last Saved' | awk -F ': ' '{print $2}')\" '%s'"
+                % (sys.argv[1], sys.argv[2]))
     else:
         print(json.dumps(parser.people, indent=2))
