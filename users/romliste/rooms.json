@@ -1,0 +1,1577 @@
+[
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "HVV",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "101",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "102",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "103",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "104",
+    "room": "104G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "104",
+    "room": "104M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "105",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "106",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "107",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "108",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "109",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "110",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "111",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "112",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "113",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "114",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "115",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "116",
+    "room": "116G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "116",
+    "room": "116M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "117",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "118",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "119",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "120",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "121",
+    "room": "121G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "121",
+    "room": "121M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "122",
+    "room": "122a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "122",
+    "room": "122b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "100-gangen",
+    "group": "",
+    "room": "123",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "201",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "202",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "203",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "204",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "205",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "206",
+    "room": "206G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "206",
+    "room": "206M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "207",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "208",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "209",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "210",
+    "room": "210G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "210",
+    "room": "210M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "211",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "212",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "213",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "214",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "215",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "216",
+    "room": "216G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "216",
+    "room": "216M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "217",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "218",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "219",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "220",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "221",
+    "room": "221G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "221",
+    "room": "221M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "222",
+    "room": "222a",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "222",
+    "room": "222b",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "200-gangen",
+    "group": "",
+    "room": "223",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "301",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "302",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "303",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "304",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "305",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "306",
+    "room": "306a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "306",
+    "room": "306b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "307",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "308",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "309",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "310",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "311",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "312",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "313",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "314",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "315",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "316",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "317",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "318",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "319",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "320",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "321",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "",
+    "room": "322",
+    "type": ""
+  },
+  {
+    "area": "Vestfløy",
+    "section": "300-gangen",
+    "group": "323",
+    "room": "323k",
+    "type": "Kott"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "HVØ",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "401",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "402",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "403",
+    "room": "403G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "403",
+    "room": "403M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "404",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "405",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "406",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "407",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "408",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "409",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "410",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "411",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "412",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "413",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "414",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "415",
+    "room": "415G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "415",
+    "room": "415M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "416",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "417",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "418",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "419",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "420",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "421",
+    "room": "421a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "421",
+    "room": "421b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "422",
+    "room": "422G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "422",
+    "room": "422M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "400-gangen",
+    "group": "",
+    "room": "424",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "501",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "502",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "503",
+    "room": "503G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "503",
+    "room": "503M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "504",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "505",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "506",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "507",
+    "room": "507G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "507",
+    "room": "507M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "508",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "509",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "510",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "511",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "512",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "513",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "514",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "515",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "516",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "517",
+    "room": "517G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "517",
+    "room": "517M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "518",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "519",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "520",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "521",
+    "room": "521a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "521",
+    "room": "521b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "522",
+    "room": "522G",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "522",
+    "room": "522M",
+    "type": "Kombinasjonsrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "500-gangen",
+    "group": "",
+    "room": "524",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "601",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "602",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "603",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "604",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "605",
+    "room": "605a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "605",
+    "room": "605b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "606",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "607",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "608",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "609",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "610",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "611",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "612",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "613",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "614",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "615",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "616",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "617",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "618",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "619",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "620",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "622",
+    "type": ""
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "623k",
+    "type": "Kott"
+  },
+  {
+    "area": "Østfløy",
+    "section": "600-gangen",
+    "group": "",
+    "room": "624",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "701",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "702",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "703",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "704",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "705",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "706",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "707",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "708",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "709",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "710",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "",
+    "room": "711",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "712",
+    "room": "712A",
+    "type": "Parrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "700-gangen",
+    "group": "712",
+    "room": "712B",
+    "type": "Parrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "1",
+    "room": "1a",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "1",
+    "room": "1b",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "2",
+    "room": "2a",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "2",
+    "room": "2b",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "3",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "4",
+    "room": "4a",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "4",
+    "room": "4b",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "5",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "6A",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "6B",
+    "room": "6Ba",
+    "type": "Parrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "6B",
+    "room": "6Bb",
+    "type": "Parrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "7",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "8",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "9",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "10",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "11",
+    "room": "11a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "11",
+    "room": "11b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "12",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "14",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "16",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "18",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "20",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "22A",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "22B",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "24",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "26",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "28",
+    "type": ""
+  },
+  {
+    "area": "Hovedbygg",
+    "section": "Hovedbygget",
+    "group": "",
+    "room": "30",
+    "type": ""
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX1",
+    "room": "AX1a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX1",
+    "room": "AX1b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX2",
+    "room": "AX2a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX2",
+    "room": "AX2b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX3",
+    "room": "AX3a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "AX3",
+    "room": "AX3b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "Port",
+    "room": "Port1B",
+    "type": "Parrom"
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "Port",
+    "room": "Port2B",
+    "type": ""
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "Port",
+    "room": "Port3B",
+    "type": ""
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "Port",
+    "room": "Port4B",
+    "type": "Parrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H1",
+    "room": "H1a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H1",
+    "room": "H1b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H2",
+    "room": "H2a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H2",
+    "room": "H2b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H3",
+    "room": "H3a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H3",
+    "room": "H3b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H4",
+    "room": "H4a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H4",
+    "room": "H4b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H5",
+    "room": "H5a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H5",
+    "room": "H5b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H6",
+    "room": "H6a",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H6",
+    "room": "H6b",
+    "type": "Dobbeltrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H7",
+    "room": "H7a",
+    "type": "Parrom"
+  },
+  {
+    "area": "Brakker",
+    "section": "Brakker",
+    "group": "H7",
+    "room": "H7b",
+    "type": "Parrom"
+  }
+]

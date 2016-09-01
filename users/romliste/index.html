@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+  <title>Romliste</title>
+  <script>
+    function c(e, name) {
+      return e.getElementsByClassName(name)[0];
+    }
+
+    function addList(list, holder, spaceLast) {
+      var template = document.getElementById('template');
+      var previous;
+      var previousChar;
+
+      list.forEach(function (room) {
+        var people = room['people'];
+        if (people.length == 0) {
+          people = [null];
+        }
+
+        people.forEach(function (person) {
+          var elm = template.cloneNode(true);
+
+          elm.id = '';
+          if (!person) {
+            c(elm, 'name').innerText = 'ledig';
+            c(elm, 'name').classList.add('free');
+          } else if (person['lastname']) {
+            c(elm, 'lastname').innerText = person['lastname'];
+            c(elm, 'firstname').innerText = person['firstname'];
+          } else {
+            c(elm, 'name').innerText = person['firstname'];
+          }
+          c(elm, 'room').innerText = room['room'];
+
+          previous = elm;
+          holder.appendChild(elm);
+        });
+      })
+
+      if (spaceLast) {
+        previous.classList.add(spaceLast);
+      }
+    }
+
+    function parseList(people, rooms) {
+      var unknowns = [];
+
+      rooms.forEach(function (room) {
+        room.people = [];
+      });
+
+      people.forEach(function (person) {
+        var found = false;
+        rooms.forEach(function (room) {
+          if (!found && (room['room'] == person['room'] || room['group'] == person['room'])) {
+            found = true;
+            room.people.push(person);
+          }
+        });
+
+        if (!found) {
+          unknowns.push(person);
+        }
+      });
+
+      unknowns.forEach(function (person) {
+        rooms.push({
+          'area': 'Ukjent',
+          'section': 'Ukjent',
+          'group': '',
+          'room': person['room'],
+          'type': '',
+          'people': [person]
+        });
+      });
+
+      return rooms;
+    }
+
+    function processData(beboerliste, rooms) {
+      var collection = document.getElementById('collection');
+      var holder = document.getElementById('romliste');
+
+      var combined = parseList(beboerliste, rooms);
+
+      var sections = {};
+      combined.forEach(function (room) {
+        if (!sections[room['section']]) {
+          sections[room['section']] = [];
+        }
+
+        sections[room['section']].push(room);
+      });
+
+      Object.keys(sections).forEach(function (key) {
+        var section = sections[key];
+        var h = collection.cloneNode(true);
+
+        h.id = '';
+        c(h, 'left').innerText = key;
+        c(h, 'right').innerText = '';
+        holder.appendChild(h);
+
+        addList(section, h, 'last-in-group');
+      });
+    }
+
+    function parse() {
+      var people = null;
+      var rooms = null;
+
+      fetch('./beboerliste.json')
+        .then(function (response) {
+          if (response.status === 200) {
+            response.json().then(function (data) {
+              people = data;
+              if (people && rooms) processData(people, rooms);
+
+              var t = new Date(response.headers.get('Last-Modified'));
+              document.getElementById('updated').innerText = t.getDate() + "." + (t.getMonth()+1) + "." + t.getFullYear();
+            });
+          }
+        });
+
+      fetch('./rooms.json')
+        .then(function (response) {
+          if (response.status === 200) {
+            response.json().then(function (data) {
+              rooms = data;
+              if (people && rooms) processData(people, rooms);
+            });
+          }
+        });
+    }
+  </script>
+  <style>
+    #template, #collection { display: none; }
+    #romliste, #headers {
+      column-count: 5;
+      -moz-column-count: 5;
+      -webkit-column-count: 5;
+    }
+    .room-item, .collectionheader, .header {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .room-item, .header, .collectionheader {
+      margin-bottom: 3px;
+      line-height: 1.2em;
+      border-bottom: 1px dotted #888;
+      -webkit-column-break-inside: avoid;
+    }
+    .header, .collectionheader {
+      margin-bottom: 10px;
+      color: #888;
+    }
+    .left {
+      text-align: center;
+      display: inline-block;
+      padding-right: 8px;
+      min-width: 40px;
+    }
+    .right {
+      display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      flex: 1;
+    }
+    .last-in-group {
+      margin-bottom: 1.3em;
+    }
+    .last-in-normalgroup {
+      margin-bottom: 40px;
+    }
+    .collectionheader {
+      color: inherit;
+    }
+    .collectionheader .left {
+      font-weight: bold;
+    }
+    .free {
+      font-style: italic;
+      color: #AAA;
+    }
+  </style>
+</head>
+<body>
+  <h1>Romliste</h1>
+  <div id="template" class="room-item">
+    <span class="left room"></span>
+    <span class="right name">
+      <span class="lastname"></span>, <span class="firstname"></span>
+    </span>
+  </div>
+  <div id="collection" class="collection">
+    <div class="collectionheader">
+      <span class="left"></span>
+      <span class="right"></span>
+    </div>
+  </div>
+  <p>Listen er ajourført per <span id="updated">ukjent</span>. <a href="https://github.com/blindern/drift/tree/master/users">Veiledning for oppdatering</a></p>
+  <div id="headers">
+    <div class="header"><span class="left">Rom</span><span class="right">Navn</span></div>
+    <div class="header"><span class="left">Rom</span><span class="right">Navn</span></div>
+    <div class="header"><span class="left">Rom</span><span class="right">Navn</span></div>
+    <div class="header"><span class="left">Rom</span><span class="right">Navn</span></div>
+    <div class="header"><span class="left">Rom</span><span class="right">Navn</span></div>
+  </div>
+  <div id="romliste">
+
+  </div>
+  <script>parse();</script>
+</body>
+</html>

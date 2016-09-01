@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+  <title>Postliste</title>
+  <script>
+    beboere = [];
+
+    var porten = [
+      {
+        "room": "207",
+        "firstname": "Netti A. Hoffmann",
+        "lastname": "Fuglesang"
+      },
+      {
+        "room": "207",
+        "firstname": "Mads F. Hoffmann",
+        "lastname": "Fuglesang"
+      },
+      {
+        "room": "207",
+        "firstname": "Ma Analyn Escober",
+        "lastname": "Palacio"
+      }
+    ];
+
+    var ansatte = [
+      {
+        "room": "201",
+        "firstname": "Gro",
+        "lastname": "Dagl. leder"
+      },
+      {
+        "room": "202",
+        "firstname": "Anne Karine",
+        "lastname": "Kjøkkensjef"
+      },
+      {
+        "room": "203",
+        "firstname": "Dagfrid",
+        "lastname": "Oldfrue"
+      },
+      {
+        "room": "200",
+        "firstname": "Resepsjonen",
+        "lastname": ""
+      },
+      {
+        "room": "206",
+        "firstname": "Petter",
+        "lastname": "Vedlikeholdsleder"
+      }
+    ]
+
+    function addList(list, holder, useGroups, spaceLast) {
+      var template = document.getElementById('template');
+      var previous;
+      var previousChar;
+
+      for (var i = 0; i < list.length; i++) {
+        var person = list[i];
+
+        var elm = template.cloneNode(true);
+        elm.id = '';
+        if (person['lastname']) {
+          elm.getElementsByClassName('lastname')[0].innerText = person['lastname'];
+          elm.getElementsByClassName('firstname')[0].innerText = person['firstname'];
+        } else {
+          elm.getElementsByClassName('name')[0].innerText = person['firstname'];
+        }
+        elm.getElementsByClassName('room')[0].innerText = person['room'];
+
+        if (useGroups) {
+          if (previous && previousChar != person['lastname'].substring(0, 1)) {
+            previous.classList.add('last-in-group');
+          }
+
+          previousChar = person['lastname'].substring(0, 1);
+        }
+
+        previous = elm;
+
+        holder.appendChild(elm);
+      }
+
+      if (spaceLast) {
+        previous.classList.add(spaceLast);
+      }
+    }
+
+    function processData(beboerliste) {
+      var collection = document.getElementById('collection');
+      var holder = document.getElementById('postliste');
+
+      addList(beboerliste, holder, true, 'last-in-normalgroup');
+
+      var holder2 = collection.cloneNode(true);
+      holder2.id = '';
+      holder2.getElementsByClassName('left')[0].innerText = 'PORTEN: HUSFAR';
+      holder2.getElementsByClassName('right')[0].innerText = 'Tlf';
+      holder.appendChild(holder2);
+
+      addList(porten, holder2, false, 'last-in-group');
+
+      holder2 = collection.cloneNode(true);
+      holder2.id = '';
+      holder2.getElementsByClassName('left')[0].innerText = 'ADMINISTRASJON:';
+      holder2.getElementsByClassName('right')[0].innerText = 'Tlf';
+      holder.appendChild(holder2);
+
+      addList(ansatte, holder2, false, false);
+    }
+
+    function parse() {
+      fetch('./beboerliste.json')
+        .then(function (response) {
+          if (response.status === 200) {
+            response.json().then(function (data) {
+              processData(data);
+
+              var t = new Date(response.headers.get('Last-Modified'));
+              document.getElementById('updated').innerText = t.getDate() + "." + (t.getMonth()+1) + "." + t.getFullYear();
+            });
+          }
+        });
+    }
+  </script>
+  <style>
+    #template, #collection { display: none; }
+    #postliste, #headers {
+      column-count: 5;
+      -moz-column-count: 5;
+      -webkit-column-count: 5;
+    }
+    .person, .collectionheader, .header {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .person, .header, .collectionheader {
+      margin-bottom: 3px;
+      line-height: 1.2em;
+      border-bottom: 1px dotted #888;
+      -webkit-column-break-inside: avoid;
+    }
+    .header, .collectionheader {
+      margin-bottom: 10px;
+      color: #888;
+    }
+    .left {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+      padding-right: 8px;
+      flex: 1;
+    }
+    .right {
+      text-align: center;
+      min-width: 30px;
+      display: inline-block;
+    }
+    .last-in-group {
+      margin-bottom: 1.3em;
+    }
+    .last-in-normalgroup {
+      margin-bottom: 40px;
+    }
+    .collectionheader {
+      color: inherit;
+    }
+    .collectionheader .left {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Postliste</h1>
+  <div id="template" class="person">
+    <span class="left name">
+      <span class="lastname"></span>, <span class="firstname"></span>
+    </span>
+    <span class="right room"></span>
+  </div>
+  <div id="collection" class="collection">
+    <div class="collectionheader">
+      <span class="left"></span>
+      <span class="right"></span>
+    </div>
+  </div>
+  <p>Listen er ajourført per <span id="updated">ukjent</span>. <a href="https://github.com/blindern/drift/tree/master/users">Veiledning for oppdatering</a></p>
+  <div id="headers">
+    <div class="header"><span class="left">Navn</span><span class="right">Rom</span></div>
+    <div class="header"><span class="left">Navn</span><span class="right">Rom</span></div>
+    <div class="header"><span class="left">Navn</span><span class="right">Rom</span></div>
+    <div class="header"><span class="left">Navn</span><span class="right">Rom</span></div>
+    <div class="header"><span class="left">Navn</span><span class="right">Rom</span></div>
+  </div>
+  <div id="postliste">
+
+  </div>
+  <script>parse();</script>
+</body>
+</html>
