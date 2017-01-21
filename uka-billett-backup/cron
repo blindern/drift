@@ -1,0 +1,3 @@
+# symlink this from /etc/cron.d/
+
+13 * * * * root /fbs/drift/uka-billett-backup/backup.sh
