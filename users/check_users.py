@@ -15,6 +15,7 @@ def getUsers():
         result.append({
             'username': user['username'],
             'realname': user['realname'],
+            'phone': user['phone'],
             'groups': list(user['groups_relation'].keys()) if len(user['groups_relation']) > 0 else []
         })
 
