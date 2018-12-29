@@ -1,0 +1,12 @@
+---
+version: '3'
+
+services:
+  users-api:
+    image: blindern/users-api:$USERS_API_TAG
+    ports:
+      - 8000:8000
+    volumes:
+      - ./overrides.properties:/opt/users-api/overrides.properties
+    working_dir: /opt/users-api
+    restart: unless-stopped
