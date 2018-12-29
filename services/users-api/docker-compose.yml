@@ -10,3 +10,5 @@ services:
       - ./overrides.properties:/opt/users-api/overrides.properties
     working_dir: /opt/users-api
     restart: unless-stopped
+    logging:
+      driver: journald
