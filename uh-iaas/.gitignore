@@ -1,0 +1,4 @@
+/.terraform
+/coreos-config.ign
+/coreos_production_openstack_image.img
+/ct
