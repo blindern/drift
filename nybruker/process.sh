@@ -20,8 +20,10 @@ function finished() {
 	ssh root@p.foreningenbs.no sss_cache -UG
 
 	# fjern cache på bruker-APIet
-	F=/var/www/aliases/users-api/app/cache/userdata.tmp
-	if [ -f "$F" ]; then rm "$F"; fi
+	curl \
+		-X POST \
+		-H "Authorization: Bearer $(cat /fbs/users-api-key)" \
+		https://foreningenbs.no/users-api/invalidate-cache
 }
 
 if [[ "$USER" != "root" ]]; then
