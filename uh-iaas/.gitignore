@@ -1,3 +1,4 @@
+/.keystone-private.sh
 /.terraform
 /coreos-config.ign
 /coreos_production_openstack_image.img
