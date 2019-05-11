@@ -28,6 +28,15 @@ and https://askubuntu.com/a/983352
 ./download-ct.sh
 ```
 
+## Configuring credentials
+
+Create a file name `.keystone-private.sh` using this template:
+
+```bash
+export OS_USERNAME=REPLACE-ME
+export OS_PASSWORD=REPLACE-ME
+```
+
 ## Testing openstack commands
 
 ```bash
@@ -71,3 +80,4 @@ and given a DNS record for coreos-1.zt.foreningenbs.no.
 ## Data folder
 
 The `/data` directory is a volume that contains the `drift` repo checked out.
+It also holds the encryption key.
