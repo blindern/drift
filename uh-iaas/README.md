@@ -37,6 +37,10 @@ export OS_USERNAME=REPLACE-ME
 export OS_PASSWORD=REPLACE-ME
 ```
 
+The username should be your email address, and the password should be a
+generated API password provided on your first login to UH-IaaS.
+You should also be able to reset your API password on https://access.uh-iaas.no/
+
 ## Testing openstack commands
 
 ```bash
