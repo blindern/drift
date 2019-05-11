@@ -1,2 +1,2 @@
-host-keys/* filter=git-crypt diff=git-crypt
+host-keys/ssh* filter=git-crypt diff=git-crypt
 dyndns.key filter=git-crypt diff=git-crypt
