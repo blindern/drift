@@ -30,15 +30,15 @@ def getUsers():
     return result
 
 def findMatch(lookupValue, listOfNames):
-    closeMatches = difflib.get_close_matches(lookupValue, listOfNames, n=4, cutoff=0.4)
+    closeMatches = difflib.get_close_matches(lookupValue, listOfNames, n=6, cutoff=0.4)
     if len(closeMatches) == 0:
         return False
 
-    # We need a stricter match, but we might miss e.g. a middle name
+    # We need a stricter match, but we might miss e.g. a middle name.
     # We do the strict match by looking at each possible match, picking
     # the shortest lengthed value of either the possible match or original
     # lookup value and looking up to check if every word is represented
-    # in the longer variant, with some tollerance to misspelling
+    # in the longer variant, with some tollerance to misspelling.
     for item in closeMatches:
         if len(item) > len(lookupValue):
             shortname = lookupValue.replace('.', '')
@@ -93,13 +93,18 @@ if __name__ == '__main__':
 
     for person in people:
         name = '%s %s' % (person['firstname'], person['lastname'])
+        if verbose:
+            print("Ser etter %s" % name)
 
         match = findMatch(name, users_names)
         if match == False:
+            print("Ble ikke funnet")
             continue
-        if name != match:
-            if verbose:
+        if verbose:
+            if name != match:
                 print("Fant tilsvarende navn %-30s registrert som %s" % (name, match))
+            else:
+                print("Identisk navn funnet")
 
         user = None
         for elm in users:
