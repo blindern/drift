@@ -1452,28 +1452,35 @@
     "area": "Porten",
     "section": "Porten",
     "group": "Port",
-    "room": "Port1B",
+    "room": "P1B",
     "type": "Parrom"
   },
   {
     "area": "Porten",
     "section": "Porten",
     "group": "Port",
-    "room": "Port2B",
+    "room": "P2B",
     "type": ""
   },
   {
     "area": "Porten",
     "section": "Porten",
     "group": "Port",
-    "room": "Port3B",
+    "room": "P2BX",
     "type": ""
   },
   {
     "area": "Porten",
     "section": "Porten",
     "group": "Port",
-    "room": "Port4B",
+    "room": "P3B",
+    "type": ""
+  },
+  {
+    "area": "Porten",
+    "section": "Porten",
+    "group": "Port",
+    "room": "P4B",
     "type": "Parrom"
   },
   {
