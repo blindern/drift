@@ -9,9 +9,13 @@ from bs4 import BeautifulSoup
 
 ignorelist = [
     'Arkivaren',
+    'Brun Sprit',
+    'Festforeningen',
+    'Hjæmmerbryggerlaug',
     'Hyttestyret',
     'IFBS',
     'Katiba',
+    'Kollegiet',
     'LEDIG',
     'Studentkjøkkenet',
     'UKA',
@@ -77,25 +81,28 @@ if __name__ == '__main__':
     people_names = ['%s %s' % (person['firstname'], person['lastname']) for person in people]
 
     for locker in lockers:
-        if locker['name'] == '':
+        locker_name = locker['name']
+        if locker_name.startswith('a)') or locker_name.startswith('b)'):
+            locker_name = locker_name[2:].strip()
+        if locker_name == '':
             continue
 
         foundex = False
         for ex in ignorelist:
-            if ex in locker['name']:
+            if ex in locker_name:
                 foundex = True
         if foundex:
             continue
 
-        match = check_users.findMatch(locker['name'], people_names)
+        match = check_users.findMatch(locker_name, people_names)
         if match == False:
-            match = check_users.findMatch(locker['name'], users_names)
+            match = check_users.findMatch(locker_name, users_names)
             if match != False:
                 for elm in users:
                     if elm['realname'] == match:
                         user = elm
                 if 'utflyttet' in user['groups']:
-                    print('Flyttet ut?    %-30s skap %s (%s)' % (locker['name'], locker['locker'], locker['location']))
+                    print('Flyttet ut?    %-30s skap %s (%s)' % (locker_name, locker['locker'], locker['location']))
                     continue
 
-            print('Ukjent:        %-30s skap %s (%s)' % (locker['name'], locker['locker'], locker['location']))
+            print('Ukjent:        %-30s skap %s (%s)' % (locker_name, locker['locker'], locker['location']))
