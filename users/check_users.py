@@ -5,8 +5,16 @@ import json
 import sys
 import urllib.request
 
+def getUsersApiKey():
+    with open('/fbs/users-api-key', 'r') as f:
+        return f.read().strip()
+
 def getUsers():
-    with urllib.request.urlopen('https://foreningenbs.no/users-api/users?grouplevel=1') as response:
+    req = urllib.request.Request(
+        url='https://foreningenbs.no/users-api/users?grouplevel=1',
+        headers={ 'Authorization': 'Bearer %s' % getUsersApiKey() }
+    )
+    with urllib.request.urlopen(req) as response:
         data = response.read().decode('utf-8')
     data = json.loads(data)
 
