@@ -3,8 +3,9 @@
 # This script removes the user from 'beboer'-group,
 # and all other groups specified on command line, and
 # adds the user to 'utflyttet'-group
+set -e
 
-user=${1}
+user=$1
 if [ "$user" == "" ];
 then
 	echo "Missing user!"

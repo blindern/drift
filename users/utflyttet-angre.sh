@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 user=$1
 if [ -z $user ]; then
