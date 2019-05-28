@@ -11,7 +11,7 @@ etcd:
   initial_advertise_peer_urls: "http://{PRIVATE_IPV4}:2380"
   listen_client_urls: "http://0.0.0.0:2379"
   listen_peer_urls: "http://{PRIVATE_IPV4}:2380"
-  initial_cluster: coreos-1=http://coreos-1.zt.foreningenbs.no
+  initial_cluster: coreos-2=http://coreos-2.zt.foreningenbs.no
   #initial_cluster_state: existing
   initial_cluster_state: new
 
@@ -147,7 +147,7 @@ systemd:
 
         [Service]
         Type=oneshot
-        ExecStart=/bin/sh -c '/usr/bin/wget --no-cache --spider -q "https://hsw.no/iplog/fbs-coreos-1?key=$(cat /etc/dyndns.key)"'
+        ExecStart=/bin/sh -c '/usr/bin/wget --no-cache --spider -q "https://hsw.no/iplog/fbs-coreos-2?key=$(cat /etc/dyndns.key)"'
     - name: dyndns.timer
       enable: true
       contents: |
@@ -172,7 +172,7 @@ systemd:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/usr/bin/mkdir -p /opt/bin/
-        ExecStart=/usr/bin/curl -o /opt/bin/docker-compose -sL "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-Linux-x86_64"
+        ExecStart=/usr/bin/curl -o /opt/bin/docker-compose -sL "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64"
         ExecStart=/usr/bin/chmod +x /opt/bin/docker-compose
 
         [Install]

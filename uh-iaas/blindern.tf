@@ -109,9 +109,22 @@ data "openstack_compute_flavor_v2" "medium" {
   name = "m1.medium"
 }
 
+data "openstack_compute_flavor_v2" "xlarge" {
+  # 16 GB RAM + 20 GB disk
+  name = "m1.xlarge"
+}
+
 resource "openstack_blockstorage_volume_v3" "volume_1" {
   name = "volume_1"
   size = 10
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "openstack_blockstorage_volume_v3" "volume_2" {
+  name = "volume_2"
+  size = 50
   lifecycle {
     prevent_destroy = true
   }
@@ -139,9 +152,36 @@ resource "openstack_compute_instance_v2" "coreos_1" {
   }
 }
 
+resource "openstack_compute_instance_v2" "coreos_2" {
+  name = "coreos_2"
+  image_name = "${var.coreos}"
+  flavor_name = "${data.openstack_compute_flavor_v2.xlarge.name}"
+  network {
+    name = "${data.openstack_networking_network_v2.public.name}"
+  }
+  security_groups = [
+    "${openstack_networking_secgroup_v2.misc.name}"
+  ]
+  key_pair = "${openstack_compute_keypair_v2.athene.name}"
+  user_data = "${file("coreos-config.ign")}"
+
+  lifecycle {
+    ignore_changes = [
+      # Don't replace the instance when we modify user data.
+      # Comment this if needed.
+      "user_data"
+    ]
+  }
+}
+
 resource "openstack_compute_volume_attach_v2" "va_1" {
   instance_id = "${openstack_compute_instance_v2.coreos_1.id}"
   volume_id = "${openstack_blockstorage_volume_v3.volume_1.id}"
+}
+
+resource "openstack_compute_volume_attach_v2" "va_2" {
+  instance_id = "${openstack_compute_instance_v2.coreos_2.id}"
+  volume_id = "${openstack_blockstorage_volume_v3.volume_2.id}"
 }
 
 
@@ -151,4 +191,8 @@ resource "openstack_compute_volume_attach_v2" "va_1" {
 
 output "coreos_1_ip" {
   value = "${openstack_compute_instance_v2.coreos_1.access_ip_v4}"
+}
+
+output "coreos_2_ip" {
+  value = "${openstack_compute_instance_v2.coreos_2.access_ip_v4}"
 }
