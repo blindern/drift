@@ -1,5 +1,4 @@
 #!/bin/bash
-# TODO: kunne oppdatere navn på en bruker
 
 function addchange() {
 	if [ "$FIRST" -eq 0 ]; then
@@ -83,12 +82,28 @@ if [ $USEREXISTS -eq 1 ]; then
 	fi
 
 	OLD_PHONE=$(echo "$DATA" | grep "^mobile:" | awk '{print $2}' | head -n 1)
-	if [[ "$PHONE" != "" && ( "$OLD_PHONE" == "" || "$OLD_PHONE" != "$PHONE" ) ]]; then
+	if [[ "$PHONE" != "" && "$OLD_PHONE" != "$PHONE" ]]; then
 
 		echo "Oppdatere telefon fra $OLD_PHONE til $PHONE?"
 		select yn in "Ja" "Nei"; do
 			if [[ "$yn" == "Ja" ]]; then
 				addchange "mobile" "$PHONE"
+			fi
+			break
+		done
+	fi
+	
+	OLD_FIRSTNAME=$(echo "$DATA" | grep "^givenName:" | cut -d" " -f2- | head -n 1)
+	OLD_LASTNAME=$(echo "$DATA" | grep "^sn:" | cut -d" " -f2- | head -n 1)
+	if [[ ("$FIRSTNAME" != "" && "$LASTNAME" != "") && ( "$OLD_FIRSTNAME" != "$FIRSTNAME" || "$OLD_LASTNAME" != "$LASTNAME" ) ]]; then
+
+		echo "Oppdatere navn fra $OLD_FIRSTNAME $OLD_LASTNAME til $FIRSTNAME $LASTNAME?"
+		select yn in "Ja" "Nei"; do
+			if [[ "$yn" == "Ja" ]]; then
+				addchange "givenName" "$FIRSTNAME"
+				addchange "sn" "$LASTNAME"
+				addchange "displayName" "$FIRSTNAME $LASTNAME"
+				addchange "cn" "$FIRSTNAME $LASTNAME"
 			fi
 			break
 		done
