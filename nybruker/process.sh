@@ -93,8 +93,8 @@ if [ $USEREXISTS -eq 1 ]; then
 		done
 	fi
 	
-	OLD_FIRSTNAME=$(echo "$DATA" | grep "^givenName:" | awk '{print $2}' | head -n 1)
-	OLD_LASTNAME=$(echo "$DATA" | grep "^sn:" | awk '{print $2}' | head -n 1)
+	OLD_FIRSTNAME=$(echo "$DATA" | grep "^givenName:" | cut -d" " -f2- | head -n 1)
+	OLD_LASTNAME=$(echo "$DATA" | grep "^sn:" | cut -d" " -f2- | head -n 1)
 	if [[ ("$FIRSTNAME" != "" && "$LASTNAME" != "") && ( "$OLD_FIRSTNAME" != "$FIRSTNAME" || "$OLD_LASTNAME" != "$LASTNAME" ) ]]; then
 
 		echo "Oppdatere navn fra $OLD_FIRSTNAME $OLD_LASTNAME til $FIRSTNAME $LASTNAME?"
