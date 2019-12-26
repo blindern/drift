@@ -22,12 +22,6 @@ Terraform need manual setup. See
 https://learn.hashicorp.com/terraform/getting-started/install.html
 and https://askubuntu.com/a/983352
 
-`ct` is used to convert between the CoreOS config formats:
-
-```bash
-./download-ct.sh
-```
-
 ## Configuring credentials
 
 Create a file name `.keystone-private.sh` using this template:
@@ -54,7 +48,7 @@ See the template `blindern.tf` for the infrastructure setup.
 
 ```bash
 . .keystone.sh
-./convert-config.sh
+make convert-config
 terraform init
 terraform apply
 ```
