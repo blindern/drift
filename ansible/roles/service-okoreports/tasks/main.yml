@@ -1,0 +1,44 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/okoreports
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy settings file
+  copy:
+    dest: /opt/okoreports/settings.py
+    src: settings.py
+    owner: root
+    group: root
+    mode: 0644
+
+# Uses port 8000.
+- name: Start okoreports-backend container
+  docker_container:
+    name: okoreports-backend
+    state: started
+    image: "{{ okoreports_backend_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ okoreports_backend_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /opt/okoreports/settings.py:/usr/src/tripletex/settings_local.py
+      - /data/okoreports-reports:/var/okoreports/reports
+    log_driver: journald
+
+# Uses port 80.
+- name: Start okoreports-frontend container
+  docker_container:
+    name: okoreports-frontend
+    state: started
+    image: "{{ okoreports_frontend_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ okoreports_frontend_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald
