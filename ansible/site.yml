@@ -18,6 +18,8 @@
       tags: zerotier
     - role: docker-network
       tags: docker-network
+    - role: coreos-etcd
+      tags: coreos-etcd
     - role: coreos-docker
       tags: coreos-docker
 

@@ -1,0 +1,6 @@
+# We do not use etcd, and it is not properly set up.
+- name: Disable etcd
+  service:
+    name: etcd-member.service
+    state: stopped
+    enabled: no
