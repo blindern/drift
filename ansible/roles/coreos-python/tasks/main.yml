@@ -2,6 +2,7 @@
   raw: cat /opt/pypy/.version
   register: pypy_version_result
   ignore_errors: True
+  failed_when: False
   changed_when: False
 
 - name: Install pypy
