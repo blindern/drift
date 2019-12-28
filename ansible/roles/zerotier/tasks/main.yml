@@ -1,0 +1,99 @@
+- name: Install virtual network device
+  copy:
+    content: |
+      [NetDev]
+      Name=fbs0
+      Kind=bridge
+    dest: /etc/systemd/network/fbs0.netdev
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+    - restart networkd
+
+- name: Install network configuratiion for bridge
+  copy:
+    content: |
+      [Match]
+      Name=fbs0
+
+      [Network]
+      Address={{ zerotier_host_ip_cidr }}
+    dest: /etc/systemd/network/fbs0.network
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+    - restart networkd
+
+- name: Install network configuration for ZeroTier
+  copy:
+    content: |
+      [Match]
+      Name=ztfbs0
+
+      [Network]
+      Bridge=fbs0
+    dest: /etc/systemd/network/zerotier.network
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+
+- name: Add device map for ZeroTier network
+  lineinfile:
+    line: "{{ zerotier_network_id }}=ztfbs0"
+    path: /data/zerotier-one/devicemap
+    create: yes
+    regexp: "^{{ zerotier_network_id }}="
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install ZeroTier service
+  copy:
+    content: |
+      [Unit]
+      Description=ZeroTier One
+      After=docker.service
+      Requires=docker.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=-/usr/bin/docker kill zerotier-one
+      ExecStartPre=-/usr/bin/docker rm -f zerotier-one
+      ExecStartPre=/usr/bin/docker pull henrist/zerotier-one
+      ExecStart=/usr/bin/docker run --name zerotier-one --device /dev/net/tun --net host --cap-add NET_ADMIN --cap-add SYS_ADMIN -v /data/zerotier-one:/var/lib/zerotier-one henrist/zerotier-one
+      Restart=on-failure
+      KillMode=process
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/zerotier-one.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+
+# Ensure systemd is reloaded if needed before continuing.
+- meta: flush_handlers
+
+- name: Enable ZeroTier
+  service:
+    name: zerotier-one.service
+    state: started
+    enabled: yes
+
+- name: Check if ZeroTier network is already set up
+  stat:
+    path: "/data/zerotier-one/networks.d/{{ zerotier_network_id }}.conf"
+  register: zerotier_presence
+
+# Must be manually approved on https://my.zerotier.com/network/a84ac5c10a9c7522
+- name: Join ZeroTier network
+  command: "docker exec zerotier-one zerotier-cli join {{ zerotier_network_id }}"
+  when: not zerotier_presence.stat.exists

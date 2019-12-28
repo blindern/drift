@@ -1,4 +1,4 @@
-# UH-IaaS
+# VMs on UH-IaaS
 
 See https://github.com/cybernetisk/drift/tree/master/uh-iaas
 for related work.
@@ -55,19 +55,21 @@ terraform apply
 
 The `terraform.tfstate` file must be commited and pushed when changed.
 
-## Custom setup
+## Configuring hosts from initial state
 
-This is a one-shot setup you most probably never need to care about.
-But if you do manual steps that are not automated, update this part!
+The Terraform setup in this directory is only for creating VMs and
+their core setup, not for setting up the contents of the VMs.
 
-### Joining zerotier network
+Provision the host using [ansible](../ansible/) if it has been recreated
+or a new host is added.
 
-```bash
-docker exec zerotier-one zerotier-cli join a84ac5c10a9c7522
-```
+## Data folder
 
-The instance was manually approved and named in ZeroTier dashboard,
-and given a DNS record for coreos-1.zt.foreningenbs.no.
+The `/data` directory is a volume that contains the `drift` repo checked out.
+It also holds the encryption key.
+
+All state that must be persisted should be stored within this volume, as only
+this will be persisted across instance recreations.
 
 ## Updating CoreOS instance template
 
@@ -75,7 +77,6 @@ and given a DNS record for coreos-1.zt.foreningenbs.no.
 ./publish-coreos.sh
 ```
 
-## Data folder
-
-The `/data` directory is a volume that contains the `drift` repo checked out.
-It also holds the encryption key.
+TODO: When doing this, we get a name conflict as there will be duplicate
+images with the same name. We probably want to name these images more
+explicit.

@@ -1,0 +1,21 @@
+- hosts: coreos
+  become: yes
+  gather_facts: no
+  roles:
+    - role: coreos-python
+      tags: coreos-python
+
+- hosts: coreos
+  become: yes
+  gather_facts: no
+  roles:
+    # (Not using dyndns for now, keeping records in Domeneshop
+    # manually updated.)
+    # - role: dyndns
+    #   tags: dyndns
+    - role: git-crypt
+      tags: git-crypt
+    - role: zerotier
+      tags: zerotier
+    - role: docker-network
+      tags: docker-network

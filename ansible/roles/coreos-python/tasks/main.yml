@@ -1,0 +1,10 @@
+- name: Check if correct version is installed
+  raw: cat /opt/pypy/.version
+  register: pypy_version_result
+  ignore_errors: True
+
+- name: Install pypy
+  script: install.sh
+  when: pypy_version_result.rc != 0 or pypy_version_result.stdout.strip() != pypy_version
+  environment:
+    PYPY_VERSION: "{{ pypy_version }}"

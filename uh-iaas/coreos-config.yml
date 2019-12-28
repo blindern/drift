@@ -77,39 +77,6 @@ storage:
       path: /etc/ssh/ssh_host_rsa_key.pub
     # end host keys
 
-    - filesystem: root
-      mode: 0600
-      contents:
-        local: dyndns.key
-      path: /etc/dyndns.key
-
-    - filesystem: root
-      mode: 0755
-      contents:
-        inline: |
-          #!/bin/bash -e
-
-          root="$(git rev-parse --show-toplevel)"
-          relative="$(realpath --relative-to="$root" .)"
-
-          exec docker run \
-            -u $(id -u):$(id -g) \
-            -it \
-            -w "/repo/$relative" \
-            -v "$root":/repo quay.io/lukebond/git-crypt:v1.0.0 \
-            "$@"
-      path: /opt/bin/git-crypt
-
-networkd:
-  units:
-    - name: 50-zerotier.network
-      contents: |
-        [Match]
-        Name=zt*
-
-        [Link]
-        Unmanaged=yes
-
 systemd:
   units:
     - name: data.mount
@@ -137,78 +104,6 @@ systemd:
         Type=oneshot
         RemainAfterExit=yes
         ExecStart=/usr/bin/chown core:core /data
-
-        [Install]
-        WantedBy=multi-user.target
-    - name: dyndns.service
-      contents: |
-        [Unit]
-        Description=DynDNS
-
-        [Service]
-        Type=oneshot
-        ExecStart=/bin/sh -c '/usr/bin/wget --no-cache --spider -q "https://hsw.no/iplog/fbs-coreos-2?key=$(cat /etc/dyndns.key)"'
-    - name: dyndns.timer
-      enable: true
-      contents: |
-        [Unit]
-        Description=DynDNS
-
-        [Timer]
-        OnCalendar=*:0/5
-        OnBootSec=15
-
-        [Install]
-        WantedBy=multi-user.target
-    - name: install-docker-compose.service
-      enable: yes
-      contents: |
-        [Unit]
-        Description=Install docker-compose
-        ConditionPathExists=!/opt/bin/docker-compose
-        After=network-online.target
-
-        [Service]
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=/usr/bin/mkdir -p /opt/bin/
-        ExecStart=/usr/bin/curl -o /opt/bin/docker-compose -sL "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-Linux-x86_64"
-        ExecStart=/usr/bin/chmod +x /opt/bin/docker-compose
-
-        [Install]
-        WantedBy=multi-user.target
-    - name: zerotier-one.service
-      enable: yes
-      contents: |
-        [Unit]
-        Description=MyApp
-        After=docker.service
-        Requires=docker.service
-
-        [Service]
-        TimeoutStartSec=0
-        ExecStartPre=-/usr/bin/docker kill zerotier-one
-        ExecStartPre=-/usr/bin/docker rm -f zerotier-one
-        ExecStartPre=/usr/bin/docker pull henrist/zerotier-one
-        ExecStart=/usr/bin/docker run --name zerotier-one --device /dev/net/tun --net host --cap-add NET_ADMIN --cap-add SYS_ADMIN -v /data/zerotier-one:/var/lib/zerotier-one henrist/zerotier-one
-        Restart=on-failure
-        KillMode=process
-
-        [Install]
-        WantedBy=multi-user.target
-    - name: zerotier-one-join-foreningenbs.service
-      enable: yes
-      contents: |
-        [Unit]
-        Description=Join ZeroTier network (must be manually approved on https://my.zerotier.com/network/a84ac5c10a9c7522)
-        ConditionPathExists=!/data/zerotier-one/networks.d/a84ac5c10a9c7522.conf
-        After=zerotier-one.service
-        Requires=zerotier-one.service
-
-        [Service]
-        Type=oneshot
-        RemainAfterExit=yes
-        ExecStart=/usr/bin/docker exec zerotier-one zerotier-cli join a84ac5c10a9c7522
 
         [Install]
         WantedBy=multi-user.target

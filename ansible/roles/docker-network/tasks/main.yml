@@ -1,0 +1,14 @@
+- name: Install docker pip package
+  pip:
+    name: docker
+
+- name: Setup custom docker network
+  docker_network:
+    name: fbs0
+    driver: bridge
+    driver_options:
+      com.docker.network.bridge.name: fbs0
+    ipam_config:
+      - gateway: "{{ zerotier_host_ip }}"
+        subnet: "{{ docker_subnet }}"
+        iprange: "{{ docker_ip_range }}"
