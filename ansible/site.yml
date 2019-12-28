@@ -7,7 +7,6 @@
 
 - hosts: coreos
   become: yes
-  gather_facts: no
   roles:
     # (Not using dyndns for now, keeping records in Domeneshop
     # manually updated.)
@@ -19,3 +18,24 @@
       tags: zerotier
     - role: docker-network
       tags: docker-network
+
+# Services running on coreos-1.
+- hosts: coreos-1
+  become: yes
+  vars:
+    # TODO: Find out how we will automate updating this.
+    smaabruket_availability_api_image: blindern/smaabruket-availability-api:20191226-1719-776
+    smaabruket_availability_api_ipv4_address: "172.25.16.7"
+    # TODO: Find out how we will automate updating this.
+    users_api_image: blindern/users-api:20191228-0129-241
+    users_api_ipv4_address: "172.25.16.2"
+  roles:
+    - role: service-users-api
+      tags: service-users-api
+    - role: service-smaabruket-availability-api
+      tags: service-smaabruket-availability-api
+
+# Services rnuning on coreos-2.
+- hosts: coreos-1
+  become: yes
+  roles: []

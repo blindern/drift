@@ -1,0 +1,30 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/users-api
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy overrides file
+  copy:
+    dest: /opt/users-api/overrides.properties
+    src: overrides.properties
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start users-api container
+  docker_container:
+    name: users-api
+    state: started
+    image: "{{ users_api_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ users_api_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /opt/users-api/overrides.properties:/opt/users-api/overrides.properties
+    log_driver: journald
+    working_dir: /opt/users-api

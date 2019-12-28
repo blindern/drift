@@ -1,0 +1,29 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/smaabruket-availability-api
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy environments file
+  copy:
+    dest: /opt/smaabruket-availability-api/variables.env
+    src: variables.env
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start smaabruket-availability-api container
+  docker_container:
+    name: smaabruket-availability-api
+    state: started
+    image: "{{ smaabruket_availability_api_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ smaabruket_availability_api_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald
+    working_dir: /app
+    env_file: /opt/smaabruket-availability-api/variables.env
