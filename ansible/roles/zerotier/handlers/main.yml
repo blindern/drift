@@ -2,3 +2,5 @@
   command: systemctl daemon-reload
 - name: restart networkd
   command: systemctl restart systemd-networkd
+- name: restart zerotier-one
+  command: systemctl restart zerotier-one
