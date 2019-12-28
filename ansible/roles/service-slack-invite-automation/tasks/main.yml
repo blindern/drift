@@ -1,0 +1,29 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/slack-invite-automation
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy environments file
+  copy:
+    dest: /opt/slack-invite-automation/variables.env
+    src: variables.env
+    owner: root
+    group: root
+    mode: 0644
+
+# Uses port 3000.
+- name: Start slack-invite-automation container
+  docker_container:
+    name: slack-invite-automation
+    state: started
+    image: "{{ slack_invite_automation_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ slack_invite_automation_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald
+    env_file: /opt/slack-invite-automation/variables.env
