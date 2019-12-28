@@ -36,18 +36,44 @@
       tags: service-users-api
     - role: service-smaabruket-availability-api
       tags: service-smaabruket-availability-api
+    # - role: service-okoreports
+    #   tags: service-okoreports
+    # - role: service-slack-invite-automation
+    #   tags: service-slack-invite-automation
 
 # Services running on coreos-2.
 - hosts: coreos-2
   become: yes
   roles: []
+    # - role: service-web-1
+    #   tags: service-web-1
+    # - role: service-intern
+    #   tags: service-intern
+    # - role: service-dugnaden
+    #   tags: service-dugnaden
+    # - role: service-phpldapadmin
+    #   tags: service-phpldapadmin
+    # - role: service-phpmyadmin
+    #   tags: service-phpmyadmin
+    # - role: service-simplesamlphp
+    #   tags: service-simplesamlphp
 
 # Services running on coreos-3.
 - hosts: coreos-3
   become: yes
   roles: []
+    # - role: service-confluence
+    #   tags: service-confluence
+    # - role: service-mysql-1
+    #   tags: service-mysql-1
+    # - role: service-mongodb-1
+    #   tags: service-mongodb-1
 
 # Services running on coreos-4.
 - hosts: coreos-4
   become: yes
   roles: []
+    # - role: service-ldap-master
+    #   tags: service-ldap-master
+    # - role: service-postgresql-1
+    #   tags: service-postgresql-1
