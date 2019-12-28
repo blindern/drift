@@ -1,6 +1,4 @@
-FROM cptactionhank/atlassian-confluence:latest
-
-MAINTAINER Henrik Steen <henrist@henrist.net>
+FROM cptactionhank/atlassian-confluence:7.2.0
 
 USER root
 
@@ -9,7 +7,7 @@ USER root
 # also set server settings to match our use
 RUN set -x && \
     mkdir /tmp/conf && \
-    cp /opt/atlassian/confluence/confluence/WEB-INF/lib/confluence-[56]*.jar /tmp/conf/confluence.jar && \
+    cp /opt/atlassian/confluence/confluence/WEB-INF/lib/confluence-[567]*.jar /tmp/conf/confluence.jar && \
     cd /tmp/conf && \
     jar xf confluence.jar && \
     sed -i '/confluence.prefs.watch.my.own.content/{N;s/\(.*\n.*\)true/\1false/}' preferences-default.xml && \
@@ -19,7 +17,7 @@ RUN set -x && \
       --append "//Connector" -t attr -n scheme -v https \
       --append "//Connector" -t attr -n proxyName -v foreningenbs.no \
       --append "//Connector" -t attr -n proxyPort -v 443 \
-      --update "//Context/@path" -v /confluence \
+      --update "//Context[@path='']/@path" -v /confluence \
       "${CONF_INSTALL}/conf/server.xml"
 
 USER daemon

@@ -1,0 +1,17 @@
+# Uses port 8090 and 8091.
+- name: Start confluence container
+  docker_container:
+    name: confluence
+    state: started
+    image: "{{ confluence_image }}"
+    restart_policy: unless-stopped
+    #env:
+    #  MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ confluence_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /data/confluence-data:/var/atlassian/confluence
+      - /data/confluence-logs:/opt/atlassian/confluence/logs
+    log_driver: journald

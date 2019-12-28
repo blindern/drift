@@ -74,13 +74,19 @@
 - hosts: coreos-3
   become: yes
   vars:
+    confluence_image: blindern/confluence:20191228-1213
+    confluence_ipv4_address: "172.25.16.8"
     mysql_1_image: mysql:8
     mysql_1_ipv4_address: "172.25.16.40"
+    mysql_2_image: mysql:5.6
+    mysql_2_ipv4_address: "172.25.16.43"
   roles:
-    # - role: service-confluence
-    #   tags: service-confluence
+    - role: service-confluence
+      tags: service-confluence
     - role: service-mysql-1
       tags: service-mysql-1
+    - role: service-mysql-2
+      tags: service-mysql-2
     # - role: service-mongodb-1
     #   tags: service-mongodb-1
 
