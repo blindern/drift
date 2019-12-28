@@ -59,21 +59,21 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.0/22 (172.25.16.0-172.25.19.255)
 - Allocated services:
   - 172.25.16.1 web-1.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.2 users-api.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.2 users-api.zt.foreningenbs.no
   - 172.25.16.3 intern-backend.zt.foreningenbs.no (not set up yet)
   - 172.25.16.4 intern-frontend.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.5 okoreports-backend.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.6 okoreports-frontend.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.7 smaabruket-availability-api.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.8 confluence.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.9 slack-invite-automation.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.5 okoreports-backend.zt.foreningenbs.no
+  - 172.25.16.6 okoreports-frontend.zt.foreningenbs.no
+  - 172.25.16.7 smaabruket-availability-api.zt.foreningenbs.no
+  - 172.25.16.8 confluence.zt.foreningenbs.no
+  - 172.25.16.9 slack-invite-automation.zt.foreningenbs.no
   - 172.25.16.10 dugnaden.zt.foreningenbs.no (not set up yet)
   - 172.25.16.11 phpldapadmin.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.12 phpmyadmin.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.12 phpmyadmin.zt.foreningenbs.no
   - 172.25.16.13 simplesamlphp.zt.foreningenbs.no (not set up yet)
   - 172.25.16.30 ldap-master.zt.foreningenbs.no (not set up yet)
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.40 mysql-1.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.40 mysql-1.zt.foreningenbs.no
   - 172.25.16.41 mongodb-1.zt.foreningenbs.no (not set up yet)
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.43 mysql-2.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.43 mysql-2.zt.foreningenbs.no
