@@ -35,7 +35,17 @@
     - role: service-smaabruket-availability-api
       tags: service-smaabruket-availability-api
 
-# Services rnuning on coreos-2.
-- hosts: coreos-1
+# Services running on coreos-2.
+- hosts: coreos-2
+  become: yes
+  roles: []
+
+# Services running on coreos-3.
+- hosts: coreos-3
+  become: yes
+  roles: []
+
+# Services running on coreos-4.
+- hosts: coreos-4
   become: yes
   roles: []

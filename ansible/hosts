@@ -4,7 +4,11 @@
 
 coreos-1 ansible_host=coreos-1.foreningenbs.no
 coreos-2 ansible_host=coreos-2.foreningenbs.no
+coreos-3 ansible_host=coreos-3.foreningenbs.no
+coreos-4 ansible_host=coreos-4.foreningenbs.no
 
 [coreos]
 coreos-1
 coreos-2
+coreos-3
+coreos-4
