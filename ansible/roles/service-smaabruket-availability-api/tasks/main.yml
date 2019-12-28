@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  register: file_copied
 
 - name: Start smaabruket-availability-api container
   docker_container:
@@ -27,3 +28,4 @@
     log_driver: journald
     working_dir: /app
     env_file: /opt/smaabruket-availability-api/variables.env
+    restart: "{{ file_copied.changed }}"

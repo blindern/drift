@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  register: file_copied
 
 # Uses port 3000.
 - name: Start slack-invite-automation container
@@ -27,3 +28,4 @@
     networks_cli_compatible: yes
     log_driver: journald
     env_file: /opt/slack-invite-automation/variables.env
+    restart: "{{ file_copied.changed }}"

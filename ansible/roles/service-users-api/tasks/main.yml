@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  register: file_copied
 
 - name: Start users-api container
   docker_container:
@@ -28,3 +29,4 @@
       - /opt/users-api/overrides.properties:/opt/users-api/overrides.properties
     log_driver: journald
     working_dir: /opt/users-api
+    restart: "{{ file_copied.changed }}"

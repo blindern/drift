@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  register: file_copied
 
 - name: Start mysql container
   docker_container:
@@ -30,3 +31,4 @@
       - /data/mysql-2-data:/var/lib/mysql
       - /opt/mysql-2/custom.cnf:/etc/mysql/conf.d/custom.cnf
     log_driver: journald
+    restart: "{{ file_copied.changed }}"

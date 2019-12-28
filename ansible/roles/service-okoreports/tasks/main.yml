@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: 0644
+  register: file_copied
 
 # Uses port 8000.
 - name: Start okoreports-backend container
@@ -29,6 +30,7 @@
       - /opt/okoreports/settings.py:/usr/src/tripletex/settings_local.py
       - /data/okoreports-reports:/var/okoreports/reports
     log_driver: journald
+    restart: "{{ file_copied.changed }}"
 
 # Uses port 80.
 - name: Start okoreports-frontend container
