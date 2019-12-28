@@ -1,0 +1,3 @@
+[mysqld]
+innodb_log_file_size = 256M
+default_authentication_plugin = mysql_native_password

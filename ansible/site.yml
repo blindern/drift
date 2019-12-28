@@ -70,11 +70,14 @@
 # Services running on coreos-3.
 - hosts: coreos-3
   become: yes
-  roles: []
+  vars:
+    mysql_1_image: mysql:8
+    mysql_1_ipv4_address: "172.25.16.40"
+  roles:
     # - role: service-confluence
     #   tags: service-confluence
-    # - role: service-mysql-1
-    #   tags: service-mysql-1
+    - role: service-mysql-1
+      tags: service-mysql-1
     # - role: service-mongodb-1
     #   tags: service-mongodb-1
 
