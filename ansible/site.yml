@@ -18,6 +18,8 @@
       tags: zerotier
     - role: docker-network
       tags: docker-network
+    - role: coreos-docker
+      tags: coreos-docker
 
 # Services running on coreos-1.
 - hosts: coreos-1
