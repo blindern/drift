@@ -1,0 +1,13 @@
+- name: Start phpmyadmin container
+  docker_container:
+    name: phpmyadmin
+    state: started
+    image: "{{ phpmyadmin_image }}"
+    restart_policy: unless-stopped
+    env:
+      PMA_HOST: "mysql-1.zt.foreningenbs.no"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ phpmyadmin_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald

@@ -53,7 +53,10 @@
 # Services running on coreos-2.
 - hosts: coreos-2
   become: yes
-  roles: []
+  vars:
+    phpmyadmin_image: phpmyadmin/phpmyadmin:5
+    phpmyadmin_ipv4_address: "172.25.16.12"
+  roles:
     # - role: service-web-1
     #   tags: service-web-1
     # - role: service-intern
@@ -62,8 +65,8 @@
     #   tags: service-dugnaden
     # - role: service-phpldapadmin
     #   tags: service-phpldapadmin
-    # - role: service-phpmyadmin
-    #   tags: service-phpmyadmin
+    - role: service-phpmyadmin
+      tags: service-phpmyadmin
     # - role: service-simplesamlphp
     #   tags: service-simplesamlphp
 
