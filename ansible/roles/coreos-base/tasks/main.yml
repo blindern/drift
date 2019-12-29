@@ -1,3 +1,6 @@
+- hostname:
+    name: "{{ coreos_hostname }}"
+
 - git_config:
     name: user.name
     value: IT-gruppa FBS
