@@ -33,7 +33,7 @@
     smaabruket_availability_api_image: blindern/smaabruket-availability-api:20191226-1719-776
     smaabruket_availability_api_ipv4_address: "172.25.16.7"
     # TODO: Find out how we will automate updating this.
-    users_api_image: blindern/users-api:20191228-0129-241
+    users_api_image: blindern/users-api:20191229-0425-274
     users_api_ipv4_address: "172.25.16.2"
     okoreports_backend_image: cybernetisk/okoreports-backend
     okoreports_backend_ipv4_address: "172.25.16.5"
