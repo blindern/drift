@@ -78,6 +78,21 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no (not set up yet)
   - 172.25.16.43 mysql-2.zt.foreningenbs.no
 
+### ZeroTier details
+
+To manage the network, log in to https://my.zerotier.com/network/a84ac5c10a9c7522
+using the credentials stored at
+https://foreningenbs.no/confluence/display/FBS/Kundeforhold+ZeroTier
+
+To add a new ad-hoc client to the network:
+
+- Install ZeroTier from https://www.zerotier.com/ or use
+  https://github.com/henrist/zerotier-one-docker.
+- Request to join network `a84ac5c10a9c7522` (leave only "allow managed" checked).
+- Authorize the client in the ZeroTier dashboard linked above.
+- Give the client a description so we keep track of what is connected.
+- You should now be able to ping e.g. coreos-1.zt.foreningenbs.no.
+
 ## Encryption in this repo
 
 This repo uses [git-crypt](https://github.com/AGWA/git-crypt)
