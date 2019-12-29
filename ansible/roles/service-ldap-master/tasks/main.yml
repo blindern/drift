@@ -6,7 +6,19 @@
     group: root
     mode: 0700
 
-- name: Copy certs (1/2)
+- name: Copy cert files (1/2)
+  copy:
+    dest: /opt/ldap-master/
+    src: "{{ playbook_dir }}/../certs/{{ item }}"
+    owner: "1000"
+    group: "1000"
+    mode: 0644
+  with_items:
+    - ca.crt
+    - dhparam.pem
+  register: file_copied1
+
+- name: Copy cert files (2/2)
   copy:
     dest: /opt/ldap-master/
     src: "{{ playbook_dir }}/../certs/ldap/{{ item }}"
@@ -14,18 +26,8 @@
     group: "1000"
     mode: 0644
   with_items:
-    - foreningenbs_slapd_cacert.pem
-    - foreningenbs_slapd_cert.pem
-    - foreningenbs_slapd_key.pem
-  register: file_copied1
-
-- name: Copy certs (2/2)
-  copy:
-    dest: /opt/ldap-master/
-    src: "{{ playbook_dir }}/../certs/dhparam.pem"
-    owner: "1000"
-    group: "1000"
-    mode: 0644
+    - ldap-master.crt
+    - ldap-master.key
   register: file_copied2
 
 - name: Start ldap-master container
@@ -45,9 +47,9 @@
     volumes:
       - /data/ldap-master-data:/var/lib/ldap
       - /data/ldap-master-config:/etc/ldap/slapd.d
-      - /opt/ldap-master/dhparam.pem:/etc/ssl/certs/dhparam.pem
-      - /opt/ldap-master/foreningenbs_slapd_cacert.pem:/etc/ssl/certs/foreningenbs_slapd_cacert.pem
-      - /opt/ldap-master/foreningenbs_slapd_cert.pem:/etc/ssl/certs/foreningenbs_slapd_cert.pem
-      - /opt/ldap-master/foreningenbs_slapd_key.pem:/etc/ssl/private/foreningenbs_slapd_key.pem
+      - /opt/ldap-master/dhparam.pem:/certs/dhparam.pem
+      - /opt/ldap-master/ca.crt:/certs/ca.crt
+      - /opt/ldap-master/ldap-master.crt:/certs/slapd.crt
+      - /opt/ldap-master/ldap-master.key:/certs/slapd.key
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
