@@ -12,6 +12,8 @@
     # manually updated.)
     # - role: dyndns
     #   tags: dyndns
+    - role: coreos-base
+      tags: coreos-base
     - role: git-crypt
       tags: git-crypt
     - role: zerotier

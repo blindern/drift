@@ -1,0 +1,21 @@
+- git_config:
+    name: user.name
+    value: IT-gruppa FBS
+    scope: global
+
+- git_config:
+    name: user.email
+    value: it-gruppa@foreningenbs.no
+    scope: global
+
+- git_config:
+    name: user.name
+    value: IT-gruppa FBS
+    scope: global
+  become_user: core
+
+- git_config:
+    name: user.email
+    value: it-gruppa@foreningenbs.no
+    scope: global
+  become_user: core
