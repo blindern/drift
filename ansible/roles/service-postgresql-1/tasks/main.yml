@@ -1,0 +1,39 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/postgresql-1
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files
+  copy:
+    dest: "/opt/postgresql-1/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - pg_hba.conf
+    - pg_ident.conf
+    - postgresql.conf
+  register: file_copied
+
+- name: Start postgresql container
+  docker_container:
+    name: postgresql-1
+    state: started
+    image: "{{ postgresql_1_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ postgresql_1_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /opt/postgresql-1/postgresql.conf:/postgresql.conf
+      - /opt/postgresql-1/pg_hba.conf:/pg_hba.conf
+      - /opt/postgresql-1/pg_ident.conf:/pg_ident.conf
+      - /data/postgresql-1-data:/var/lib/postgresql/data
+    log_driver: journald
+    command: -c 'config_file=/postgresql.conf'
+    restart: "{{ file_copied.changed }}"

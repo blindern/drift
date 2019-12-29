@@ -110,8 +110,10 @@
   vars:
     ldap_master_image: blindern/openldap:20191229-0355
     ldap_master_ipv4_address: "172.25.16.30"
+    postgresql_1_image: postgres:12.1
+    postgresql_1_ipv4_address: "172.25.16.42"
   roles:
     - role: service-ldap-master
       tags: service-ldap-master
-    # - role: service-postgresql-1
-    #   tags: service-postgresql-1
+    - role: service-postgresql-1
+      tags: service-postgresql-1
