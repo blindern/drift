@@ -1,0 +1,53 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/ldap-slave
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy certs (1/2)
+  copy:
+    dest: /opt/ldap-slave/
+    src: "{{ playbook_dir }}/../certs/ldap/{{ item }}"
+    owner: "1000"
+    group: "1000"
+    mode: 0644
+  with_items:
+    - foreningenbs_slapd_cacert.pem
+    - fbs-printserver_slapd_cert.pem
+    - fbs-printserver_slapd_key.pem
+  register: file_copied1
+
+- name: Copy certs (2/2)
+  copy:
+    dest: /opt/ldap-slave/
+    src: "{{ playbook_dir }}/../certs/dhparam.pem"
+    owner: "1000"
+    group: "1000"
+    mode: 0644
+  register: file_copied2
+
+- name: Start ldap-slave container
+  docker_container:
+    name: ldap-slave
+    state: started
+    image: "{{ ldap_slave_image }}"
+    restart_policy: unless-stopped
+    env:
+      # Uncomment for debugging.
+      # LDAP_LOG_LEVEL: "-1"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ ldap_slave_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: ldap-slave.zt.foreningenbs.no
+    volumes:
+      - /data/ldap-slave-data:/var/lib/ldap
+      - /data/ldap-slave-config:/etc/ldap/slapd.d
+      - /opt/ldap-slave/dhparam.pem:/etc/ssl/certs/dhparam.pem
+      - /opt/ldap-slave/foreningenbs_slapd_cacert.pem:/etc/ssl/certs/cacert.pem
+      - /opt/ldap-slave/fbs-printserver_slapd_cert.pem:/etc/ssl/certs/fbs-printserver_slapd_cert.pem
+      - /opt/ldap-slave/fbs-printserver_slapd_key.pem:/etc/ssl/private/fbs-printserver_slapd_key.pem
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"

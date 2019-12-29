@@ -1,0 +1,53 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/ldap-master
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy certs (1/2)
+  copy:
+    dest: /opt/ldap-master/
+    src: "{{ playbook_dir }}/../certs/ldap/{{ item }}"
+    owner: "1000"
+    group: "1000"
+    mode: 0644
+  with_items:
+    - foreningenbs_slapd_cacert.pem
+    - foreningenbs_slapd_cert.pem
+    - foreningenbs_slapd_key.pem
+  register: file_copied1
+
+- name: Copy certs (2/2)
+  copy:
+    dest: /opt/ldap-master/
+    src: "{{ playbook_dir }}/../certs/dhparam.pem"
+    owner: "1000"
+    group: "1000"
+    mode: 0644
+  register: file_copied2
+
+- name: Start ldap-master container
+  docker_container:
+    name: ldap-master
+    state: started
+    image: "{{ ldap_master_image }}"
+    restart_policy: unless-stopped
+    env:
+      # Uncomment for debugging.
+      # LDAP_LOG_LEVEL: "-1"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ ldap_master_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: ldap-master.zt.foreningenbs.no
+    volumes:
+      - /data/ldap-master-data:/var/lib/ldap
+      - /data/ldap-master-config:/etc/ldap/slapd.d
+      - /opt/ldap-master/dhparam.pem:/etc/ssl/certs/dhparam.pem
+      - /opt/ldap-master/foreningenbs_slapd_cacert.pem:/etc/ssl/certs/foreningenbs_slapd_cacert.pem
+      - /opt/ldap-master/foreningenbs_slapd_cert.pem:/etc/ssl/certs/foreningenbs_slapd_cert.pem
+      - /opt/ldap-master/foreningenbs_slapd_key.pem:/etc/ssl/private/foreningenbs_slapd_key.pem
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"

@@ -1,0 +1,38 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/phpldapadmin
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config file
+  copy:
+    dest: /opt/phpldapadmin/env.yaml
+    src: env.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+# When we change config, it seems we have to recreate the container
+# for the new configuration to take effect.
+- name: Delete container if config changed
+  docker_container:
+    name: phpldapadmin
+    state: absent
+  when: file_copied.changed
+
+- name: Start phpldapadmin container
+  docker_container:
+    name: phpldapadmin
+    state: started
+    image: "{{ phpldapadmin_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ phpldapadmin_ipv4_address }}"
+    volumes:
+      - /opt/phpldapadmin/env.yaml:/container/environment/01-custom/env.yaml
+    networks_cli_compatible: yes
+    log_driver: journald

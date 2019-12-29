@@ -68,12 +68,23 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.8 confluence.zt.foreningenbs.no
   - 172.25.16.9 slack-invite-automation.zt.foreningenbs.no
   - 172.25.16.10 dugnaden.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.11 phpldapadmin.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.11 phpldapadmin.zt.foreningenbs.no
   - 172.25.16.12 phpmyadmin.zt.foreningenbs.no
   - 172.25.16.13 simplesamlphp.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.30 ldap-master.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.31 ldap-slave.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.30 ldap-master.zt.foreningenbs.no
+  - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no
   - 172.25.16.41 mongodb-1.zt.foreningenbs.no (not set up yet)
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no (not set up yet)
   - 172.25.16.43 mysql-2.zt.foreningenbs.no
+
+## Encryption in this repo
+
+This repo uses [git-crypt](https://github.com/AGWA/git-crypt)
+to encrypt sensitive files.
+
+In addition, some files are encrypted using
+[Ansible Vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html).
+The encryption key used for this is stored in this repo. The intention
+of using Ansible Vault is to avoid having plain text files in local
+working directories, which is the default behaviour with git-crypt.

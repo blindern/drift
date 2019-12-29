@@ -56,8 +56,12 @@
 - hosts: coreos-2
   become: yes
   vars:
+    phpldapadmin_image: osixia/phpldapadmin:0.9.0
+    phpldapadmin_ipv4_address: "172.25.16.11"
     phpmyadmin_image: phpmyadmin/phpmyadmin:5
     phpmyadmin_ipv4_address: "172.25.16.12"
+    ldap_slave_image: blindern/openldap:20191229-0355
+    ldap_slave_ipv4_address: "172.25.16.31"
   roles:
     # - role: service-web-1
     #   tags: service-web-1
@@ -65,10 +69,12 @@
     #   tags: service-intern
     # - role: service-dugnaden
     #   tags: service-dugnaden
-    # - role: service-phpldapadmin
-    #   tags: service-phpldapadmin
+    - role: service-phpldapadmin
+      tags: service-phpldapadmin
     - role: service-phpmyadmin
       tags: service-phpmyadmin
+    - role: service-ldap-slave
+      tags: service-ldap-slave
     # - role: service-simplesamlphp
     #   tags: service-simplesamlphp
 
@@ -95,8 +101,11 @@
 # Services running on coreos-4.
 - hosts: coreos-4
   become: yes
-  roles: []
-    # - role: service-ldap-master
-    #   tags: service-ldap-master
+  vars:
+    ldap_master_image: blindern/openldap:20191229-0355
+    ldap_master_ipv4_address: "172.25.16.30"
+  roles:
+    - role: service-ldap-master
+      tags: service-ldap-master
     # - role: service-postgresql-1
     #   tags: service-postgresql-1
