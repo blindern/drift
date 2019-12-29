@@ -31,8 +31,8 @@ openssl dhparam -in dhparam.pem -check -text -noout
 
 ```bash
 # Replace all "someapp" and copy someapp.conf first.
-
-openssl req -new -out someapp.csr -config someapp.conf
+openssl genrsa -out someapp.key 2048
+openssl req -new -key someapp.key -out someapp.csr -config someapp.conf
 openssl x509 -req -days 3650 \
   -in someapp.csr \
   -out someapp.crt \
