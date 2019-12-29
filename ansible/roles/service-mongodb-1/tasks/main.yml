@@ -1,0 +1,35 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/mongodb-1
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config file
+  copy:
+    dest: /opt/mongodb-1/mongod.yml
+    src: mongod.yml
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start mongodb container
+  docker_container:
+    name: mongodb-1
+    state: started
+    image: "{{ mongodb_1_image }}"
+    restart_policy: unless-stopped
+    # env:
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ mongodb_1_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /opt/mongodb-1/mongod.yml:/mongod.yml
+      - /data/mongodb-1-db:/data/db
+      - /data/mongodb-1-configdb:/data/configdb
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"
+    command: --config /mongod.yml

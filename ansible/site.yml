@@ -88,6 +88,12 @@
     mysql_1_ipv4_address: "172.25.16.40"
     mysql_2_image: mysql:5.6
     mysql_2_ipv4_address: "172.25.16.43"
+    # TODO: Upgrade to newer mongodb image when we have upgraded
+    #  dependencies in intern app.
+    # NOTE: To upgrade to 3.6 we need to upgrade feature compatibility
+    #  version. See https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures
+    mongodb_1_image: mongo:3.4
+    mongodb_1_ipv4_address: "172.25.16.41"
   roles:
     - role: service-confluence
       tags: service-confluence
@@ -95,8 +101,8 @@
       tags: service-mysql-1
     - role: service-mysql-2
       tags: service-mysql-2
-    # - role: service-mongodb-1
-    #   tags: service-mongodb-1
+    - role: service-mongodb-1
+      tags: service-mongodb-1
 
 # Services running on coreos-4.
 - hosts: coreos-4

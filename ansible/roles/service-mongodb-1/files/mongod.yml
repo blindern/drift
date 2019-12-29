@@ -1,0 +1,6 @@
+storage:
+  journal:
+    enabled: true
+
+security:
+  authorization: enabled
