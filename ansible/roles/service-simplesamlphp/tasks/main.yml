@@ -16,6 +16,7 @@
   with_items:
     - authsources.php
     - config.php
+    - php.ini
     - secrets.php
     - saml20-idp-hosted.php
     - saml20-sp-remote.php
@@ -45,6 +46,8 @@
         ipv4_address: "{{ simplesamlphp_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
+      # PHP config.
+      - /opt/simplesamlphp/php.ini:/usr/local/etc/php/php.ini
       # Normal config.
       - /opt/simplesamlphp/authsources.php:/var/simplesamlphp/config/authsources.php
       - /opt/simplesamlphp/config.php:/var/simplesamlphp/config/config.php
