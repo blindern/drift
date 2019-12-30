@@ -1,0 +1,61 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/simplesamlphp
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files
+  copy:
+    dest: "/opt/simplesamlphp/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - authsources.php
+    - config.php
+    - secrets.php
+    - saml20-idp-hosted.php
+    - saml20-sp-remote.php
+    - secrets.php
+  register: file_copied1
+
+- name: Copy cert files
+  copy:
+    dest: "/opt/simplesamlphp/{{ item }}"
+    src: "{{ playbook_dir }}/../certs/saml/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - idp.foreningenbs.no.crt
+    - idp.foreningenbs.no.key
+  register: file_copied2
+
+- name: Start simplesamlphp container
+  docker_container:
+    name: simplesamlphp
+    state: started
+    image: "{{ simplesamlphp_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ simplesamlphp_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      # Normal config.
+      - /opt/simplesamlphp/authsources.php:/var/simplesamlphp/config/authsources.php
+      - /opt/simplesamlphp/config.php:/var/simplesamlphp/config/config.php
+      - /opt/simplesamlphp/secrets.php:/var/simplesamlphp/config/secrets.php
+      # Metadata.
+      - /opt/simplesamlphp/saml20-idp-hosted.php:/var/simplesamlphp/metadata/saml20-idp-hosted.php
+      - /opt/simplesamlphp/saml20-sp-remote.php:/var/simplesamlphp/metadata/saml20-sp-remote.php
+      # Certs.
+      - /opt/simplesamlphp/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt
+      - /opt/simplesamlphp/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key
+      # Storage.
+      - /data/simplesamlphp-storage:/storage
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"
