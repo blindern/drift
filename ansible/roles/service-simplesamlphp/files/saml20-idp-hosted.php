@@ -9,7 +9,7 @@ require "/var/simplesamlphp/config/secrets.php";
 $metadata["__DYNAMIC:1__"] = [
   "host" => "__DEFAULT__",
   // Relative to cert directory.
-  "privatekey" => "idp.foreningenbs.no.pem",
+  "privatekey" => "idp.foreningenbs.no.key",
   // Relative to cert directory.
   "certificate" => "idp.foreningenbs.no.crt",
   "auth" => "fbs-multi",
