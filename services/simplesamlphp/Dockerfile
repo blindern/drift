@@ -34,12 +34,16 @@ RUN set -eux; \
     rm simplesamlphp.tar.gz; \
     \
     # Add additional modules.
-    composer require bradjonesllc/simplesamlphp-module-openidconnect dev-master; \
+    composer require bradjonesllc/simplesamlphp-module-openidconnect dev-master
+
+# Use a separate RUN for this so we can keep cache above.
+RUN set -eux; \
+    cd /var/simplesamlphp; \
     mv composer.json composer.old.json; \
     cat composer.old.json | \
       jq '.repositories |= . + [{"type": "vcs", "url": "https://github.com/blindern/simplesamlphp-module-fbs"}]' \
       >composer.json; \
-    composer require blindern/simplesamlphp-module-fbs dev-master
+    composer require blindern/simplesamlphp-module-fbs "dev-master#de3a43a"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
