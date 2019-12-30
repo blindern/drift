@@ -71,12 +71,24 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.11 phpldapadmin.zt.foreningenbs.no
   - 172.25.16.12 phpmyadmin.zt.foreningenbs.no
   - 172.25.16.13 simplesamlphp.zt.foreningenbs.no
+  - 172.25.16.14 nginx-front-1.zt.foreningenbs.no
   - 172.25.16.30 ldap-master.zt.foreningenbs.no
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no
   - 172.25.16.41 mongodb-1.zt.foreningenbs.no
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no
   - 172.25.16.43 mysql-2.zt.foreningenbs.no
+
+### Public web
+
+The service `nginx-front-1` is published at port 80 and 443 and acts
+as the reverse proxy for public traffic. DNS-entries must be
+set up for this for the physical host this is running at:
+
+- foreningenbs.no: 158.39.48.92 (coreos-2)
+- www.foreningenbs.no: 158.39.48.92 (coreos-2)
+
+This service also keeps our Let's Encrypt certificates up-to-date.
 
 ### ZeroTier details
 

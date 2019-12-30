@@ -1,0 +1,45 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/nginx-front-1
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files
+  copy:
+    dest: "/opt/nginx-front-1/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - default.conf
+    - foreningenbs.conf
+    - nginx.conf
+  register: file_copied
+
+- name: Start nginx-front-1 container
+  docker_container:
+    name: nginx-front-1
+    state: started
+    image: "{{ nginx_front_1_image }}"
+    restart_policy: unless-stopped
+    env:
+      LE_CONTACT_EMAIL: "it-gruppa@foreningenbs.no"
+      LE_STAGING: "0"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ nginx_front_1_ipv4_address }}"
+    networks_cli_compatible: yes
+    published_ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    volumes:
+      - /data/nginx-front-1-certs:/opt/dehydrated/certs
+      - /data/nginx-front-1-accounts:/opt/dehydrated/accounts
+      - /opt/nginx-front-1/default.conf:/etc/nginx/conf.d/default.conf
+      - /opt/nginx-front-1/foreningenbs.conf:/etc/nginx/conf.d/foreningenbs.conf
+      - /opt/nginx-front-1/nginx.conf:/etc/nginx/nginx.conf
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"

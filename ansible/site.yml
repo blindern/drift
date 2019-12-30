@@ -56,6 +56,8 @@
 - hosts: coreos-2
   become: yes
   vars:
+    nginx_front_1_image: henrist/nginx-letsencrypt
+    nginx_front_1_ipv4_address: "172.25.16.14"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
     phpldapadmin_ipv4_address: "172.25.16.11"
     phpmyadmin_image: phpmyadmin/phpmyadmin:5
@@ -67,6 +69,8 @@
   roles:
     # - role: service-web-1
     #   tags: service-web-1
+    - role: service-nginx-front-1
+      tags: service-nginx-front-1
     # - role: service-intern
     #   tags: service-intern
     # - role: service-dugnaden
