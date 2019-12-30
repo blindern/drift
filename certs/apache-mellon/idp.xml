@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://foreningenbs.no/simplesaml/saml2/idp/metadata.php">
+  <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIEOzCCAyOgAwIBAgIJAJB1ClZFzgNIMA0GCSqGSIb3DQEBCwUAMIGzMQswCQYDVQQGEwJOTzENMAsGA1UECAwET3NsbzENMAsGA1UEBwwET3NsbzEqMCgGA1UECgwhRm9yZW5pbmdlbiBCbGluZGVybiBTdHVkZW50ZXJoamVtMRIwEAYDVQQLDAlJVC1ncnVwcGExHDAaBgNVBAMME2lkcC5mb3JlbmluZ2VuYnMubm8xKDAmBgkqhkiG9w0BCQEWGWl0LWdydXBwYUBmb3JlbmluZ2VuYnMubm8wHhcNMTQxMTEyMDAyODE2WhcNMjQxMTExMDAyODE2WjCBszELMAkGA1UEBhMCTk8xDTALBgNVBAgMBE9zbG8xDTALBgNVBAcMBE9zbG8xKjAoBgNVBAoMIUZvcmVuaW5nZW4gQmxpbmRlcm4gU3R1ZGVudGVyaGplbTESMBAGA1UECwwJSVQtZ3J1cHBhMRwwGgYDVQQDDBNpZHAuZm9yZW5pbmdlbmJzLm5vMSgwJgYJKoZIhvcNAQkBFhlpdC1ncnVwcGFAZm9yZW5pbmdlbmJzLm5vMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr1ufEAkElJH9EpVX/xGZsUV7R17PpGWCHvnF6+nHTAKQxSM57h9UmjxdMx1jShbU0AWm6IVt4KPRyBXGEFfqVuXYvuU5pjGDpK1I9fAn/Fpkw0fe+RQQYq2QT0iKPDUkmjcq99WirJKMzUwfO7KuUV4lvctBnMx7s/1K6olq8HzY6km70kji46vmU45YiMgyo1TL3keVb+zVKgbjEX6P7Hm0Q7eXXY+3NHIqaKQ8N6d5xOT7mVuRqhvKAlwqUO296KhYBSgntElmH3/f/QayEaFoDbpMuWBbSmnLCNcQch+qYM/wFKFxt6i5AZRVmzTZAB8WkiKepvGiFCWujXRhNQIDAQABo1AwTjAdBgNVHQ4EFgQULdQSA/j4QuWMrB0SGhkyDW6Dai4wHwYDVR0jBBgwFoAULdQSA/j4QuWMrB0SGhkyDW6Dai4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAfBjmva4UE7/0u4+g4JiTTSsX5ZaveccHxTV7JqneFBbj7OmPQsaOpgFpaiwjyM1XIbOGKK3/A0sTAmKGwQC8o+VwQTAHiZhtv3CqWLY0MVZ03OYuuhX/q5AQij3FXUTriUfMaoqqsKX8hh8BTK4wcntCi4qYHihtvXsfrCnrJwl+Y811LziUKDFJymv3ZXYsTsiFqB7KI6+3YCe8mKy9KwYSHz5qDktwGERAShEvRDHVZ1kSARChrdSgf0LcuIO9nFd3O3x2VzMHC2vZj91KsX8tWHErodHxtZcHMpzOJSIvBY5cZx/qtCifl3yVYGxhUg4kl67afV5M2DRuvA7XXQ==</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIEOzCCAyOgAwIBAgIJAJB1ClZFzgNIMA0GCSqGSIb3DQEBCwUAMIGzMQswCQYDVQQGEwJOTzENMAsGA1UECAwET3NsbzENMAsGA1UEBwwET3NsbzEqMCgGA1UECgwhRm9yZW5pbmdlbiBCbGluZGVybiBTdHVkZW50ZXJoamVtMRIwEAYDVQQLDAlJVC1ncnVwcGExHDAaBgNVBAMME2lkcC5mb3JlbmluZ2VuYnMubm8xKDAmBgkqhkiG9w0BCQEWGWl0LWdydXBwYUBmb3JlbmluZ2VuYnMubm8wHhcNMTQxMTEyMDAyODE2WhcNMjQxMTExMDAyODE2WjCBszELMAkGA1UEBhMCTk8xDTALBgNVBAgMBE9zbG8xDTALBgNVBAcMBE9zbG8xKjAoBgNVBAoMIUZvcmVuaW5nZW4gQmxpbmRlcm4gU3R1ZGVudGVyaGplbTESMBAGA1UECwwJSVQtZ3J1cHBhMRwwGgYDVQQDDBNpZHAuZm9yZW5pbmdlbmJzLm5vMSgwJgYJKoZIhvcNAQkBFhlpdC1ncnVwcGFAZm9yZW5pbmdlbmJzLm5vMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr1ufEAkElJH9EpVX/xGZsUV7R17PpGWCHvnF6+nHTAKQxSM57h9UmjxdMx1jShbU0AWm6IVt4KPRyBXGEFfqVuXYvuU5pjGDpK1I9fAn/Fpkw0fe+RQQYq2QT0iKPDUkmjcq99WirJKMzUwfO7KuUV4lvctBnMx7s/1K6olq8HzY6km70kji46vmU45YiMgyo1TL3keVb+zVKgbjEX6P7Hm0Q7eXXY+3NHIqaKQ8N6d5xOT7mVuRqhvKAlwqUO296KhYBSgntElmH3/f/QayEaFoDbpMuWBbSmnLCNcQch+qYM/wFKFxt6i5AZRVmzTZAB8WkiKepvGiFCWujXRhNQIDAQABo1AwTjAdBgNVHQ4EFgQULdQSA/j4QuWMrB0SGhkyDW6Dai4wHwYDVR0jBBgwFoAULdQSA/j4QuWMrB0SGhkyDW6Dai4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAfBjmva4UE7/0u4+g4JiTTSsX5ZaveccHxTV7JqneFBbj7OmPQsaOpgFpaiwjyM1XIbOGKK3/A0sTAmKGwQC8o+VwQTAHiZhtv3CqWLY0MVZ03OYuuhX/q5AQij3FXUTriUfMaoqqsKX8hh8BTK4wcntCi4qYHihtvXsfrCnrJwl+Y811LziUKDFJymv3ZXYsTsiFqB7KI6+3YCe8mKy9KwYSHz5qDktwGERAShEvRDHVZ1kSARChrdSgf0LcuIO9nFd3O3x2VzMHC2vZj91KsX8tWHErodHxtZcHMpzOJSIvBY5cZx/qtCifl3yVYGxhUg4kl67afV5M2DRuvA7XXQ==</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://foreningenbs.no/simplesaml/saml2/idp/SingleLogoutService.php"/>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://foreningenbs.no/simplesaml/saml2/idp/SSOService.php"/>
+  </md:IDPSSODescriptor>
+  <md:ContactPerson contactType="technical">
+    <md:SurName>IT-gruppa</md:SurName>
+    <md:EmailAddress>it-gruppa@foreningenbs.no</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor>

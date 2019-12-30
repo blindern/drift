@@ -56,6 +56,8 @@
 - hosts: coreos-2
   become: yes
   vars:
+    web_1_image: blindern/internal-web-1:20191230-0703
+    web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: henrist/nginx-letsencrypt
     nginx_front_1_ipv4_address: "172.25.16.14"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
@@ -67,8 +69,8 @@
     simplesamlphp_image: blindern/simplesamlphp:20191230-0435
     simplesamlphp_ipv4_address: "172.25.16.13"
   roles:
-    # - role: service-web-1
-    #   tags: service-web-1
+    - role: service-web-1
+      tags: service-web-1
     - role: service-nginx-front-1
       tags: service-nginx-front-1
     # - role: service-intern

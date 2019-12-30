@@ -1,0 +1,65 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/web-1
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files (1/2)
+  copy:
+    dest: "/opt/web-1/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - apache-extra.conf
+    - php.ini
+  register: file_copied1
+
+- name: Copy config files (2/2)
+  template:
+    dest: "/opt/web-1/foreningenbs.conf"
+    src: foreningenbs.conf.j2
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied2
+
+- name: Copy mellon files
+  copy:
+    dest: "/opt/web-1/{{ item }}"
+    src: "{{ playbook_dir }}/../certs/apache-mellon/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - idp.xml
+    - sp.crt
+    - sp.key
+    - sp.xml
+  register: file_copied3
+
+- name: Start web-1 container
+  docker_container:
+    name: web-1
+    state: started
+    image: "{{ web_1_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ web_1_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: web-1.zt.foreningenbs.no
+    volumes:
+      - /data/web-1-www:/var/www
+      - /opt/web-1/php.ini:/usr/local/etc/php/php.ini
+      - /opt/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf
+      - /opt/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf
+      - /opt/web-1/sp.key:/mellon-sp.key
+      - /opt/web-1/sp.crt:/mellon-sp.crt
+      - /opt/web-1/sp.xml:/mellon-sp.xml
+      - /opt/web-1/idp.xml:/mellon-idp.xml
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed or file_copied3.changed }}"

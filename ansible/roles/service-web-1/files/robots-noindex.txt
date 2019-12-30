@@ -1,0 +1,3 @@
+# Only foreningenbs.no should be indexed
+User-agent: *
+Disallow: /

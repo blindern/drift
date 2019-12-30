@@ -1,0 +1,142 @@
+# We have another service that takes care of SSL termination,
+# so this setup only listens on port 80.
+
+# NOTE: A lot of URLs are handled before it reaches this instance.
+# See nginx-front-1 for details.
+
+<VirtualHost *:80>
+  ServerName https://foreningenbs.no
+  ServerAlias web-1.zt.foreningenbs.no
+  DocumentRoot /var/www/root
+
+  LDAPTrustedMode TLS
+  RewriteEngine on
+
+  ProxyRequests Off
+  ProxyPreserveHost On
+
+  <Proxy *>
+      Require all granted
+  </Proxy>
+
+  # Robots skal kun indeksere hoved-domenet.
+  RewriteCond %{HTTP_HOST} !^foreningenbs\.no$ [NC]
+  RewriteRule /robots.txt /var/www/robots-noindex.txt [L]
+
+  # Wiki fra 2015.
+  Alias /wiki-2015 /var/www/aliases/wiki
+  Alias /w /var/www/aliases/wiki
+  RewriteRule ^/wiki-2015(/.*)?$ /var/www/aliases/wiki/index.php [L]
+
+  # Wiki: Søk fra foreningenbs.no redirectes slik at man alltid er innlogget ved søking.
+  RewriteCond %{QUERY_STRING} =queryString=
+  RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/display/BS/Beboersiden [R,L]
+  RewriteCond %{QUERY_STRING} queryString=(.*)
+  RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/dosearchsite.action?queryString=%1 [R,L]
+  RewriteRule ^/wiki/(.*)$ https://foreningenbs.no/wiki-redirect.php?q=$1 [L]
+
+  # Wiki: Hvis man ikke spesifiserer noen side, send til hovedsiden.
+  RewriteRule ^/(wiki|confluence)/?$ https://foreningenbs.no/confluence/display/BS/ [R,L]
+
+  # Diverse hacks for at ting skal funke med SAML og stæsj
+  RewriteRule ^/confluence/.*/login/plugins/servlet/samlsso.* https://foreningenbs.no/confluence/plugins/servlet/samlsso$1 [R,L,NE]
+  RewriteRule ^/plugins/servlet/samlsso/logout$ /confluence/plugins/servlet/samlsso/logout [R,L]
+
+  # Internsia.
+  Alias /intern /var/www/aliases/intern/public
+
+  # Småbruket.
+  Alias /smaabruket /var/www/aliases/smaabruket/public
+  RewriteRule /smaabruket-test /confluence/pages/viewpage.action?pageId=2031684 [PT,L]
+
+  # Brukersystemet.
+  ProxyPass /users-api http://users-api.zt.foreningenbs.no:8000
+
+  # Dugnaden.
+  Alias /dugnaden /var/www/aliases/dugnaden/dugnaden/
+
+  # SimpleSAMLphp klient (hva brukes denne til?).
+  # Alias /simplesaml2 /var/www/aliases/simplesamlphp2/www
+
+  # Statutter.
+  Alias /statutter /var/www/aliases/statutter/public
+
+  <Location />
+    MellonEnable "info"
+    MellonSecureCookie On
+    MellonSPPrivateKeyFile /mellon-sp.key
+    MellonSPCertFile /mellon-sp.crt
+    MellonSPMetadataFile /mellon-sp.xml
+    MellonIdPMetadataFile /mellon-idp.xml
+    MellonEndpointPath /mellon
+    MellonDoNotVerifyLogoutSignature https://foreningenbs.no/simplesaml/saml2/idp/metadata.php
+    MellonUser username
+  </Location>
+
+  # UKE-filer.
+  <Location /ukefiler>
+    MellonEnable "auth"
+    RewriteRule /ukefiler {{ vault_ukefiler_url }} [R]
+  </Location>
+
+  # Økonomi.
+  ProxyPass /okoreports/api/ http://okoreports-backend.zt.foreningenbs.no:8000/api/
+  ProxyPass /okoreports/reports/ http://okoreports-backend.zt.foreningenbs.no:8000/reports/
+  ProxyPass /okoreports/ http://okoreports-frontend.zt.foreningenbs.no/
+  RewriteRule ^/okoreports$ /okoreports/ [R,L]
+  <Location /okoreports>
+    MellonEnable "auth"
+  </Location>
+
+  # Z-backend for uka, kjører i docker.
+  # (Ikke i bruk p.t.)
+  # ProxyPass /z-backend-uka/ http://localhost:8089/
+  # ProxyPassReverse /z-backend-uka/ http://localhost:8089/
+  # RewriteRule ^/z-backend-uka$ /z-backend-uka/ [R,L]
+
+  # Verktøyside med pålogging.
+  <Location /tools>
+    MellonEnable "auth"
+  </Location>
+
+  ProxyPass /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
+  ProxyPassReverse /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
+  ProxyPass /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
+  ProxyPassReverse /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
+
+  # WebDAV for nettverksmappa.
+  # (Deaktivert ved overgang til nytt serveroppsett, må oppdateres.)
+  # ScriptAlias /foreningen_cgi /var/www/aliases/webdavcgi/cgi-bin/webdavwrapper
+  # <Location /foreningen_cgi>
+  #   # mozilla betyr gjerne en faktisk nettleser - da kan vi bruke SAML
+  #   <If "%{HTTP_USER_AGENT} =~ /mozilla/i">
+  #     MellonEnable "auth"
+  #   </If>
+  #   # hvis ikke bruk vanlig basic auth - dette pga. man ikke kan bli redirected noe sted
+  #   <Else>
+  #     AuthName "Foreningen Blindern Studenterhjem"
+  #     AuthType Basic
+  #     AuthBasicProvider ldap
+  #     AuthLDAPUrl ldap://ldap.zt.foreningenbs.no/ou=Users,dc=foreningenbs,dc=no STARTTLS
+  #     Require valid-user
+  #   </Else>
+  # </Location>
+
+  # RewriteRule ^/foreningen$ /foreningen/ [R,L]
+  # RewriteRule ^/foreningen/ /foreningen_cgi [PT,E=WEBDAVCONF:/etc/webdav.conf,E=PERLLIB:/var/www/aliases/webdavcgi/lib/perl,L]
+
+  Redirect 500 /foreningen/
+
+  # Slack invitasjoner
+  RewriteRule ^/slack/invite$ /slack/invite/ [R=301,L]
+  ProxyPass /slack/invite/ http://slack-invite-automation.zt.foreningenbs.no:3000/
+  ProxyPassReverse /slack/invite/ http://slack-invite-automation.zt.foreningenbs.no:3000/
+
+  <Location /slack/invite/>
+    MellonEnable "auth"
+    ProxyHTMLEnable On
+    ProxyHTMLLinks  form    action
+    ProxyHTMLURLMap /invite /slack/invite/invite
+  </Location>
+
+</VirtualHost>

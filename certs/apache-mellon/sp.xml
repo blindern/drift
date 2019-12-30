@@ -1,0 +1,27 @@
+<EntityDescriptor entityID="https://foreningenbs.no/mellon" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIICsDCCAZgCCQD9VVEo/CrVhDANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDEw9m
+b3JlbmluZ2VuYnMubm8wHhcNMTQxMTEyMDUxNDI1WhcNMjQxMTExMDUxNDI1WjAa
+MRgwFgYDVQQDEw9mb3JlbmluZ2VuYnMubm8wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQDWbtY21DuKhPcxVbAtmxhTmrDvzmNdLiv2lme5AlJkWOC0PcJn
+BBF1ETs3PobT42EVapWzoZ0kH3S3c1HNbXvKr4xbKq5584SGOlZ7BKol7BluCy8P
+i3lNZ4mPPc+rF+KfL/H4zgo+xmzdLPJnnXqvEiC+QVg7VUSOAZMUJHJUZ3ooF7Dp
+H+fPx+UjYRjLz0A5yNrKD2kZjWL7NUB72fdqiGlGTZgrO1zwAbc2Ar+9+KoUxVdP
+5Ecs46Kb7FuX100WReEQnmejB8zun2b2eBC1j+0LuvlbS4gYFN6iiRHGvTNkcO2M
+jRBYke4QrHvLeZQo3yFwpolHhHnx888D/Ph5AgMBAAEwDQYJKoZIhvcNAQELBQAD
+ggEBABH13nU1SlT/199Ca4CippFvDi5MEFE+my0Pd+ScDiKBITOG6w8NBB7X1qhW
+1IzsffZpIXUJPsfHuUo+MY0NjVKJxdPSGwf/h7obVxji1GLSty3FkcP/vNJB31U0
+GUeRaArediQ1E4pIwv9Ws4jdE2EQePDWpWGPGpuJTWMXZYpJA5vAKuUn9TRHi9zE
+NO8hNyNKGFnJ0QlSB6vQaMeU2ZrHuqBrA9UuJ9xhI9H1iqL3ZxLDQb6HZiHyzvas
+S340F56VtYhE5xkKYSDILxICkRtni3BU6iuRH4wgSwliUVmqesC/fNFobwKszKuR
+xjQn5hbP+9FAfRvh8euSjrBnLnU=</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://foreningenbs.no/mellon/logout"/>
+    <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://foreningenbs.no/mellon/postResponse" index="0"/>
+  </SPSSODescriptor>
+</EntityDescriptor>
