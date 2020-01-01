@@ -6,9 +6,11 @@ coreos-1 ansible_host=coreos-1.foreningenbs.no
 coreos-2 ansible_host=coreos-2.foreningenbs.no
 coreos-3 ansible_host=coreos-3.foreningenbs.no
 coreos-4 ansible_host=coreos-4.foreningenbs.no
+uka-1 ansible_host=server2016.blindernuka.no ansible_port=2222
 
 [coreos]
 coreos-1
 coreos-2
 coreos-3
 coreos-4
+uka-1
