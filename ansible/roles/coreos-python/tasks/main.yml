@@ -7,6 +7,6 @@
 
 - name: Install pypy
   script: install.sh
-  when: pypy_version_result.rc != 0 or pypy_version_result.stdout.strip() != pypy_version
+  when: not ansible_check_mode and (pypy_version_result.rc != 0 or pypy_version_result.stdout.strip() != pypy_version)
   environment:
     PYPY_VERSION: "{{ pypy_version }}"

@@ -102,7 +102,7 @@
   lineinfile:
     line: "allowManaged=0"
     path: "/data/zerotier-one/networks.d/{{ zerotier_network_id }}.local.conf"
-    create: no
+    create: "{{ ansible_check_mode }}"
     regexp: "^allowManaged="
     owner: root
     group: root
