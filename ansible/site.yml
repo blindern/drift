@@ -51,6 +51,10 @@
       tags: service-okoreports
     - role: service-slack-invite-automation
       tags: service-slack-invite-automation
+    # - role: service-storage-1-samba
+    #   tags: service-storage-1-samba
+    # - role: service-storage-1-webdavcgi
+    #   tags: service-storage-1-webdavcgi
 
 # Services running on coreos-2.
 - hosts: coreos-2
