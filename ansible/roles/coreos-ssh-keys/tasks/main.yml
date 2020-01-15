@@ -1,0 +1,35 @@
+# As update-ssh-keys will change the file in authorized_keys.d,
+# we first copy to a staging area, and then only copy to
+# authorized_keys.d in case the copy to staging area has happened.
+# This avoid unnecessary "changed" in Ansible.
+
+- name: Copy file with public keys to staging area
+  copy:
+    src: fbs.pub
+    dest: /home/core/.ssh/fbs.pub
+    owner: core
+    group: core
+    mode: 0644
+  register: public_keys_copied
+
+- name: Copy authorized file
+  command: cp /home/core/.ssh/fbs.pub /home/core/.ssh/authorized_keys.d/fbs.pub
+  when: public_keys_copied.changed
+
+# Ensure update-ssh-keys is run before we continue.
+- name: Run update-ssh-keys
+  command: update-ssh-keys
+  when: public_keys_copied.changed
+
+- name: Ensure root ssh directory exists
+  file:
+    path: /root/.ssh
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+# This will allow us to log in directly as root.
+- name: Copy authorized file to root
+  command: cp /home/core/.ssh/authorized_keys /root/.ssh/authorized_keys
+  when: public_keys_copied.changed

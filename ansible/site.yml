@@ -24,6 +24,8 @@
       tags: coreos-etcd
     - role: coreos-docker
       tags: coreos-docker
+    - role: coreos-ssh-keys
+      tags: coreos-ssh-keys
 
 # Services running on coreos-1.
 - hosts: coreos-1
