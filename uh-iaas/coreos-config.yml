@@ -22,6 +22,8 @@ passwd:
         # Note this is in addition to the ones added in blindern.tf.
         # We keep one key in blindern.tf, as otherwise it will cause the unit
         # coreos-metadata-sshkeys@core.service to fail.
+        # TODO: Remove these on next provision as we update this after deployment by Ansible.
+        #  (We still need one key for the person doing the initial provisioning.)
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPHEXfnk4idh16KHKe3GHpHRpNlXxCaY/zGO9VFTZODMlvQoAy1jEXpJUFVEXrayiFeQ5owArSa3GiYlvMW9e72dRf+w9l1jpnPMM+0BoZEluZX/DceOd3DLSMcCg5Z9LKZbYDwe94erZBtGuWSAEd8ue+bkSkBhbQdJyPlU36e2i2+WoIVroZjPzemoKXICMNEKXhHzewivpEC88pCSoQKjHz42vTplkB60D/TgdZriOZbs0JL60mxOyNLje9dK81npVy8+YpfCLae3yw3hY8W4OsFnZ9z+MLxBJVQnblrc/tE9mgq3BAKQOBi7RY6vdgr3aMbmkRCnUn0JlYkh/h henrist@henrist.net"
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtfAWMVFNB+fcjipU/ex7cK85q/CdJsljcpO7O0XilhmnMDr0aw+F6ESPYahcuWFKUXLZ8vzXw4TRHaHd08eW4NvpTFaPzHlD4wkaW9ozj+0YAedFG4xfqFj/OCSSyNDGv4t/YeXZ0X6ylLhRaTcgQ4RGoT19sdS4Ddsb0KHVBlWI62IAATDyA4SNjCng9iYzH+Kw8sf7xQVsU1Y8XUiHZLOXmPOmd6FVN5ngpYHisiIoxi9tASIN0aMKtZHkDLKdXaCpSr72siY1JB4sBcv02dIAix9ENVoJF04CYAaJkkggY8K9SBUGawx+xjqtD5VfkA3phyJJP1LQSwk4nbFsR henrist@henrist.net"
         - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqBxtHvi71XA1T9R2q8TpkuM3su7FGfHQ7MwP/8Dpn6V3IKVAw4KCCo9pnxWt8M9TdXyZ3fOQ/zB5rid0w1BuvhQ+b/QeBpnnzqPyhRFHX4PZncCInFf+aspJ9jM8f6Iwa9/v6FBbbtawNo5VMtDV8U8j0RNI/JPtkad3x1eVQL0hA9uj+WXQ0fFpnq8l3kCQztR0n60GOC63f4uRH0B8nyrq/FXw9WpxjO7FMuDzHFfYGMTixamw4TxYhDfnQHByX1ac153Fy1Cu+DQSXQ09z4ak7G+oGFNo4e61IUF4CqZkAKhL5AVpCHtT+m++RsP04sK6phOJF7cVl6492r/A5 circleci"
