@@ -3,6 +3,8 @@
 // See https://github.com/simplesamlphp/simplesamlphp/blob/master/metadata-templates/saml20-sp-remote.php
 // See https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote
 
+require "/var/simplesamlphp/config/secrets.php";
+
 // Pålogging via beskyttede sider under Apache webserver.
 $metadata["https://foreningenbs.no/mellon"] = [
   "SingleLogoutService" => "https://foreningenbs.no/mellon/logout",
@@ -57,6 +59,7 @@ $metadata["google.com/a/blindernuka.no"] = [
     10 => [
       "class" => "fbs:UKAGoogleApps",
       "accounts_url" => "https://foreningenbs.no/intern/api/googleapps/accounts",
+      "accounts_url_auth_token" => $secret_accounts_url_auth_token,
       "userfile" => "/storage/cache/ukausers"
     ]
   ]

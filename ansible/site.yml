@@ -72,7 +72,7 @@
     phpmyadmin_ipv4_address: "172.25.16.12"
     ldap_slave_image: blindern/openldap:20191229-0355
     ldap_slave_ipv4_address: "172.25.16.31"
-    simplesamlphp_image: blindern/simplesamlphp:20191230-0435
+    simplesamlphp_image: blindern/simplesamlphp:20200118-1405
     simplesamlphp_ipv4_address: "172.25.16.13"
   roles:
     - role: service-web-1
