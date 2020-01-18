@@ -66,6 +66,8 @@
     web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: henrist/nginx-letsencrypt
     nginx_front_1_ipv4_address: "172.25.16.14"
+    dugnaden_image: blindern/dugnaden:20200118-161334
+    dugnaden_ipv4_address: "172.25.16.10"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
     phpldapadmin_ipv4_address: "172.25.16.11"
     phpmyadmin_image: phpmyadmin/phpmyadmin:5
@@ -81,8 +83,8 @@
       tags: service-nginx-front-1
     # - role: service-intern
     #   tags: service-intern
-    # - role: service-dugnaden
-    #   tags: service-dugnaden
+    - role: service-dugnaden
+      tags: service-dugnaden
     - role: service-phpldapadmin
       tags: service-phpldapadmin
     - role: service-phpmyadmin

@@ -69,7 +69,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.7 smaabruket-availability-api.zt.foreningenbs.no
   - 172.25.16.8 confluence.zt.foreningenbs.no
   - 172.25.16.9 slack-invite-automation.zt.foreningenbs.no
-  - 172.25.16.10 dugnaden.zt.foreningenbs.no (not set up yet, using web-1)
+  - 172.25.16.10 dugnaden.zt.foreningenbs.no
   - 172.25.16.11 phpldapadmin.zt.foreningenbs.no
   - 172.25.16.12 phpmyadmin.zt.foreningenbs.no
   - 172.25.16.13 simplesamlphp.zt.foreningenbs.no

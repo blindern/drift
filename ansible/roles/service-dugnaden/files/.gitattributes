@@ -1,0 +1,2 @@
+*-password.txt filter=git-crypt diff=git-crypt
+*-secret*.txt filter=git-crypt diff=git-crypt

@@ -1,0 +1,53 @@
+- name: Ensure config directory exists
+  file:
+    path: /opt/dugnaden
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy files
+  copy:
+    dest: "/opt/dugnaden/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - database-password.txt
+    - simplesamlphp-admin-password.txt
+    - simplesamlphp-secretsalt.txt
+  register: file_copied1
+
+- name: Copy cert files
+  copy:
+    dest: "/opt/dugnaden/{{ item }}"
+    src: "{{ playbook_dir }}/../certs/saml/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - idp.foreningenbs.no.crt
+  register: file_copied2
+
+- name: Start container
+  docker_container:
+    name: dugnaden
+    state: started
+    image: "{{ dugnaden_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ dugnaden_ipv4_address }}"
+    networks_cli_compatible: yes
+    env:
+      DATABASE_HOST: mysql-1.zt.foreningenbs.no
+      DATABASE_USER: dugnaden
+      DATABASE_NAME: dugnaden
+    volumes:
+      - /opt/dugnaden/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt:ro
+      - /opt/dugnaden/database-password.txt:/run/secrets/database-password:ro
+      - /opt/dugnaden/simplesamlphp-admin-password.txt:/run/secrets/simplesamlphp-admin-password:ro
+      - /opt/dugnaden/simplesamlphp-secretsalt.txt:/run/secrets/simplesamlphp-secretsalt:ro
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"
