@@ -3,41 +3,6 @@
 // See https://github.com/simplesamlphp/simplesamlphp/blob/master/metadata-templates/saml20-sp-remote.php
 // See https://simplesamlphp.org/docs/stable/simplesamlphp-reference-sp-remote
 
-// TODO: Hva gjelder dette? Ser ut som dette ikke er i bruk,
-//  så kommenterer det ute foreløpig.
-/*
-$metadata["https://foreningenbs.no/simplesaml2/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => [
-    [
-      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
-      "Location" => "https://foreningenbs.no/simplesaml2/module.php/saml/sp/saml2-logout.php/default-sp",
-    ],
-  ],
-  "AssertionConsumerService" => [
-    [
-      "index" => 0,
-      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
-      "Location" => "https://foreningenbs.no/simplesaml2/module.php/saml/sp/saml2-acs.php/default-sp",
-    ],
-    [
-      "index" => 1,
-      "Binding" => "urn:oasis:names:tc:SAML:1.0:profiles:browser-post",
-      "Location" => "https://foreningenbs.no/simplesaml2/module.php/saml/sp/saml1-acs.php/default-sp",
-    ],
-    [
-      "index" => 2,
-      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact",
-      "Location" => "https://foreningenbs.no/simplesaml2/module.php/saml/sp/saml2-acs.php/default-sp",
-    ],
-    [
-      "index" => 3,
-      "Binding" => "urn:oasis:names:tc:SAML:1.0:profiles:artifact-01",
-      "Location" => "https://foreningenbs.no/simplesaml2/module.php/saml/sp/saml1-acs.php/default-sp/artifact",
-    ],
-  ],
-];
-*/
-
 // Pålogging via beskyttede sider under Apache webserver.
 $metadata["https://foreningenbs.no/mellon"] = [
   "SingleLogoutService" => [
