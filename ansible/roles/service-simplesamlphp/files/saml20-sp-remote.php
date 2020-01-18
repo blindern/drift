@@ -135,6 +135,17 @@ $metadata["https://billett.blindernuka.no/saml/module.php/saml/sp/metadata.php/d
   "attributes" => NULL,
 ];
 
+// Pålogging på dugnadssystemet.
+$metadata["https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/metadata.php/default-sp"] = [
+  "SingleLogoutService" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+  "AssertionConsumerService" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+];
+// For utvikling.
+$metadata["http://localhost:8080/dugnaden/saml/module.php/saml/sp/metadata.php/default-sp"] = [
+  "SingleLogoutService" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+  "AssertionConsumerService" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+];
+
 // Pålogging på wiki (Confluence).
 $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
   "AssertionConsumerService" => "https://foreningenbs.no/confluence/plugins/servlet/samlsso",
