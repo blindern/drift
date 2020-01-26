@@ -48,7 +48,8 @@ RUN set -eux; \
 
 RUN set -eux; \
     curl -fsSLO --compressed "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"; \
-    tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner
+    tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owner; \
+    rm "node-v$NODE_VERSION-linux-x64.tar.xz"
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
