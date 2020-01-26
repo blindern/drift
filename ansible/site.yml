@@ -62,7 +62,7 @@
 - hosts: coreos-2
   become: yes
   vars:
-    web_1_image: blindern/internal-web-1:20191230-0703
+    web_1_image: blindern/internal-web-1:20200126-2052
     web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: henrist/nginx-letsencrypt
     nginx_front_1_ipv4_address: "172.25.16.14"

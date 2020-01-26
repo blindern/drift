@@ -17,6 +17,7 @@ RUN set -eux; \
       libpng-dev \
       libssl-dev \
       libxslt1-dev \
+      msmtp \
       zlib1g-dev \
     ; \
     rm -rf /var/lib/apt/lists/*

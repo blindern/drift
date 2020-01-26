@@ -15,6 +15,7 @@
     mode: 0644
   with_items:
     - apache-extra.conf
+    - msmtprc
     - php.ini
   register: file_copied1
 
@@ -54,6 +55,7 @@
     hostname: web-1.zt.foreningenbs.no
     volumes:
       - /data/web-1-www:/var/www
+      - /opt/web-1/msmtprc:/etc/msmtprc
       - /opt/web-1/php.ini:/usr/local/etc/php/php.ini
       - /opt/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf
       - /opt/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf
