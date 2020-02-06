@@ -37,9 +37,9 @@
     # TODO: Find out how we will automate updating this.
     users_api_image: blindern/users-api:20191229-0717-277
     users_api_ipv4_address: "172.25.16.2"
-    okoreports_backend_image: cybernetisk/okoreports-backend
+    okoreports_backend_image: cybernetisk/okoreports-backend@sha256:0e2c67aa886dbd522d00957334ac28b0e4f10d5c144e519194dd42805deb9bce
     okoreports_backend_ipv4_address: "172.25.16.5"
-    okoreports_frontend_image: cybernetisk/okoreports-frontend
+    okoreports_frontend_image: cybernetisk/okoreports-frontend@sha256:b04067b03e1c2f9e365c31c332f21816c8b93c952c8c8de184ee52b928a733a3
     okoreports_frontend_ipv4_address: "172.25.16.6"
     slack_invite_automation_image: blindern/slack-invite-automation:20191228-0708
     slack_invite_automation_ipv4_address: "172.25.16.9"
