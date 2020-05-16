@@ -20,6 +20,8 @@
       tags: zerotier
     - role: docker-network
       tags: docker-network
+    - role: docker-compose
+      tags: docker-compose
     - role: coreos-etcd
       tags: coreos-etcd
     - role: coreos-docker
