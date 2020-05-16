@@ -1,4 +1,7 @@
 #!/bin/bash
+set -eu -o pipefail
+
+# TODO: kunne oppdatere navn på en bruker
 
 function addchange() {
 	if [ "$FIRST" -eq 0 ]; then
@@ -12,20 +15,18 @@ $1: $2"
 }
 
 function finished() {
-	# slett lokal cache
-	sss_cache -UG
-	
 	# slett cache på printerserver
-	ssh root@p.foreningenbs.no sss_cache -UG
+	#ssh root@p.foreningenbs.no sss_cache -UG
 
 	# fjern cache på bruker-APIet
 	curl \
+                -f \
 		-X POST \
-		-H "Authorization: Bearer $(cat /fbs/users-api-key)" \
+		-H "Authorization: Bearer $(cat /data/storage-1/users-api-key)" \
 		https://foreningenbs.no/users-api/invalidate-cache
 }
 
-if [[ "$USER" != "root" ]]; then
+if [[ "$(id -u)" != "0" ]]; then
 	echo "Dette scriptet må kjøre som root!"
 	exit
 fi
@@ -40,7 +41,7 @@ fi
 
 
 # source variabler fra script
-. /fbs/drift/nybruker/$1
+. /data/web-1-www/users/$1
 
 echo "Foreningsbruker:"
 echo "- Navn: $FIRSTNAME $LASTNAME"
@@ -53,17 +54,17 @@ CHANGESET="changetype: modify"
 FIRST=1
 
 
-EMAILEXISTS=$(ldapsearch -x -LLL -H ldapi:/// -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail | wc -l)
-USEREXISTS=$(id "$USERNAME" 2>/dev/null | wc -l)
+EMAILEXISTS=$(ldapsearch -x -LLL -H ldap://ldap-master.zt.foreningenbs.no/ -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail | wc -l)
+USEREXISTS=$(ldapsearch -x -LLL -H ldap://ldap-master.zt.foreningenbs.no/ -b ou=Users,dc=foreningenbs,dc=no "(&(uid=$USERNAME))" uid | wc -l)
 
 if [ $EMAILEXISTS -gt 0 ] && [ $USEREXISTS -eq 0 ]; then
 	echo "E-postadressen er allerede registrert på en annen bruker:"
-	ldapsearch -x -LLL -H ldapi:/// -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail
+	ldapsearch -x -LLL -H ldap://ldap-master.zt.foreningenbs.no/ -b ou=Users,dc=foreningenbs,dc=no "(&(mail=$MAIL))" mail
 	echo "En e-postadresse kan ikke tilhøre flere brukere!"
 	exit 1
 fi
 
-if [ $USEREXISTS -eq 1 ]; then
+if [ $USEREXISTS -ne 0 ]; then
 	DATA=$(ldapfinger "$USERNAME")
 	
 	echo "Bruker finnes fra før!"

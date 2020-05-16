@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  ldap-toolbox:
+    build: .
+    image: ldap-toolbox
+    # Keep running in the background.
+    tty: true
+    volumes:
+      - /data:/data
+      - /data/drift:/fbs/drift
+      - ../certs/ca.crt:/etc/fbs-ca.crt
+      - ./container/ldap.conf:/etc/ldap/ldap.conf
+      - ./container/ldapscripts.conf:/etc/ldapscripts/ldapscripts.conf
+      - ./container/ldapadduser.template:/etc/ldapscripts/ldapadduser.template
+      - ./container/ldapscripts.passwd:/etc/ldapscripts/ldapscripts.passwd
+      - ./container/smbldap_bind.conf:/etc/smbldap-tools/smbldap_bind.conf
+      - ./container/smbldap.conf:/etc/smbldap-tools/smbldap.conf
+    working_dir: /data/web-1-www/users
+
+networks:
+  default:
+    external:
+      name: fbs0
