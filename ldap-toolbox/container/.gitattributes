@@ -1,0 +1,2 @@
+ldapscripts.passwd filter=git-crypt diff=git-crypt
+smbldap_bind.conf filter=git-crypt diff=git-crypt
