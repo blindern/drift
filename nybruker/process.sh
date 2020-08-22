@@ -32,7 +32,7 @@ if [[ "$(id -u)" != "0" ]]; then
 fi
 
 
-if [[ "$1" == "" ]]; then
+if [[ "${1:-}" == "" ]]; then
 	echo "Mangler navn på script med variabler"
 	echo "Kjører kun tømming av cache"
 	finished
@@ -66,7 +66,7 @@ fi
 
 if [ $USEREXISTS -ne 0 ]; then
 	DATA=$(ldapfinger "$USERNAME")
-	
+
 	echo "Bruker finnes fra før!"
 	echo "$DATA" | grep "^cn:"
 	echo
@@ -93,7 +93,7 @@ if [ $USEREXISTS -ne 0 ]; then
 			break
 		done
 	fi
-	
+
 	OLD_FIRSTNAME=$(echo "$DATA" | grep "^givenName:" | cut -d" " -f2- | head -n 1)
 	OLD_LASTNAME=$(echo "$DATA" | grep "^sn:" | cut -d" " -f2- | head -n 1)
 	if [[ ("$FIRSTNAME" != "" && "$LASTNAME" != "") && ( "$OLD_FIRSTNAME" != "$FIRSTNAME" || "$OLD_LASTNAME" != "$LASTNAME" ) ]]; then
@@ -109,7 +109,7 @@ if [ $USEREXISTS -ne 0 ]; then
 			break
 		done
 	fi
-	
+
 	echo
 	echo "Skal passord oppdateres?"
 	select yn in "Ja" "Nei"; do
@@ -167,7 +167,7 @@ else
 	fi
 	addchange "userPassword" "$PASS"
 	addchange "sambaNTPassword" "$NTPASS"
-	
+
 	echo "$CHANGESET" | ldapmodifyuser "$USERNAME"
 
 fi
