@@ -33,17 +33,15 @@
 - hosts: coreos-1
   become: yes
   vars:
-    # TODO: Find out how we will automate updating this.
-    smaabruket_availability_api_image: blindern/smaabruket-availability-api:20191226-1719-776
+    smaabruket_availability_api_image: "{{ deployer_smaabruket_availability_api_image }}"
     smaabruket_availability_api_ipv4_address: "172.25.16.7"
-    # TODO: Find out how we will automate updating this.
-    users_api_image: blindern/users-api:20191229-0717-277
+    users_api_image: "{{ deployer_users_api_image }}"
     users_api_ipv4_address: "172.25.16.2"
-    okoreports_backend_image: cybernetisk/okoreports-backend@sha256:0e2c67aa886dbd522d00957334ac28b0e4f10d5c144e519194dd42805deb9bce
+    okoreports_backend_image: "{{ deployer_okoreports_backend_image }}"
     okoreports_backend_ipv4_address: "172.25.16.5"
-    okoreports_frontend_image: cybernetisk/okoreports-frontend@sha256:b04067b03e1c2f9e365c31c332f21816c8b93c952c8c8de184ee52b928a733a3
+    okoreports_frontend_image: "{{ deployer_okoreports_frontend_image }}"
     okoreports_frontend_ipv4_address: "172.25.16.6"
-    slack_invite_automation_image: blindern/slack-invite-automation:20191228-0708
+    slack_invite_automation_image: "{{ deployer_slack_invite_automation_image }}"
     slack_invite_automation_ipv4_address: "172.25.16.9"
 
   roles:
@@ -64,19 +62,19 @@
 - hosts: coreos-2
   become: yes
   vars:
-    web_1_image: blindern/internal-web-1:20200126-2052
+    web_1_image: "{{ deployer_web_1_image }}"
     web_1_ipv4_address: "172.25.16.1"
-    nginx_front_1_image: henrist/nginx-letsencrypt
+    nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
     nginx_front_1_ipv4_address: "172.25.16.14"
-    dugnaden_image: blindern/dugnaden:20200118-161334
+    dugnaden_image: "{{ deployer_dugnaden_image }}"
     dugnaden_ipv4_address: "172.25.16.10"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
     phpldapadmin_ipv4_address: "172.25.16.11"
     phpmyadmin_image: phpmyadmin/phpmyadmin:5
     phpmyadmin_ipv4_address: "172.25.16.12"
-    ldap_slave_image: blindern/openldap:20191229-0355
+    ldap_slave_image: "{{ deployer_ldap_slave_image }}"
     ldap_slave_ipv4_address: "172.25.16.31"
-    simplesamlphp_image: blindern/simplesamlphp:20200118-1405
+    simplesamlphp_image: "{{ deployer_simplesamlphp_image }}"
     simplesamlphp_ipv4_address: "172.25.16.13"
   roles:
     - role: service-web-1
@@ -100,7 +98,7 @@
 - hosts: coreos-3
   become: yes
   vars:
-    confluence_image: blindern/confluence:20191228-1213
+    confluence_image: "{{ deployer_confluence_image }}"
     confluence_ipv4_address: "172.25.16.8"
     mysql_1_image: mysql:8
     mysql_1_ipv4_address: "172.25.16.40"
@@ -126,7 +124,7 @@
 - hosts: coreos-4
   become: yes
   vars:
-    ldap_master_image: blindern/openldap:20191229-0355
+    ldap_master_image: "{{ deployer_ldap_master_image }}"
     ldap_master_ipv4_address: "172.25.16.30"
     postgresql_1_image: postgres:12.1
     postgresql_1_ipv4_address: "172.25.16.42"
