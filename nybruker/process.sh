@@ -82,7 +82,7 @@ if [ $USEREXISTS -ne 0 ]; then
 		done
 	fi
 
-	OLD_PHONE=$(echo "$DATA" | grep "^mobile:" | awk '{print $2}' | head -n 1)
+	OLD_PHONE=$(echo "$DATA" | grep "^mobile:" || true | awk '{print $2}' | head -n 1)
 	if [[ "$PHONE" != "" && "$OLD_PHONE" != "$PHONE" ]]; then
 
 		echo "Oppdatere telefon fra $OLD_PHONE til $PHONE?"
