@@ -13,7 +13,16 @@
     owner: root
     group: root
     mode: 0644
-  register: file_copied
+  register: file_copied1
+
+- name: Copy credentials file
+  copy:
+    dest: /opt/smaabruket-availability-api/credentials.json
+    src: credentials.json
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied2
 
 - name: Start smaabruket-availability-api container
   docker_container:
@@ -28,4 +37,6 @@
     log_driver: journald
     working_dir: /app
     env_file: /opt/smaabruket-availability-api/variables.env
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"
+    volumes:
+      - /opt/smaabruket-availability-api/credentials.json:/app/credentials.json
