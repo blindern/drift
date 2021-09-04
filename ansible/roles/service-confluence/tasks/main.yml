@@ -7,11 +7,17 @@
     restart_policy: unless-stopped
     #env:
     #  MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    env:
+      ATL_PROXY_NAME: foreningenbs.no
+      ATL_PROXY_PORT: "443"
+      ATL_TOMCAT_SCHEME: https
+      ATL_TOMCAT_SECURE: "true"
+      ATL_TOMCAT_CONTEXTPATH: /confluence
     networks:
       - name: fbs0
         ipv4_address: "{{ confluence_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /data/confluence-data:/var/atlassian/confluence
+      - /data/confluence-data:/var/atlassian/application-data/confluence
       - /data/confluence-logs:/opt/atlassian/confluence/logs
     log_driver: journald
