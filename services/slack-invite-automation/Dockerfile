@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:17-alpine
 
 ENV COMMIT_SHA=95de5051925c1ecc4dae5808bdf3a22b3a428357
 
