@@ -1,3 +1,9 @@
+# GitHub Actions.
+# Denne er registrert som FBS_SSH_KEY via
+# https://github.com/organizations/blindern/settings/secrets/actions/FBS_SSH_KEY
+# ssh-keygen -C fbs-github-actions -t ed25519 -f fbs-github-actions
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILydwQeI2wbRepPjdf4FLX9e+YmXHq8hjoaIn9vGbUi/ fbs-github-actions
+
 # Botter.
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDqBxtHvi71XA1T9R2q8TpkuM3su7FGfHQ7MwP/8Dpn6V3IKVAw4KCCo9pnxWt8M9TdXyZ3fOQ/zB5rid0w1BuvhQ+b/QeBpnnzqPyhRFHX4PZncCInFf+aspJ9jM8f6Iwa9/v6FBbbtawNo5VMtDV8U8j0RNI/JPtkad3x1eVQL0hA9uj+WXQ0fFpnq8l3kCQztR0n60GOC63f4uRH0B8nyrq/FXw9WpxjO7FMuDzHFfYGMTixamw4TxYhDfnQHByX1ac153Fy1Cu+DQSXQ09z4ak7G+oGFNo4e61IUF4CqZkAKhL5AVpCHtT+m++RsP04sK6phOJF7cVl6492r/A5 circleci
 
