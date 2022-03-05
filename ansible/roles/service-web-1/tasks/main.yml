@@ -42,6 +42,11 @@
     - sp.xml
   register: file_copied3
 
+- name: Clone statutter-arkiv
+  git:
+    repo: https://github.com/blindern/statutter-arkiv.git
+    dest: /opt/statutter-arkiv
+
 - name: Start web-1 container
   docker_container:
     name: web-1
@@ -55,6 +60,7 @@
     hostname: web-1.zt.foreningenbs.no
     volumes:
       - /data/web-1-www:/var/www
+      - /opt/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv
       - /opt/web-1/msmtprc:/etc/msmtprc
       - /opt/web-1/php.ini:/usr/local/etc/php/php.ini
       - /opt/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf

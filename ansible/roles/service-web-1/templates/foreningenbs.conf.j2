@@ -53,7 +53,9 @@
   ProxyPass /users-api http://users-api.zt.foreningenbs.no:8000
 
   # Statutter.
-  Alias /statutter /var/www/aliases/statutter/public
+  Alias /statutter/arkiv /var/www/statutter-arkiv/arkiv
+  RewriteRule ^/statutter/?$ https://foreningenbs.no/confluence/display/statutter [R,L]
+  RewriteRule ^/statutter/gjeldende https://foreningenbs.no/confluence/display/statutter [R,L]
 
   <Location />
     MellonEnable "info"
