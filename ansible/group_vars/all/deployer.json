@@ -10,5 +10,5 @@
   "deployer_slack_invite_automation_image": "blindern/slack-invite-automation:20191228-0708",
   "deployer_smaabruket_availability_api_image": "blindern/smaabruket-availability-api:20210815-1712-2514",
   "deployer_users_api_image": "blindern/users-api:20191229-0717-277",
-  "deployer_web_1_image": "blindern/internal-web-1:20200126-2052"
+  "deployer_web_1_image": "blindern/internal-web-1:20220308-1704"
 }

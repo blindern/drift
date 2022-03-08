@@ -5,6 +5,7 @@ ENV NODE_VERSION=12.14.0
 
 RUN set -eux; \
     apt-get update; \
+    apt-get upgrade -y; \
     apt-get install -y --no-install-recommends \
       dirmngr \
       git \
@@ -37,7 +38,7 @@ RUN set -eux; \
     ; \
     # TODO: Remove deprecated mongo when code is using new module.
     pecl install mongo; \
-    pecl install mongodb; \
+    pecl install mongodb-1.6.1; \
     docker-php-ext-enable mongo mongodb; \
     a2enmod \
       ldap \
