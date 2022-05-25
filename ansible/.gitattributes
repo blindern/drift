@@ -1,2 +1,1 @@
 .ansible_pass filter=git-crypt diff=git-crypt
-./roles/service-snipeit/files/snipe-it-env filter=git-crypt diff=git-crypt
