@@ -1,9 +1,22 @@
+- name: Create a /opt/snipeit directory if not exisiting
+  ansible.builtin.file:
+    path: /opt/snipeit
+    state: directory
+
+- name: Copy env file
+  ansible.builtin.copy:
+    dest: /opt/snipeit/.env
+    src: snipe-it-env
+    owner: root
+    group: root
+    mode: 0644
+
 - name: download and start mysql
   community.docker.docker_container:
     name: snipe-mysql
     image: 'mysql:5.6'
     pull: true
-    env_file: /srv/snipeit/.env
+    env_file: /opt/snipeit/.env
     mounts:
       - source: snipesql-vol
         target: /var/lib/mysql
@@ -16,13 +29,13 @@
     pull: true
     links: snipe-mysql:mysql
     ports: 8000:80
-    env_file: /srv/snipeit/.env
+    env_file: /opt/snipeit/.env
     mounts:
       - source: snipe-vol
         target: /var/lib/snipeit
     restart_policy: unless-stopped
     
-- name: Run a simple command (argv)
+- name: Change permissions of snipeit containers storage directory
   community.docker.docker_container_exec:
     container: snipeit
     argv:
