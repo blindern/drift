@@ -2,6 +2,9 @@
   ansible.builtin.file:
     path: /opt/snipeit
     state: directory
+    owner: root
+    group: root
+    mode: 0700
 
 - name: Copy env file
   ansible.builtin.copy:
@@ -14,17 +17,23 @@
 - name: download and start mysql
   community.docker.docker_container:
     name: snipe-mysql
+    state: started
     image: 'mysql:5.6'
     pull: true
     env_file: /opt/snipeit/.env
     mounts:
       - source: snipesql-vol
         target: /var/lib/mysql
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ snipe_mysql_ipv4_address }}"
+    networks_cli_compatible: yes
     restart_policy: unless-stopped
 
 - name: download and start snipeit
   community.docker.docker_container:
     name: snipeit
+    state: started
     image: 'snipe/snipe-it:v6.0.2'
     pull: true
     links: snipe-mysql:mysql
@@ -33,6 +42,10 @@
     mounts:
       - source: snipe-vol
         target: /var/lib/snipeit
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ snipeit_ipv4_address }}"
+    networks_cli_compatible: yes
     restart_policy: unless-stopped
     
 - name: Change permissions of snipeit containers storage directory
