@@ -1,0 +1,32 @@
+- name: download and start mysql
+  community.docker.docker_container:
+    name: snipe-mysql
+    image: 'mysql:5.6'
+    pull: true
+    env_file: /srv/snipeit/.env
+    mounts:
+      - source: snipesql-vol
+        target: /var/lib/mysql
+    restart_policy: unless-stopped
+
+- name: download and start snipeit
+  community.docker.docker_container:
+    name: snipeit
+    image: 'snipe/snipe-it:v6.0.2'
+    pull: true
+    links: snipe-mysql:mysql
+    ports: 8000:80
+    env_file: /srv/snipeit/.env
+    mounts:
+      - source: snipe-vol
+        target: /var/lib/snipeit
+    restart_policy: unless-stopped
+    
+- name: Run a simple command (argv)
+  community.docker.docker_container_exec:
+    container: snipeit
+    argv:
+      - /bin/bash
+      - "-c"
+      - "chown -R docker:root storage"
+    chdir: /var/www/html
