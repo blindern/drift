@@ -43,6 +43,10 @@
     okoreports_frontend_ipv4_address: "172.25.16.6"
     slack_invite_automation_image: "{{ deployer_slack_invite_automation_image }}"
     slack_invite_automation_ipv4_address: "172.25.16.9"
+    snipeit_image: snipe/snipe-it:v6.0.2
+    snipeit_ipv4_address: "172.25.16.44"
+    snipe_mysql_image: mysql:5.6
+    snipe_mysql_ipv4_address: "172.25.16.45"
 
   roles:
     - role: service-users-api
@@ -53,6 +57,8 @@
       tags: service-okoreports
     - role: service-slack-invite-automation
       tags: service-slack-invite-automation
+    - role: service-snipeit
+      tags: service-snipeit
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
     # - role: service-storage-1-webdavcgi

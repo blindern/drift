@@ -18,7 +18,7 @@
   community.docker.docker_container:
     name: snipe-mysql
     state: started
-    image: 'mysql:5.6'
+    image: "{{ snipe_mysql_image }}"
     pull: true
     env_file: /opt/snipeit/.env
     mounts:
@@ -29,15 +29,16 @@
         ipv4_address: "{{ snipe_mysql_ipv4_address }}"
     networks_cli_compatible: yes
     restart_policy: unless-stopped
+  when: not ansible_check_mode
 
 - name: download and start snipeit
   community.docker.docker_container:
     name: snipeit
     state: started
-    image: 'snipe/snipe-it:v6.0.2'
+    image: "{{ snipeit_image }}"
     pull: true
-    links: snipe-mysql:mysql
-    ports: 8000:80
+#    links: snipe-mysql:mysql
+#    ports: 8000:80
     env_file: /opt/snipeit/.env
     mounts:
       - source: snipe-vol
@@ -47,6 +48,7 @@
         ipv4_address: "{{ snipeit_ipv4_address }}"
     networks_cli_compatible: yes
     restart_policy: unless-stopped
+  when: not ansible_check_mode
     
 - name: Change permissions of snipeit containers storage directory
   community.docker.docker_container_exec:
@@ -56,3 +58,4 @@
       - "-c"
       - "chown -R docker:root storage"
     chdir: /var/www/html
+  when: not ansible_check_mode
