@@ -1,4 +1,4 @@
-FROM atlassian/confluence:7.13
+FROM atlassian/confluence:7.18
 
 USER root
 
