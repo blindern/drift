@@ -48,6 +48,13 @@ $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
   "saml20.sign.assertion" => true
 ];
 
+// inventar.foreningenbs.no
+$metadata['https://inventar.foreningenbs.no/saml/metadata'] = array(
+    'SingleSignOnService'  => 'https://foreningenbs.no/simplesaml/saml2/idp/SSOService.php',
+    'SingleLogoutService'  => 'https://foreningenbs.no/simplesaml/saml2/idp/SingleLogoutService.php',
+    'certData'             => 'MIIEOzCCAyOgAwIBAgIJAJB1ClZFzgNIMA0GCSqGSIb3DQEBCwUAMIGzMQswCQYDVQQGEwJOTzENMAsGA1UECAwET3NsbzENMAsGA1UEBwwET3NsbzEqMCgGA1UECgwhRm9yZW5pbmdlbiBCbGluZGVybiBTdHVkZW50ZXJoamVtMRIwEAYDVQQLDAlJVC1ncnVwcGExHDAaBgNVBAMME2lkcC5mb3JlbmluZ2VuYnMubm8xKDAmBgkqhkiG9w0BCQEWGWl0LWdydXBwYUBmb3JlbmluZ2VuYnMubm8wHhcNMTQxMTEyMDAyODE2WhcNMjQxMTExMDAyODE2WjCBszELMAkGA1UEBhMCTk8xDTALBgNVBAgMBE9zbG8xDTALBgNVBAcMBE9zbG8xKjAoBgNVBAoMIUZvcmVuaW5nZW4gQmxpbmRlcm4gU3R1ZGVudGVyaGplbTESMBAGA1UECwwJSVQtZ3J1cHBhMRwwGgYDVQQDDBNpZHAuZm9yZW5pbmdlbmJzLm5vMSgwJgYJKoZIhvcNAQkBFhlpdC1ncnVwcGFAZm9yZW5pbmdlbmJzLm5vMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr1ufEAkElJH9EpVX/xGZsUV7R17PpGWCHvnF6+nHTAKQxSM57h9UmjxdMx1jShbU0AWm6IVt4KPRyBXGEFfqVuXYvuU5pjGDpK1I9fAn/Fpkw0fe+RQQYq2QT0iKPDUkmjcq99WirJKMzUwfO7KuUV4lvctBnMx7s/1K6olq8HzY6km70kji46vmU45YiMgyo1TL3keVb+zVKgbjEX6P7Hm0Q7eXXY+3NHIqaKQ8N6d5xOT7mVuRqhvKAlwqUO296KhYBSgntElmH3/f/QayEaFoDbpMuWBbSmnLCNcQch+qYM/wFKFxt6i5AZRVmzTZAB8WkiKepvGiFCWujXRhNQIDAQABo1AwTjAdBgNVHQ4EFgQULdQSA/j4QuWMrB0SGhkyDW6Dai4wHwYDVR0jBBgwFoAULdQSA/j4QuWMrB0SGhkyDW6Dai4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAfBjmva4UE7/0u4+g4JiTTSsX5ZaveccHxTV7JqneFBbj7OmPQsaOpgFpaiwjyM1XIbOGKK3/A0sTAmKGwQC8o+VwQTAHiZhtv3CqWLY0MVZ03OYuuhX/q5AQij3FXUTriUfMaoqqsKX8hh8BTK4wcntCi4qYHihtvXsfrCnrJwl+Y811LziUKDFJymv3ZXYsTsiFqB7KI6+3YCe8mKy9KwYSHz5qDktwGERAShEvRDHVZ1kSARChrdSgf0LcuIO9nFd3O3x2VzMHC2vZj91KsX8tWHErodHxtZcHMpzOJSIvBY5cZx/qtCifl3yVYGxhUg4kl67afV5M2DRuvA7XXQ==',
+);
+
 // Pålogging på Google Apps for UKA.
 $metadata["google.com/a/blindernuka.no"] = [
   "AssertionConsumerService" => "https://www.google.com/a/blindernuka.no/acs",
