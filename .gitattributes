@@ -1,2 +1,4 @@
 # Use lf (\n) endings, also on Windows.
 * text=auto eol=lf
+
+mysql.cnf filter=git-crypt diff=git-crypt
