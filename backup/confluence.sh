@@ -14,7 +14,7 @@ confluence_logs_dir=/data/confluence-logs
 
 # not used since its the same server - for simplification
 db_server=coreos-3.foreningenbs.no
-db_container_name=mysql-2
+db_container_name=mysql-1
 
 timestamp=$(date -u +%Y%m%d-%H%M%S)Z
 backup_dir=/data/confluence-backup-staging/$timestamp

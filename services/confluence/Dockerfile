@@ -1,4 +1,4 @@
-FROM atlassian/confluence:7.13
+FROM atlassian/confluence:7.18.1
 
 USER root
 
@@ -8,11 +8,11 @@ RUN set -eux; \
       xmlstarlet \
     ; \
     rm -rf /var/lib/apt/lists/*; \
-    curl -Ls "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz" \
+    curl -Ls "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.29.tar.gz" \
       | tar -xz --directory "${CONFLUENCE_INSTALL_DIR}/confluence/WEB-INF/lib" \
             --strip-components=1 \
             --no-same-owner \
-            "mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar"
+            "mysql-connector-java-8.0.29/mysql-connector-java-8.0.29.jar"
 
 # set autowatch to false
 #   see https://jira.atlassian.com/browse/CONF-22070
