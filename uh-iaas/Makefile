@@ -15,3 +15,16 @@ convert-config: ct
 		-platform openstack-metadata \
 		-files-dir "$(shell pwd)" \
 		-pretty
+
+.PHONY: convert-fcos-config
+convert-fcos-config:
+	docker run \
+		--pull=always \
+		--interactive \
+		--rm \
+		-v "$(shell pwd):/data" \
+		-w /data \
+		quay.io/coreos/butane:release \
+		--pretty \
+		--files-dir /data \
+		--strict fcos-config.bu > fcos-config.ign

@@ -1,0 +1,74 @@
+# https://docs.fedoraproject.org/en-US/fedora-coreos/producing-ign/
+
+variant: fcos
+version: 1.4.0
+
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        # SSH keys used for initial provisioning.
+        # The Ansible setup will remove this after putting correct keys in place.
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPHEXfnk4idh16KHKe3GHpHRpNlXxCaY/zGO9VFTZODMlvQoAy1jEXpJUFVEXrayiFeQ5owArSa3GiYlvMW9e72dRf+w9l1jpnPMM+0BoZEluZX/DceOd3DLSMcCg5Z9LKZbYDwe94erZBtGuWSAEd8ue+bkSkBhbQdJyPlU36e2i2+WoIVroZjPzemoKXICMNEKXhHzewivpEC88pCSoQKjHz42vTplkB60D/TgdZriOZbs0JL60mxOyNLje9dK81npVy8+YpfCLae3yw3hY8W4OsFnZ9z+MLxBJVQnblrc/tE9mgq3BAKQOBi7RY6vdgr3aMbmkRCnUn0JlYkh/h henrist@henrist.net"
+
+storage:
+  filesystems:
+    - path: /var/mnt/data
+      label: data
+      device: /dev/vdb
+      format: ext4
+      with_mount_unit: true
+
+  files:
+    ##
+    # host keys
+    - path: /etc/ssh/ssh_host_dsa_key
+      mode: 0600
+      contents:
+        local: host-keys/ssh_host_dsa_key
+    - path: /etc/ssh/ssh_host_dsa_key.pub
+      mode: 0644
+      contents:
+        local: host-keys/ssh_host_dsa_key.pub
+    - path: /etc/ssh/ssh_host_ecdsa_key
+      mode: 0600
+      contents:
+        local: host-keys/ssh_host_ecdsa_key
+    - path: /etc/ssh/ssh_host_ecdsa_key.pub
+      mode: 0644
+      contents:
+        local: host-keys/ssh_host_ecdsa_key.pub
+    - path: /etc/ssh/ssh_host_ed25519_key
+      mode: 0600
+      contents:
+        local: host-keys/ssh_host_ed25519_key
+    - path: /etc/ssh/ssh_host_ed25519_key.pub
+      mode: 0644
+      contents:
+        local: host-keys/ssh_host_ed25519_key.pub
+    - path: /etc/ssh/ssh_host_rsa_key
+      mode: 0600
+      contents:
+        local: host-keys/ssh_host_rsa_key
+    - path: /etc/ssh/ssh_host_rsa_key.pub
+      mode: 0644
+      contents:
+        local: host-keys/ssh_host_rsa_key.pub
+    # end host keys
+
+    - path: /etc/zincati/config.d/55-updates-strategy.toml
+      contents:
+        inline: |
+          [updates]
+          strategy = "periodic"
+          [[updates.periodic.window]]
+          days = [ "Sun" ]
+          start_time = "22:30"
+          length_minutes = 60
+
+  directories:
+    - path: /var/mnt/data
+      user:
+        name: core
+      group:
+        name: core

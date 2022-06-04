@@ -49,6 +49,7 @@ See the template `blindern.tf` for the infrastructure setup.
 ```bash
 . .keystone.sh
 make convert-config
+make convert-fcos-config
 terraform init
 terraform apply
 ```
@@ -71,12 +72,8 @@ It also holds the encryption key.
 All state that must be persisted should be stored within this volume, as only
 this will be persisted across instance recreations.
 
-## Updating CoreOS instance template
+## Updating image for new provisions
 
 ```bash
-./publish-coreos.sh
+./publish-fedora-coreos.sh
 ```
-
-TODO: When doing this, we get a name conflict as there will be duplicate
-images with the same name. We probably want to name these images more
-explicit.

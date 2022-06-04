@@ -14,6 +14,10 @@ variable "coreos" {
   default     = "Container-Linux"
   description = "Name for CoreOS container image"
 }
+variable "fcos" {
+  default     = "fedora-coreos-36.20220505.3.2-openstack.x86_64"
+  description = "Name for Fedora CoreOS container image"
+}
 
 # --------------------------------------
 # Network resources
@@ -148,6 +152,14 @@ resource "openstack_blockstorage_volume_v3" "volume_4" {
   }
 }
 
+resource "openstack_blockstorage_volume_v3" "volume_5" {
+  name = "volume_5"
+  size = 25
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "openstack_compute_instance_v2" "coreos_1" {
   name        = "coreos_1"
   image_name  = var.coreos
@@ -240,6 +252,28 @@ resource "openstack_compute_instance_v2" "coreos_4" {
   }
 }
 
+resource "openstack_compute_instance_v2" "fcos_1" {
+  name        = "fcos_1"
+  image_name  = var.fcos
+  flavor_name = data.openstack_compute_flavor_v2.large.name
+  network {
+    name = data.openstack_networking_network_v2.public.name
+  }
+  security_groups = [
+    openstack_networking_secgroup_v2.misc.name,
+  ]
+  user_data = file("fcos-config.ign")
+
+  lifecycle {
+    ignore_changes = [
+      # Don't replace the instance when we modify user data.
+      # Comment this if needed.
+      user_data,
+      image_name,
+    ]
+  }
+}
+
 resource "openstack_compute_volume_attach_v2" "va_1" {
   instance_id = openstack_compute_instance_v2.coreos_1.id
   volume_id   = openstack_blockstorage_volume_v3.volume_1.id
@@ -260,6 +294,11 @@ resource "openstack_compute_volume_attach_v2" "va_4" {
   volume_id   = openstack_blockstorage_volume_v3.volume_4.id
 }
 
+resource "openstack_compute_volume_attach_v2" "va_5" {
+  instance_id = openstack_compute_instance_v2.fcos_1.id
+  volume_id   = openstack_blockstorage_volume_v3.volume_5.id
+}
+
 # --------------------------------------
 # Outputs
 # --------------------------------------
@@ -278,4 +317,8 @@ output "coreos_3_ip" {
 
 output "coreos_4_ip" {
   value = openstack_compute_instance_v2.coreos_4.access_ip_v4
+}
+
+output "fcos_1_ip" {
+  value = openstack_compute_instance_v2.fcos_1.access_ip_v4
 }
