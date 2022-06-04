@@ -13,6 +13,7 @@
       ATL_TOMCAT_SCHEME: https
       ATL_TOMCAT_SECURE: "true"
       ATL_TOMCAT_CONTEXTPATH: /confluence
+      JVM_MAXIMUM_MEMORY: 2g
     networks:
       - name: fbs0
         ipv4_address: "{{ confluence_ipv4_address }}"
