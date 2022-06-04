@@ -121,8 +121,6 @@
       tags: service-confluence
     - role: service-mysql-1
       tags: service-mysql-1
-    - role: service-mysql-2
-      tags: service-mysql-2
     - role: service-mongodb-1
       tags: service-mongodb-1
 
