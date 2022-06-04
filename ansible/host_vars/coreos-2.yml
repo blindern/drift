@@ -1,6 +1,5 @@
 coreos_hostname: coreos-2.foreningenbs.no
 
-fbs_dyndns_name: fbs-coreos-2
 zerotier_host_ip: "172.25.11.2"
 zerotier_host_ip_cidr: "172.25.11.2/16"
 zerotier_network_id: a84ac5c10a9c7522

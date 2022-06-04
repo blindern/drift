@@ -8,10 +8,6 @@
 - hosts: coreos
   become: yes
   roles:
-    # (Not using dyndns for now, keeping records in Domeneshop
-    # manually updated.)
-    # - role: dyndns
-    #   tags: dyndns
     - role: coreos-base
       tags: coreos-base
     - role: git-crypt
