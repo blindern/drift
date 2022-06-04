@@ -35,7 +35,7 @@ ssh root@$confluence_server <<EOF
 
   echo "Creating database dump"
   export MYSQL_PWD=\$(grep hibernate.connection.password /data/confluence-data/confluence.cfg.xml | cut -d'>' -f2 | cut -d'<' -f1)
-  docker exec -i -e MYSQL_PWD $db_container_name mysqldump -u confluence --max_allowed_packet=512M --single-transaction confluence | gzip -9 >"$backup_dir/db.sql.gz"
+  docker exec -i -e MYSQL_PWD $db_container_name mysqldump -u confluence --routines --max_allowed_packet=512M --single-transaction confluence | gzip -9 >"$backup_dir/db.sql.gz"
 EOF
 
 echo "Fetching data"
