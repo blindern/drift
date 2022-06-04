@@ -300,6 +300,59 @@ resource "openstack_compute_volume_attach_v2" "va_5" {
 }
 
 # --------------------------------------
+# DNS
+# --------------------------------------
+
+# See https://uh-iaas.readthedocs.io/dns.html
+# Delegation is configured in Domeneshop
+
+resource "openstack_dns_zone_v2" "nrec_fbs" {
+  name        = "nrec.foreningenbs.no."
+  email       = "it-gruppa@foreningenbs.no"
+  description = "FBS NREC instances"
+}
+
+resource "openstack_dns_recordset_v2" "dns_coreos_1" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "coreos-1.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.coreos_1.access_ip_v4}"]
+}
+
+resource "openstack_dns_recordset_v2" "dns_coreos_2" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "coreos-2.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.coreos_2.access_ip_v4}"]
+}
+
+resource "openstack_dns_recordset_v2" "dns_coreos_3" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "coreos-3.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.coreos_3.access_ip_v4}"]
+}
+
+resource "openstack_dns_recordset_v2" "dns_coreos_4" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "coreos-4.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.coreos_4.access_ip_v4}"]
+}
+
+resource "openstack_dns_recordset_v2" "dns_fcos_1" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "fcos-1.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.fcos_1.access_ip_v4}"]
+}
+
+# --------------------------------------
 # Outputs
 # --------------------------------------
 
