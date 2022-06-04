@@ -76,7 +76,7 @@
     dugnaden_ipv4_address: "172.25.16.10"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
     phpldapadmin_ipv4_address: "172.25.16.11"
-    phpmyadmin_image: phpmyadmin/phpmyadmin:5
+    phpmyadmin_image: phpmyadmin/phpmyadmin:5.2
     phpmyadmin_ipv4_address: "172.25.16.12"
     ldap_slave_image: "{{ deployer_ldap_slave_image }}"
     ldap_slave_ipv4_address: "172.25.16.31"
