@@ -1,4 +1,4 @@
-coreos_hostname: coreos-1.foreningenbs.no
+desired_hostname: coreos-1.foreningenbs.no
 
 zerotier_host_ip: "172.25.11.1"
 zerotier_host_ip_cidr: "172.25.11.1/16"

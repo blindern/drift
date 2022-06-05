@@ -1,5 +1,5 @@
 - hostname:
-    name: "{{ coreos_hostname }}"
+    name: "{{ desired_hostname }}"
 
 - git_config:
     name: user.name

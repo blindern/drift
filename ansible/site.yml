@@ -2,28 +2,28 @@
   become: yes
   gather_facts: no
   roles:
-    - role: coreos-python
-      tags: coreos-python
+    - role: python-coreos
+      tags: python-coreos
 
 - hosts: coreos
   become: yes
   roles:
-    - role: coreos-base
-      tags: coreos-base
-    - role: git-crypt
-      tags: git-crypt
+    - role: base
+      tags: base
+    - role: git-crypt-coreos
+      tags: git-crypt-coreos
     - role: zerotier
       tags: zerotier
     - role: docker-network
       tags: docker-network
-    - role: docker-compose
-      tags: docker-compose
-    - role: coreos-etcd
-      tags: coreos-etcd
-    - role: coreos-docker
-      tags: coreos-docker
-    - role: coreos-ssh-keys
-      tags: coreos-ssh-keys
+    - role: docker-compose-coreos
+      tags: docker-compose-coreos
+    - role: etcd-coreos
+      tags: etcd-coreos
+    - role: docker
+      tags: docker
+    - role: ssh-keys-coreos
+      tags: ssh-keys-coreos
 
 # Services running on coreos-1.
 - hosts: coreos-1
