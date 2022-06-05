@@ -1,13 +1,8 @@
-# VMs on UH-IaaS
+# VMs on NREC
 
-See https://github.com/cybernetisk/drift/tree/master/uh-iaas
-for related work.
+For details about NREC see https://docs.nrec.no/
 
-For details about UH-IaaS see
-http://docs.uh-iaas.no/en/latest/api.html
-and the related pages.
-
-We use Terraform to manage the resources on UH-IaaS.
+We use Terraform to manage the resources on NREC.
 
 ## Setting up dependencies
 
@@ -32,8 +27,8 @@ export OS_PASSWORD=REPLACE-ME
 ```
 
 The username should be your email address, and the password should be a
-generated API password provided on your first login to UH-IaaS.
-You should also be able to reset your API password on https://access.uh-iaas.no/
+generated API password provided on your first login to NREC.
+You should also be able to reset your API password on https://access.nrec.no/
 
 ## Testing openstack commands
 

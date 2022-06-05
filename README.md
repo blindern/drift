@@ -11,16 +11,16 @@ maintained setup with few components. We might consider moving
 to something more complex later (such as Kubernetes) if we need
 more HA capabilities or a platform to control services deployment.
 
-- [Terraform](./uh-iaas/) is used to provision VMs in
-  [UH-IaaS](http://docs.uh-iaas.no/en/latest/index.html). Only the minimal
+- [Terraform](./nrec/) is used to provision VMs in
+  [NREC](https://docs.nrec.no/). Only the minimal
   instance setup is done in Terraform / cloud-init, as any change to this
   will recreate the instances.
   - All data is stored on a separate volume mounted at `/data`, allowing us
     to more easily recreate instances if needed, and to have a single
     location to backup.
-  - As host OS we use CoreOS Container Linux which is self-updating.
-    This will be replaced later when CoreOS Container Linux gets
-    deprecated and replaced by Fedore CoreOS.
+  - As host OS we use Fedora CoreOS which is self-updating.
+    - Some older hosts still uses CoreOS Container Linux which is
+      to be replaced with Fedora CoreOS.
 - [Ansible](./ansible/) is used to configure the hosts, including the
   mapping of which services run on the various hosts. When recreating a
   VM instance, Ansible should perform all required tasks for the host
