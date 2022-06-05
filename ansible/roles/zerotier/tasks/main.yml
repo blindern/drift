@@ -114,7 +114,7 @@
       # I've been unsuccessful in getting this to work with nmcli,
       # so this is a workaround to add the interface to the bridge.
       ExecStartPost=sleep 2
-      ExecStartPost=/usr/bin/bash -c 'while ! /usr/sbin/ip link set ztfbs0 master fbs0; do sleep 1; done'
+      ExecStartPost=/usr/bin/bash -c 'if [ -e {{ data_dir }}/zerotier-one/networks.d/{{ zerotier_network_id }}.conf ]; then while ! /usr/sbin/ip link set ztfbs0 master fbs0; do sleep 1; done; fi'
 
       Restart=on-failure
       KillMode=process
