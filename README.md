@@ -15,7 +15,7 @@ more HA capabilities or a platform to control services deployment.
   [NREC](https://docs.nrec.no/). Only the minimal
   instance setup is done in Terraform / cloud-init, as any change to this
   will recreate the instances.
-  - All data is stored on a separate volume mounted at `/data`, allowing us
+  - All data is stored on a separate volume mounted at `/var/mnt/data`, allowing us
     to more easily recreate instances if needed, and to have a single
     location to backup.
   - As host OS we use Fedora CoreOS which is self-updating.
