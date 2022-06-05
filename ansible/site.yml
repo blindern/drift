@@ -5,6 +5,20 @@
     - role: python-coreos
       tags: python-coreos
 
+- hosts: fcos
+  become: yes
+  roles:
+    - role: base
+      tags: base
+    - role: zerotier
+      tags: zerotier
+    - role: docker-network
+      tags: docker-network
+    - role: docker
+      tags: docker
+    - role: ssh-keys-fcos
+      tags: ssh-keys-fcos
+
 - hosts: coreos
   become: yes
   roles:
@@ -24,6 +38,14 @@
       tags: docker
     - role: ssh-keys-coreos
       tags: ssh-keys-coreos
+
+# Services running on fcos-1.
+# - hosts: fcos-1
+#   become: yes
+#   vars:
+#     ...
+#   roles:
+#     ...
 
 # Services running on coreos-1.
 - hosts: coreos-1

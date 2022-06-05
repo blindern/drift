@@ -1,0 +1,28 @@
+- name: Copy authorized keys to core user
+  copy:
+    src: ../../ssh-keys-coreos/files/fbs.pub
+    dest: /home/core/.ssh/authorized_keys.d/fbs
+    owner: core
+    group: core
+    mode: 0644
+
+- name: Ensure root authorized keys directory exists
+  file:
+    path: /root/.ssh/authorized_keys.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy authorized keys to root user
+  copy:
+    src: ../../ssh-keys-coreos/files/fbs.pub
+    dest: /root/.ssh/authorized_keys.d/fbs
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Remove initially provisioned keys from Terraform
+  ansible.builtin.file:
+    path: /home/core/.ssh/authorized_keys.d/ignition
+    state: absent

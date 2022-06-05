@@ -1,0 +1,11 @@
+desired_hostname: fcos-1.nrec.foreningenbs.no
+
+zerotier_host_ip: "172.25.12.1"
+zerotier_host_ip_cidr: "172.25.12.1/16"
+zerotier_network_id: a84ac5c10a9c7522
+
+docker_subnet: "172.25.0.0/16"
+docker_ip_range: "172.25.26.1/24"
+
+host_type: fcos
+data_dir: /var/mnt/data

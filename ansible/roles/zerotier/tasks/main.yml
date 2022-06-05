@@ -1,4 +1,4 @@
-- name: Install virtual network device
+- name: Install virtual network device (coreos)
   copy:
     content: |
       [NetDev]
@@ -11,8 +11,9 @@
   notify:
     - reload systemd
     - restart networkd
+  when: host_type == "coreos"
 
-- name: Install network configuratiion for bridge
+- name: Install network configuratiion for bridge (coreos)
   copy:
     content: |
       [Match]
@@ -27,8 +28,9 @@
   notify:
     - reload systemd
     - restart networkd
+  when: host_type == "coreos"
 
-- name: Install network configuration for ZeroTier
+- name: Install network configuration for ZeroTier (coreos)
   copy:
     content: |
       [Match]
@@ -42,18 +44,30 @@
     mode: 0644
   notify:
     - reload systemd
+  when: host_type == "coreos"
+
+- name: Setup ZeroTier bridge (fcos)
+  community.general.nmcli:
+    conn_name: fbs0
+    ifname: fbs0
+    type: bridge
+    state: present
+    stp: no
+    ip4:
+      - "{{ zerotier_host_ip_cidr }}"
+  when: host_type == "fcos"
 
 - name: Add device map for ZeroTier network
   lineinfile:
     line: "{{ zerotier_network_id }}=ztfbs0"
-    path: /data/zerotier-one/devicemap
+    path: "{{ data_dir }}/zerotier-one/devicemap"
     create: yes
     regexp: "^{{ zerotier_network_id }}="
     owner: root
     group: root
     mode: 0644
 
-- name: Install ZeroTier service
+- name: Install ZeroTier service (coreos)
   copy:
     content: |
       [Unit]
@@ -78,6 +92,42 @@
     mode: 0644
   notify:
     - reload systemd
+  when: host_type == "coreos"
+
+- name: Install ZeroTier service (fcos)
+  copy:
+    content: |
+      [Unit]
+      Description=ZeroTier One
+      After=docker.service
+      After=NetworkManager.service
+      Requires=docker.service
+
+      [Service]
+      TimeoutStartSec=0
+      ExecStartPre=/usr/sbin/modprobe tun
+      ExecStartPre=-/usr/bin/docker kill zerotier-one
+      ExecStartPre=-/usr/bin/docker rm -f zerotier-one
+      ExecStartPre=-/usr/bin/docker pull henrist/zerotier-one
+      ExecStart=/usr/bin/docker run --name zerotier-one --device /dev/net/tun --net host --cap-add NET_ADMIN --cap-add SYS_ADMIN -v {{ data_dir }}/zerotier-one:/var/lib/zerotier-one:Z henrist/zerotier-one
+
+      # I've been unsuccessful in getting this to work with nmcli,
+      # so this is a workaround to add the interface to the bridge.
+      ExecStartPost=sleep 2
+      ExecStartPost=/usr/sbin/ip link set ztfbs0 master fbs0
+
+      Restart=on-failure
+      KillMode=process
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/zerotier-one.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+  when: host_type == "fcos"
 
 # Ensure systemd is reloaded if needed before continuing.
 - meta: flush_handlers
@@ -90,10 +140,11 @@
 
 - name: Check if ZeroTier network is already set up
   stat:
-    path: "/data/zerotier-one/networks.d/{{ zerotier_network_id }}.conf"
+    path: "{{ data_dir }}/zerotier-one/networks.d/{{ zerotier_network_id }}.conf"
   register: zerotier_presence
 
 # Must be manually approved on https://my.zerotier.com/network/a84ac5c10a9c7522
+# Make sure to always configure it to allow bridging when approving.
 - name: Join ZeroTier network
   command: "docker exec zerotier-one zerotier-cli join {{ zerotier_network_id }}"
   when: not zerotier_presence.stat.exists
@@ -101,7 +152,7 @@
 - name: Ensure ZeroTier network is unmanaged
   lineinfile:
     line: "allowManaged=0"
-    path: "/data/zerotier-one/networks.d/{{ zerotier_network_id }}.local.conf"
+    path: "{{ data_dir }}/zerotier-one/networks.d/{{ zerotier_network_id }}.local.conf"
     create: "{{ ansible_check_mode }}"
     regexp: "^allowManaged="
     owner: root

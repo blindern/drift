@@ -2,6 +2,7 @@
 # directory, and do a "git grep coreos-1" to locate other places
 # that must be updated.
 
+fcos-1 ansible_host=fcos-1.nrec.foreningenbs.no
 coreos-1 ansible_host=coreos-1.foreningenbs.no
 coreos-2 ansible_host=coreos-2.foreningenbs.no
 coreos-3 ansible_host=coreos-3.foreningenbs.no
@@ -14,3 +15,6 @@ coreos-2
 coreos-3
 coreos-4
 uka-1
+
+[fcos]
+fcos-1
