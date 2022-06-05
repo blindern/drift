@@ -53,6 +53,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.11.4 coreos-4.zt.foreningenbs.no (decommissioned)
   - 172.25.12.1 fcos-1.zt.foreningenbs.no
   - 172.25.12.2 fcos-2.zt.foreningenbs.no
+  - 172.25.12.3 fcos-3.zt.foreningenbs.no
 - IP-ranges for ad-hoc containers with Docker:
   - 172.25.21.0/24 coreos-1 (decommissioned)
   - 172.25.22.0/24 coreos-2
@@ -61,6 +62,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.25.0/24 uka-1 (decommissioned)
   - 172.25.26.0/24 fcos-1
   - 172.25.27.0/24 fcos-2
+  - 172.25.28.0/24 fcos-3
 - IP-range used for allocation of services:
   - 172.25.16.0/22 (172.25.16.0-172.25.19.255)
 - Allocated services:

@@ -152,6 +152,14 @@ resource "openstack_blockstorage_volume_v3" "volume_6" {
   }
 }
 
+resource "openstack_blockstorage_volume_v3" "volume_7" {
+  name = "volume_7"
+  size = 50
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "openstack_compute_instance_v2" "coreos_2" {
   name        = "coreos_2"
   image_name  = var.coreos
@@ -242,6 +250,28 @@ resource "openstack_compute_instance_v2" "fcos_2" {
   }
 }
 
+resource "openstack_compute_instance_v2" "fcos_3" {
+  name        = "fcos_3"
+  image_name  = var.fcos
+  flavor_name = data.openstack_compute_flavor_v2.xlarge.name
+  network {
+    name = data.openstack_networking_network_v2.public.name
+  }
+  security_groups = [
+    openstack_networking_secgroup_v2.misc.name,
+  ]
+  user_data = file("fcos-config.ign")
+
+  lifecycle {
+    ignore_changes = [
+      # Don't replace the instance when we modify user data.
+      # Comment this if needed.
+      user_data,
+      image_name,
+    ]
+  }
+}
+
 resource "openstack_compute_volume_attach_v2" "va_2" {
   instance_id = openstack_compute_instance_v2.coreos_2.id
   volume_id   = openstack_blockstorage_volume_v3.volume_2.id
@@ -260,6 +290,11 @@ resource "openstack_compute_volume_attach_v2" "va_5" {
 resource "openstack_compute_volume_attach_v2" "va_6" {
   instance_id = openstack_compute_instance_v2.fcos_2.id
   volume_id   = openstack_blockstorage_volume_v3.volume_6.id
+}
+
+resource "openstack_compute_volume_attach_v2" "va_7" {
+  instance_id = openstack_compute_instance_v2.fcos_3.id
+  volume_id   = openstack_blockstorage_volume_v3.volume_7.id
 }
 
 # --------------------------------------
@@ -307,6 +342,14 @@ resource "openstack_dns_recordset_v2" "dns_fcos_2" {
   records     = ["${openstack_compute_instance_v2.fcos_2.access_ip_v4}"]
 }
 
+resource "openstack_dns_recordset_v2" "dns_fcos_3" {
+  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
+  name        = "fcos-3.nrec.foreningenbs.no."
+  ttl         = 300
+  type        = "A"
+  records     = ["${openstack_compute_instance_v2.fcos_3.access_ip_v4}"]
+}
+
 # --------------------------------------
 # Outputs
 # --------------------------------------
@@ -325,4 +368,9 @@ output "fcos_1_ip" {
 
 output "fcos_2_ip" {
   value = openstack_compute_instance_v2.fcos_2.access_ip_v4
+}
+
+
+output "fcos_3_ip" {
+  value = openstack_compute_instance_v2.fcos_3.access_ip_v4
 }
