@@ -47,11 +47,17 @@
     uka_mysql_ipv4_address: "172.25.16.46"
     uka_webserver_image: blindernuka/webserver:20190202-1830
     uka_webserver_ipv4_address: "172.25.16.47"
+    uka_billett_nginx_image: nginx:1.10.1-alpine
+    uka_billett_nginx_ipv4_address: "172.25.16.48"
+    uka_billett_fpm_image: blindernuka/billett-backend:dcdd1a41 # 2020-11-28
+    uka_billett_fpm_ipv4_address: "172.25.16.49"
   roles:
     - role: service-uka-mysql
       tags: service-uka-mysql
     - role: service-uka-webserver
       tags: service-uka-webserver
+    - role: service-uka-billett
+      tags: service-uka-billett
 
 # Services running on coreos-1.
 - hosts: coreos-1
