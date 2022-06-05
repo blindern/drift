@@ -6,12 +6,10 @@ fcos-1 ansible_host=fcos-1.nrec.foreningenbs.no
 fcos-2 ansible_host=fcos-2.nrec.foreningenbs.no
 coreos-2 ansible_host=coreos-2.foreningenbs.no
 coreos-3 ansible_host=coreos-3.foreningenbs.no
-coreos-4 ansible_host=coreos-4.foreningenbs.no
 
 [coreos]
 coreos-2
 coreos-3
-coreos-4
 
 [fcos]
 fcos-1

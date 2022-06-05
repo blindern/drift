@@ -136,14 +136,6 @@ resource "openstack_blockstorage_volume_v3" "volume_3" {
   }
 }
 
-resource "openstack_blockstorage_volume_v3" "volume_4" {
-  name = "volume_4"
-  size = 20
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 resource "openstack_blockstorage_volume_v3" "volume_5" {
   name = "volume_5"
   size = 25
@@ -185,29 +177,6 @@ resource "openstack_compute_instance_v2" "coreos_2" {
 
 resource "openstack_compute_instance_v2" "coreos_3" {
   name        = "coreos_3"
-  image_name  = var.coreos
-  flavor_name = data.openstack_compute_flavor_v2.large.name
-  network {
-    name = data.openstack_networking_network_v2.public.name
-  }
-  security_groups = [
-    openstack_networking_secgroup_v2.misc.name,
-  ]
-  key_pair  = openstack_compute_keypair_v2.athene.name
-  user_data = file("coreos-config.ign")
-
-  lifecycle {
-    ignore_changes = [
-      # Don't replace the instance when we modify user data.
-      # Comment this if needed.
-      user_data,
-      image_name,
-    ]
-  }
-}
-
-resource "openstack_compute_instance_v2" "coreos_4" {
-  name        = "coreos_4"
   image_name  = var.coreos
   flavor_name = data.openstack_compute_flavor_v2.large.name
   network {
@@ -283,11 +252,6 @@ resource "openstack_compute_volume_attach_v2" "va_3" {
   volume_id   = openstack_blockstorage_volume_v3.volume_3.id
 }
 
-resource "openstack_compute_volume_attach_v2" "va_4" {
-  instance_id = openstack_compute_instance_v2.coreos_4.id
-  volume_id   = openstack_blockstorage_volume_v3.volume_4.id
-}
-
 resource "openstack_compute_volume_attach_v2" "va_5" {
   instance_id = openstack_compute_instance_v2.fcos_1.id
   volume_id   = openstack_blockstorage_volume_v3.volume_5.id
@@ -327,14 +291,6 @@ resource "openstack_dns_recordset_v2" "dns_coreos_3" {
   records     = ["${openstack_compute_instance_v2.coreos_3.access_ip_v4}"]
 }
 
-resource "openstack_dns_recordset_v2" "dns_coreos_4" {
-  zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
-  name        = "coreos-4.nrec.foreningenbs.no."
-  ttl         = 300
-  type        = "A"
-  records     = ["${openstack_compute_instance_v2.coreos_4.access_ip_v4}"]
-}
-
 resource "openstack_dns_recordset_v2" "dns_fcos_1" {
   zone_id     = "${openstack_dns_zone_v2.nrec_fbs.id}"
   name        = "fcos-1.nrec.foreningenbs.no."
@@ -361,10 +317,6 @@ output "coreos_2_ip" {
 
 output "coreos_3_ip" {
   value = openstack_compute_instance_v2.coreos_3.access_ip_v4
-}
-
-output "coreos_4_ip" {
-  value = openstack_compute_instance_v2.coreos_4.access_ip_v4
 }
 
 output "fcos_1_ip" {
