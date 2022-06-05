@@ -46,7 +46,7 @@ more HA capabilities or a platform to control services deployment.
 - Hosts:
   - 172.25.10.1 athene.zt.foreningenbs.no
   - 172.25.10.2 p.zt.foreningenbs.no
-  - 172.25.10.3 uka-1.zt.foreningenbs.no
+  - 172.25.10.3 uka-1.zt.foreningenbs.no (decommissioned)
   - 172.25.11.1 coreos-1.zt.foreningenbs.no
   - 172.25.11.2 coreos-2.zt.foreningenbs.no
   - 172.25.11.3 coreos-3.zt.foreningenbs.no
@@ -57,7 +57,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.22.0/24 coreos-2
   - 172.25.23.0/24 coreos-3
   - 172.25.24.0/24 coreos-4
-  - 172.25.25.0/24 uka-1
+  - 172.25.25.0/24 uka-1 (decommissioned)
   - 172.25.26.0/24 fcos-1
 - IP-range used for allocation of services:
   - 172.25.16.0/22 (172.25.16.0-172.25.19.255)
