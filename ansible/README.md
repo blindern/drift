@@ -1,6 +1,6 @@
 # Ansible setup
 
-We use Ansible to provision the contents on our VMs. See [uh-iaas](../uh-iaas/)
+We use Ansible to provision the contents on our VMs. See [nrec](../nrec/)
 directory for details on setting up the VMs we use.
 
 ## Getting started

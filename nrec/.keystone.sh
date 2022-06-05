@@ -8,7 +8,7 @@ fi
 #export OS_PASSWORD=
 
 export OS_PROJECT_NAME=uio-ifi-foreningenbs
-export OS_AUTH_URL=https://api.uh-iaas.no:5000/v3
+export OS_AUTH_URL=https://api.nrec.no:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_USER_DOMAIN_NAME=dataporten
 export OS_PROJECT_DOMAIN_NAME=dataporten

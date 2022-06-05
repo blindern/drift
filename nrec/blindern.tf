@@ -1,10 +1,10 @@
 provider "openstack" {
   # Username is gathered from OS_USERNAME
   # Password is gathered from OS_PASSWORD
-  alias         = "uh-iaas"
+  alias         = "nrec"
   tenant_name   = "uio-ifi-foreningenbs"
   region        = "osl"
-  auth_url      = "https://api.uh-iaas.no:5000/v3"
+  auth_url      = "https://api.nrec.no:5000/v3"
   domain_name   = "dataporten"
   endpoint_type = "public"
 }

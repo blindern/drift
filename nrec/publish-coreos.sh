@@ -13,9 +13,8 @@ wget \
   -O- \
   | bunzip2 > coreos_production_openstack_image.img
 
-echo "Uploading image to uh-iaas"
+echo "Uploading image to NREC"
 
-# Upload to uh-iaas
 glance image-create --name Container-Linux \
   --container-format bare \
   --disk-format qcow2 \

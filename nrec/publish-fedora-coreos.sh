@@ -22,7 +22,7 @@ docker run \
 file=$(ls -1 fedora-coreos-*.qcow2 | sort | tail -1)
 name=${file:0:-6} # pull off .qcow2
 
-echo "Uploading image to uh-iaas"
+echo "Uploading image to NREC"
 
 openstack image create \
   --disk-format qcow2 \
