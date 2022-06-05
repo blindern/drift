@@ -145,8 +145,6 @@
     confluence_ipv4_address: "172.25.16.8"
     mysql_1_image: mysql:8
     mysql_1_ipv4_address: "172.25.16.40"
-    mysql_2_image: mysql:5.6
-    mysql_2_ipv4_address: "172.25.16.43"
     # TODO: Upgrade to newer mongodb image when we have upgraded
     #  dependencies in intern app.
     # NOTE: To upgrade to 3.6 we need to upgrade feature compatibility
