@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/users-api
+    path: /var/ansible/users-api
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy overrides file
   copy:
-    dest: /opt/users-api/overrides.properties
+    dest: /var/ansible/users-api/overrides.properties
     src: overrides.properties
     owner: root
     group: root
@@ -26,7 +26,7 @@
         ipv4_address: "{{ users_api_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /opt/users-api/overrides.properties:/opt/users-api/overrides.properties
+      - /var/ansible/users-api/overrides.properties:/opt/users-api/overrides.properties:Z
     log_driver: journald
     working_dir: /opt/users-api
     restart: "{{ file_copied.changed }}"

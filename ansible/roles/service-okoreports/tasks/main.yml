@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/okoreports
+    path: /var/ansible/okoreports
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy settings file
   copy:
-    dest: /opt/okoreports/settings.py
+    dest: /var/ansible/okoreports/settings.py
     src: settings.py
     owner: root
     group: root
@@ -27,8 +27,8 @@
         ipv4_address: "{{ okoreports_backend_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /opt/okoreports/settings.py:/usr/src/tripletex/settings_local.py
-      - /data/okoreports-reports:/var/okoreports/reports
+      - /var/ansible/okoreports/settings.py:/usr/src/tripletex/settings_local.py:Z
+      - /var/mnt/data/okoreports-reports:/var/okoreports/reports:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 

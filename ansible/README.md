@@ -21,7 +21,7 @@ Example runs:
 ansible all -i hosts -m shell -a uptime
 
 # Run the site.yml playbook for a specific tag on a specific host.
-ansible-playbook site.yml -i hosts -t coreos-python -l coreos-1
+ansible-playbook site.yml -i hosts -t base -l fcos-1
 
 # Run the site.yml playbook for everything.
 ansible-playbook site.yml -i hosts

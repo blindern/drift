@@ -47,18 +47,20 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.10.1 athene.zt.foreningenbs.no
   - 172.25.10.2 p.zt.foreningenbs.no
   - 172.25.10.3 uka-1.zt.foreningenbs.no (decommissioned)
-  - 172.25.11.1 coreos-1.zt.foreningenbs.no
+  - 172.25.11.1 coreos-1.zt.foreningenbs.no (decommissioned)
   - 172.25.11.2 coreos-2.zt.foreningenbs.no
   - 172.25.11.3 coreos-3.zt.foreningenbs.no
   - 172.25.11.4 coreos-4.zt.foreningenbs.no
   - 172.25.12.1 fcos-1.zt.foreningenbs.no
+  - 172.25.12.2 fcos-2.zt.foreningenbs.no
 - IP-ranges for ad-hoc containers with Docker:
-  - 172.25.21.0/24 coreos-1
+  - 172.25.21.0/24 coreos-1 (decommissioned)
   - 172.25.22.0/24 coreos-2
   - 172.25.23.0/24 coreos-3
   - 172.25.24.0/24 coreos-4
   - 172.25.25.0/24 uka-1 (decommissioned)
   - 172.25.26.0/24 fcos-1
+  - 172.25.27.0/24 fcos-2
 - IP-range used for allocation of services:
   - 172.25.16.0/22 (172.25.16.0-172.25.19.255)
 - Allocated services:
@@ -118,7 +120,7 @@ To add a new ad-hoc client to the network:
 - Request to join network `a84ac5c10a9c7522` (leave only "allow managed" checked).
 - Authorize the client in the ZeroTier dashboard linked above.
 - Give the client a description so we keep track of what is connected.
-- You should now be able to ping e.g. coreos-1.zt.foreningenbs.no.
+- You should now be able to ping e.g. fcos-1.zt.foreningenbs.no.
 
 ## Encryption in this repo
 

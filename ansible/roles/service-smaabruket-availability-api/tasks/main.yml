@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/smaabruket-availability-api
+    path: /var/ansible/smaabruket-availability-api
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy environments file
   copy:
-    dest: /opt/smaabruket-availability-api/variables.env
+    dest: /var/ansible/smaabruket-availability-api/variables.env
     src: variables.env
     owner: root
     group: root
@@ -17,7 +17,7 @@
 
 - name: Copy credentials file
   copy:
-    dest: /opt/smaabruket-availability-api/credentials.json
+    dest: /var/ansible/smaabruket-availability-api/credentials.json
     src: credentials.json
     owner: root
     group: root
@@ -36,7 +36,7 @@
     networks_cli_compatible: yes
     log_driver: journald
     working_dir: /app
-    env_file: /opt/smaabruket-availability-api/variables.env
+    env_file: /var/ansible/smaabruket-availability-api/variables.env
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
     volumes:
-      - /opt/smaabruket-availability-api/credentials.json:/app/credentials.json
+      - /var/ansible/smaabruket-availability-api/credentials.json:/app/credentials.json:Z

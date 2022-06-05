@@ -59,8 +59,8 @@
     - role: service-uka-billett
       tags: service-uka-billett
 
-# Services running on coreos-1.
-- hosts: coreos-1
+# Services running on fcos-2.
+- hosts: fcos-2
   become: yes
   vars:
     smaabruket_availability_api_image: "{{ deployer_smaabruket_availability_api_image }}"
@@ -77,7 +77,6 @@
     snipeit_ipv4_address: "172.25.16.44"
     snipe_mysql_image: mysql:5.6
     snipe_mysql_ipv4_address: "172.25.16.45"
-
   roles:
     - role: service-users-api
       tags: service-users-api

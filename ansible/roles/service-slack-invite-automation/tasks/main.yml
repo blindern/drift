@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/slack-invite-automation
+    path: /var/ansible/slack-invite-automation
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy environments file
   copy:
-    dest: /opt/slack-invite-automation/variables.env
+    dest: /var/ansible/slack-invite-automation/variables.env
     src: variables.env
     owner: root
     group: root
@@ -27,5 +27,5 @@
         ipv4_address: "{{ slack_invite_automation_ipv4_address }}"
     networks_cli_compatible: yes
     log_driver: journald
-    env_file: /opt/slack-invite-automation/variables.env
+    env_file: /var/ansible/slack-invite-automation/variables.env
     restart: "{{ file_copied.changed }}"
