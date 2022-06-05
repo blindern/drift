@@ -21,9 +21,8 @@
     image: "{{ snipe_mysql_image }}"
     pull: true
     env_file: /opt/snipeit/.env
-    mounts:
-      - source: snipesql-vol
-        target: /var/lib/mysql
+    volumes:
+      - /data/snipesql-vol:/var/lib/mysql
     networks:
       - name: fbs0
         ipv4_address: "{{ snipe_mysql_ipv4_address }}"
@@ -40,9 +39,8 @@
 #    links: snipe-mysql:mysql
 #    ports: 8000:80
     env_file: /opt/snipeit/.env
-    mounts:
-      - source: snipe-vol
-        target: /var/lib/snipeit
+    volumes:
+      - /data/snipe-vol:/var/lib/snipeit
     networks:
       - name: fbs0
         ipv4_address: "{{ snipeit_ipv4_address }}"
