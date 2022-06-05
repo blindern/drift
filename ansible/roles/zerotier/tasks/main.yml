@@ -114,7 +114,7 @@
       # I've been unsuccessful in getting this to work with nmcli,
       # so this is a workaround to add the interface to the bridge.
       ExecStartPost=sleep 2
-      ExecStartPost=/usr/sbin/ip link set ztfbs0 master fbs0
+      ExecStartPost=/usr/bin/bash -c 'while ! /usr/sbin/ip link set ztfbs0 master fbs0; do sleep 1; done'
 
       Restart=on-failure
       KillMode=process
