@@ -77,6 +77,10 @@
     snipeit_ipv4_address: "172.25.16.44"
     snipe_mysql_image: mysql:5.6
     snipe_mysql_ipv4_address: "172.25.16.45"
+    ldap_master_image: "{{ deployer_ldap_master_image }}"
+    ldap_master_ipv4_address: "172.25.16.30"
+    postgresql_1_image: postgres:12.1
+    postgresql_1_ipv4_address: "172.25.16.42"
   roles:
     - role: service-users-api
       tags: service-users-api
@@ -92,6 +96,10 @@
     #   tags: service-storage-1-samba
     # - role: service-storage-1-webdavcgi
     #   tags: service-storage-1-webdavcgi
+    - role: service-ldap-master
+      tags: service-ldap-master
+    - role: service-postgresql-1
+      tags: service-postgresql-1
 
 # Services running on coreos-2.
 - hosts: coreos-2
@@ -152,17 +160,3 @@
       tags: service-mysql-1
     - role: service-mongodb-1
       tags: service-mongodb-1
-
-# Services running on coreos-4.
-- hosts: coreos-4
-  become: yes
-  vars:
-    ldap_master_image: "{{ deployer_ldap_master_image }}"
-    ldap_master_ipv4_address: "172.25.16.30"
-    postgresql_1_image: postgres:12.1
-    postgresql_1_ipv4_address: "172.25.16.42"
-  roles:
-    - role: service-ldap-master
-      tags: service-ldap-master
-    - role: service-postgresql-1
-      tags: service-postgresql-1
