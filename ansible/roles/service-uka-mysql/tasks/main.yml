@@ -1,0 +1,34 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/uka-mysql
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config file
+  copy:
+    dest: /var/uka-mysql/custom.cnf
+    src: custom.cnf
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start mysql container
+  docker_container:
+    name: uka-mysql
+    state: started
+    image: "{{ uka_mysql_image }}"
+    restart_policy: unless-stopped
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ uka_mysql_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/mnt/data/uka-mysql-data:/var/lib/mysql:Z
+      - /var/uka-mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"

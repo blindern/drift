@@ -40,12 +40,14 @@
       tags: ssh-keys-coreos
 
 # Services running on fcos-1.
-# - hosts: fcos-1
-#   become: yes
-#   vars:
-#     ...
-#   roles:
-#     ...
+- hosts: fcos-1
+  become: yes
+  vars:
+    uka_mysql_image: mysql:5.6
+    uka_mysql_ipv4_address: "172.25.16.46"
+  roles:
+    - role: service-uka-mysql
+      tags: service-uka-mysql
 
 # Services running on coreos-1.
 - hosts: coreos-1

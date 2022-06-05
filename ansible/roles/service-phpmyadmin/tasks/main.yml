@@ -5,7 +5,7 @@
     image: "{{ phpmyadmin_image }}"
     restart_policy: unless-stopped
     env:
-      PMA_HOSTS: "mysql-1.zt.foreningenbs.no"
+      PMA_HOSTS: "mysql-1.zt.foreningenbs.no,uka-mysql.zt.foreningenbs.no"
       PMA_ABSOLUTE_URI: https://foreningenbs.no/tools/phpmyadmin/
     networks:
       - name: fbs0

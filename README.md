@@ -86,6 +86,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.43 mysql-2.zt.foreningenbs.no (decommissioned)
   - 172.25.16.44 snipeit.zt.foreningenbs.no
   - 172.25.16.45 snipe-mysql.zt.foreningenbs.no
+  - 172.25.16.46 uka-mysql.zt.foreningenbs.no
 
 ### Public web
 
