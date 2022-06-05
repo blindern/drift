@@ -87,6 +87,9 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.44 snipeit.zt.foreningenbs.no
   - 172.25.16.45 snipe-mysql.zt.foreningenbs.no
   - 172.25.16.46 uka-mysql.zt.foreningenbs.no
+  - 172.25.16.47 uka-webserver.zt.foreningenbs.no
+  - 172.25.16.48 uka-billett-nginx.zt.foreningenbs.no
+  - 172.25.16.49 uka-billett-fpm.zt.foreningenbs.no
 
 ### Public web
 
@@ -96,6 +99,9 @@ set up for this for the physical host this is running at:
 
 - foreningenbs.no: 158.39.48.92 (coreos-2)
 - www.foreningenbs.no: 158.39.48.92 (coreos-2)
+- blindernuka.no: 158.39.48.92 (coreos-2)
+- www.blindernuka.no: 158.39.48.92 (coreos-2)
+- billett.blindernuka.no: 158.39.48.92 (coreos-2)
 
 This service also keeps our Let's Encrypt certificates up-to-date.
 

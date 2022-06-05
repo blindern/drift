@@ -45,9 +45,13 @@
   vars:
     uka_mysql_image: mysql:5.6
     uka_mysql_ipv4_address: "172.25.16.46"
+    uka_webserver_image: blindernuka/webserver:20190202-1830
+    uka_webserver_ipv4_address: "172.25.16.47"
   roles:
     - role: service-uka-mysql
       tags: service-uka-mysql
+    - role: service-uka-webserver
+      tags: service-uka-webserver
 
 # Services running on coreos-1.
 - hosts: coreos-1

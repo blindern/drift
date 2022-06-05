@@ -1,0 +1,38 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/uka-webserver
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files
+  copy:
+    dest: "/var/ansible/uka-webserver/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - apache-extra.conf
+  register: file_copied
+
+- name: Start uka-webserver container
+  docker_container:
+    name: uka-webserver
+    state: started
+    image: "{{ uka_webserver_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ uka_webserver_ipv4_address }}"
+    networks_cli_compatible: yes
+    env:
+      # We should use a README or something, but currently none exists
+      CONTAINER_USERFILE: /project/uka/web/.gitignore
+    hostname: uka-webserver.zt.foreningenbs.no
+    volumes:
+      - /var/mnt/data/uka-web:/project/uka/web:Z
+      - /var/ansible/uka-webserver/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf:Z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"
