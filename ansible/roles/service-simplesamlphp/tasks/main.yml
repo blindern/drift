@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/simplesamlphp
+    path: /var/ansible/simplesamlphp
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config files
   copy:
-    dest: "/opt/simplesamlphp/{{ item }}"
+    dest: "/var/ansible/simplesamlphp/{{ item }}"
     src: "{{ item }}"
     owner: root
     group: root
@@ -25,7 +25,7 @@
 
 - name: Copy cert files
   copy:
-    dest: "/opt/simplesamlphp/{{ item }}"
+    dest: "/var/ansible/simplesamlphp/{{ item }}"
     src: "{{ playbook_dir }}/../certs/saml/{{ item }}"
     owner: root
     group: root
@@ -47,18 +47,18 @@
     networks_cli_compatible: yes
     volumes:
       # PHP config.
-      - /opt/simplesamlphp/php.ini:/usr/local/etc/php/php.ini
+      - /var/ansible/simplesamlphp/php.ini:/usr/local/etc/php/php.ini:Z
       # Normal config.
-      - /opt/simplesamlphp/authsources.php:/var/simplesamlphp/config/authsources.php
-      - /opt/simplesamlphp/config.php:/var/simplesamlphp/config/config.php
-      - /opt/simplesamlphp/secrets.php:/var/simplesamlphp/config/secrets.php
+      - /var/ansible/simplesamlphp/authsources.php:/var/simplesamlphp/config/authsources.php:Z
+      - /var/ansible/simplesamlphp/config.php:/var/simplesamlphp/config/config.php:Z
+      - /var/ansible/simplesamlphp/secrets.php:/var/simplesamlphp/config/secrets.php:Z
       # Metadata.
-      - /opt/simplesamlphp/saml20-idp-hosted.php:/var/simplesamlphp/metadata/saml20-idp-hosted.php
-      - /opt/simplesamlphp/saml20-sp-remote.php:/var/simplesamlphp/metadata/saml20-sp-remote.php
+      - /var/ansible/simplesamlphp/saml20-idp-hosted.php:/var/simplesamlphp/metadata/saml20-idp-hosted.php:Z
+      - /var/ansible/simplesamlphp/saml20-sp-remote.php:/var/simplesamlphp/metadata/saml20-sp-remote.php:Z
       # Certs.
-      - /opt/simplesamlphp/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt
-      - /opt/simplesamlphp/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key
+      - /var/ansible/simplesamlphp/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt:Z
+      - /var/ansible/simplesamlphp/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key:Z
       # Storage.
-      - /data/simplesamlphp-storage:/storage
+      - /var/mnt/data/simplesamlphp-storage:/storage:Z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"

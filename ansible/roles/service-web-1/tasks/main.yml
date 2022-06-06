@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/web-1
+    path: /var/ansible/web-1
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config files (1/2)
   copy:
-    dest: "/opt/web-1/{{ item }}"
+    dest: "/var/ansible/web-1/{{ item }}"
     src: "{{ item }}"
     owner: root
     group: root
@@ -21,7 +21,7 @@
 
 - name: Copy config files (2/2)
   template:
-    dest: "/opt/web-1/foreningenbs.conf"
+    dest: "/var/ansible/web-1/foreningenbs.conf"
     src: foreningenbs.conf.j2
     owner: root
     group: root
@@ -30,7 +30,7 @@
 
 - name: Copy mellon files
   copy:
-    dest: "/opt/web-1/{{ item }}"
+    dest: "/var/ansible/web-1/{{ item }}"
     src: "{{ playbook_dir }}/../certs/apache-mellon/{{ item }}"
     owner: root
     group: root
@@ -45,7 +45,7 @@
 - name: Clone statutter-arkiv
   git:
     repo: https://github.com/blindern/statutter-arkiv.git
-    dest: /opt/statutter-arkiv
+    dest: /var/ansible/statutter-arkiv
 
 - name: Start web-1 container
   docker_container:
@@ -59,15 +59,17 @@
     networks_cli_compatible: yes
     hostname: web-1.zt.foreningenbs.no
     volumes:
-      - /data/web-1-www:/var/www
-      - /opt/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv
-      - /opt/web-1/msmtprc:/etc/msmtprc
-      - /opt/web-1/php.ini:/usr/local/etc/php/php.ini
-      - /opt/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf
-      - /opt/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf
-      - /opt/web-1/sp.key:/mellon-sp.key
-      - /opt/web-1/sp.crt:/mellon-sp.crt
-      - /opt/web-1/sp.xml:/mellon-sp.xml
-      - /opt/web-1/idp.xml:/mellon-idp.xml
+      - /var/mnt/data/web-1-www:/var/www:Z
+      - /var/ansible/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv:Z
+      - /var/ansible/web-1/msmtprc:/etc/msmtprc:Z
+      - /var/ansible/web-1/php.ini:/usr/local/etc/php/php.ini:Z
+      - /var/ansible/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf:Z
+      - /var/ansible/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf:Z
+      - /var/ansible/web-1/sp.key:/mellon-sp.key:Z
+      - /var/ansible/web-1/sp.crt:/mellon-sp.crt:Z
+      - /var/ansible/web-1/sp.xml:/mellon-sp.xml:Z
+      - /var/ansible/web-1/idp.xml:/mellon-idp.xml:Z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed or file_copied3.changed }}"
+    ulimits:
+      - nofile:1048576:1048576

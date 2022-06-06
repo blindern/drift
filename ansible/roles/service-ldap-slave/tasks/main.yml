@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/ldap-slave
+    path: /var/ansible/ldap-slave
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy cert files (1/2)
   copy:
-    dest: /opt/ldap-slave/
+    dest: /var/ansible/ldap-slave/
     src: "{{ playbook_dir }}/../certs/{{ item }}"
     owner: "1000"
     group: "1000"
@@ -20,7 +20,7 @@
 
 - name: Copy cert files (2/2)
   copy:
-    dest: /opt/ldap-slave/
+    dest: /var/ansible/ldap-slave/
     src: "{{ playbook_dir }}/../certs/ldap/{{ item }}"
     owner: "1000"
     group: "1000"
@@ -45,11 +45,11 @@
     networks_cli_compatible: yes
     hostname: ldap-slave.zt.foreningenbs.no
     volumes:
-      - /data/ldap-slave-data:/var/lib/ldap
-      - /data/ldap-slave-config:/etc/ldap/slapd.d
-      - /opt/ldap-slave/dhparam.pem:/certs/dhparam.pem
-      - /opt/ldap-slave/ca.crt:/certs/ca.crt
-      - /opt/ldap-slave/ldap-slave.crt:/certs/slapd.crt
-      - /opt/ldap-slave/ldap-slave.key:/certs/slapd.key
+      - /var/mnt/data/ldap-slave-data:/var/lib/ldap:Z
+      - /var/mnt/data/ldap-slave-config:/etc/ldap/slapd.d:Z
+      - /var/ansible/ldap-slave/dhparam.pem:/certs/dhparam.pem:Z
+      - /var/ansible/ldap-slave/ca.crt:/certs/ca.crt:Z
+      - /var/ansible/ldap-slave/ldap-slave.crt:/certs/slapd.crt:Z
+      - /var/ansible/ldap-slave/ldap-slave.key:/certs/slapd.key:Z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"

@@ -117,8 +117,8 @@
     - role: service-mongodb-1
       tags: service-mongodb-1
 
-# Services running on coreos-2.
-- hosts: coreos-2
+# Services running on fcos-3.
+- hosts: fcos-3
   become: yes
   vars:
     web_1_image: "{{ deployer_web_1_image }}"

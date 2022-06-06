@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/phpldapadmin
+    path: /var/ansible/phpldapadmin
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config file
   copy:
-    dest: /opt/phpldapadmin/env.yaml
+    dest: /var/ansible/phpldapadmin/env.yaml
     src: env.yaml
     owner: root
     group: root
@@ -33,6 +33,6 @@
       - name: fbs0
         ipv4_address: "{{ phpldapadmin_ipv4_address }}"
     volumes:
-      - /opt/phpldapadmin/env.yaml:/container/environment/01-custom/env.yaml
+      - /var/ansible/phpldapadmin/env.yaml:/container/environment/01-custom/env.yaml:Z
     networks_cli_compatible: yes
     log_driver: journald

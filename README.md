@@ -101,11 +101,11 @@ The service `nginx-front-1` is published at port 80 and 443 and acts
 as the reverse proxy for public traffic. DNS-entries must be
 set up for this for the physical host this is running at:
 
-- foreningenbs.no: 158.39.48.92 (coreos-2)
-- www.foreningenbs.no: 158.39.48.92 (coreos-2)
-- blindernuka.no: 158.39.48.92 (coreos-2)
-- www.blindernuka.no: 158.39.48.92 (coreos-2)
-- billett.blindernuka.no: 158.39.48.92 (coreos-2)
+- foreningenbs.no: 158.39.48.49 (fcos-3)
+- www.foreningenbs.no: 158.39.48.49 (fcos-3)
+- blindernuka.no: 158.39.48.49 (fcos-3)
+- www.blindernuka.no: 158.39.48.49 (fcos-3)
+- billett.blindernuka.no: 158.39.48.49 (fcos-3)
 
 This service also keeps our Let's Encrypt certificates up-to-date.
 

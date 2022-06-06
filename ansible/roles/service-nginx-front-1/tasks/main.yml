@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/nginx-front-1
+    path: /var/ansible/nginx-front-1
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config files
   copy:
-    dest: "/opt/nginx-front-1/{{ item }}"
+    dest: "/var/ansible/nginx-front-1/{{ item }}"
     src: "{{ item }}"
     owner: root
     group: root
@@ -37,11 +37,11 @@
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
     volumes:
-      - /data/nginx-front-1-certs:/opt/dehydrated/certs
-      - /data/nginx-front-1-accounts:/opt/dehydrated/accounts
-      - /opt/nginx-front-1/default.conf:/etc/nginx/conf.d/default.conf
-      - /opt/nginx-front-1/blindernuka.conf:/etc/nginx/conf.d/blindernuka.conf
-      - /opt/nginx-front-1/foreningenbs.conf:/etc/nginx/conf.d/foreningenbs.conf
-      - /opt/nginx-front-1/nginx.conf:/etc/nginx/nginx.conf
+      - /var/mnt/data/nginx-front-1-certs:/opt/dehydrated/certs:Z
+      - /var/mnt/data/nginx-front-1-accounts:/opt/dehydrated/accounts:Z
+      - /var/ansible/nginx-front-1/default.conf:/etc/nginx/conf.d/default.conf:Z
+      - /var/ansible/nginx-front-1/blindernuka.conf:/etc/nginx/conf.d/blindernuka.conf:Z
+      - /var/ansible/nginx-front-1/foreningenbs.conf:/etc/nginx/conf.d/foreningenbs.conf:Z
+      - /var/ansible/nginx-front-1/nginx.conf:/etc/nginx/nginx.conf:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"

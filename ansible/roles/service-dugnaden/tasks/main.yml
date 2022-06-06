@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/dugnaden
+    path: /var/ansible/dugnaden
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy files
   copy:
-    dest: "/opt/dugnaden/{{ item }}"
+    dest: "/var/ansible/dugnaden/{{ item }}"
     src: "{{ item }}"
     owner: root
     group: root
@@ -21,7 +21,7 @@
 
 - name: Copy cert files
   copy:
-    dest: "/opt/dugnaden/{{ item }}"
+    dest: "/var/ansible/dugnaden/{{ item }}"
     src: "{{ playbook_dir }}/../certs/saml/{{ item }}"
     owner: root
     group: root
@@ -45,9 +45,9 @@
       DATABASE_USER: dugnaden
       DATABASE_NAME: dugnaden
     volumes:
-      - /opt/dugnaden/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt:ro
-      - /opt/dugnaden/database-password.txt:/run/secrets/database-password:ro
-      - /opt/dugnaden/simplesamlphp-admin-password.txt:/run/secrets/simplesamlphp-admin-password:ro
-      - /opt/dugnaden/simplesamlphp-secretsalt.txt:/run/secrets/simplesamlphp-secretsalt:ro
+      - /var/ansible/dugnaden/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt:ro,Z
+      - /var/ansible/dugnaden/database-password.txt:/run/secrets/database-password:ro,Z
+      - /var/ansible/dugnaden/simplesamlphp-admin-password.txt:/run/secrets/simplesamlphp-admin-password:ro,Z
+      - /var/ansible/dugnaden/simplesamlphp-secretsalt.txt:/run/secrets/simplesamlphp-secretsalt:ro,Z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
