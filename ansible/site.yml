@@ -51,6 +51,8 @@
     uka_billett_nginx_ipv4_address: "172.25.16.48"
     uka_billett_fpm_image: blindernuka/billett-backend:dcdd1a41 # 2020-11-28
     uka_billett_fpm_ipv4_address: "172.25.16.49"
+    confluence_image: "{{ deployer_confluence_image }}"
+    confluence_ipv4_address: "172.25.16.8"
   roles:
     - role: service-uka-mysql
       tags: service-uka-mysql
@@ -58,6 +60,8 @@
       tags: service-uka-webserver
     - role: service-uka-billett
       tags: service-uka-billett
+    - role: service-confluence
+      tags: service-confluence
 
 # Services running on fcos-2.
 - hosts: fcos-2
@@ -148,13 +152,3 @@
       tags: service-ldap-slave
     - role: service-simplesamlphp
       tags: service-simplesamlphp
-
-# Services running on coreos-3.
-- hosts: coreos-3
-  become: yes
-  vars:
-    confluence_image: "{{ deployer_confluence_image }}"
-    confluence_ipv4_address: "172.25.16.8"
-  roles:
-    - role: service-confluence
-      tags: service-confluence

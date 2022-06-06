@@ -5,8 +5,6 @@
     state: started
     image: "{{ confluence_image }}"
     restart_policy: unless-stopped
-    #env:
-    #  MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     env:
       ATL_PROXY_NAME: foreningenbs.no
       ATL_PROXY_PORT: "443"
@@ -19,6 +17,8 @@
         ipv4_address: "{{ confluence_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /data/confluence-data:/var/atlassian/application-data/confluence
-      - /data/confluence-logs:/opt/atlassian/confluence/logs
+      - /var/mnt/data/confluence-data:/var/atlassian/application-data/confluence:Z
+      - /var/mnt/data/confluence-logs:/opt/atlassian/confluence/logs:Z
     log_driver: journald
+    ulimits:
+      - nofile:1048576:1048576
