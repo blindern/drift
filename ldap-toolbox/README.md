@@ -12,18 +12,18 @@ Forutsetning:
 
 ## Opprette brukere (samt oppdatere attributter på eksisterende brukere)
 
-1. Logg inn på coreos-2:
+1. Logg inn på fcos-3:
 
    ```bash
-   ssh -A core@coreos-2.foreningenbs.no
+   ssh -A core@fcos-3.foreningenbs.no
    ```
 
-   coreos-2 er samme maskin som vi lagrer filer for brukerregistrering (se web-1).
+   fcos-3 er samme maskin som vi lagrer filer for brukerregistrering (se web-1).
 
 1. Gå til mappen hvor vi har synket opp dette repoet:
 
    ```bash
-   cd /data/drift/ldap-toolbox
+   cd /var/mnt/data/drift/ldap-toolbox
    ```
 
    Oppdater gjerne repoet (derfor `-A` i ssh-tilkoblingen):
