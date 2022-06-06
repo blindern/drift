@@ -1,10 +1,3 @@
-- hosts: coreos
-  become: yes
-  gather_facts: no
-  roles:
-    - role: python-coreos
-      tags: python-coreos
-
 - hosts: fcos
   become: yes
   roles:
@@ -16,28 +9,8 @@
       tags: docker-network
     - role: docker
       tags: docker
-    - role: ssh-keys-fcos
-      tags: ssh-keys-fcos
-
-- hosts: coreos
-  become: yes
-  roles:
-    - role: base
-      tags: base
-    - role: git-crypt-coreos
-      tags: git-crypt-coreos
-    - role: zerotier
-      tags: zerotier
-    - role: docker-network
-      tags: docker-network
-    - role: docker-compose-coreos
-      tags: docker-compose-coreos
-    - role: etcd-coreos
-      tags: etcd-coreos
-    - role: docker
-      tags: docker
-    - role: ssh-keys-coreos
-      tags: ssh-keys-coreos
+    - role: ssh-keys
+      tags: ssh-keys
 
 # Services running on fcos-1.
 - hosts: fcos-1

@@ -10,10 +10,6 @@ provider "openstack" {
 }
 
 # Variables for use in compute resources
-variable "coreos" {
-  default     = "Container-Linux"
-  description = "Name for CoreOS container image"
-}
 variable "fcos" {
   default     = "fedora-coreos-36.20220505.3.2-openstack.x86_64"
   description = "Name for Fedora CoreOS container image"

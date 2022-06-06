@@ -43,7 +43,6 @@ See the template `blindern.tf` for the infrastructure setup.
 
 ```bash
 . .keystone.sh
-make convert-config
 make convert-fcos-config
 terraform init
 terraform apply
@@ -61,14 +60,14 @@ or a new host is added.
 
 ## Data folder
 
-The `/data` directory is a volume that contains the `drift` repo checked out.
-It also holds the encryption key.
-
-All state that must be persisted should be stored within this volume, as only
-this will be persisted across instance recreations.
+The `/var/mnt/data` directory is a separate volume that survives
+across instance recreations. All state that must be persisted
+should be stored within this volume.
 
 ## Updating image for new provisions
 
 ```bash
 ./publish-fedora-coreos.sh
 ```
+
+Edit the `fcos` variable in `blindern.tf`.

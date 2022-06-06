@@ -19,8 +19,6 @@ more HA capabilities or a platform to control services deployment.
     to more easily recreate instances if needed, and to have a single
     location to backup.
   - As host OS we use Fedora CoreOS which is self-updating.
-    - Some older hosts still uses CoreOS Container Linux which is
-      to be replaced with Fedora CoreOS.
 - [Ansible](./ansible/) is used to configure the hosts, including the
   mapping of which services run on the various hosts. When recreating a
   VM instance, Ansible should perform all required tasks for the host

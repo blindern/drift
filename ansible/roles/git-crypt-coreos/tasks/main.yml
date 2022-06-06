@@ -1,7 +1,0 @@
-- name: Install git-crypt script
-  copy:
-    src: git-crypt.sh
-    dest: /opt/bin/git-crypt
-    owner: root
-    group: root
-    mode: 0755

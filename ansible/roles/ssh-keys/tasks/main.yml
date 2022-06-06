@@ -1,6 +1,6 @@
 - name: Copy authorized keys to core user
   copy:
-    src: ../../ssh-keys-coreos/files/fbs.pub
+    src: fbs.pub
     dest: /home/core/.ssh/authorized_keys.d/fbs
     owner: core
     group: core
@@ -16,7 +16,7 @@
 
 - name: Copy authorized keys to root user
   copy:
-    src: ../../ssh-keys-coreos/files/fbs.pub
+    src: fbs.pub
     dest: /root/.ssh/authorized_keys.d/fbs
     owner: root
     group: root

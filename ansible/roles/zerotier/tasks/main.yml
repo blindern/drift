@@ -1,52 +1,4 @@
-- name: Install virtual network device (coreos)
-  copy:
-    content: |
-      [NetDev]
-      Name=fbs0
-      Kind=bridge
-    dest: /etc/systemd/network/fbs0.netdev
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - reload systemd
-    - restart networkd
-  when: host_type == "coreos"
-
-- name: Install network configuratiion for bridge (coreos)
-  copy:
-    content: |
-      [Match]
-      Name=fbs0
-
-      [Network]
-      Address={{ zerotier_host_ip_cidr }}
-    dest: /etc/systemd/network/fbs0.network
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - reload systemd
-    - restart networkd
-  when: host_type == "coreos"
-
-- name: Install network configuration for ZeroTier (coreos)
-  copy:
-    content: |
-      [Match]
-      Name=ztfbs0
-
-      [Network]
-      Bridge=fbs0
-    dest: /etc/systemd/network/zerotier.network
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - reload systemd
-  when: host_type == "coreos"
-
-- name: Setup ZeroTier bridge (fcos)
+- name: Setup ZeroTier bridge
   community.general.nmcli:
     conn_name: fbs0
     ifname: fbs0
@@ -55,7 +7,6 @@
     stp: no
     ip4:
       - "{{ zerotier_host_ip_cidr }}"
-  when: host_type == "fcos"
 
 - name: Add device map for ZeroTier network
   lineinfile:
@@ -67,34 +18,7 @@
     group: root
     mode: 0644
 
-- name: Install ZeroTier service (coreos)
-  copy:
-    content: |
-      [Unit]
-      Description=ZeroTier One
-      After=docker.service
-      Requires=docker.service
-
-      [Service]
-      TimeoutStartSec=0
-      ExecStartPre=-/usr/bin/docker kill zerotier-one
-      ExecStartPre=-/usr/bin/docker rm -f zerotier-one
-      ExecStartPre=/usr/bin/docker pull henrist/zerotier-one
-      ExecStart=/usr/bin/docker run --name zerotier-one --device /dev/net/tun --net host --cap-add NET_ADMIN --cap-add SYS_ADMIN -v /data/zerotier-one:/var/lib/zerotier-one henrist/zerotier-one
-      Restart=on-failure
-      KillMode=process
-
-      [Install]
-      WantedBy=multi-user.target
-    dest: /etc/systemd/system/zerotier-one.service
-    owner: root
-    group: root
-    mode: 0644
-  notify:
-    - reload systemd
-  when: host_type == "coreos"
-
-- name: Install ZeroTier service (fcos)
+- name: Install ZeroTier service
   copy:
     content: |
       [Unit]
@@ -127,7 +51,6 @@
     mode: 0644
   notify:
     - reload systemd
-  when: host_type == "fcos"
 
 # Ensure systemd is reloaded if needed before continuing.
 - meta: flush_handlers

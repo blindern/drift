@@ -7,8 +7,7 @@ Denne oppskriften kan brukes for å opprette brukere:
 
 Forutsetning:
 
-* Må ha SSH-tilgang til miljøene våre (se Ansible-rollene `ssh-keys-coreos`
-  og `ssh-keys-fcos` i dette repoet)
+* Må ha SSH-tilgang til miljøene våre (se Ansible-rollen `ssh-keys` i dette repoet)
 
 ## Opprette brukere (samt oppdatere attributter på eksisterende brukere)
 
