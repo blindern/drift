@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/mysql-1
+    path: /var/ansible/mysql-1
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config file
   copy:
-    dest: /opt/mysql-1/custom.cnf
+    dest: /var/ansible/mysql-1/custom.cnf
     src: custom.cnf
     owner: root
     group: root
@@ -28,7 +28,7 @@
         ipv4_address: "{{ mysql_1_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /data/mysql-1-data:/var/lib/mysql
-      - /opt/mysql-1/custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - /var/mnt/data/mysql-1-data:/var/lib/mysql:Z
+      - /var/ansible/mysql-1/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"

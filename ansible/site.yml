@@ -81,6 +81,14 @@
     ldap_master_ipv4_address: "172.25.16.30"
     postgresql_1_image: postgres:12.1
     postgresql_1_ipv4_address: "172.25.16.42"
+    mysql_1_image: mysql:8
+    mysql_1_ipv4_address: "172.25.16.40"
+    # TODO: Upgrade to newer mongodb image when we have upgraded
+    #  dependencies in intern app.
+    # NOTE: To upgrade to 3.6 we need to upgrade feature compatibility
+    #  version. See https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures
+    mongodb_1_image: mongo:3.4
+    mongodb_1_ipv4_address: "172.25.16.41"
   roles:
     - role: service-users-api
       tags: service-users-api
@@ -100,6 +108,10 @@
       tags: service-ldap-master
     - role: service-postgresql-1
       tags: service-postgresql-1
+    - role: service-mysql-1
+      tags: service-mysql-1
+    - role: service-mongodb-1
+      tags: service-mongodb-1
 
 # Services running on coreos-2.
 - hosts: coreos-2
@@ -143,18 +155,6 @@
   vars:
     confluence_image: "{{ deployer_confluence_image }}"
     confluence_ipv4_address: "172.25.16.8"
-    mysql_1_image: mysql:8
-    mysql_1_ipv4_address: "172.25.16.40"
-    # TODO: Upgrade to newer mongodb image when we have upgraded
-    #  dependencies in intern app.
-    # NOTE: To upgrade to 3.6 we need to upgrade feature compatibility
-    #  version. See https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures
-    mongodb_1_image: mongo:3.4
-    mongodb_1_ipv4_address: "172.25.16.41"
   roles:
     - role: service-confluence
       tags: service-confluence
-    - role: service-mysql-1
-      tags: service-mysql-1
-    - role: service-mongodb-1
-      tags: service-mongodb-1

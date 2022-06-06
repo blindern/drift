@@ -1,6 +1,6 @@
 - name: Ensure config directory exists
   file:
-    path: /opt/mongodb-1
+    path: /var/ansible/mongodb-1
     state: directory
     owner: root
     group: root
@@ -8,7 +8,7 @@
 
 - name: Copy config file
   copy:
-    dest: /opt/mongodb-1/mongod.yml
+    dest: /var/ansible/mongodb-1/mongod.yml
     src: mongod.yml
     owner: root
     group: root
@@ -21,15 +21,14 @@
     state: started
     image: "{{ mongodb_1_image }}"
     restart_policy: unless-stopped
-    # env:
     networks:
       - name: fbs0
         ipv4_address: "{{ mongodb_1_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /opt/mongodb-1/mongod.yml:/mongod.yml
-      - /data/mongodb-1-db:/data/db
-      - /data/mongodb-1-configdb:/data/configdb
+      - /var/ansible/mongodb-1/mongod.yml:/mongod.yml:Z
+      - /var/mnt/data/mongodb-1-db:/data/db:Z
+      - /var/mnt/data/mongodb-1-configdb:/data/configdb:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
     command: --config /mongod.yml
