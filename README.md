@@ -48,7 +48,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.10.2 p.zt.foreningenbs.no
   - 172.25.10.3 uka-1.zt.foreningenbs.no (decommissioned)
   - 172.25.11.1 coreos-1.zt.foreningenbs.no (decommissioned)
-  - 172.25.11.2 coreos-2.zt.foreningenbs.no
+  - 172.25.11.2 coreos-2.zt.foreningenbs.no (decommissioned)
   - 172.25.11.3 coreos-3.zt.foreningenbs.no (decommissioned)
   - 172.25.11.4 coreos-4.zt.foreningenbs.no (decommissioned)
   - 172.25.12.1 fcos-1.zt.foreningenbs.no
@@ -56,7 +56,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.12.3 fcos-3.zt.foreningenbs.no
 - IP-ranges for ad-hoc containers with Docker:
   - 172.25.21.0/24 coreos-1 (decommissioned)
-  - 172.25.22.0/24 coreos-2
+  - 172.25.22.0/24 coreos-2 (decommissioned)
   - 172.25.23.0/24 coreos-3 (decommissioned)
   - 172.25.24.0/24 coreos-4 (decommissioned)
   - 172.25.25.0/24 uka-1 (decommissioned)
