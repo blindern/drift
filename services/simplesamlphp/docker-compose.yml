@@ -1,0 +1,28 @@
+# This is only used for development.
+version: '3.9'
+
+services:
+  simplesamlphp:
+    build: .
+    image: blindern/simplesamlphp
+    volumes:
+      - ../../ansible/roles/service-simplesamlphp/files/php.ini:/usr/local/etc/php/php.ini
+      # Normal config.
+      - ../../ansible/roles/service-simplesamlphp/files/authsources.php:/var/simplesamlphp/config/authsources.php
+      - ../../ansible/roles/service-simplesamlphp/files/config.php:/var/simplesamlphp/config/config.php
+      - ../../ansible/roles/service-simplesamlphp/files/secrets.php:/var/simplesamlphp/config/secrets.php
+      # Metadata.
+      - ../../ansible/roles/service-simplesamlphp/files/saml20-idp-hosted.php:/var/simplesamlphp/metadata/saml20-idp-hosted.php
+      - ../../ansible/roles/service-simplesamlphp/files/saml20-sp-remote.php:/var/simplesamlphp/metadata/saml20-sp-remote.php
+      # Certs.
+      - ../certs/saml/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt
+      - ../certs/saml/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key
+      # Storage.
+      - simplesamlphp:/storage
+      # Dev config override. Imported via config.php.
+      - ./config-override.php:/config-override.php
+    ports:
+      - '127.0.0.1:8888:80'
+
+volumes:
+  simplesamlphp:

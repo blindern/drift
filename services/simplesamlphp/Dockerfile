@@ -1,8 +1,8 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
 
-ENV SIMPLESAMLPHP_VERSION=1.18.3
-ENV SIMPLESAMLPHP_SHA256=c6cacf821ae689de6547092c5d0c854e787bfcda716096b1ecf39ad3b3882500
-ENV COMPOSER_VERSION=1.9.1
+ENV SIMPLESAMLPHP_VERSION=1.19.5
+ENV SIMPLESAMLPHP_SHA256=ab1a71a4eed2c086774829d47ce72137e4d1a7bd6b8a2535b4a1ddfd6e7da51f
+ENV COMPOSER_VERSION=2.3.7
 
 RUN set -eux; \
     apt-get update; \
@@ -13,16 +13,18 @@ RUN set -eux; \
       wget \
       zip \
     ; \
-    rm -rf /var/lib/apt/lists/*; \
-    \
+    rm -rf /var/lib/apt/lists/*
+
+RUN set -eux; \
     # Set up composer.
     echo "$(wget -q -O- https://composer.github.io/installer.sig)  composer-setup.php" >composer-setup.php.sha384; \
     wget -O composer-setup.php https://getcomposer.org/installer; \
     sha384sum -c composer-setup.php.sha384; \
     php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet; \
     rm composer-setup.php; \
-    rm composer-setup.php.sha384; \
-    \
+    rm composer-setup.php.sha384
+
+RUN set -eux; \
     # Install SimpleSAMLphp.
     # See https://simplesamlphp.org/docs/stable/simplesamlphp-install
     mkdir /var/simplesamlphp; \
@@ -34,16 +36,15 @@ RUN set -eux; \
     rm simplesamlphp.tar.gz; \
     \
     # Add additional modules.
-    composer require bradjonesllc/simplesamlphp-module-openidconnect dev-master
+    composer require --ignore-platform-reqs bradjonesllc/simplesamlphp-module-openidconnect dev-master
 
-# Use a separate RUN for this so we can keep cache above.
 RUN set -eux; \
     cd /var/simplesamlphp; \
     mv composer.json composer.old.json; \
     cat composer.old.json | \
       jq '.repositories |= . + [{"type": "vcs", "url": "https://github.com/blindern/simplesamlphp-module-fbs"}]' \
       >composer.json; \
-    composer require blindern/simplesamlphp-module-fbs "dev-master#9398413"
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#9398413"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 

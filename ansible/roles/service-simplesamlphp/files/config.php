@@ -99,3 +99,8 @@ $config = [
   "proxy" => null,
   "trusted.url.domains" => null,
 ];
+
+// For local development to override this config.
+if (file_exists("/config-override.php")) {
+  require "/config-override.php";
+}
