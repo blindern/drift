@@ -45,8 +45,8 @@
     networks_cli_compatible: yes
     hostname: ldap-slave.zt.foreningenbs.no
     volumes:
-      - /var/mnt/data/ldap-slave-data:/var/lib/ldap:Z
-      - /var/mnt/data/ldap-slave-config:/etc/ldap/slapd.d:Z
+      - /var/mnt/data/ldap-slave-data:/var/lib/ldap:z
+      - /var/mnt/data/ldap-slave-config:/etc/ldap/slapd.d:z
       - /var/ansible/ldap-slave/dhparam.pem:/certs/dhparam.pem:Z
       - /var/ansible/ldap-slave/ca.crt:/certs/ca.crt:Z
       - /var/ansible/ldap-slave/ldap-slave.crt:/certs/slapd.crt:Z

@@ -59,7 +59,7 @@
     networks_cli_compatible: yes
     hostname: web-1.zt.foreningenbs.no
     volumes:
-      - /var/mnt/data/web-1-www:/var/www:Z
+      - /var/mnt/data/web-1-www:/var/www:z
       - /var/ansible/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv:Z
       - /var/ansible/web-1/msmtprc:/etc/msmtprc:Z
       - /var/ansible/web-1/php.ini:/usr/local/etc/php/php.ini:Z

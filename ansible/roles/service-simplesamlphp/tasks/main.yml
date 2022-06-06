@@ -59,6 +59,6 @@
       - /var/ansible/simplesamlphp/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt:Z
       - /var/ansible/simplesamlphp/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key:Z
       # Storage.
-      - /var/mnt/data/simplesamlphp-storage:/storage:Z
+      - /var/mnt/data/simplesamlphp-storage:/storage:z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
