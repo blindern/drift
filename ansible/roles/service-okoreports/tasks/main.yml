@@ -6,10 +6,10 @@
     group: root
     mode: 0700
 
-- name: Copy settings file
+- name: Copy env file
   copy:
-    dest: /var/ansible/okoreports/settings.py
-    src: settings.py
+    dest: /var/ansible/okoreports/.env
+    src: .env
     owner: root
     group: root
     mode: 0644
@@ -27,8 +27,8 @@
         ipv4_address: "{{ okoreports_backend_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /var/ansible/okoreports/settings.py:/usr/src/tripletex/settings_local.py:Z
       - /var/mnt/data/okoreports-reports:/var/okoreports/reports:Z
+    env_file: /var/ansible/okoreports/.env
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 
