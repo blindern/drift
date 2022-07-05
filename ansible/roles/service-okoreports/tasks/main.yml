@@ -13,7 +13,16 @@
     owner: root
     group: root
     mode: 0644
-  register: file_copied
+  register: file_copied1
+
+- name: Copy credentials file
+  copy:
+    dest: /var/ansible/okoreports/credentials.json
+    src: credentials.json
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied2
 
 # Uses port 8000.
 - name: Start okoreports-backend container
@@ -28,9 +37,10 @@
     networks_cli_compatible: yes
     volumes:
       - /var/mnt/data/okoreports-reports:/var/okoreports/reports:Z
+      - /var/ansible/okoreports/credentials.json:/credentials.json:Z
     env_file: /var/ansible/okoreports/.env
     log_driver: journald
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"
 
 # Uses port 80.
 - name: Start okoreports-frontend container
