@@ -22,7 +22,7 @@
     uka_webserver_ipv4_address: "172.25.16.47"
     uka_billett_nginx_image: nginx:1.10.1-alpine
     uka_billett_nginx_ipv4_address: "172.25.16.48"
-    uka_billett_fpm_image: blindernuka/billett-backend:dcdd1a41 # 2020-11-28
+    uka_billett_fpm_image: blindernuka/billett-backend@sha256:5368a49b5ddbdbc0a94ab03e8828b6873cf0eca6bed7b0ef84395654b4415682 # 2022-07-06
     uka_billett_fpm_ipv4_address: "172.25.16.49"
     confluence_image: "{{ deployer_confluence_image }}"
     confluence_ipv4_address: "172.25.16.8"
