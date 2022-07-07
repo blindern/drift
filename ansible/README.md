@@ -14,6 +14,19 @@ holding all the infrastructure.
 Make sure you always run this on the latest commit in Git, so you do not
 rollback changes.
 
+### Regular use-cases
+
+#### Update a service
+
+Use the tag specified in `site.yml` and limit to the host the
+service is running on (see the `site.yml` file):
+
+```bash
+ansible-playbook site.yml -i hosts -l fcos-3 -t service-simplesamlphp
+```
+
+### Other ansible commands
+
 Example runs:
 
 ```bash
