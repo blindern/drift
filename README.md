@@ -90,8 +90,9 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.45 snipe-mysql.zt.foreningenbs.no
   - 172.25.16.46 uka-mysql.zt.foreningenbs.no
   - 172.25.16.47 uka-webserver.zt.foreningenbs.no
-  - 172.25.16.48 uka-billett-nginx.zt.foreningenbs.no
+  - 172.25.16.48 uka-billett-proxy.zt.foreningenbs.no
   - 172.25.16.49 uka-billett-fpm.zt.foreningenbs.no
+  - 172.25.16.50 uka-billett-frontend.zt.foreningenbs.no
 
 ### Public web
 

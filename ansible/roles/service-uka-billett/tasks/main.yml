@@ -16,16 +16,7 @@
   with_items:
     - fpm-secrets.env
     - database.php
-    - nginx-secrets.env
   register: file_copied
-
-# This is considered temporary. Ideally we want to rework how
-# we build and deploy the system.
-- name: Clone billett repo
-  git:
-    repo: https://github.com/blindernuka/billett.git
-    dest: /var/ansible/uka-billett/billett-repo
-  register: repo_cloned
 
 - name: Start uka-billett-fpm container
   docker_container:
@@ -46,22 +37,31 @@
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 
-- name: Start uka-billett-nginx container
+- name: Start uka-billett-proxy container
   docker_container:
-    name: uka-billett-nginx
+    name: uka-billett-proxy
     state: started
-    image: "{{ uka_billett_nginx_image }}"
+    image: "{{ uka_billett_proxy_image }}"
     restart_policy: unless-stopped
     networks:
       - name: fbs0
-        ipv4_address: "{{ uka_billett_nginx_ipv4_address }}"
+        ipv4_address: "{{ uka_billett_proxy_ipv4_address }}"
     networks_cli_compatible: yes
-    env_file: /var/ansible/uka-billett/nginx-secrets.env
-    hostname: uka-billett-nginx.zt.foreningenbs.no
-    volumes:
-      - /var/mnt/data/uka-billett-frontend-dist:/var/www/billett-frontend-dist:Z
-      - /var/ansible/uka-billett/billett-repo/nginx/nginx.conf:/etc/nginx/nginx.conf:Z
-      - /var/ansible/uka-billett/billett-repo/nginx/default.conf:/etc/nginx/conf.d/default.conf.template:Z
+    hostname: uka-billett-proxy.zt.foreningenbs.no
     log_driver: journald
-    restart: "{{ file_copied.changed or repo_cloned.changed }}"
-    command: /bin/sh -c "envsubst '$${PRERENDER_TOKEN}' </etc/nginx/conf.d/default.conf.template >/etc/nginx/conf.d/default.conf && sed -i 's/fpm:9000/uka-billett-fpm.zt.foreningenbs.no:9000/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    env:
+      FPM_HOST: uka-billett-fpm.zt.foreningenbs.no:9000
+      FRONTEND_URL: http://uka-billett-frontend.zt.foreningenbs.no
+
+- name: Start uka-billett-frontend container
+  docker_container:
+    name: uka-billett-frontend
+    state: started
+    image: "{{ uka_billett_frontend_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ uka_billett_frontend_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: uka-billett-frontend.zt.foreningenbs.no
+    log_driver: journald

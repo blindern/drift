@@ -1,2 +1,1 @@
 fpm-secrets.env filter=git-crypt diff=git-crypt
-nginx-secrets.env filter=git-crypt diff=git-crypt
