@@ -37,6 +37,9 @@ more HA capabilities or a platform to control services deployment.
 
 ## Network details
 
+Note: The DNS entries must be added manually to Domeneshop.
+See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
+
 - ZeroTier is set up to use:
   - 172.25.0.0/16
 - Auto-assign range for normal ZeroTier clients:
@@ -93,6 +96,7 @@ more HA capabilities or a platform to control services deployment.
   - 172.25.16.48 uka-billett-proxy.zt.foreningenbs.no
   - 172.25.16.49 uka-billett-fpm.zt.foreningenbs.no
   - 172.25.16.50 uka-billett-frontend.zt.foreningenbs.no
+  - 172.25.16.51 deployer.zt.foreningenbs.no
 
 ### Public web
 
@@ -102,6 +106,7 @@ set up for this for the physical host this is running at:
 
 - foreningenbs.no: 158.39.48.49 (fcos-3)
 - www.foreningenbs.no: 158.39.48.49 (fcos-3)
+- deployer.foreningenbs.no: 158.39.48.49 (fcos-3)
 - blindernuka.no: 158.39.48.49 (fcos-3)
 - www.blindernuka.no: 158.39.48.49 (fcos-3)
 - billett.blindernuka.no: 158.39.48.49 (fcos-3)

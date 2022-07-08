@@ -96,6 +96,8 @@
 - hosts: fcos-3
   become: yes
   vars:
+    deployer_image: "{{ deployer_deployer_image }}"
+    deployer_ipv4_address: "172.25.16.51"
     web_1_image: "{{ deployer_web_1_image }}"
     web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
@@ -111,6 +113,8 @@
     simplesamlphp_image: "{{ deployer_simplesamlphp_image }}"
     simplesamlphp_ipv4_address: "172.25.16.13"
   roles:
+    - role: service-deployer
+      tags: service-deployer
     - role: service-web-1
       tags: service-web-1
     - role: service-nginx-front-1

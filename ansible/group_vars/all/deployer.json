@@ -1,5 +1,6 @@
 {
   "deployer_confluence_image": "blindern/confluence:20220604-1831",
+  "deployer_deployer_image": "blindern/deployer@sha256:5023dc1f539d7c7ff24439d48aeb9edeecfe540ac8df8e747212dcade570a98f",
   "deployer_dugnaden_image": "blindern/dugnaden:20211019-150945",
   "deployer_ldap_master_image": "blindern/openldap:20191229-0355",
   "deployer_ldap_slave_image": "blindern/openldap:20191229-0355",

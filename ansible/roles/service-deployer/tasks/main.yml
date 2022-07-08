@@ -1,0 +1,44 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/deployer
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy environments file
+  copy:
+    dest: /var/ansible/deployer/variables.env
+    src: variables.env
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start deployer container
+  docker_container:
+    name: deployer
+    state: started
+    image: "{{ deployer_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ deployer_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald
+    env:
+      GIT_CRYPT_KEY_PATH: /git-crypt-key
+      GIT_REPO: git@github.com:blindern/drift.git
+    env_file: /var/ansible/deployer/variables.env
+    restart: "{{ file_copied.changed }}"
+    volumes:
+      # NOTE: These files are MANUALLY copied into the host to avoid keeping them elsewhere.
+
+      # Key used to encrypt the drift repo.
+      # scp .git/git-crypt/keys/default root@fcos-3.nrec.foreningenbs.no:/var/ansible/deployer/git-crypt-key
+      - /var/ansible/deployer/git-crypt-key:/git-crypt-key:Z
+
+      # SSH key with root access to all instances.
+      # The public key is added to the ssh-keys role.
+      # To generate new: ssh-keygen -C fbs-deployer -t ed25519 -f ssh-key
+      - /var/ansible/deployer/ssh-key:/root/.ssh/id_ed25519:Z
