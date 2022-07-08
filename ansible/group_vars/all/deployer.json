@@ -9,6 +9,10 @@
   "deployer_simplesamlphp_image": "blindern/simplesamlphp:20220606-2150",
   "deployer_slack_invite_automation_image": "blindern/slack-invite-automation:20191228-0708",
   "deployer_smaabruket_availability_api_image": "blindern/smaabruket-availability-api:20210815-1712-2514",
+  "deployer_uka_billett_proxy_image": "blindernuka/billett-proxy@sha256:aaaa769363f93ba014bee5fcd4afaabb0231c0118117183bbcd8c7c71b622ef7",
+  "deployer_uka_billett_fpm_image": "blindernuka/billett-backend@sha256:a26b2835ace8f5f9a63b18464fc5533ce9460b952926566a030409fe639d651b",
+  "deployer_uka_billett_frontend_image": "blindernuka/billett-frontend@sha256:d1d8e2d576dbc988b1b67c6a3c14d8740dcfa041524a2d98bd09244796bc2d65",
+  "deployer_uka_webserver_image": "blindernuka/webserver:20190202-1830",
   "deployer_users_api_image": "blindern/users-api:20211207-0253-2683",
   "deployer_web_1_image": "blindern/internal-web-1:20220308-1704"
 }

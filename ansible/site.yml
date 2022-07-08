@@ -18,13 +18,13 @@
   vars:
     uka_mysql_image: mysql:5.6
     uka_mysql_ipv4_address: "172.25.16.46"
-    uka_webserver_image: blindernuka/webserver:20190202-1830
+    uka_webserver_image: "{{ deployer_uka_webserver_image }}"
     uka_webserver_ipv4_address: "172.25.16.47"
-    uka_billett_proxy_image: blindernuka/billett-proxy@sha256:aaaa769363f93ba014bee5fcd4afaabb0231c0118117183bbcd8c7c71b622ef7 # 2022-07-07
+    uka_billett_proxy_image: "{{ deployer_uka_billett_proxy_image }}"
     uka_billett_proxy_ipv4_address: "172.25.16.48"
-    uka_billett_fpm_image: blindernuka/billett-backend@sha256:a26b2835ace8f5f9a63b18464fc5533ce9460b952926566a030409fe639d651b # 2022-07-07
+    uka_billett_fpm_image: "{{ deployer_uka_billett_fpm_image }}"
     uka_billett_fpm_ipv4_address: "172.25.16.49"
-    uka_billett_frontend_image: blindernuka/billett-frontend@sha256:d1d8e2d576dbc988b1b67c6a3c14d8740dcfa041524a2d98bd09244796bc2d65 # 2022-07-07
+    uka_billett_frontend_image: "{{ deployer_uka_billett_frontend_image }}"
     uka_billett_frontend_ipv4_address: "172.25.16.50"
     confluence_image: "{{ deployer_confluence_image }}"
     confluence_ipv4_address: "172.25.16.8"
