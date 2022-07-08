@@ -36,9 +36,9 @@
 
       # Key used to encrypt the drift repo.
       # scp .git/git-crypt/keys/default root@fcos-3.nrec.foreningenbs.no:/var/ansible/deployer/git-crypt-key
-      - /var/ansible/deployer/git-crypt-key:/git-crypt-key:Z
+      - /var/ansible/deployer/git-crypt-key:/git-crypt-key:z
 
       # SSH key with root access to all instances.
       # The public key is added to the ssh-keys role.
       # To generate new: ssh-keygen -C fbs-deployer -t ed25519 -f ssh-key
-      - /var/ansible/deployer/ssh-key:/root/.ssh/id_ed25519:Z
+      - /var/ansible/deployer/ssh-key:/root/.ssh/id_ed25519:z
