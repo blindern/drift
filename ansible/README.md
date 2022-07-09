@@ -3,6 +3,10 @@
 We use Ansible to provision the contents on our VMs. See [nrec](../nrec/)
 directory for details on setting up the VMs we use.
 
+Some services are automatically deployed using Ansible when they
+are built. Other changes must be deployed maually.
+See https://github.com/blindern/deployer
+
 ## Getting started
 
 Install Ansible locally using your package manager. E.g. on Arch:
