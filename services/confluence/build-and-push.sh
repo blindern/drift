@@ -1,8 +1,7 @@
 #!/bin/bash
 set -eux
 
-tag="$(date -u +%Y%m%d-%H%M)"
-image="blindern/confluence:$tag"
+image="blindern/confluence:latest"
 
 docker build --pull -t "$image" .
 docker push "$image"
