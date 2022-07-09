@@ -1,8 +1,7 @@
 #!/bin/bash
 set -eux
 
-tag="$(date -u +%Y%m%d-%H%M)"
-image="blindern/slack-invite-automation:$tag"
+image="blindern/slack-invite-automation:latest"
 
 docker build --pull -t "$image" .
 docker push "$image"
