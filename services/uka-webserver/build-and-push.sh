@@ -1,8 +1,7 @@
 #!/bin/bash
 set -eux
 
-tag="$(date -u +%Y%m%d-%H%M)"
-image="blindernuka/webserver:$tag"
+image="blindernuka/webserver:latest"
 
 docker build --pull -t "$image" .
 docker push "$image"
