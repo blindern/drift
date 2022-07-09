@@ -30,6 +30,7 @@
     env:
       # We should use a README or something, but currently none exists
       CONTAINER_USERFILE: /project/uka/web/.gitignore
+      UKA_IS_PROD: "true"
     hostname: uka-webserver.zt.foreningenbs.no
     volumes:
       - /var/mnt/data/uka-web:/project/uka/web:Z
