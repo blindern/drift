@@ -1,7 +1,7 @@
 {
   "deployer_confluence_image": "blindern/confluence@sha256:c2a565a642db108667f8c931882dd00d3fad588fdb4a1f60d4c3831ffeb42cfd",
   "deployer_deployer_primary_image": "blindern/deployer@sha256:8a449154a087b3dd5fcf44485662612c53fd18f571998b37d16bfe9331577e3b",
-  "deployer_deployer_secondary_image": "blindern/deployer@sha256:8a449154a087b3dd5fcf44485662612c53fd18f571998b37d16bfe9331577e3b",
+  "deployer_deployer_secondary_image": "blindern/deployer@sha256:848b3dad37e7ba7d1db10d91237c5ce436956ac32a8061a7b732a185b6a4f42d",
   "deployer_dugnaden_image": "blindern/dugnaden:20211019-150945",
   "deployer_ldap_master_image": "blindern/openldap@sha256:cb844a24f934da47d8d78e00fda85677872275b8633c200beefc2a74975f1299",
   "deployer_ldap_slave_image": "blindern/openldap@sha256:cb844a24f934da47d8d78e00fda85677872275b8633c200beefc2a74975f1299",
