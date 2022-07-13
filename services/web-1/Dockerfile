@@ -36,10 +36,6 @@ RUN set -eux; \
       xsl \
       zip \
     ; \
-    # TODO: Remove deprecated mongo when code is using new module.
-    pecl install mongo; \
-    pecl install mongodb-1.6.1; \
-    docker-php-ext-enable mongo mongodb; \
     a2enmod \
       ldap \
       proxy_http \
