@@ -62,12 +62,6 @@
     postgresql_1_ipv4_address: "172.25.16.42"
     mysql_1_image: mysql:8
     mysql_1_ipv4_address: "172.25.16.40"
-    # TODO: Upgrade to newer mongodb image when we have upgraded
-    #  dependencies in intern app.
-    # NOTE: To upgrade to 3.6 we need to upgrade feature compatibility
-    #  version. See https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures
-    mongodb_1_image: mongo:3.4
-    mongodb_1_ipv4_address: "172.25.16.41"
     mongodb_2_image: mongo:5.0
     mongodb_2_ipv4_address: "172.25.16.53"
   roles:
@@ -91,8 +85,6 @@
       tags: service-postgresql-1
     - role: service-mysql-1
       tags: service-mysql-1
-    - role: service-mongodb-1
-      tags: service-mongodb-1
     - role: service-mongodb-2
       tags: service-mongodb-2
 

@@ -86,7 +86,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
   - 172.25.16.30 ldap-master.zt.foreningenbs.no
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no
-  - 172.25.16.41 mongodb-1.zt.foreningenbs.no
+  - 172.25.16.41 mongodb-1.zt.foreningenbs.no (decommissioned)
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no
   - 172.25.16.43 mysql-2.zt.foreningenbs.no (decommissioned)
   - 172.25.16.44 snipeit.zt.foreningenbs.no
