@@ -15,8 +15,8 @@ services:
       - ../../ansible/roles/service-simplesamlphp/files/saml20-idp-hosted.php:/var/simplesamlphp/metadata/saml20-idp-hosted.php
       - ../../ansible/roles/service-simplesamlphp/files/saml20-sp-remote.php:/var/simplesamlphp/metadata/saml20-sp-remote.php
       # Certs.
-      - ../certs/saml/idp.foreningenbs.no.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt
-      - ../certs/saml/idp.foreningenbs.no.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key
+      - ./idp-dev.crt:/var/simplesamlphp/cert/idp.foreningenbs.no.crt
+      - ./idp-dev.key:/var/simplesamlphp/cert/idp.foreningenbs.no.key
       # Storage.
       - simplesamlphp:/storage
       # Dev config override. Imported via config.php.
