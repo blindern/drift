@@ -104,6 +104,10 @@
     web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
     nginx_front_1_ipv4_address: "172.25.16.14"
+    intern_backend_image: "{{ deployer_intern_backend_image }}"
+    intern_backend_ipv4_address: "172.25.16.3"
+    intern_frontend_image: "{{ deployer_intern_frontend_image }}"
+    intern_frontend_ipv4_address: "172.25.16.4"
     dugnaden_image: "{{ deployer_dugnaden_image }}"
     dugnaden_ipv4_address: "172.25.16.10"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
@@ -133,8 +137,8 @@
       tags: service-web-1
     - role: service-nginx-front-1
       tags: service-nginx-front-1
-    # - role: service-intern
-    #   tags: service-intern
+    - role: service-intern
+      tags: service-intern
     - role: service-dugnaden
       tags: service-dugnaden
     - role: service-phpldapadmin

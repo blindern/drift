@@ -1,0 +1,48 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/intern
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config files
+  copy:
+    dest: "/var/ansible/intern/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - backend-secrets.env
+  register: file_copied
+
+- name: Start intern-backend container
+  docker_container:
+    name: intern-backend
+    state: started
+    image: "{{ intern_backend_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ intern_backend_ipv4_address }}"
+    networks_cli_compatible: yes
+    env_file: /var/ansible/intern/backend-secrets.env
+    hostname: intern-backend.zt.foreningenbs.no
+    volumes:
+      - /var/mnt/data/intern-backend-data:/var/www/html/storage:Z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"
+
+- name: Start intern-frontend container
+  docker_container:
+    name: intern-frontend
+    state: started
+    image: "{{ intern_frontend_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ intern_frontend_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: intern-frontend.zt.foreningenbs.no
+    log_driver: journald
