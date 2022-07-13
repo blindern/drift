@@ -64,3 +64,25 @@ $metadata["google.com/a/blindernuka.no"] = [
     ]
   ]
 ];
+
+// Internside - produksjon
+$metadata["https://foreningenbs.no/intern/api/saml2/metadata"] = [
+  "SingleLogoutService" => "https://foreningenbs.no/intern/api/saml2/sls",
+  "AssertionConsumerService" => "https://foreningenbs.no/intern/api/saml2/acs",
+  "attributes" => ["username"],
+];
+
+
+// Internside - produksjon (sekundær URL)
+$metadata["http://intern-backend.zt.foreningenbs.no/intern/api/saml2/metadata"] = [
+  "SingleLogoutService" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/sls",
+  "AssertionConsumerService" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/acs",
+  "attributes" => ["username"],
+];
+
+// Internside - utvikling
+$metadata["http://localhost:8081/intern/api/saml2/metadata"] = [
+  "SingleLogoutService" => "http://localhost:8081/intern/api/saml2/sls",
+  "AssertionConsumerService" => "http://localhost:8081/intern/api/saml2/acs",
+  "attributes" => ["username"],
+];
