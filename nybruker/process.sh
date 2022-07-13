@@ -41,7 +41,7 @@ fi
 
 
 # source variabler fra script
-. /data/web-1-www/users/$1
+. /data/intern-backend-data/user-requests/$1
 
 echo "Foreningsbruker:"
 echo "- Navn: $FIRSTNAME $LASTNAME"

@@ -14,7 +14,7 @@ Forutsetning:
 1. Logg inn på fcos-3:
 
    ```bash
-   ssh -A core@fcos-3.foreningenbs.no
+   ssh -A root@fcos-3.nrec.foreningenbs.no
    ```
 
    fcos-3 er samme maskin som vi lagrer filer for brukerregistrering (se web-1).

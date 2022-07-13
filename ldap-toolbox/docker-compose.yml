@@ -16,7 +16,7 @@ services:
       - ./container/ldapscripts.passwd:/etc/ldapscripts/ldapscripts.passwd:z
       - ./container/smbldap_bind.conf:/etc/smbldap-tools/smbldap_bind.conf:z
       - ./container/smbldap.conf:/etc/smbldap-tools/smbldap.conf:z
-    working_dir: /data/web-1-www/users
+    working_dir: /data/intern-backend-data/user-requests
 
 networks:
   default:
