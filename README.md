@@ -131,6 +131,16 @@ To add a new ad-hoc client to the network:
 - Give the client a description so we keep track of what is connected.
 - You should now be able to ping e.g. fcos-1.zt.foreningenbs.no.
 
+## Outgoing email
+
+We use Google Workspace SMTP relay service to send email.
+
+For this to work, all the IPs of our instances must be registered
+in our Google Workspace account. See
+https://admin.google.com/u/0/ac/apps/gmail/routing
+
+More details: https://support.google.com/a/answer/176600
+
 ## Encryption in this repo
 
 This repo uses [git-crypt](https://github.com/AGWA/git-crypt)
