@@ -21,6 +21,9 @@ services:
       - simplesamlphp:/storage
       # Dev config override. Imported via config.php.
       - ./config-override.php:/config-override.php
+      # Uncomment to work on theme.
+      # You might need to change the paths too.
+      # - ../../../simplesamlphp-module-fbs:/var/simplesamlphp/modules/fbs
     ports:
       - '127.0.0.1:8888:80'
 

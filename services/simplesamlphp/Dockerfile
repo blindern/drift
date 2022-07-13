@@ -44,7 +44,7 @@ RUN set -eux; \
     cat composer.old.json | \
       jq '.repositories |= . + [{"type": "vcs", "url": "https://github.com/blindern/simplesamlphp-module-fbs"}]' \
       >composer.json; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#9398413"
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#d9f9d00"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
