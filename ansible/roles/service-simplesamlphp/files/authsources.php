@@ -26,13 +26,11 @@ $config = [
     ],
   ],
   "google-connect" => [
-    "openidconnect:Connect",
-    "client_id" => $secret_google_openidconnect_client_id,
-    "client_secret" => $secret_google_openidconnect_client_secret,
-    "token_endpoint" => "https://www.googleapis.com/oauth2/v4/token",
-    "user_info_endpoint" => "https://www.googleapis.com/oauth2/v3/userinfo",
-    "auth_endpoint" => "https://accounts.google.com/o/oauth2/v2/auth",
-    "sslcapath" => "/etc/ssl/certs",
+    "authoauth2:OAuth2",
+    "template" => "GoogleOIDC",
+    "clientId" => $secret_google_openidconnect_client_id,
+    "clientSecret" => $secret_google_openidconnect_client_secret,
+    "attributePrefix" => "googleoidc.",
   ],
   "fbs-api" => [
     "fbs:FbsApi",

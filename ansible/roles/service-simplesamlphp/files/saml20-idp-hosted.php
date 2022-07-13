@@ -18,6 +18,7 @@ $metadata["__DYNAMIC:1__"] = [
       "class" => "fbs:GoogleAccount",
       "hmac_key" => $secret_fbs_api_hmac_key,
       "api_url" => "https://foreningenbs.no/users-api",
+      "attribute_prefix" => "googleoidc.",
     ],
   ],
 ];

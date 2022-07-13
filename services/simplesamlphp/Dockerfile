@@ -35,8 +35,8 @@ RUN set -eux; \
     tar --strip-components=1 -zxf simplesamlphp.tar.gz; \
     rm simplesamlphp.tar.gz; \
     \
-    # Add additional modules.
-    composer require --ignore-platform-reqs bradjonesllc/simplesamlphp-module-openidconnect dev-master
+    composer install --ignore-platform-reqs; \
+    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 3.1.0
 
 RUN set -eux; \
     cd /var/simplesamlphp; \
@@ -44,7 +44,7 @@ RUN set -eux; \
     cat composer.old.json | \
       jq '.repositories |= . + [{"type": "vcs", "url": "https://github.com/blindern/simplesamlphp-module-fbs"}]' \
       >composer.json; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#d9f9d00"
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#1893ec0"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
