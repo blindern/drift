@@ -1,0 +1,38 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/mongodb-2
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config file
+  copy:
+    dest: /var/ansible/mongodb-2/mongod.yml
+    src: mongod.yml
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start mongodb container
+  docker_container:
+    name: mongodb-2
+    state: started
+    image: "{{ mongodb_2_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ mongodb_2_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/ansible/mongodb-2/mongod.yml:/mongod.yml:Z
+      - /var/mnt/data/mongodb-2-db:/data/db:Z
+      - /var/mnt/data/mongodb-2-configdb:/data/configdb:Z
+    env:
+      # See https://foreningenbs.no/confluence/x/7gUf for active credentials.
+      MONGO_INITDB_ROOT_USERNAME: superuser
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"
+    command: --config /mongod.yml

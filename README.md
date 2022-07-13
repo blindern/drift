@@ -98,6 +98,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
   - 172.25.16.50 uka-billett-frontend.zt.foreningenbs.no
   - 172.25.16.51 deployer.zt.foreningenbs.no
   - 172.25.16.52 deployer-secondary.zt.foreningenbs.no
+  - 172.25.16.53 mongodb-2.zt.foreningenbs.no
 
 ### Public web
 

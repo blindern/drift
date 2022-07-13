@@ -68,6 +68,8 @@
     #  version. See https://docs.mongodb.com/manual/release-notes/3.6/#upgrade-procedures
     mongodb_1_image: mongo:3.4
     mongodb_1_ipv4_address: "172.25.16.41"
+    mongodb_2_image: mongo:5.0
+    mongodb_2_ipv4_address: "172.25.16.53"
   roles:
     - role: service-users-api
       tags: service-users-api
@@ -91,6 +93,8 @@
       tags: service-mysql-1
     - role: service-mongodb-1
       tags: service-mongodb-1
+    - role: service-mongodb-2
+      tags: service-mongodb-2
 
 # Services running on fcos-3.
 - hosts: fcos-3
