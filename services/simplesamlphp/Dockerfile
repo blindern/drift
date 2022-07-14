@@ -38,15 +38,14 @@ RUN set -eux; \
     rm simplesamlphp.tar.gz; \
     \
     composer install --ignore-platform-reqs; \
-    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 3.1.0
-
-RUN set -eux; \
-    cd /var/simplesamlphp; \
     mv composer.json composer.old.json; \
     cat composer.old.json | \
-      jq '.repositories |= . + [{"type": "vcs", "url": "https://github.com/blindern/simplesamlphp-module-fbs"}]' \
+      jq '.repositories |= . + [\
+        {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-fbs"},\
+        {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-authoauth2"}]' \
       >composer.json; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#1893ec0"
+    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#21856d8"; \
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#b99c512b"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 

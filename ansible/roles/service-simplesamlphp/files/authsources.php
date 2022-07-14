@@ -23,6 +23,12 @@ $config = [
           "no" => "Logg inn med Google",
         ],
       ],
+      "vipps" => [
+        "text" => [
+          "en" => "Log in with Vipps",
+          "no" => "Logg inn med Vipps",
+        ],
+      ],
     ],
   ],
   "google-connect" => [
@@ -36,6 +42,17 @@ $config = [
     "fbs:FbsApi",
     "hmac_key" => $secret_fbs_api_hmac_key,
     "api_url" => "http://users-api.zt.foreningenbs.no:8000",
+  ],
+  "vipps" => [
+    "authoauth2:OpenIDConnect",
+    "issuer" => "https://api.vipps.no/access-management-1.0/access/",
+    "clientId" => $secret_vipps_client_id,
+    "clientSecret" => $secret_vipps_client_secret,
+    "urlAuthorizeOptions" => [
+      "scope" => "openid email phoneNumber"
+    ],
+    "attributePrefix" => "vipps.",
+    "ignoreEndSessionEndpoint" => true,
   ],
   /*
   "fbs-ldap" => [

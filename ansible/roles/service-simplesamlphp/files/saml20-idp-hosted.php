@@ -20,5 +20,11 @@ $metadata["__DYNAMIC:1__"] = [
       "api_url" => "https://foreningenbs.no/users-api",
       "attribute_prefix" => "googleoidc.",
     ],
+    6 => [
+      "class" => "fbs:Vipps",
+      "hmac_key" => $secret_fbs_api_hmac_key,
+      "api_url" => "https://foreningenbs.no/users-api",
+      "attribute_prefix" => "vipps.",
+    ],
   ],
 ];
