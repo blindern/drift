@@ -45,7 +45,7 @@ RUN set -eux; \
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-authoauth2"}]' \
       >composer.json; \
     composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#21856d8"; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#b99c512b"
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#99f8bfdd"
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
