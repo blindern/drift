@@ -6,13 +6,16 @@
     group: root
     mode: 0700
 
-- name: Copy environments file
+- name: Copy files
   copy:
-    dest: /var/ansible/deployer/variables.env
-    src: variables.env
+    dest: "/var/ansible/deployer/{{ item }}"
+    src: "{{ item }}"
     owner: root
     group: root
     mode: 0644
+  with_items:
+    - variables.env
+    - services.json
   register: file_copied
 
 - name: Start deployer container
@@ -29,9 +32,12 @@
     env:
       GIT_CRYPT_KEY_PATH: /git-crypt-key
       GIT_REPO: git@github.com:blindern/drift.git
+      SERVICES_FILE: /services.json
     env_file: /var/ansible/deployer/variables.env
     restart: "{{ file_copied.changed }}"
     volumes:
+      - /var/ansible/deployer/services.json:/services.json
+
       # NOTE: These files are MANUALLY copied into the host to avoid keeping them elsewhere.
 
       # Key used to encrypt the drift repo.
