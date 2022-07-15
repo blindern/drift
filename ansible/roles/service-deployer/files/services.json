@@ -130,5 +130,13 @@
     "mappings": {
       "image": "deployer_web_1_image"
     }
+  },
+  "webdavcgi": {
+    "service_name": "webdavcgi",
+    "ansible_tag": "service-webdavcgi",
+    "ansible_host": "fcos-3",
+    "mappings": {
+      "image": "deployer_webdavcgi_image"
+    }
   }
 }
