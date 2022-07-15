@@ -29,15 +29,15 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # - name: Deploy
-      #   if: github.ref == 'refs/heads/main'
-      #   run: |
-      #     curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
-      #     {
-      #       "service": "webdavcgi",
-      #       "attributes": {
-      #         "image": "blindern/webdavcgi@${{ steps.docker_build.outputs.digest }}"
-      #       }
-      #     }'
-      #   env:
-      #     DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "webdavcgi",
+            "attributes": {
+              "image": "blindern/webdavcgi@${{ steps.docker_build.outputs.digest }}"
+            }
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
