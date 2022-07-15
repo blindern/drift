@@ -36,7 +36,7 @@
     env_file: /var/ansible/deployer/variables.env
     restart: "{{ file_copied.changed }}"
     volumes:
-      - /var/ansible/deployer/services.json:/services.json:Z
+      - /var/ansible/deployer/services.json:/services.json:z
 
       # NOTE: These files are MANUALLY copied into the host to avoid keeping them elsewhere.
 
