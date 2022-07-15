@@ -1,0 +1,28 @@
+# This is only used for development.
+version: '3.9'
+
+services:
+  webdavcgi:
+    build: .
+    image: blindern/webdavcgi
+    environment:
+      IS_DEV: "true"
+    volumes:
+      - webdavcgi-data:/mnt/data
+      - ./share:/mnt/share
+      - ../../certs/ca.crt:/etc/fbs-ca.pem
+      - ../../certs/apache-mellon/idp.xml:/mellon-idp.xml
+      - ../../certs/apache-mellon/https_localhost_filer_mellon.key:/mellon-sp.key
+      - ../../certs/apache-mellon/https_localhost_filer_mellon.cert:/mellon-sp.crt
+      - ../../certs/apache-mellon/https_localhost_filer_mellon.xml:/mellon-sp.xml
+      - ./container/webdav.conf:/etc/webdav.conf
+
+  nginx:
+    build:
+      context: nginx
+    image: nginx
+    ports:
+      - '127.0.0.1:8820:443'
+
+volumes:
+  webdavcgi-data:

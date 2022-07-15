@@ -11,6 +11,18 @@ $metadata["https://foreningenbs.no/mellon"] = [
   "AssertionConsumerService" => "https://foreningenbs.no/mellon/postResponse",
 ];
 
+// webdavcgi - produksjon
+$metadata["https://foreningenbs.no/filer-mellon"] = [
+  "SingleLogoutService" => "https://foreningenbs.no/filer-mellon/logout",
+  "AssertionConsumerService" => "https://foreningenbs.no/filer-mellon/postResponse",
+];
+
+// webdavcgi - lokal utvikling
+$metadata["https://localhost:8820/filer-mellon"] = [
+  "SingleLogoutService" => "https://localhost:8820/filer-mellon/logout",
+  "AssertionConsumerService" => "https://localhost:8820/filer-mellon/postResponse",
+];
+
 // Pålogging på gamle wikien (wiki-2015)
 $metadata["https://foreningenbs.no/w/saml/module.php/saml/sp/metadata.php/default-sp"] = [
   "SingleLogoutService" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-logout.php/default-sp",

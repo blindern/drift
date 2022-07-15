@@ -1,0 +1,27 @@
+<EntityDescriptor entityID="https://localhost:8820/filer-mellon" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+  <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIICuTCCAaECFD8thYf1Ei/x0t13D5Bg9fgp7zQ6MA0GCSqGSIb3DQEBCwUAMBkx
+FzAVBgNVBAMMDmxvY2FsaG9zdDo4ODIwMB4XDTIyMDcxNDIzNDcyOFoXDTMyMDcx
+MzIzNDcyOFowGTEXMBUGA1UEAwwObG9jYWxob3N0Ojg4MjAwggEiMA0GCSqGSIb3
+DQEBAQUAA4IBDwAwggEKAoIBAQDAw6gPzO7YmaZqgZfhRfWmynEIHRKRkm08Ymvh
+vsT25rbIB5rGL2Mwv4U6o3WaFlgPa8Sq/v7nVFks34g9ZKw++nitOs6vkTZUxIIs
+nQC7Qg+sy3YCuSzunkU4jHZLucbH1QzEhI2SQvxxbWoK4Cy/fwR+DR/hfYmKCHxi
+NCWloqSsGYXdlzauhdXOFgthH/SIPiGwAxPuP38SX2fBhbH7UOTm3bhtFovZREJ3
+D3YVE/g16IoSQ5ksM2S0DB7sb8uONrzpn3eM5SiphTwvMtz/jtaT7CKXdboYPn9H
+RG7QWYHiJ1gU9NRBuQkJ3QVbam7HO0w01B6qrXnr3guk7wDnAgMBAAEwDQYJKoZI
+hvcNAQELBQADggEBADUlJZFCCVSNfQuikLANXL4WtgKIRNghfxMVb41jxqLXJL9/
+RhkKwGIn0kO4MEdzbxz+E1X2Y6NlaoH+qiorwgDBqOHrfP4Ujg7NJxLrpf/Pd3y9
+CZ6qQoF5Y6IOOU/GsUmbCT1m66JUzklrGFJtLAfK8KfwAGgNTa86mYdIuyVSLH6T
+8kfv0YceyUWnxNpRheqtStSBu3w6Dn12EVyqz24E4MCTRwTNB4mhgQHghlHl7ySC
+iHSZl4VRzxWeTDQR0/Ldl1ka7dbHqHLWXK6+1fy/cLcvRoYUq/N8Nxi7YrLOaNVf
+r9o4a//wMqEzni1Svt13uTKXJP3gIka2napU47E=</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://localhost:8820/filer-mellon/logout"/>
+    <AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://localhost:8820/filer-mellon/postResponse" index="0"/>
+  </SPSSODescriptor>
+</EntityDescriptor>

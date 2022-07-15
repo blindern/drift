@@ -1,5 +1,17 @@
 {
   "extends": [
     "config:base"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(^|/|\\.)Dockerfile$",
+        "(^|/)Dockerfile[^/]*$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sENV .*?_VERSION=(?<currentValue>.*)\\s",
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?) tag=(?<currentValue>.*)\\sENV .*?_COMMIT=(?<currentDigest>[a-f0-9]{40})\\s"
+      ]
+    }
   ]
 }

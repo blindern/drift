@@ -100,29 +100,6 @@
   ProxyPass /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
   ProxyPassReverse /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
 
-  # WebDAV for nettverksmappa.
-  # (Deaktivert ved overgang til nytt serveroppsett, må oppdateres.)
-  # ScriptAlias /foreningen_cgi /var/www/aliases/webdavcgi/cgi-bin/webdavwrapper
-  # <Location /foreningen_cgi>
-  #   # mozilla betyr gjerne en faktisk nettleser - da kan vi bruke SAML
-  #   <If "%{HTTP_USER_AGENT} =~ /mozilla/i">
-  #     MellonEnable "auth"
-  #   </If>
-  #   # hvis ikke bruk vanlig basic auth - dette pga. man ikke kan bli redirected noe sted
-  #   <Else>
-  #     AuthName "Foreningen Blindern Studenterhjem"
-  #     AuthType Basic
-  #     AuthBasicProvider ldap
-  #     AuthLDAPUrl ldap://ldap.zt.foreningenbs.no/ou=Users,dc=foreningenbs,dc=no STARTTLS
-  #     Require valid-user
-  #   </Else>
-  # </Location>
-
-  # RewriteRule ^/foreningen$ /foreningen/ [R,L]
-  # RewriteRule ^/foreningen/ /foreningen_cgi [PT,E=WEBDAVCONF:/etc/webdav.conf,E=PERLLIB:/var/www/aliases/webdavcgi/lib/perl,L]
-
-  Redirect 500 /foreningen/
-
   # Slack invitasjoner
   RewriteRule ^/slack/invite$ /slack/invite/ [R=301,L]
   ProxyPass /slack/invite/ http://slack-invite-automation.zt.foreningenbs.no:3000/
