@@ -1,0 +1,52 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/webdavcgi
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy ca cert
+  copy:
+    dest: /var/ansible/webdavcgi/
+    src: "{{ playbook_dir }}/../certs/ca.crt"
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied1
+
+- name: Copy mellon files
+  copy:
+    dest: "/var/ansible/webdavcgi/{{ item }}"
+    src: "{{ playbook_dir }}/../certs/apache-mellon/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - idp.xml
+    - https_foreningenbs.no_filer_mellon.cert
+    - https_foreningenbs.no_filer_mellon.key
+    - https_foreningenbs.no_filer_mellon.xml
+  register: file_copied2
+
+- name: Start webdavcgi container
+  docker_container:
+    name: webdavcgi
+    state: started
+    image: "{{ webdavcgi_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ webdavcgi_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: webdavcgi.zt.foreningenbs.no
+    volumes:
+      - /var/mnt/data/storage-1/grupper/foreningen:/mnt/share:z
+      - /var/mnt/data/webdavcgi-data:/mnt/data:Z
+      - /var/ansible/webdavcgi/https_foreningenbs.no_filer_mellon.key:/mellon-sp.key:Z
+      - /var/ansible/webdavcgi/https_foreningenbs.no_filer_mellon.cert:/mellon-sp.crt:Z
+      - /var/ansible/webdavcgi/https_foreningenbs.no_filer_mellon.xml:/mellon-sp.xml:Z
+      - /var/ansible/webdavcgi/idp.xml:/mellon-idp.xml:Z
+      - /var/ansible/webdavcgi/ca.crt:/etc/fbs-ca.pem:Z
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"

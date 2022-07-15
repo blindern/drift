@@ -82,7 +82,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
   - 172.25.16.13 simplesamlphp.zt.foreningenbs.no
   - 172.25.16.14 nginx-front-1.zt.foreningenbs.no
   - 172.25.16.15 storage-1-samba.zt.foreningenbs.no (not set up yet)
-  - 172.25.16.16 storage-1-webdavcgi.zt.foreningenbs.no (not set up yet)
+  - 172.25.16.16 webdavcgi.zt.foreningenbs.no
   - 172.25.16.30 ldap-master.zt.foreningenbs.no
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no

@@ -77,8 +77,6 @@
       tags: service-snipeit
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
-    # - role: service-storage-1-webdavcgi
-    #   tags: service-storage-1-webdavcgi
     - role: service-ldap-master
       tags: service-ldap-master
     - role: service-postgresql-1
@@ -110,6 +108,8 @@
     ldap_slave_ipv4_address: "172.25.16.31"
     simplesamlphp_image: "{{ deployer_simplesamlphp_image }}"
     simplesamlphp_ipv4_address: "172.25.16.13"
+    webdavcgi_image: "{{ deployer_webdavcgi_image }}"
+    webdavcgi_ipv4_address: "172.25.16.16"
   roles:
     # Two instances of deployer is used so that the deployer can
     # self-update by targeting the other instance.
@@ -141,3 +141,5 @@
       tags: service-ldap-slave
     - role: service-simplesamlphp
       tags: service-simplesamlphp
+    - role: service-webdavcgi
+      tags: service-webdavcgi
