@@ -17,6 +17,14 @@
     - apache-extra.conf
   register: file_copied
 
+- name: Copy authorized keys to core user
+  copy:
+    src: authorized-keys.pub
+    dest: /home/core/.ssh/authorized_keys.d/uka-www
+    owner: core
+    group: core
+    mode: 0644
+
 - name: Start uka-webserver container
   docker_container:
     name: uka-webserver

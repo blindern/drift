@@ -1,0 +1,5 @@
+# GitHub Actions.
+# Denne er registrert som FBS_SSH_KEY via
+# https://github.com/blindernuka/www/settings/secrets/actions
+# ssh-keygen -C uka-www-github-actions -t ed25519 -f uka-www-github-actions
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuSI3ZUZSkIbWaHDT58HOGGomhHeuC11XRl1mS+m6rP uka-www-github-actions
