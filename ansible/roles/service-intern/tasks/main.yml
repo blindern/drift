@@ -30,7 +30,7 @@
     env_file: /var/ansible/intern/backend-secrets.env
     hostname: intern-backend.zt.foreningenbs.no
     volumes:
-      - /var/mnt/data/intern-backend-data:/var/www/html/storage:Z
+      - /var/mnt/data/intern-backend-data:/var/www/html/storage:z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 
