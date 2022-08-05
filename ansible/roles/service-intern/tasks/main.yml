@@ -14,6 +14,7 @@
     group: root
     mode: 0644
   with_items:
+    - apache-extra.conf
     - backend-secrets.env
   register: file_copied
 
@@ -31,6 +32,7 @@
     hostname: intern-backend.zt.foreningenbs.no
     volumes:
       - /var/mnt/data/intern-backend-data:/var/www/html/storage:z
+      - /var/ansible/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 
