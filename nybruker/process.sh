@@ -115,7 +115,6 @@ if [ $USEREXISTS -ne 0 ]; then
 	select yn in "Ja" "Nei"; do
 		if [[ "$yn" == "Ja" ]]; then
 			addchange "userPassword" "$PASS"
-			addchange "sambaNTPassword" "$NTPASS"
 		fi
 		break
 	done
@@ -166,7 +165,6 @@ else
 		addchange "mobile" "$PHONE"
 	fi
 	addchange "userPassword" "$PASS"
-	addchange "sambaNTPassword" "$NTPASS"
 
 	echo "$CHANGESET" | ldapmodifyuser "$USERNAME"
 
