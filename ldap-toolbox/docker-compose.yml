@@ -7,7 +7,7 @@ services:
     # Keep running in the background.
     tty: true
     volumes:
-      - /var/mnt/data:/data:z
+      - /var/mnt/data:/data
       - /var/mnt/data/drift:/fbs/drift:z
       - ../certs/ca.crt:/etc/fbs-ca.crt:z
       - ./container/ldap.conf:/etc/ldap/ldap.conf:z
