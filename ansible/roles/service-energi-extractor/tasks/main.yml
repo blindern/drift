@@ -1,0 +1,36 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/energi-extractor
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy environments file
+  copy:
+    dest: /var/ansible/energi-extractor/variables.env
+    src: variables.env
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start energi-extractor container
+  docker_container:
+    name: energi-extractor
+    state: started
+    image: "{{ energi_extractor_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ energi_extractor_ipv4_address }}"
+    networks_cli_compatible: yes
+    log_driver: journald
+    env_file: /var/ansible/energi-extractor/variables.env
+    env:
+      DATA_FILE: /var/energi-extractor/data.json
+      REPORT_FILE: /var/energi-report/report.json
+    restart: "{{ file_copied.changed }}"
+    volumes:
+      - /var/mnt/data/energi-extractor:/var/energi-extractor:Z
+      - /var/mnt/data/web-1-www/root/energi-report:/var/energi-report:z

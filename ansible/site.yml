@@ -90,6 +90,8 @@
 - hosts: fcos-3
   become: yes
   vars:
+    energi_extractor_image: "{{ deployer_energi_extractor_image }}"
+    energi_extractor_ipv4_address: "172.25.16.54"
     web_1_image: "{{ deployer_web_1_image }}"
     web_1_ipv4_address: "172.25.16.1"
     nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
@@ -125,6 +127,8 @@
         deployer_container_name: deployer-secondary
         deployer_image: "{{ deployer_deployer_secondary_image }}"
         deployer_ipv4_address: "172.25.16.52"
+    - role: service-energi-extractor
+      tags: service-energi-extractor
     - role: service-web-1
       tags: service-web-1
     - role: service-nginx-front-1
