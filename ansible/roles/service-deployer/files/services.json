@@ -31,6 +31,14 @@
       "image": "deployer_dugnaden_image"
     }
   },
+  "energi-extractor": {
+    "service_name": "energi-extractor",
+    "ansible_tag": "service-energi-extractor",
+    "ansible_host": "fcos-3",
+    "mappings": {
+      "image": "deployer_energi_extractor_image"
+    }
+  },
   "intern": {
     "service_name": "intern",
     "ansible_tag": "service-intern",
