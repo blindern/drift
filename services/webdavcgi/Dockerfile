@@ -1,7 +1,7 @@
 FROM debian:11
 
 # renovate: datasource=git-refs depName=https://github.com/DanRohde/webdavcgi.git tag=master
-ENV WEBDAVCGI_COMMIT=98742757031bb49ae763b221e02842d660942d63
+ENV WEBDAVCGI_COMMIT=4b8bf48d7ffb8efee37a89b9bafb38d6c4247b17
 
 RUN set -eux; \
     apt-get update; \
