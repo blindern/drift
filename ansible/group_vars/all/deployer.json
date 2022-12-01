@@ -16,7 +16,7 @@
   "deployer_smaabruket_availability_api_image": "blindern/smaabruket-availability-api@sha256:f70d46cab893d3da690b69eebc76e89f0787a6f6c5b49f4d8c4d2afb2aa10d33",
   "deployer_uka_billett_proxy_image": "blindernuka/billett-proxy@sha256:7023fc4849edecb04e4a4f2f92fb67ed310da594e2c467dd01ba34c1acc95f10",
   "deployer_uka_billett_fpm_image": "blindernuka/billett-backend@sha256:53b8fd6012a66ef276dab963c69d1af421685e948d009027f471ae099e662efa",
-  "deployer_uka_billett_frontend_image": "blindernuka/billett-frontend@sha256:9864472ab1e8c27e1db3f7ad2288530980545d320d32625ab1d626d6e34acc5d",
+  "deployer_uka_billett_frontend_image": "blindernuka/billett-frontend@sha256:94a11f8173daa0ed28117bca2eb831554184c340314ddefbbdfa22d53242cadd",
   "deployer_uka_webserver_image": "blindernuka/webserver@sha256:3daf87389d0aa46574c0dc514b94ca98f8eef470846e05ab8ab88c831976237c",
   "deployer_users_api_image": "blindern/users-api@sha256:d9d48449e298cb540e5b2033d0ab45145bb3027d921aebfa2fad3b5b5a87dd17",
   "deployer_web_1_image": "blindern/internal-web-1@sha256:96bb445b5a7a0054a0e57d66e392fa01368272202bfd9f0a1c542bdfd5f9fc6f",
