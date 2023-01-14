@@ -18,7 +18,7 @@
   "deployer_uka_billett_fpm_image": "blindernuka/billett-backend@sha256:3644550513e5c6bf9ccae01d994d4fd92ffa65a801e585265e102998aba6e323",
   "deployer_uka_billett_frontend_image": "blindernuka/billett-frontend@sha256:02b24d9d97db2cfcb1f8709e392eaa1010fd08da269e267b47bebb409773f4e7",
   "deployer_uka_webserver_image": "blindernuka/webserver@sha256:3daf87389d0aa46574c0dc514b94ca98f8eef470846e05ab8ab88c831976237c",
-  "deployer_users_api_image": "blindern/users-api@sha256:512830c6f902f2025ead8417af8b2adf2a180e963517415b547764ed226f48dd",
+  "deployer_users_api_image": "blindern/users-api@sha256:51992adee6452b8a2c6c05e5d9b3ce3219d20460bb6024bd9cf14a09327ce4ca",
   "deployer_web_1_image": "blindern/internal-web-1@sha256:96bb445b5a7a0054a0e57d66e392fa01368272202bfd9f0a1c542bdfd5f9fc6f",
   "deployer_webdavcgi_image": "blindern/webdavcgi@sha256:d1a23842aa4c459eff4c1eb8671cfe24b5c316a8dfb5e60f34437e86378a41aa"
 }
