@@ -16,6 +16,7 @@
   with_items:
     - fpm-secrets.env
     - database.php
+    - nginx.env
   register: file_copied
 
 - name: Start uka-billett-fpm container
@@ -49,9 +50,7 @@
     networks_cli_compatible: yes
     hostname: uka-billett-proxy.zt.foreningenbs.no
     log_driver: journald
-    env:
-      FPM_HOST: uka-billett-fpm.zt.foreningenbs.no:9000
-      FRONTEND_URL: http://uka-billett-frontend.zt.foreningenbs.no
+    env_file: /var/ansible/uka-billett/nginx.env
 
 - name: Start uka-billett-frontend container
   docker_container:
