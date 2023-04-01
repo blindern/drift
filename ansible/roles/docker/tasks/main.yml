@@ -3,3 +3,48 @@
     name: docker.service
     state: started
     enabled: yes
+
+- name: Create systemd timer for cleanup task
+  copy:
+    content: |
+      [Unit]
+      Description=Run daily at 2am UTC
+
+      [Timer]
+      OnCalendar=*-*-* 2:00:00
+      Persistent=true
+
+      [Install]
+      WantedBy=timers.target
+    dest: /etc/systemd/system/docker-cleanup.timer
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+- name: Create systemd service for cleanup task
+  copy:
+    content: |
+      [Unit]
+      Description=Cleanup old Docker images
+      Requires=docker.service
+
+      [Service]
+      Type=oneshot
+      ExecStart=/bin/bash -c "docker images -qf dangling=true | xargs --no-run-if-empty docker rmi || true"
+    dest: /etc/systemd/system/docker-cleanup.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+# Ensure systemd is reloaded if needed before continuing.
+- meta: flush_handlers
+
+- name: Activate systemd timer for cleanup task
+  ansible.builtin.systemd:
+    name: docker-cleanup.timer
+    state: started
+    enabled: yes
