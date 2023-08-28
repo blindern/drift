@@ -27,9 +27,14 @@ RUN set -eux; \
     rm composer-setup.php.sha384
 
 RUN set -eux; \
+    mkdir /var/simplesamlphp; \
+    chown www-data:www-data /var/simplesamlphp /var/www
+
+USER www-data
+
+RUN set -eux; \
     # Install SimpleSAMLphp.
     # See https://simplesamlphp.org/docs/stable/simplesamlphp-install
-    mkdir /var/simplesamlphp; \
     cd /var/simplesamlphp; \
     curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION.tar.gz" \
       -o simplesamlphp.tar.gz; \
@@ -45,7 +50,8 @@ RUN set -eux; \
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-authoauth2"}]' \
       >composer.json; \
     composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#21856d8"; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#6eef140"
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#6eef140"; \
+    composer clear-cache
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
