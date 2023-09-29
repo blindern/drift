@@ -64,6 +64,16 @@ resource "openstack_networking_secgroup_rule_v2" "ssh" {
   security_group_id = openstack_networking_secgroup_v2.misc.id
 }
 
+resource "openstack_networking_secgroup_rule_v2" "cups" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 631
+  port_range_max    = 631
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.misc.id
+}
+
 resource "openstack_networking_secgroup_rule_v2" "zerotier-udp" {
   direction         = "ingress"
   ethertype         = "IPv4"
