@@ -1,0 +1,49 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/printerserver-iptables-forward
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy files
+  copy:
+    dest: "/var/ansible/printerserver-iptables-forward/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0744
+  with_items:
+    - install-rules.sh
+
+- name: Install printerserver-iptables-forward service
+  copy:
+    content: |
+      [Unit]
+      Description=printerserver-iptables-forward
+      After=zerotier-one.service
+
+      [Service]
+      Type=oneshot
+      TimeoutStartSec=0
+
+      ExecStartPre=/usr/bin/chcon -t bin_t /var/ansible/printerserver-iptables-forward/install-rules.sh
+      ExecStart=/var/ansible/printerserver-iptables-forward/install-rules.sh
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/printerserver-iptables-forward.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+
+# Ensure systemd is reloaded if needed before continuing.
+- meta: flush_handlers
+
+- name: Enable printerserver-iptables-forward service
+  service:
+    name: printerserver-iptables-forward.service
+    state: started
+    enabled: yes

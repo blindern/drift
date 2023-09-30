@@ -37,6 +37,8 @@
       tags: service-uka-billett
     - role: service-confluence
       tags: service-confluence
+    - role: printerserver-iptables-forward
+      tags: printerserver-iptables-forward
 
 # Services running on fcos-2.
 - hosts: fcos-2
