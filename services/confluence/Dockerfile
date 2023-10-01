@@ -2,19 +2,17 @@ FROM atlassian/confluence:8.5.1
 
 USER root
 
-# connector 8.0.22 needed and no newer due to https://jira.atlassian.com/browse/MIG-603
-
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
       xmlstarlet \
     ; \
     rm -rf /var/lib/apt/lists/*; \
-    curl -Ls "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.22.tar.gz" \
+    curl -Ls "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-8.1.0.tar.gz" \
       | tar -xz --directory "${CONFLUENCE_INSTALL_DIR}/confluence/WEB-INF/lib" \
             --strip-components=1 \
             --no-same-owner \
-            "mysql-connector-java-8.0.22/mysql-connector-java-8.0.22.jar"
+            "mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar"
 
 # set autowatch to false
 #   see https://jira.atlassian.com/browse/CONF-22070
