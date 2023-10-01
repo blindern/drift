@@ -20,5 +20,5 @@
   "deployer_uka_webserver_image": "blindernuka/webserver@sha256:3daf87389d0aa46574c0dc514b94ca98f8eef470846e05ab8ab88c831976237c",
   "deployer_users_api_image": "blindern/users-api@sha256:9ccc9d62060a87adaf5fa7c1291af47643aeaff0b4c9f13c6456d0bf22b02e5a",
   "deployer_web_1_image": "blindern/internal-web-1@sha256:96bb445b5a7a0054a0e57d66e392fa01368272202bfd9f0a1c542bdfd5f9fc6f",
-  "deployer_webdavcgi_image": "blindern/webdavcgi@sha256:d1a23842aa4c459eff4c1eb8671cfe24b5c316a8dfb5e60f34437e86378a41aa"
+  "deployer_webdavcgi_image": "blindern/webdavcgi@sha256:7f543cac6e904b5928ef2e70960a0a3792de94311ed1e7b8524c8f5c4b765ba4"
 }
