@@ -1,0 +1,497 @@
+[
+  {
+    "data": "172.25.10.1",
+    "host": "*.athene",
+    "id": 921400,
+    "ttl": 300,
+    "type": "A"
+  },
+  {
+    "data": "158.39.48.49",
+    "host": "@",
+    "id": 849095,
+    "ttl": 300,
+    "type": "A"
+  },
+  {
+    "data": "172.25.10.1",
+    "host": "athene",
+    "id": 870745,
+    "ttl": 300,
+    "type": "A"
+  },
+  {
+    "data": "172.25.10.1",
+    "host": "athene.zt",
+    "id": 1903269,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.8",
+    "host": "confluence.zt",
+    "id": 2534118,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.11.1",
+    "host": "coreos-1.zt",
+    "id": 2171255,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.11.2",
+    "host": "coreos-2.zt",
+    "id": 2331365,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.11.3",
+    "host": "coreos-3.zt",
+    "id": 2534110,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.11.4",
+    "host": "coreos-4.zt",
+    "id": 2534111,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "158.39.48.49",
+    "host": "deployer",
+    "id": 4950494,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "158.39.48.49",
+    "host": "deployer-secondary",
+    "id": 4950508,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.52",
+    "host": "deployer-secondary.zt",
+    "id": 4950501,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.51",
+    "host": "deployer.zt",
+    "id": 4950480,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.10",
+    "host": "dugnaden.zt",
+    "id": 2534120,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.12.1",
+    "host": "fcos-1.zt",
+    "id": 4902221,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.12.2",
+    "host": "fcos-2.zt",
+    "id": 4902740,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.12.3",
+    "host": "fcos-3.zt",
+    "id": 4902768,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.3",
+    "host": "intern-backend.zt",
+    "id": 2534113,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.4",
+    "host": "intern-frontend.zt",
+    "id": 2534115,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.30",
+    "host": "ldap-master.zt",
+    "id": 2534125,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.31",
+    "host": "ldap-slave.zt",
+    "id": 2534533,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.30",
+    "host": "ldap.zt",
+    "id": 2534531,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.31",
+    "host": "ldap.zt",
+    "id": 2534532,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.41",
+    "host": "mongodb-1.zt",
+    "id": 2534128,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.53",
+    "host": "mongodb-2.zt",
+    "id": 4954141,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.40",
+    "host": "mysql-1.zt",
+    "id": 2534127,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.43",
+    "host": "mysql-2.zt",
+    "id": 2534280,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.14",
+    "host": "nginx-front-1.zt",
+    "id": 2534893,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.5",
+    "host": "okoreports-backend.zt",
+    "id": 2534116,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.6",
+    "host": "okoreports-frontend.zt",
+    "id": 2534117,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "158.39.48.60",
+    "host": "p",
+    "id": 849097,
+    "ttl": 300,
+    "type": "A"
+  },
+  {
+    "data": "172.25.10.2",
+    "host": "p.zt",
+    "id": 1903268,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.11",
+    "host": "phpldapadmin.zt",
+    "id": 2534121,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.12",
+    "host": "phpmyadmin.zt",
+    "id": 2534122,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.42",
+    "host": "postgresql-1.zt",
+    "id": 2534129,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.13",
+    "host": "simplesamlphp.zt",
+    "id": 2534123,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.9",
+    "host": "slack-invite-automation.zt",
+    "id": 2534119,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.7",
+    "host": "smaabruket-availability-api.zt",
+    "id": 2532317,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.45",
+    "host": "snipe-mysql.zt",
+    "id": 4888933,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.44",
+    "host": "snipeit.zt",
+    "id": 4888932,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.10.3",
+    "host": "uka-1.zt",
+    "id": 2536339,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.49",
+    "host": "uka-billett-fpm",
+    "id": 4902552,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.50",
+    "host": "uka-billett-frontend.zt",
+    "id": 4948718,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.50",
+    "host": "uka-billett-frontend.zt",
+    "id": 4948719,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.48",
+    "host": "uka-billett-nginx.zt",
+    "id": 4902551,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.48",
+    "host": "uka-billett-proxy.zt",
+    "id": 4948863,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.46",
+    "host": "uka-mysql.zt",
+    "id": 4902482,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.47",
+    "host": "uka-webserver.zt",
+    "id": 4902512,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.2",
+    "host": "users-api.zt",
+    "id": 2171271,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.1",
+    "host": "web-1.zt",
+    "id": 2534112,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.16",
+    "host": "webdavcgi.zt",
+    "id": 4957659,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "158.39.48.49",
+    "host": "www",
+    "id": 849094,
+    "ttl": 300,
+    "type": "A"
+  },
+  {
+    "data": "coreos-1.nrec.foreningenbs.no.",
+    "host": "coreos-1",
+    "id": 4902176,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "coreos-2.nrec.foreningenbs.no.",
+    "host": "coreos-2",
+    "id": 4902177,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "coreos-3.nrec.foreningenbs.no.",
+    "host": "coreos-3",
+    "id": 4902178,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "coreos-4.nrec.foreningenbs.no.",
+    "host": "coreos-4",
+    "id": 4902179,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "ghs.googlehosted.com.",
+    "host": "groups",
+    "id": 1445736,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "foreningenbs.no.",
+    "host": "inventar",
+    "id": 4902181,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "fbs-mfp.ddns.hsw.no.",
+    "host": "mfp",
+    "id": 992961,
+    "ttl": 3600,
+    "type": "CNAME"
+  },
+  {
+    "data": "fbs-printer.ddns.hsw.no.",
+    "host": "printer",
+    "id": 849098,
+    "ttl": 300,
+    "type": "CNAME"
+  },
+  {
+    "data": "ALT1.ASPMX.L.GOOGLE.COM.",
+    "host": "@",
+    "id": 1445710,
+    "priority": "5",
+    "ttl": 3600,
+    "type": "MX"
+  },
+  {
+    "data": "ALT2.ASPMX.L.GOOGLE.COM.",
+    "host": "@",
+    "id": 1445711,
+    "priority": "5",
+    "ttl": 3600,
+    "type": "MX"
+  },
+  {
+    "data": "ASPMX.L.GOOGLE.COM.",
+    "host": "@",
+    "id": 870176,
+    "priority": "1",
+    "ttl": 3600,
+    "type": "MX"
+  },
+  {
+    "data": "ASPMX2.GOOGLEMAIL.COM.",
+    "host": "@",
+    "id": 1445712,
+    "priority": "10",
+    "ttl": 3600,
+    "type": "MX"
+  },
+  {
+    "data": "ASPMX3.GOOGLEMAIL.COM.",
+    "host": "@",
+    "id": 1445713,
+    "priority": "10",
+    "ttl": 3600,
+    "type": "MX"
+  },
+  {
+    "data": "ns1.nrec.no.",
+    "host": "nrec",
+    "id": 4902174,
+    "ttl": 3600,
+    "type": "NS"
+  },
+  {
+    "data": "ns2.nrec.no.",
+    "host": "nrec",
+    "id": 4902175,
+    "ttl": 3600,
+    "type": "NS"
+  },
+  {
+    "data": "google-site-verification=Hmoxa-u_5qJ8Wn9Wmll-sGveVru7WxdkJQgV5Q_-0YM",
+    "host": "@",
+    "id": 4955297,
+    "ttl": 3600,
+    "type": "TXT"
+  },
+  {
+    "data": "google-site-verification=WZZ0n0VEd3vnutDxra9V40gbeC4gdFS8NShFAyJyqBk",
+    "host": "@",
+    "id": 1436941,
+    "ttl": 3600,
+    "type": "TXT"
+  },
+  {
+    "data": "6c853e42ef",
+    "host": "_github-challenge-blindern-org",
+    "id": 4947733,
+    "ttl": 3600,
+    "type": "TXT"
+  }
+]
