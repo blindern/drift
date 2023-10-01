@@ -30,9 +30,10 @@
 
   # Wiki: Søk fra foreningenbs.no redirectes slik at man alltid er innlogget ved søking.
   RewriteCond %{QUERY_STRING} =queryString=
-  RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/display/BS/Beboersiden [R,L]
+  RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/x/NgEf [R,L]
   RewriteCond %{QUERY_STRING} queryString=(.*)
   RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/dosearchsite.action?queryString=%1 [R,L]
+  RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/x/NgEf [R,L]
   RewriteRule ^/wiki/(.*)$ https://foreningenbs.no/wiki-redirect.php?q=$1 [L]
 
   # Wiki: Hvis man ikke spesifiserer noen side, send til hovedsiden.
