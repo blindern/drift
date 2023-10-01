@@ -1,12 +1,5 @@
 [
   {
-    "data": "172.25.10.1",
-    "host": "*.athene",
-    "id": 921400,
-    "ttl": 300,
-    "type": "A"
-  },
-  {
     "data": "158.39.48.49",
     "host": "@",
     "id": 849095,
@@ -161,13 +154,6 @@
     "type": "A"
   },
   {
-    "data": "172.25.16.41",
-    "host": "mongodb-1.zt",
-    "id": 2534128,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
     "data": "172.25.16.53",
     "host": "mongodb-2.zt",
     "id": 4954141,
@@ -178,13 +164,6 @@
     "data": "172.25.16.40",
     "host": "mysql-1.zt",
     "id": 2534127,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
-    "data": "172.25.16.43",
-    "host": "mysql-2.zt",
-    "id": 2534280,
     "ttl": 3600,
     "type": "A"
   },
@@ -301,13 +280,6 @@
     "type": "A"
   },
   {
-    "data": "172.25.16.50",
-    "host": "uka-billett-frontend.zt",
-    "id": 4948719,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
     "data": "172.25.16.48",
     "host": "uka-billett-nginx.zt",
     "id": 4902551,
@@ -410,13 +382,6 @@
     "host": "mfp",
     "id": 992961,
     "ttl": 3600,
-    "type": "CNAME"
-  },
-  {
-    "data": "fbs-printer.ddns.hsw.no.",
-    "host": "printer",
-    "id": 849098,
-    "ttl": 300,
     "type": "CNAME"
   },
   {
