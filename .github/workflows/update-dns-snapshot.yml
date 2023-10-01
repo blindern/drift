@@ -21,9 +21,13 @@ jobs:
       - name: Push changes if detected
         run: |
           if ! git diff --quiet dns; then
+            echo "Changes detected - will push"
+            git diff dns
             git config --global user.name 'IT-gruppa'
             git config --global user.email 'it-gruppa@foreningenbs.no'
             git add dns
             git commit -m "Update DNS snapshot"
             git push
+          else
+            echo "Already up-to-date"
           fi
