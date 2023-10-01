@@ -1,4 +1,4 @@
-FROM atlassian/confluence:7.20.1
+FROM atlassian/confluence:8.5.1
 
 USER root
 
@@ -21,7 +21,7 @@ RUN set -eux; \
 # also set server settings to match our use
 RUN set -x && \
     mkdir /tmp/conf && \
-    cp /opt/atlassian/confluence/confluence/WEB-INF/lib/confluence-[567]*.jar /tmp/conf/confluence.jar && \
+    cp /opt/atlassian/confluence/confluence/WEB-INF/lib/com.atlassian.confluence_confluence-8.*.jar /tmp/conf/confluence.jar && \
     cd /tmp/conf && \
     jar xf confluence.jar && \
     sed -i '/confluence.prefs.watch.my.own.content/{N;s/\(.*\n.*\)true/\1false/}' preferences-default.xml && \
