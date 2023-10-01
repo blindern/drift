@@ -62,7 +62,7 @@
     ldap_master_ipv4_address: "172.25.16.30"
     postgresql_1_image: postgres:12.1
     postgresql_1_ipv4_address: "172.25.16.42"
-    mysql_1_image: mysql:8
+    mysql_1_image: mysql:8.1.0
     mysql_1_ipv4_address: "172.25.16.40"
     mongodb_2_image: mongo:5.0
     mongodb_2_ipv4_address: "172.25.16.53"
