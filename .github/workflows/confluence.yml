@@ -21,7 +21,7 @@ jobs:
 
       - name: Build container
         id: docker_build
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: services/confluence
           push: ${{ github.ref == 'refs/heads/main' }}
