@@ -1,6 +1,10 @@
-# Oppdatering av beboerlisten (postlisten)
+# Foreningsbrukere
 
-## Last opp ny Excel-versjon
+## Oppdatering av beboerlisten (postlisten)
+
+(Ikke oppdatert per 2023.)
+
+### Last opp ny Excel-versjon
 
 Postlisten lastes opp til `/fbs/drift/users/` på foreningenbs.no. Dette kan
 gjøres ved å gå til https://foreningenbs.no/foreningen/IT-gruppa-drift/users
@@ -10,7 +14,7 @@ Postlisten må skaffes fra kontoret og skal være i Excel-format (xls).
 Sørg for at navnet blir `postliste.xls` når det er lastet opp (evt. endre på
 kommandoen nedenfor).
 
-## Konverter til json-format
+### Konverter til json-format
 
 SSH til foreningenbs.no som brukeren din.
 
@@ -21,12 +25,14 @@ cd /fbs/drift/users
 
 Listen er nå oppdatert, og romlisten og postlisten på nett er også oppdatert:
 
- * https://foreningenbs.no/henrik/postliste/
- * https://foreningenbs.no/henrik/romliste/
+* https://foreningenbs.no/henrik/postliste/
+* https://foreningenbs.no/henrik/romliste/
 
 Datoen som står oppført på nettsiden hentes fra Excel-dokumentet.
 
-# Sjekke brukerlisten på foreningenbs.no mot beboerlisten
+## Sjekke brukerlisten på foreningenbs.no mot beboerlisten
+
+(Ikke oppdatert per 2023.)
 
 ```bash
 cd /fbs/drift/users
@@ -36,7 +42,9 @@ cd /fbs/drift/users
 Du får nå en rapport over hvem som mangler, samt hvem som ikke lenger er i
 postlisten og har flyttet ut/permisjon.
 
-# Sjekke skaplisten mot beboerlisten
+## Sjekke skaplisten mot beboerlisten
+
+(Ikke oppdatert per 2023.)
 
 ```bash
 cd /fbs/drift/users
