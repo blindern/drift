@@ -52,6 +52,17 @@ mer informasjon rundt hvordan systemet fungerer.
 
    Se https://foreningenbs.no/confluence/display/FBS/LDAP for mer detaljer.
 
+### Endring av navn og andre attributter
+
+Det enkleste er å bruke https://foreningenbs.no/tools/phpldapadmin/ for dette.
+
+Logg først inn med foreningsbrukeren for å komme til
+ny innloggingsside for verktøyet. Der må du bruke brukernavnet
+og passordet som er angitt her:
+https://foreningenbs.no/confluence/x/PgYf
+
+Husk at f.eks. navn ligger lagret i flere felter, så du må ofte endre både `cn`, `displayName`, `givenName` og `sn`.
+
 ### Feilsøking
 
 OBS! Vi har en bug som gjør at navn med æøå mister disse bokstavene. Man kan
