@@ -1,0 +1,19 @@
+# Note that this file overrides the default
+# we have set up in fcos-config.bu.
+
+[updates]
+strategy = "periodic"
+
+[updates.periodic]
+time_zone = "Europe/Oslo"
+
+[[updates.periodic.window]]
+days = [ "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" ]
+
+# This is templated so we can configure a different
+# window for each machine. This is a simple solution
+# to avoid having to set up more complex stuff for
+# cluster-wide coordination.
+start_time = "{{ zincati_start_time }}"
+
+length_minutes = 60

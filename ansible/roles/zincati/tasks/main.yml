@@ -1,0 +1,12 @@
+- name: Copy config file
+  template:
+    src: 55-updates-strategy.toml.j2
+    dest: /etc/zincati/config.d/55-updates-strategy.toml
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Restart zincati
+  when: file_copied.changed
+  command: systemctl restart zincati

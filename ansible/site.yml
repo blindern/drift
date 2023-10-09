@@ -12,7 +12,7 @@
     - role: ssh-keys
       tags: ssh-keys
 
-# Services running on fcos-1.
+# Services and custom configuration running on fcos-1.
 - hosts: fcos-1
   become: yes
   vars:
@@ -28,6 +28,7 @@
     uka_billett_frontend_ipv4_address: "172.25.16.50"
     confluence_image: "{{ deployer_confluence_image }}"
     confluence_ipv4_address: "172.25.16.8"
+    zincati_start_time: "01:00"
   roles:
     - role: service-uka-mysql
       tags: service-uka-mysql
@@ -39,8 +40,10 @@
       tags: service-confluence
     - role: printerserver-iptables-forward
       tags: printerserver-iptables-forward
+    - role: zincati
+      tags: zincati
 
-# Services running on fcos-2.
+# Services and custom configuration running on fcos-2.
 - hosts: fcos-2
   become: yes
   vars:
@@ -66,6 +69,7 @@
     mysql_1_ipv4_address: "172.25.16.40"
     mongodb_2_image: mongo:5.0
     mongodb_2_ipv4_address: "172.25.16.53"
+    zincati_start_time: "02:00"
   roles:
     - role: service-users-api
       tags: service-users-api
@@ -87,8 +91,10 @@
       tags: service-mysql-1
     - role: service-mongodb-2
       tags: service-mongodb-2
+    - role: zincati
+      tags: zincati
 
-# Services running on fcos-3.
+# Services and custom configuration running on fcos-3.
 - hosts: fcos-3
   become: yes
   vars:
@@ -114,6 +120,7 @@
     simplesamlphp_ipv4_address: "172.25.16.13"
     webdavcgi_image: "{{ deployer_webdavcgi_image }}"
     webdavcgi_ipv4_address: "172.25.16.16"
+    zincati_start_time: "03:00"
   roles:
     # Two instances of deployer is used so that the deployer can
     # self-update by targeting the other instance.
@@ -149,3 +156,5 @@
       tags: service-simplesamlphp
     - role: service-webdavcgi
       tags: service-webdavcgi
+    - role: zincati
+      tags: zincati
