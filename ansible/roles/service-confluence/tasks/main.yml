@@ -22,3 +22,6 @@
     log_driver: journald
     ulimits:
       - nofile:1048576:1048576
+    # Confluence spends a long time starting when doing e.g. upgrades.
+    # Increase from default 60 seconds timeout.
+    timeout: 600
