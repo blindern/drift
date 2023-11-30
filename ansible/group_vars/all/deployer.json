@@ -5,7 +5,7 @@
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:3b11cb5c1751114b2cf98b8abc2ed0a764c7a7cd54812acc6f4b74d799f22192",
   "deployer_energi_extractor_image": "blindern/energi-extractor@sha256:6abf1bc4f3cdbe53c5a5c302f2b8f65a6172b35663791e5a0ac29d5308b21a6f",
   "deployer_intern_backend_image": "blindern/intern-backend@sha256:de7963b66fef8bf0519faa77f12e5d7ef54339d2a95071bd8591e86877541750",
-  "deployer_intern_frontend_image": "blindern/intern-frontend@sha256:b0ea5e45d56d618125c04f35a021b4002c5c747892af4f0644b0c43202db27c5",
+  "deployer_intern_frontend_image": "blindern/intern-frontend@sha256:927c95ab86aa95d80ed7652bf2baf21df39ebc30eb37aa96de0f8ed0a4b01bf8",
   "deployer_ldap_master_image": "blindern/openldap@sha256:cb844a24f934da47d8d78e00fda85677872275b8633c200beefc2a74975f1299",
   "deployer_ldap_slave_image": "blindern/openldap@sha256:cb844a24f934da47d8d78e00fda85677872275b8633c200beefc2a74975f1299",
   "deployer_nginx_front_1_image": "henrist/nginx-letsencrypt",
