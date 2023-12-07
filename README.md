@@ -152,3 +152,13 @@ In addition, some files are encrypted using
 The encryption key used for this is stored in this repo. The intention
 of using Ansible Vault is to avoid having plain text files in local
 working directories, which is the default behaviour with git-crypt.
+
+## Debugging
+
+The instances comes with https://containertoolbx.org/install/ preinstalled.
+
+To access an environment where you can install tools etc use:
+
+```bash
+toolbox enter
+```
