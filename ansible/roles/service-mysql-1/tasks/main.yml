@@ -35,3 +35,5 @@
     capabilities:
       # https://stackoverflow.com/a/55706057
       - sys_nice
+    ulimits:
+      - nofile:1048576:1048576
