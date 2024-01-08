@@ -41,7 +41,7 @@
         ipv4_address: "{{ dugnaden_ipv4_address }}"
     networks_cli_compatible: yes
     env:
-      DATABASE_HOST: mysql-1.zt.foreningenbs.no
+      DATABASE_HOST: dugnaden-mysql.zt.foreningenbs.no
       DATABASE_USER: dugnaden
       DATABASE_NAME: dugnaden
     volumes:

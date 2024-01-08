@@ -1,0 +1,39 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/dugnaden-mysql
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy config file
+  copy:
+    dest: /var/ansible/dugnaden-mysql/custom.cnf
+    src: custom.cnf
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Start mysql container
+  docker_container:
+    name: dugnaden-mysql
+    state: started
+    image: "{{ dugnaden_mysql_image }}"
+    restart_policy: unless-stopped
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ dugnaden_mysql_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/mnt/data/dugnaden-mysql-data:/var/lib/mysql:Z
+      - /var/ansible/dugnaden-mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"
+    capabilities:
+      # https://stackoverflow.com/a/55706057
+      - sys_nice
+    ulimits:
+      - nofile:1048576:1048576

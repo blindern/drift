@@ -110,6 +110,8 @@
     intern_frontend_ipv4_address: "172.25.16.4"
     dugnaden_image: "{{ deployer_dugnaden_image }}"
     dugnaden_ipv4_address: "172.25.16.10"
+    dugnaden_mysql_image: mysql:8.1.0
+    dugnaden_mysql_ipv4_address: "172.25.16.55"
     phpldapadmin_image: osixia/phpldapadmin:0.9.0
     phpldapadmin_ipv4_address: "172.25.16.11"
     phpmyadmin_image: phpmyadmin/phpmyadmin:5.2
@@ -146,6 +148,8 @@
       tags: service-intern
     - role: service-dugnaden
       tags: service-dugnaden
+    - role: service-dugnaden-mysql
+      tags: service-dugnaden-mysql
     - role: service-phpldapadmin
       tags: service-phpldapadmin
     - role: service-phpmyadmin
