@@ -134,17 +134,21 @@ resource "openstack_blockstorage_volume_v3" "volume_5" {
   }
 }
 
-resource "openstack_blockstorage_volume_v3" "volume_6" {
-  name = "volume_6"
-  size = 20
+resource "openstack_blockstorage_volume_v3" "volume_7" {
+  name = "volume_7"
+  size = 50
   lifecycle {
     prevent_destroy = true
   }
 }
 
-resource "openstack_blockstorage_volume_v3" "volume_7" {
-  name = "volume_7"
-  size = 50
+# SSD storage to be used for databases.
+# We have a limited SSD quota of 20 GiB.
+# See emails from February 2024 for details.
+resource "openstack_blockstorage_volume_v3" "volume_8" {
+  name = "volume_8"
+  size = 20
+  volume_type = "mass-storage-ssd"
   lifecycle {
     prevent_destroy = true
   }
@@ -221,14 +225,14 @@ resource "openstack_compute_volume_attach_v2" "va_5" {
   volume_id   = openstack_blockstorage_volume_v3.volume_5.id
 }
 
-resource "openstack_compute_volume_attach_v2" "va_6" {
-  instance_id = openstack_compute_instance_v2.fcos_2.id
-  volume_id   = openstack_blockstorage_volume_v3.volume_6.id
-}
-
 resource "openstack_compute_volume_attach_v2" "va_7" {
   instance_id = openstack_compute_instance_v2.fcos_3.id
   volume_id   = openstack_blockstorage_volume_v3.volume_7.id
+}
+
+resource "openstack_compute_volume_attach_v2" "va_8" {
+  instance_id = openstack_compute_instance_v2.fcos_2.id
+  volume_id   = openstack_blockstorage_volume_v3.volume_8.id
 }
 
 # --------------------------------------
