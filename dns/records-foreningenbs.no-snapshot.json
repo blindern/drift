@@ -460,6 +460,13 @@
     "type": "TXT"
   },
   {
+    "data": "\"v=DMARC1; p=none\"",
+    "host": "_dmarc",
+    "id": 6200911,
+    "ttl": 3600,
+    "type": "TXT"
+  },
+  {
     "data": "6c853e42ef",
     "host": "_github-challenge-blindern-org",
     "id": 4947733,
