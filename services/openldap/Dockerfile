@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:3.19
 
 RUN set -eux; \
     # Create the user first so we control the uid/gid.
@@ -19,7 +19,10 @@ RUN set -eux; \
     ln -s /usr/lib/openldap /usr/lib/ldap; \
     # Location for ldapi socket.
     mkdir -p /var/lib/openldap/run; \
-    chown ldap:ldap /var/lib/openldap/run
+    chown ldap:ldap /var/lib/openldap/run; \
+    # Verify expected/tested version.
+    slapd -V; \
+    slapd -V 2>&1 | grep -q 'slapd 2.6' || (echo "Unexpected slapd version" && exit 1)
 
 COPY entrypoint.sh /entrypoint.sh
 COPY run.sh /run.sh
