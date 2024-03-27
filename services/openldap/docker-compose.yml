@@ -1,0 +1,18 @@
+# Only used for local testing.
+version: '3'
+services:
+  openldap:
+    build: .
+    container_name: openldap-test
+    ports:
+      - 127.0.0.1:389:389
+    environment:
+      LDAP_LOG_LEVEL: "-1"
+    volumes:
+      - ../../certs/dhparam.pem:/certs/dhparam.pem
+      - ../../certs/ca.crt:/certs/ca.crt
+      - ../../certs/ldap/ldap-slave.crt:/certs/slapd.crt
+      - ./data/dev/data:/var/lib/ldap
+      - ./data/dev/config:/etc/ldap/slapd.d
+      - ./:/data
+    #command: sleep 10000000
