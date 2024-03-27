@@ -8,7 +8,6 @@ RUN set -eux; \
       bash \
       db-utils \
       openldap \
-      openldap-back-hdb \
       openldap-back-mdb \
       openldap-clients \
       openldap-overlay-all \
