@@ -1,0 +1,2 @@
+provider/** filter=git-crypt diff=git-crypt
+consumer/** filter=git-crypt diff=git-crypt
