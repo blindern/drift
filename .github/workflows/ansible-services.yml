@@ -1,4 +1,4 @@
-name: Deploy Ansible common tag
+name: Deploy all Ansible services
 on:
   workflow_dispatch:
   push:
