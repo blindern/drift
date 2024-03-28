@@ -15,6 +15,7 @@
     mode: 0744
   with_items:
     - install-rules.sh
+    - remove-rules.sh
 
 - name: Install printerserver-iptables-forward service
   copy:
@@ -26,9 +27,13 @@
       [Service]
       Type=oneshot
       TimeoutStartSec=0
+      RemainAfterExit=true
 
       ExecStartPre=/usr/bin/chcon -t bin_t /var/ansible/printerserver-iptables-forward/install-rules.sh
       ExecStart=/var/ansible/printerserver-iptables-forward/install-rules.sh
+
+      ExecStop=/usr/bin/chcon -t bin_t /var/ansible/printerserver-iptables-forward/remove-rules.sh
+      ExecStop=/var/ansible/printerserver-iptables-forward/remove-rules.sh
 
       [Install]
       WantedBy=multi-user.target
