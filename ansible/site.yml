@@ -67,7 +67,7 @@
     postgresql_1_ipv4_address: "172.25.16.42"
     mysql_1_image: mysql:8.1.0
     mysql_1_ipv4_address: "172.25.16.40"
-    mongodb_2_image: mongo:5.0
+    mongodb_2_image: mongo:7.0.7
     mongodb_2_ipv4_address: "172.25.16.53"
     zincati_start_time: "02:00"
   roles:

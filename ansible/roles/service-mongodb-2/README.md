@@ -1,5 +1,11 @@
 # mongodb
 
+Deploy service:
+
+```bash
+ansible-playbook site.yml -i hosts -t service-mongodb-2 -l fcos-2
+```
+
 ## Manual operations
 
 Get password from https://foreningenbs.no/confluence/x/7gUf
