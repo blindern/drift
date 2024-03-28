@@ -2,6 +2,8 @@ name: Deploy Ansible common tag
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - "ansible/roles/base/**"
       - "ansible/roles/docker/**"
@@ -19,7 +21,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy
-        if: github.ref == 'refs/heads/main'
         run: |
           curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
           {
