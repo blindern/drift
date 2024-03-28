@@ -1,4 +1,14 @@
 {
+  "all-services": {
+    "service_name": "all-services",
+    "ansible_tag": "all-services",
+    "ansible_host": "all"
+  },
+  "all-common": {
+    "service_name": "all-common",
+    "ansible_tag": "common",
+    "ansible_host": "all"
+  },
   "confluence": {
     "service_name": "confluence",
     "ansible_tag": "service-confluence",
