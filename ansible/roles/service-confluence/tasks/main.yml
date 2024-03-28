@@ -17,7 +17,7 @@
         ipv4_address: "{{ confluence_ipv4_address }}"
     networks_cli_compatible: yes
     volumes:
-      - /var/mnt/data/confluence-data:/var/atlassian/application-data/confluence:Z
+      - /var/mnt/data/confluence-data:/var/atlassian/application-data/confluence:z
       - /var/mnt/data/confluence-logs:/opt/atlassian/confluence/logs:Z
     log_driver: journald
     ulimits:
