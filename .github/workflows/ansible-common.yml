@@ -1,0 +1,29 @@
+name: Deploy Ansible common tag
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ansible/roles/base/**"
+      - "ansible/roles/docker/**"
+      - "ansible/roles/docker-network/**"
+      - "ansible/roles/printerserver-iptables-forward/**"
+      - "ansible/roles/ssh-keys/**"
+      - "ansible/roles/zerotier/**"
+      - "ansible/roles/zincati/**"
+      - "ansible/site.yml"
+      - "ansible/hosts"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "all-common"
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}

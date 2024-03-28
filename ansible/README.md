@@ -7,6 +7,16 @@ Some services are automatically deployed using Ansible when they
 are built. Other changes must be deployed maually.
 See https://github.com/blindern/deployer
 
+## Automatic deployment
+
+Some services are deployed automatically using Ansible when they
+are built, by using the [deployer](https://github.com/blindern/deployer) tool.
+These must be listed in [services.json](roles/service-deployer/files/services.json).
+
+Most other changes to this directory is also deployed automatically
+by triggering the deployer tool from a few GitHub Actions in this repo.
+See the GitHub actions for more details.
+
 ## Getting started
 
 Install Ansible locally using your package manager. E.g. on Arch:
