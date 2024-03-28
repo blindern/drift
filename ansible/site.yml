@@ -1,5 +1,6 @@
 - hosts: fcos
   become: yes
+  tags: common
   roles:
     - role: base
       tags: base
@@ -11,154 +12,178 @@
       tags: docker
     - role: ssh-keys
       tags: ssh-keys
-
-# Services and custom configuration running on fcos-1.
-- hosts: fcos-1
-  become: yes
-  vars:
-    uka_mysql_image: mysql:5.6
-    uka_mysql_ipv4_address: "172.25.16.46"
-    uka_webserver_image: "{{ deployer_uka_webserver_image }}"
-    uka_webserver_ipv4_address: "172.25.16.47"
-    uka_billett_proxy_image: "{{ deployer_uka_billett_proxy_image }}"
-    uka_billett_proxy_ipv4_address: "172.25.16.48"
-    uka_billett_fpm_image: "{{ deployer_uka_billett_fpm_image }}"
-    uka_billett_fpm_ipv4_address: "172.25.16.49"
-    uka_billett_frontend_image: "{{ deployer_uka_billett_frontend_image }}"
-    uka_billett_frontend_ipv4_address: "172.25.16.50"
-    confluence_image: "{{ deployer_confluence_image }}"
-    confluence_ipv4_address: "172.25.16.8"
-    zincati_start_time: "01:00"
-  roles:
-    - role: service-uka-mysql
-      tags: service-uka-mysql
-    - role: service-uka-webserver
-      tags: service-uka-webserver
-    - role: service-uka-billett
-      tags: service-uka-billett
-    - role: service-confluence
-      tags: service-confluence
-    - role: printerserver-iptables-forward
-      tags: printerserver-iptables-forward
     - role: zincati
       tags: zincati
 
-# Services and custom configuration running on fcos-2.
+- hosts: fcos-1
+  become: yes
+  tags: common
+  roles:
+  - role: printerserver-iptables-forward
+    tags: printerserver-iptables-forward
+
+# Services running on fcos-1.
+- hosts: fcos-1
+  become: yes
+  tags: all-services
+  roles:
+    - role: service-uka-mysql
+      tags: service-uka-mysql
+      vars:
+        uka_mysql_image: mysql:5.6
+        uka_mysql_ipv4_address: "172.25.16.46"
+    - role: service-uka-webserver
+      tags: service-uka-webserver
+      vars:
+        uka_webserver_image: "{{ deployer_uka_webserver_image }}"
+        uka_webserver_ipv4_address: "172.25.16.47"
+    - role: service-uka-billett
+      tags: service-uka-billett
+      vars:
+        uka_billett_proxy_image: "{{ deployer_uka_billett_proxy_image }}"
+        uka_billett_proxy_ipv4_address: "172.25.16.48"
+        uka_billett_fpm_image: "{{ deployer_uka_billett_fpm_image }}"
+        uka_billett_fpm_ipv4_address: "172.25.16.49"
+        uka_billett_frontend_image: "{{ deployer_uka_billett_frontend_image }}"
+        uka_billett_frontend_ipv4_address: "172.25.16.50"
+    - role: service-confluence
+      tags: service-confluence
+      vars:
+        confluence_image: "{{ deployer_confluence_image }}"
+        confluence_ipv4_address: "172.25.16.8"
+
+# Services running on fcos-2.
 - hosts: fcos-2
   become: yes
-  vars:
-    smaabruket_availability_api_image: "{{ deployer_smaabruket_availability_api_image }}"
-    smaabruket_availability_api_ipv4_address: "172.25.16.7"
-    users_api_image: "{{ deployer_users_api_image }}"
-    users_api_ipv4_address: "172.25.16.2"
-    okoreports_backend_image: "{{ deployer_okoreports_backend_image }}"
-    okoreports_backend_ipv4_address: "172.25.16.5"
-    okoreports_frontend_image: "{{ deployer_okoreports_frontend_image }}"
-    okoreports_frontend_ipv4_address: "172.25.16.6"
-    slack_invite_automation_image: "{{ deployer_slack_invite_automation_image }}"
-    slack_invite_automation_ipv4_address: "172.25.16.9"
-    snipeit_image: snipe/snipe-it:v6.0.2
-    snipeit_ipv4_address: "172.25.16.44"
-    snipe_mysql_image: mysql:5.6
-    snipe_mysql_ipv4_address: "172.25.16.45"
-    ldap_master_image: "{{ deployer_ldap_master_image }}"
-    ldap_master_ipv4_address: "172.25.16.30"
-    postgresql_1_image: postgres:12.1
-    postgresql_1_ipv4_address: "172.25.16.42"
-    mysql_1_image: mysql:8.1.0
-    mysql_1_ipv4_address: "172.25.16.40"
-    mongodb_2_image: mongo:7.0.7
-    mongodb_2_ipv4_address: "172.25.16.53"
-    zincati_start_time: "02:00"
+  tags: all-services
   roles:
     - role: service-users-api
       tags: service-users-api
+      vars:
+        users_api_image: "{{ deployer_users_api_image }}"
+        users_api_ipv4_address: "172.25.16.2"
     - role: service-smaabruket-availability-api
       tags: service-smaabruket-availability-api
+      vars:
+        smaabruket_availability_api_image: "{{ deployer_smaabruket_availability_api_image }}"
+        smaabruket_availability_api_ipv4_address: "172.25.16.7"
     - role: service-okoreports
       tags: service-okoreports
+      vars:
+        okoreports_backend_image: "{{ deployer_okoreports_backend_image }}"
+        okoreports_backend_ipv4_address: "172.25.16.5"
+        okoreports_frontend_image: "{{ deployer_okoreports_frontend_image }}"
+        okoreports_frontend_ipv4_address: "172.25.16.6"
     - role: service-slack-invite-automation
       tags: service-slack-invite-automation
+      vars:
+        slack_invite_automation_image: "{{ deployer_slack_invite_automation_image }}"
+        slack_invite_automation_ipv4_address: "172.25.16.9"
     - role: service-snipeit
       tags: service-snipeit
+      vars:
+        snipeit_image: snipe/snipe-it:v6.0.2
+        snipeit_ipv4_address: "172.25.16.44"
+        snipe_mysql_image: mysql:5.6
+        snipe_mysql_ipv4_address: "172.25.16.45"
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
     - role: service-ldap-master
       tags: service-ldap-master
+      vars:
+        ldap_master_image: "{{ deployer_ldap_master_image }}"
+        ldap_master_ipv4_address: "172.25.16.30"
     - role: service-postgresql-1
       tags: service-postgresql-1
+      vars:
+        postgresql_1_image: postgres:12.1
+        postgresql_1_ipv4_address: "172.25.16.42"
     - role: service-mysql-1
       tags: service-mysql-1
+      vars:
+        mysql_1_image: mysql:8.1.0
+        mysql_1_ipv4_address: "172.25.16.40"
     - role: service-mongodb-2
       tags: service-mongodb-2
-    - role: zincati
-      tags: zincati
+      vars:
+        mongodb_2_image: mongo:7.0.7
+        mongodb_2_ipv4_address: "172.25.16.53"
 
-# Services and custom configuration running on fcos-3.
+# Services running on fcos-3.
 - hosts: fcos-3
   become: yes
-  vars:
-    energi_extractor_image: "{{ deployer_energi_extractor_image }}"
-    energi_extractor_ipv4_address: "172.25.16.54"
-    web_1_image: "{{ deployer_web_1_image }}"
-    web_1_ipv4_address: "172.25.16.1"
-    nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
-    nginx_front_1_ipv4_address: "172.25.16.14"
-    intern_backend_image: "{{ deployer_intern_backend_image }}"
-    intern_backend_ipv4_address: "172.25.16.3"
-    intern_frontend_image: "{{ deployer_intern_frontend_image }}"
-    intern_frontend_ipv4_address: "172.25.16.4"
-    dugnaden_image: "{{ deployer_dugnaden_image }}"
-    dugnaden_ipv4_address: "172.25.16.10"
-    dugnaden_mysql_image: mysql:8.1.0
-    dugnaden_mysql_ipv4_address: "172.25.16.55"
-    phpldapadmin_image: osixia/phpldapadmin:0.9.0
-    phpldapadmin_ipv4_address: "172.25.16.11"
-    phpmyadmin_image: phpmyadmin/phpmyadmin:5.2
-    phpmyadmin_ipv4_address: "172.25.16.12"
-    ldap_slave_image: "{{ deployer_ldap_slave_image }}"
-    ldap_slave_ipv4_address: "172.25.16.31"
-    simplesamlphp_image: "{{ deployer_simplesamlphp_image }}"
-    simplesamlphp_ipv4_address: "172.25.16.13"
-    webdavcgi_image: "{{ deployer_webdavcgi_image }}"
-    webdavcgi_ipv4_address: "172.25.16.16"
-    zincati_start_time: "03:00"
+  tags: all-services
   roles:
     # Two instances of deployer is used so that the deployer can
     # self-update by targeting the other instance.
     - role: service-deployer
       tags: service-deployer-primary
       vars:
+        deployer_variant: primary
         deployer_container_name: deployer
         deployer_image: "{{ deployer_deployer_primary_image }}"
         deployer_ipv4_address: "172.25.16.51"
     - role: service-deployer
       tags: service-deployer-secondary
       vars:
+        deployer_variant: secondary
         deployer_container_name: deployer-secondary
         deployer_image: "{{ deployer_deployer_secondary_image }}"
         deployer_ipv4_address: "172.25.16.52"
     - role: service-energi-extractor
       tags: service-energi-extractor
+      vars:
+        energi_extractor_image: "{{ deployer_energi_extractor_image }}"
+        energi_extractor_ipv4_address: "172.25.16.54"
     - role: service-web-1
       tags: service-web-1
+      vars:
+        web_1_image: "{{ deployer_web_1_image }}"
+        web_1_ipv4_address: "172.25.16.1"
     - role: service-nginx-front-1
       tags: service-nginx-front-1
+      vars:
+        nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
+        nginx_front_1_ipv4_address: "172.25.16.14"
     - role: service-intern
       tags: service-intern
+      vars:
+        intern_backend_image: "{{ deployer_intern_backend_image }}"
+        intern_backend_ipv4_address: "172.25.16.3"
+        intern_frontend_image: "{{ deployer_intern_frontend_image }}"
+        intern_frontend_ipv4_address: "172.25.16.4"
     - role: service-dugnaden
       tags: service-dugnaden
+      vars:
+        dugnaden_image: "{{ deployer_dugnaden_image }}"
+        dugnaden_ipv4_address: "172.25.16.10"
     - role: service-dugnaden-mysql
       tags: service-dugnaden-mysql
+      vars:
+        dugnaden_mysql_image: mysql:8.1.0
+        dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
+      vars:
+        phpldapadmin_image: osixia/phpldapadmin:0.9.0
+        phpldapadmin_ipv4_address: "172.25.16.11"
     - role: service-phpmyadmin
       tags: service-phpmyadmin
+      vars:
+        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2
+        phpmyadmin_ipv4_address: "172.25.16.12"
     - role: service-ldap-slave
       tags: service-ldap-slave
+      vars:
+        ldap_slave_image: "{{ deployer_ldap_slave_image }}"
+        ldap_slave_ipv4_address: "172.25.16.31"
     - role: service-simplesamlphp
       tags: service-simplesamlphp
+      vars:
+        simplesamlphp_image: "{{ deployer_simplesamlphp_image }}"
+        simplesamlphp_ipv4_address: "172.25.16.13"
     - role: service-webdavcgi
       tags: service-webdavcgi
-    - role: zincati
-      tags: zincati
+      vars:
+        webdavcgi_image: "{{ deployer_webdavcgi_image }}"
+        webdavcgi_ipv4_address: "172.25.16.16"

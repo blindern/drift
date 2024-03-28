@@ -1,4 +1,4 @@
-- name: Ensure config directory exists
+- name: Ensure config directory exists ({{ deployer_variant }})
   file:
     path: /var/ansible/deployer
     state: directory
@@ -6,7 +6,7 @@
     group: root
     mode: 0700
 
-- name: Copy files
+- name: Copy files ({{ deployer_variant }})
   copy:
     dest: "/var/ansible/deployer/{{ item }}"
     src: "{{ item }}"
@@ -18,7 +18,7 @@
     - services.json
   register: file_copied
 
-- name: Start deployer container
+- name: Start deployer container ({{ deployer_variant }})
   docker_container:
     name: "{{ deployer_container_name }}"
     state: started

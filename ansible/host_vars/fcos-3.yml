@@ -9,3 +9,5 @@ docker_ip_range: "172.25.28.1/24"
 
 host_type: fcos
 data_dir: /var/mnt/data
+
+zincati_start_time: "03:00"
