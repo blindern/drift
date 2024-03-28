@@ -1,5 +1,5 @@
 # Our code is currently not compatible with PHP 7.
-FROM php:5.6-apache
+FROM php:8.3-apache
 
 ENV NODE_VERSION=12.14.0
 

@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.3-apache
 
 # Se latest at https://simplesamlphp.org/download/
 ENV SIMPLESAMLPHP_VERSION=1.19.6
