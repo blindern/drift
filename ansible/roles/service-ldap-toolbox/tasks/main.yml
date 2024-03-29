@@ -36,6 +36,7 @@
 - name: Start container
   docker_container:
     name: ldap-toolbox
+    hostname: ldap-toolbox
     state: started
     image: "{{ ldap_toolbox_image }}"
     restart_policy: unless-stopped
