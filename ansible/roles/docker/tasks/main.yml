@@ -8,10 +8,10 @@
   copy:
     content: |
       [Unit]
-      Description=Run daily at 2am UTC
+      Description=Run on a schedule
 
       [Timer]
-      OnCalendar=*-*-* 2:00:00
+      OnCalendar=*-*-* */3:15:00
       Persistent=true
 
       [Install]
