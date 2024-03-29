@@ -114,22 +114,6 @@
   become: yes
   tags: all-services
   roles:
-    # Two instances of deployer is used so that the deployer can
-    # self-update by targeting the other instance.
-    - role: service-deployer
-      tags: service-deployer-primary
-      vars:
-        deployer_variant: primary
-        deployer_container_name: deployer
-        deployer_image: "{{ deployer_deployer_primary_image }}"
-        deployer_ipv4_address: "172.25.16.51"
-    - role: service-deployer
-      tags: service-deployer-secondary
-      vars:
-        deployer_variant: secondary
-        deployer_container_name: deployer-secondary
-        deployer_image: "{{ deployer_deployer_secondary_image }}"
-        deployer_ipv4_address: "172.25.16.52"
     - role: service-energi-extractor
       tags: service-energi-extractor
       vars:
@@ -187,3 +171,26 @@
       vars:
         webdavcgi_image: "{{ deployer_webdavcgi_image }}"
         webdavcgi_ipv4_address: "172.25.16.16"
+
+# Deployer.
+# Two instances of deployer is used so that the deployer can
+# self-update by targeting the other instance.
+# This is not tagged as all-services, as we would stop our own
+# deployment in that case.
+- hosts: fcos-3
+  become: yes
+  roles:
+    - role: service-deployer
+      tags: service-deployer-primary
+      vars:
+        deployer_variant: primary
+        deployer_container_name: deployer
+        deployer_image: "{{ deployer_deployer_primary_image }}"
+        deployer_ipv4_address: "172.25.16.51"
+    - role: service-deployer
+      tags: service-deployer-secondary
+      vars:
+        deployer_variant: secondary
+        deployer_container_name: deployer-secondary
+        deployer_image: "{{ deployer_deployer_secondary_image }}"
+        deployer_ipv4_address: "172.25.16.52"
