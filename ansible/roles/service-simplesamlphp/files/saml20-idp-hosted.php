@@ -15,6 +15,7 @@ $metadata[$prefix . "saml2/idp/metadata.php"] = [
   "privatekey" => "idp.foreningenbs.no.key",
   // Relative to cert directory.
   "certificate" => "idp.foreningenbs.no.crt",
+  "attributes.NameFormat" => "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
   "auth" => "fbs-multi",
   "authproc" => [
     5 => [
