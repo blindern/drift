@@ -4,18 +4,22 @@
 
 require "/var/simplesamlphp/config/secrets.php";
 
+$httpUtils = new \SimpleSAML\Utils\HTTP();
+
 $config = [
   "baseurlpath" => "https://foreningenbs.no/simplesaml/",
   "certdir" => "cert/",
   "loggingdir" => "/storage/log/",
   "datadir" => "/storage/data/",
   "tempdir" => "/tmp/simplesamlphp",
-  "debug" => true,
-  "showerrors" => true,
-  "errorreporting" => true,
-  "debug.validatexml" => false,
+  "debug" => [
+    "saml" => false,
+    "backtraces" => true,
+    "validatexml" => false,
+  ],
+  "showerrors" => false,
+  "errorreporting" => false,
   "auth.adminpassword" => $secret_auth_adminpass,
-  "admin.protectindexpage" => false,
   "admin.protectmetadata" => false,
   "secretsalt" => $secret_secretsalt,
   "technicalcontact_name" => "IT-gruppa",
@@ -29,10 +33,7 @@ $config = [
   "logging.logfile" => "simplesamlphp.log",
   "statistics.out" => [],
   "enable.saml20-idp" => true,
-  "enable.shib13-idp" => false,
   "enable.adfs-idp" => false,
-  "enable.wsfed-sp" => false,
-  "enable.authmemcookie" => false,
   "session.duration" => 8 * (60 * 60), // 8 hours.
   "session.datastore.timeout" => (4 * 60 * 60), // 4 hours
   "session.state.timeout" => (60 * 60), // 1 hour
@@ -41,6 +42,7 @@ $config = [
   "session.cookie.path" => "/",
   "session.cookie.domain" => null,
   "session.cookie.secure" => true,
+  "session.cookie.samesite" => $httpUtils->canSetSameSiteNone() ? "None" : null,
   "session.disable_fallback" => false,
   "enable.http_post" => false,
   "session.phpsession.cookiename" => null,
@@ -51,9 +53,9 @@ $config = [
   "session.rememberme.checked" => true,
   "session.rememberme.lifetime" => (14 * 86400),
   "language.available" => [
-    "en", "no", "nn", "se", "da", "de", "sv", "fi", "es", "fr", "it", "nl", "lb", "cs",
-    "sl", "lt", "hr", "hu", "pl", "pt", "pt-br", "tr", "ja", "zh", "zh-tw", "ru", "et",
-    "he", "id", "sr", "lv", "ro", "eu"
+    "en", "no", "nn", "se", "da", "de", "sv", "fi", "es", "ca", "fr", "it", "nl", "lb",
+    "cs", "sk", "sl", "lt", "hr", "hu", "pl", "pt", "pt-br", "tr", "ja", "zh", "zh-tw",
+    "ru", "et", "he", "id", "sr", "lv", "ro", "eu", "el", "af", "zu", "xh", "st",
   ],
   "language.rtl" => ["ar", "dv", "fa", "ur", "he"],
   "language.default" => "no",
@@ -63,15 +65,13 @@ $config = [
   "language.cookie.domain" => null,
   "language.cookie.path" => "/",
   "language.cookie.lifetime" => (60 * 60 * 24 * 900),
-  "attributes.extradictionary" => null,
+  "language.cookie.samesite" => $httpUtils->canSetSameSiteNone() ? "None" : null,
   "theme.use" => "fbs:bstheme",
-  "default-wsfed-idp" => "urn:federation:pingfederate:localhost",
   "idpdisco.enableremember" => true,
   "idpdisco.rememberchecked" => true,
   "idpdisco.validate" => true,
   "idpdisco.extDiscoveryStorage" => null,
   "idpdisco.layout" => "dropdown",
-  "shib13.signresponse" => true,
   "authproc.idp" => [
     10 => [
       "class" => "saml:TransientNameID",
@@ -84,6 +84,7 @@ $config = [
   "authproc.sp" => [
     90 => "core:LanguageAdaptor",
   ],
+  "metadatadir" => "metadata",
   "metadata.sources" => [
     ["type" => "flatfile"],
   ],
@@ -97,7 +98,16 @@ $config = [
   "metadata.sign.privatekey_pass" => null,
   "metadata.sign.certificate" => null,
   "proxy" => null,
-  "trusted.url.domains" => null,
+  "trusted.url.domains" => ["foreningenbs.no"],
+  "module.enable" => [
+    "admin" => true,
+    "authoauth2" => true,
+    "fbs" => true,
+    "multiauth" => true,
+  ],
+  'headers.security' => [
+    'Content-Security-Policy' => "default-src 'none'; frame-ancestors 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com; font-src 'self' https://maxcdn.bootstrapcdn.com; connect-src 'self'; img-src 'self' data:; base-uri 'none'",
+  ],
 ];
 
 // For local development to override this config.

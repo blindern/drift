@@ -6,7 +6,10 @@
 
 require "/var/simplesamlphp/config/secrets.php";
 
-$metadata["__DYNAMIC:1__"] = [
+$httpUtils = new \SimpleSAML\Utils\HTTP();
+$prefix = $httpUtils->getBaseURL();
+
+$metadata[$prefix . "saml2/idp/metadata.php"] = [
   "host" => "__DEFAULT__",
   // Relative to cert directory.
   "privatekey" => "idp.foreningenbs.no.key",

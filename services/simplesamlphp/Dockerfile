@@ -1,11 +1,5 @@
 FROM php:8.1-apache
 
-# Se latest at https://simplesamlphp.org/download/
-ENV SIMPLESAMLPHP_VERSION=1.19.6
-ENV SIMPLESAMLPHP_SHA256=834bb4a89d63d7498e77cceb49e01b919d1c0a6a3d38a992f905810dad424b7c
-
-ENV COMPOSER_VERSION=2.3.10
-
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
@@ -17,18 +11,20 @@ RUN set -eux; \
     ; \
     rm -rf /var/lib/apt/lists/*
 
-RUN set -eux; \
-    # Set up composer.
-    echo "$(wget -q -O- https://composer.github.io/installer.sig)  composer-setup.php" >composer-setup.php.sha384; \
-    wget -O composer-setup.php https://getcomposer.org/installer; \
-    sha384sum -c composer-setup.php.sha384; \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer --quiet; \
-    rm composer-setup.php; \
-    rm composer-setup.php.sha384
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
     mkdir /var/simplesamlphp; \
     chown www-data:www-data /var/simplesamlphp /var/www
+
+# renovate: datasource=github-tags depName=https://github.com/simplesamlphp/simplesamlphp.git
+ENV SIMPLESAMLPHP_VERSION=2.2.1
+
+# renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-authoauth2.git tag=master
+ENV AUTHOAUTH2_COMMIT=cf49ce136d9f7829e967c5855896b7aee64c3c2c
+
+# renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-fbs.git tag=master
+ENV FBS_COMMIT=856a9e75bb026f2f0ddd9ec32785aa2ad4b99a00
 
 USER www-data
 
@@ -36,9 +32,8 @@ RUN set -eux; \
     # Install SimpleSAMLphp.
     # See https://simplesamlphp.org/docs/stable/simplesamlphp-install
     cd /var/simplesamlphp; \
-    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION.tar.gz" \
+    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION-slim.tar.gz" \
       -o simplesamlphp.tar.gz; \
-    echo "$SIMPLESAMLPHP_SHA256 *simplesamlphp.tar.gz" | sha256sum -c -; \
     tar --strip-components=1 -zxf simplesamlphp.tar.gz; \
     rm simplesamlphp.tar.gz; \
     \
@@ -49,8 +44,8 @@ RUN set -eux; \
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-fbs"},\
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-authoauth2"}]' \
       >composer.json; \
-    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#21856d8"; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#6eef140"; \
+    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-ssp2#${AUTHOAUTH2_COMMIT}"; \
+    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#${FBS_COMMIT}"; \
     composer clear-cache
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
