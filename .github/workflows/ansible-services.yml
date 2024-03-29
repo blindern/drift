@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "ansible/roles/service-/**"
+      - "ansible/roles/service-*/**"
       - "ansible/site.yml"
       - "ansible/hosts"
 jobs:
