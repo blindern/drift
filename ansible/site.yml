@@ -181,14 +181,14 @@
   become: yes
   roles:
     - role: service-deployer
-      tags: service-deployer-primary
+      tags: [service-deployer, service-deployer-primary]
       vars:
         deployer_variant: primary
         deployer_container_name: deployer
         deployer_image: "{{ deployer_deployer_primary_image }}"
         deployer_ipv4_address: "172.25.16.51"
     - role: service-deployer
-      tags: service-deployer-secondary
+      tags: [service-deployer, service-deployer-secondary]
       vars:
         deployer_variant: secondary
         deployer_container_name: deployer-secondary
