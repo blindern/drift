@@ -28,11 +28,12 @@ ENV FBS_COMMIT=856a9e75bb026f2f0ddd9ec32785aa2ad4b99a00
 
 USER www-data
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -eux; \
     # Install SimpleSAMLphp.
     # See https://simplesamlphp.org/docs/stable/simplesamlphp-install
     cd /var/simplesamlphp; \
-    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-${SIMPLESAMLPHP_VERSION:1}-slim.tar.gz" \
+    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/$SIMPLESAMLPHP_VERSION/simplesamlphp-${SIMPLESAMLPHP_VERSION:1}-slim.tar.gz" \
       -o simplesamlphp.tar.gz; \
     tar --strip-components=1 -zxf simplesamlphp.tar.gz; \
     rm simplesamlphp.tar.gz; \
