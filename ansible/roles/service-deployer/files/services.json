@@ -75,6 +75,14 @@
     }
   },
   {
+    "service_name": "ldap-toolbox",
+    "ansible_tag": "service-ldap-toolbox",
+    "ansible_host": "fcos-3",
+    "mappings": {
+      "image": "deployer_ldap_toolbox_image"
+    }
+  },
+  {
     "service_name": "nginx-front-1",
     "ansible_tag": "service-nginx-front-1",
     "ansible_host": "fcos-3",
