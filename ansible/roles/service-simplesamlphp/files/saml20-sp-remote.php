@@ -56,15 +56,20 @@ $metadata["http://localhost:8080/dugnaden/saml/module.php/saml/sp/metadata.php/d
 $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
   "AssertionConsumerService" => "https://foreningenbs.no/confluence/plugins/servlet/samlsso",
   "NameIDFormat" => "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
-  "simplesaml.nameidattribute" => "username",
-  "saml20.sign.assertion" => true
+  "saml20.sign.assertion" => true,
+  "authproc" => [
+    20 => [
+      "class" => "saml:AttributeNameID",
+      "identifyingAttribute" => "username",
+      "Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+    ],
+  ]
 ];
 
 // Pålogging på Google Apps for UKA.
 $metadata["google.com/a/blindernuka.no"] = [
   "AssertionConsumerService" => "https://www.google.com/a/blindernuka.no/acs",
   "NameIDFormat" => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-  "simplesaml.nameidattribute" => "gapps-mail",
   "simplesaml.attributes" => false,
   "saml20.sign.assertion" => true,
   "authproc" => [
@@ -73,7 +78,12 @@ $metadata["google.com/a/blindernuka.no"] = [
       "accounts_url" => "https://foreningenbs.no/intern/api/googleapps/accounts",
       "accounts_url_auth_token" => $secret_accounts_url_auth_token,
       "userfile" => "/storage/cache/ukausers"
-    ]
+    ],
+    20 => [
+      "class" => "saml:AttributeNameID",
+      "identifyingAttribute" => "gapps-mail",
+      "Format" => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+    ],
   ]
 ];
 
