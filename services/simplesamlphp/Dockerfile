@@ -21,7 +21,7 @@ RUN set -eux; \
 ENV SIMPLESAMLPHP_VERSION=v2.2.1
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-authoauth2.git tag=master
-ENV AUTHOAUTH2_COMMIT=cf49ce136d9f7829e967c5855896b7aee64c3c2c
+ENV AUTHOAUTH2_COMMIT=b4bd0163ed99f80b9d642214b08bf5d6b73c182b
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-fbs.git tag=master
 ENV FBS_COMMIT=856a9e75bb026f2f0ddd9ec32785aa2ad4b99a00
