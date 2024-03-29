@@ -1,0 +1,60 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/ldap-toolbox
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy files
+  copy:
+    dest: "/var/ansible/ldap-toolbox/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - ldap.conf
+    - ldapadduser.template
+    - ldapscripts.conf
+    - ldapscripts.passwd
+    - smbldap_bind.conf
+    - smbldap.conf
+  register: file_copied1
+
+- name: Copy cert files
+  copy:
+    dest: "/var/ansible/ldap-toolbox/{{ item }}"
+    src: "{{ playbook_dir }}/../certs/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - ca.crt
+  register: file_copied2
+
+- name: Start container
+  docker_container:
+    name: ldap-toolbox
+    state: started
+    image: "{{ ldap_toolbox_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ ldap_toolbox_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/mnt/data:/data
+      - /var/mnt/data/drift:/fbs/drift:z
+      - /var/ansible/ldap-toolbox/ca.crt:/etc/fbs-ca.crt:Z
+      - /var/ansible/ldap-toolbox/ldap.conf:/etc/ldap/ldap.conf:Z
+      - /var/ansible/ldap-toolbox/ldapscripts.conf:/etc/ldapscripts/ldapscripts.conf:Z
+      - /var/ansible/ldap-toolbox/ldapadduser.template:/etc/ldapscripts/ldapadduser.template:Z
+      - /var/ansible/ldap-toolbox/ldapscripts.passwd:/etc/ldapscripts/ldapscripts.passwd:Z
+      - /var/ansible/ldap-toolbox/smbldap_bind.conf:/etc/smbldap-tools/smbldap_bind.conf:Z
+      - /var/ansible/ldap-toolbox/smbldap.conf:/etc/smbldap-tools/smbldap.conf:Z
+    working_dir: /data/intern-backend-data/user-requests
+    # Keep running in the background.
+    tty: true
+    log_driver: journald
+    restart: "{{ file_copied1.changed or file_copied2.changed }}"

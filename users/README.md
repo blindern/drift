@@ -1,40 +1,27 @@
 # Foreningsbrukere
 
+Se https://foreningenbs.no/confluence/display/IT/LDAP for informasjon
+rundt hvordan oppsettet med brukere fungerer.
+
 ## Vedlikehold av brukere
-
-Se [ldap-toolbox](../ldap-toolbox/README.md) for grunnleggende oppsett
-for å kunne kjøre SSH-kommandoer osv.
-
-Se også https://foreningenbs.no/confluence/display/IT/LDAP for
-mer informasjon rundt hvordan systemet fungerer.
 
 ### Opprette brukere (samt oppdatere attributter på eksisterende brukere)
 
 1. Logg inn på fcos-3:
 
    ```bash
-   ssh -A root@fcos-3.nrec.foreningenbs.no
+   ssh root@fcos-3.nrec.foreningenbs.no
    ```
 
    fcos-3 er samme maskin som vi lagrer filer for brukerregistrering (se web-1).
 
-1. Gå til mappen hvor vi har synket opp dette repoet:
+1. Koble til `ldap-toolbox`-containeren:
 
    ```bash
-   cd /var/mnt/data/drift/ldap-toolbox
+   docker exec -it ldap-toolbox bash
    ```
 
-   Oppdater gjerne repoet (derfor `-A` i ssh-tilkoblingen):
-
-   ```bash
-   git pull
-   ```
-
-1. Kjør på Docker-containeren som inneholder toolingen vi trenger:
-
-   ```bash
-   ./run.sh
-   ```
+   Se [ldap-toolbox](../services/ldap-toolbox/README.md) for mer detaljer.
 
 1. Opprett bruker som tidligere som beskrevet i e-post ved registrering:
 

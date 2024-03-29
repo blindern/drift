@@ -101,6 +101,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
   - 172.25.16.53 mongodb-2.zt.foreningenbs.no
   - 172.25.16.54 energi-extractor (no DNS record created, only outband traffic)
   - 172.25.16.55 dugnaden-mysql.zt.foreningenbs.no
+  - 127.25.16.56 ldap-toolbox.zt.foreningenbs.no
 
 ### Public web
 

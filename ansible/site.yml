@@ -161,6 +161,11 @@
       vars:
         ldap_slave_image: "{{ deployer_ldap_slave_image }}"
         ldap_slave_ipv4_address: "172.25.16.31"
+    - role: service-ldap-toolbox
+      tags: service-ldap-toolbox
+      vars:
+        ldap_toolbox_image: "{{ deployer_ldap_toolbox_image }}"
+        ldap_toolbox_ipv4_address: "127.25.16.56"
     - role: service-simplesamlphp
       tags: service-simplesamlphp
       vars:

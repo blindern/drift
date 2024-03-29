@@ -1,0 +1,38 @@
+name: Build ldap-toolbox
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "services/ldap-toolbox/**"
+      - ".github/workflows/ldap-toolbox.yml"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build container
+        id: docker_build
+        uses: docker/build-push-action@v5
+        with:
+          context: services/ldap-toolbox
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ghcr.io/blindern/ldap-toolbox:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main-TODO'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "ldap-toolbox",
+            "attributes": {
+              "image": "ghcr.io/blindern/ldap-toolbox@${{ steps.docker_build.outputs.digest }}"
+            }
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
