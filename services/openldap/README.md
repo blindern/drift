@@ -72,6 +72,12 @@ Legg med `-d1` hvis du får feil. Du må legge til CA-sertifikatet for
 
 > Du kan kjøre dette fra [ldap-toolbox](../../ldap-toolbox) som er ferdig satt opp for dette.
 > Den inneholder også f.eks. `ldapaddusertogroup` og slikt.
+>
+> Via `ldap-toolbox` trenger du kun kjøre (og uten passord):
+>
+> ```bash
+> ldapsearch -x -LLL -b ou=Users,dc=foreningenbs,dc=no name
+> ```
 
 ## Eksempler
 
