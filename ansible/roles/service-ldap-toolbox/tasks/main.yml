@@ -33,6 +33,17 @@
     - ca.crt
   register: file_copied2
 
+- name: Copy scripts
+  copy:
+    dest: "/var/ansible/ldap-toolbox/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - process.sh
+  register: file_copied3
+
 - name: Start container
   docker_container:
     name: ldap-toolbox
@@ -47,6 +58,7 @@
     volumes:
       - /var/mnt/data:/data
       - /var/mnt/data/drift:/fbs/drift:z
+      - /var/ansible/ldap-toolbox/process.sh:/fbs/drift/nybruker/process.sh:Z
       - /var/ansible/ldap-toolbox/ca.crt:/etc/fbs-ca.crt:Z
       - /var/ansible/ldap-toolbox/ldap.conf:/etc/ldap/ldap.conf:Z
       - /var/ansible/ldap-toolbox/ldapscripts.conf:/etc/ldapscripts/ldapscripts.conf:Z
@@ -58,4 +70,4 @@
     # Keep running in the background.
     tty: true
     log_driver: journald
-    restart: "{{ file_copied1.changed or file_copied2.changed }}"
+    restart: "{{ file_copied1.changed or file_copied2.changed or file_copied3.changed }}"
