@@ -11,7 +11,7 @@
       Description=Run on a schedule
 
       [Timer]
-      OnCalendar=*-*-* */3:15:00
+      OnCalendar=*-*-* 0/3:15:00
       Persistent=true
 
       [Install]
