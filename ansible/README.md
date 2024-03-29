@@ -17,6 +17,10 @@ Most other changes to this directory is also deployed automatically
 by triggering the deployer tool from a few GitHub Actions in this repo.
 See the GitHub actions for more details.
 
+Deploy for changes to `roles/service-*` directories must be triggered
+manually at https://github.com/blindern/drift/actions/workflows/ansible-services.yml
+This is to avoid race conditions when changing multiple things at once.
+
 ## Getting started
 
 Install Ansible locally using your package manager. E.g. on Arch:

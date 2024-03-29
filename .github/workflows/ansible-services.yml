@@ -1,13 +1,6 @@
 name: Deploy all Ansible services
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "ansible/roles/service-*/**"
-      - "ansible/site.yml"
-      - "ansible/hosts"
 jobs:
   build:
     runs-on: ubuntu-latest
