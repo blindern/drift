@@ -1,15 +1,15 @@
-{
-  "all-services": {
+[
+  {
     "service_name": "all-services",
     "ansible_tag": "all-services",
     "ansible_host": "all"
   },
-  "all-common": {
+  {
     "service_name": "all-common",
     "ansible_tag": "common",
     "ansible_host": "all"
   },
-  "confluence": {
+  {
     "service_name": "confluence",
     "ansible_tag": "service-confluence",
     "ansible_host": "fcos-1",
@@ -17,7 +17,7 @@
       "image": "deployer_confluence_image"
     }
   },
-  "deployer-primary": {
+  {
     "service_name": "deployer-primary",
     "ansible_tag": "service-deployer-primary",
     "ansible_host": "fcos-3",
@@ -25,7 +25,7 @@
       "image": "deployer_deployer_primary_image"
     }
   },
-  "deployer-secondary": {
+  {
     "service_name": "deployer-secondary",
     "ansible_tag": "service-deployer-secondary",
     "ansible_host": "fcos-3",
@@ -33,7 +33,7 @@
       "image": "deployer_deployer_secondary_image"
     }
   },
-  "dugnaden": {
+  {
     "service_name": "dugnaden",
     "ansible_tag": "service-dugnaden",
     "ansible_host": "fcos-3",
@@ -41,7 +41,7 @@
       "image": "deployer_dugnaden_image"
     }
   },
-  "energi-extractor": {
+  {
     "service_name": "energi-extractor",
     "ansible_tag": "service-energi-extractor",
     "ansible_host": "fcos-3",
@@ -49,7 +49,7 @@
       "image": "deployer_energi_extractor_image"
     }
   },
-  "intern": {
+  {
     "service_name": "intern",
     "ansible_tag": "service-intern",
     "ansible_host": "fcos-3",
@@ -58,7 +58,7 @@
       "frontend_image": "deployer_intern_frontend_image"
     }
   },
-  "ldap-master": {
+  {
     "service_name": "ldap-master",
     "ansible_tag": "service-ldap-master",
     "ansible_host": "fcos-2",
@@ -66,7 +66,7 @@
       "image": "deployer_ldap_master_image"
     }
   },
-  "ldap-slave": {
+  {
     "service_name": "ldap-slave",
     "ansible_tag": "service-ldap-slave",
     "ansible_host": "fcos-3",
@@ -74,7 +74,7 @@
       "image": "deployer_ldap_slave_image"
     }
   },
-  "nginx-front-1": {
+  {
     "service_name": "nginx-front-1",
     "ansible_tag": "service-nginx-front-1",
     "ansible_host": "fcos-3",
@@ -82,7 +82,7 @@
       "image": "deployer_nginx_front_1_image"
     }
   },
-  "okoreports": {
+  {
     "service_name": "okoreports",
     "ansible_tag": "service-okoreports",
     "ansible_host": "fcos-2",
@@ -91,7 +91,7 @@
       "frontend_image": "deployer_okoreports_frontend_image"
     }
   },
-  "simplesamlphp": {
+  {
     "service_name": "simplesamlphp",
     "ansible_tag": "service-simplesamlphp",
     "ansible_host": "fcos-3",
@@ -99,7 +99,7 @@
       "image": "deployer_simplesamlphp_image"
     }
   },
-  "slack-invite-automation": {
+  {
     "service_name": "slack-invite-automation",
     "ansible_tag": "service-slack-invite-automation",
     "ansible_host": "fcos-2",
@@ -107,7 +107,7 @@
       "image": "deployer_slack_invite_automation_image"
     }
   },
-  "smaabruket-availability-api": {
+  {
     "service_name": "smaabruket-availability-api",
     "ansible_tag": "service-smaabruket-availability-api",
     "ansible_host": "fcos-2",
@@ -115,7 +115,7 @@
       "image": "deployer_smaabruket_availability_api_image"
     }
   },
-  "uka-billett": {
+  {
     "service_name": "uka-billett",
     "ansible_tag": "service-uka-billett",
     "ansible_host": "fcos-1",
@@ -125,7 +125,7 @@
       "frontend_image": "deployer_uka_billett_frontend_image"
     }
   },
-  "uka-webserver": {
+  {
     "service_name": "uka-webserver",
     "ansible_tag": "service-uka-webserver",
     "ansible_host": "fcos-1",
@@ -133,7 +133,7 @@
       "image": "deployer_uka_webserver_image"
     }
   },
-  "users-api": {
+  {
     "service_name": "users-api",
     "ansible_tag": "service-users-api",
     "ansible_host": "fcos-2",
@@ -141,7 +141,7 @@
       "image": "deployer_users_api_image"
     }
   },
-  "web-1": {
+  {
     "service_name": "web-1",
     "ansible_tag": "service-web-1",
     "ansible_host": "fcos-3",
@@ -149,7 +149,7 @@
       "image": "deployer_web_1_image"
     }
   },
-  "webdavcgi": {
+  {
     "service_name": "webdavcgi",
     "ansible_tag": "service-webdavcgi",
     "ansible_host": "fcos-3",
@@ -157,4 +157,4 @@
       "image": "deployer_webdavcgi_image"
     }
   }
-}
+]
