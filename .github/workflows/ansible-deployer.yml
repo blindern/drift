@@ -1,0 +1,33 @@
+name: Deploy deployer
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "ansible/roles/service-deployer/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy secondary from primary
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "deployer-secondary"
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
+
+      - name: Deploy primary from secondary
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer-secondary.foreningenbs.no/deploy -d '
+          {
+            "service": "deployer-primary"
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
