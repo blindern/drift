@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
+ENV LANG=nb_NO.UTF-8
 
 RUN set -eux; \
     apt-get update; \
