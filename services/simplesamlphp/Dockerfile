@@ -17,8 +17,8 @@ RUN set -eux; \
     mkdir /var/simplesamlphp; \
     chown www-data:www-data /var/simplesamlphp /var/www
 
-# renovate: datasource=github-tags depName=https://github.com/simplesamlphp/simplesamlphp.git
-ENV SIMPLESAMLPHP_VERSION=2.2.1
+# renovate: datasource=github-tags depName=simplesamlphp/simplesamlphp
+ENV SIMPLESAMLPHP_VERSION=v2.2.1
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-authoauth2.git tag=master
 ENV AUTHOAUTH2_COMMIT=cf49ce136d9f7829e967c5855896b7aee64c3c2c
@@ -32,7 +32,7 @@ RUN set -eux; \
     # Install SimpleSAMLphp.
     # See https://simplesamlphp.org/docs/stable/simplesamlphp-install
     cd /var/simplesamlphp; \
-    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-$SIMPLESAMLPHP_VERSION-slim.tar.gz" \
+    curl -fSL "https://github.com/simplesamlphp/simplesamlphp/releases/download/v$SIMPLESAMLPHP_VERSION/simplesamlphp-${SIMPLESAMLPHP_VERSION:1}-slim.tar.gz" \
       -o simplesamlphp.tar.gz; \
     tar --strip-components=1 -zxf simplesamlphp.tar.gz; \
     rm simplesamlphp.tar.gz; \
