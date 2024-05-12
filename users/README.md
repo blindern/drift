@@ -5,50 +5,7 @@ rundt hvordan oppsettet med brukere fungerer.
 
 ## Vedlikehold av brukere
 
-### Opprette brukere (samt oppdatere attributter på eksisterende brukere)
-
-1. Logg inn på fcos-3:
-
-   ```bash
-   ssh root@fcos-3.nrec.foreningenbs.no
-   ```
-
-   fcos-3 er samme maskin som vi lagrer filer for brukerregistrering (se web-1).
-
-1. Koble til `ldap-toolbox`-containeren:
-
-   ```bash
-   docker exec -it ldap-toolbox bash
-   ```
-
-   Se [ldap-toolbox](../services/ldap-toolbox/README.md) for mer detaljer.
-
-1. Opprett bruker som tidligere som beskrevet i e-post ved registrering:
-
-   ```bash
-   /fbs/drift/nybruker/process.sh <id>.sh
-   ```
-
-### Endre grupper
-
-1. Følg oppskriften over, men ikke kjør scriptet for å opprette/oppdatere bruker
-
-1. Kall på ldap-scriptene som f.eks.:
-
-   1. `ldapaddusertogroup henrste beboer`
-
-   Se https://foreningenbs.no/confluence/display/FBS/LDAP for mer detaljer.
-
-### Endring av navn og andre attributter
-
-Det enkleste er å bruke https://foreningenbs.no/tools/phpldapadmin/ for dette.
-
-Logg først inn med foreningsbrukeren for å komme til
-ny innloggingsside for verktøyet. Der må du bruke brukernavnet
-og passordet som er angitt her:
-https://foreningenbs.no/confluence/x/PgYf
-
-Husk at f.eks. navn ligger lagret i flere felter, så du må ofte endre både `cn`, `displayName`, `givenName` og `sn`.
+Se oppskrifter på https://foreningenbs.no/confluence/display/IT/LDAP
 
 ### Feilsøking
 
