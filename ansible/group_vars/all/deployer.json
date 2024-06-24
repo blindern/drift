@@ -4,7 +4,7 @@
   "deployer_deployer_secondary_image": "blindern/deployer@sha256:0625482fca309d28947b412123378ff863b6fd72f38bcb267ff219b0c08e704f",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:3b11cb5c1751114b2cf98b8abc2ed0a764c7a7cd54812acc6f4b74d799f22192",
   "deployer_energi_extractor_image": "blindern/energi-extractor@sha256:dac7e2114f2e753f9155fc36681c6c43f216655589ec429837bca75241129799",
-  "deployer_intern_backend_image": "blindern/intern-backend@sha256:4bcd474be2c970a1a67c47066c000fe9284875376ead6796a0ecf58893551229",
+  "deployer_intern_backend_image": "blindern/intern-backend@sha256:e206678bc73900b8f925143ce37e108c0a1045a216d1449004f94ba0e4cce369",
   "deployer_intern_frontend_image": "blindern/intern-frontend@sha256:d1180e32fd053cf18080fd8a9345b7a8315652f0adf2fb0c2781b55b54d88549",
   "deployer_ldap_master_image": "blindern/openldap@sha256:bc48fbbe801c27a13aaf9938d42ff0f0380e38b94e875668b7397dba4db74c66",
   "deployer_ldap_slave_image": "blindern/openldap@sha256:bc48fbbe801c27a13aaf9938d42ff0f0380e38b94e875668b7397dba4db74c66",
