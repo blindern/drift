@@ -18,7 +18,7 @@
     networks_cli_compatible: yes
     volumes:
       - /var/mnt/data/confluence-data:/var/atlassian/application-data/confluence:z
-      - /var/mnt/data/confluence-logs:/opt/atlassian/confluence/logs:Z
+      - /var/mnt/data/confluence-logs:/opt/atlassian/confluence/logs:z
     log_driver: journald
     ulimits:
       - nofile:1048576:1048576
