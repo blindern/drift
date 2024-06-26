@@ -20,7 +20,7 @@
   },
   "packageRules": [
     {
-      "matchFileNames": ["checkly/**/"],
+      "matchFileNames": ["checkly/**"],
       "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
       "automerge": true
     }
