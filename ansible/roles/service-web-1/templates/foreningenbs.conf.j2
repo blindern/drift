@@ -38,12 +38,8 @@
   RewriteRule ^/confluence/.*/login/plugins/servlet/samlsso.* https://foreningenbs.no/confluence/plugins/servlet/samlsso$1 [R,L,NE]
   RewriteRule ^/plugins/servlet/samlsso/logout$ /confluence/plugins/servlet/samlsso/logout [R,L]
 
-  # Internsia.
-  Alias /intern /var/www/aliases/intern/public
-
   # Småbruket.
   Alias /smaabruket /var/www/aliases/smaabruket/public
-  RewriteRule /smaabruket-test /confluence/pages/viewpage.action?pageId=2031684 [PT,L]
 
   # Statutter.
   Alias /statutter/arkiv /var/www/statutter-arkiv/arkiv
@@ -76,12 +72,6 @@
   <Location /okoreports>
     MellonEnable "auth"
   </Location>
-
-  # Z-backend for uka, kjører i docker.
-  # (Ikke i bruk p.t.)
-  # ProxyPass /z-backend-uka/ http://localhost:8089/
-  # ProxyPassReverse /z-backend-uka/ http://localhost:8089/
-  # RewriteRule ^/z-backend-uka$ /z-backend-uka/ [R,L]
 
   # Verktøyside med pålogging.
   <Location /tools>
