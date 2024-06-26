@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
   ],
@@ -12,6 +13,16 @@
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sENV .*?_VERSION=(?<currentValue>.*)\\s",
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) tag=(?<currentValue>.*)\\sENV .*?_COMMIT=(?<currentDigest>[a-f0-9]{40})\\s"
       ]
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "matchFileNames": ["checkly/**/"],
+      "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
+      "automerge": true
     }
   ]
 }
