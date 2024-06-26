@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/uka-webserver.yml"
       - "services/uka-webserver/**"
 jobs:
   build:

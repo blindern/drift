@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/webdavcgi.yml"
       - "services/webdavcgi/**"
 jobs:
   build:

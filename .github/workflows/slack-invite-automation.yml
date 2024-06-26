@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/slack-invite-automation.yml"
       - "services/slack-invite-automation/**"
 jobs:
   build:

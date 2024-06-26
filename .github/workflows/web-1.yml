@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/web-1.yml"
       - "services/web-1/**"
 jobs:
   build:

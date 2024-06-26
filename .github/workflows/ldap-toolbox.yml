@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "services/ldap-toolbox/**"
       - ".github/workflows/ldap-toolbox.yml"
+      - "services/ldap-toolbox/**"
 jobs:
   build:
     runs-on: ubuntu-latest

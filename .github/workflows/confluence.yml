@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/confluence.yml"
       - "services/confluence/**"
 jobs:
   build:

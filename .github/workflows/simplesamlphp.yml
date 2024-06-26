@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/simplesamlphp.yml"
       - "services/simplesamlphp/**"
 jobs:
   build:
