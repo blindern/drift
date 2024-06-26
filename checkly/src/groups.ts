@@ -17,7 +17,7 @@ export const fbsGroup = new CheckGroup("fbs-check-group", {
   alertEscalationPolicy: AlertEscalationBuilder.runBasedEscalation(1),
   retryStrategy: RetryStrategyBuilder.linearStrategy({
     baseBackoffSeconds: 30,
-    maxRetries: 3,
+    maxRetries: 10,
     sameRegion: false,
   }),
   runParallel: true,
