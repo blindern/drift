@@ -45,9 +45,6 @@
   Alias /smaabruket /var/www/aliases/smaabruket/public
   RewriteRule /smaabruket-test /confluence/pages/viewpage.action?pageId=2031684 [PT,L]
 
-  # Brukersystemet.
-  ProxyPass /users-api http://users-api.zt.foreningenbs.no:8000
-
   # Statutter.
   Alias /statutter/arkiv /var/www/statutter-arkiv/arkiv
   RewriteRule ^/statutter/?$ https://foreningenbs.no/confluence/display/statutter [R,L]
