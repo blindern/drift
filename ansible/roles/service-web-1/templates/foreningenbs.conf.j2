@@ -23,11 +23,6 @@
   RewriteCond %{HTTP_HOST} !^foreningenbs\.no$ [NC]
   RewriteRule /robots.txt /var/www/robots-noindex.txt [L]
 
-  # Wiki fra 2015.
-  Alias /wiki-2015 /var/www/aliases/wiki
-  Alias /w /var/www/aliases/wiki
-  RewriteRule ^/wiki-2015(/.*)?$ /var/www/aliases/wiki/index.php [L]
-
   # Wiki: Søk fra foreningenbs.no redirectes slik at man alltid er innlogget ved søking.
   RewriteCond %{QUERY_STRING} =queryString=
   RewriteRule ^/wiki/$ https://foreningenbs.no/confluence/plugins/servlet/samlsso?redirectTo=/x/NgEf [R,L]
