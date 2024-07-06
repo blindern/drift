@@ -12,7 +12,7 @@
     "checkly": "^4",
     "dotenv": "^16.4.5",
     "prettier": "^3",
-    "prettier-plugin-organize-imports": "^3",
+    "prettier-plugin-organize-imports": "^4.0.0",
     "typescript": "~5.5.0"
   },
   "prettier": {
