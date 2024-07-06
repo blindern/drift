@@ -12,6 +12,10 @@
       ATL_TOMCAT_SECURE: "true"
       ATL_TOMCAT_CONTEXTPATH: /confluence
       JVM_MAXIMUM_MEMORY: 3g
+      # https://blindern.slack.com/archives/C23QDQRPS/p1719616878512119
+      JVM_SUPPORT_RECOMMENDED_ARGS: >-
+        -Ddocument.conversion.sandbox.request.time.limit.secs=300
+        -Dconversion.sandbox.memory.limit.megabytes=1024
     networks:
       - name: fbs0
         ipv4_address: "{{ confluence_ipv4_address }}"
