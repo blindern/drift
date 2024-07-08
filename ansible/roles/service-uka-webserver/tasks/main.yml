@@ -41,7 +41,7 @@
       UKA_IS_PROD: "true"
     hostname: uka-webserver.zt.foreningenbs.no
     volumes:
-      - /var/mnt/data/uka-web:/project/uka/web:Z
+      - /var/mnt/data/uka-web:/project/uka/web:z
       - /var/ansible/uka-webserver/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
