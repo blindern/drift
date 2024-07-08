@@ -29,16 +29,30 @@ $metadata["https://foreningenbs.no/w/saml/module.php/saml/sp/metadata.php/defaul
   "AssertionConsumerService" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-acs.php/default-sp",
 ];
 
-// Pålogging på UKAs billettsystem - lokal utviklerversjon.
+// Pålogging på UKAs billettsystem - lokal utviklerversjon. Gammel versjon.
 $metadata["http://localhost:8081/saml/module.php/saml/sp/metadata.php/default-sp"] = [
   "SingleLogoutService" => "http://localhost:8081/saml/module.php/saml/sp/saml2-logout.php/default-sp",
   "AssertionConsumerService" => "http://localhost:8081/saml/module.php/saml/sp/saml2-acs.php/default-sp",
 ];
 
-// Pålogging på UKAs billettsystem.
+// Pålogging på UKAs billettsystem. Gammel versjon.
 $metadata["https://billett.blindernuka.no/saml/module.php/saml/sp/metadata.php/default-sp"] = [
   "SingleLogoutService" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-logout.php/default-sp",
   "AssertionConsumerService" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+];
+
+// Pålogging på UKAs billettsystem - lokal utviklerversjon. 2024-versjon.
+$metadata["http://localhost:8081/api/saml2/metadata"] = [
+  "SingleLogoutService" => "http://localhost:8081/api/saml2/sls",
+  "AssertionConsumerService" => "http://localhost:8081/api/saml2/acs",
+  "attributes" => ["username"],
+];
+
+// Pålogging på UKAs billettsystem. 2024-versjon.
+$metadata["https://billett.blindernuka.no/api/saml2/metadata"] = [
+  "SingleLogoutService" => "https://billett.blindernuka.no/api/saml2/sls",
+  "AssertionConsumerService" => "https://billett.blindernuka.no/api/saml2/acs",
+  "attributes" => ["username"],
 ];
 
 // Pålogging på dugnadssystemet.
