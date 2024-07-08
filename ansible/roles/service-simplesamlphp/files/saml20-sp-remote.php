@@ -45,14 +45,12 @@ $metadata["https://billett.blindernuka.no/saml/module.php/saml/sp/metadata.php/d
 $metadata["http://localhost:8081/api/saml2/metadata"] = [
   "SingleLogoutService" => "http://localhost:8081/api/saml2/sls",
   "AssertionConsumerService" => "http://localhost:8081/api/saml2/acs",
-  "attributes" => ["username"],
 ];
 
 // Pålogging på UKAs billettsystem. 2024-versjon.
 $metadata["https://billett.blindernuka.no/api/saml2/metadata"] = [
   "SingleLogoutService" => "https://billett.blindernuka.no/api/saml2/sls",
   "AssertionConsumerService" => "https://billett.blindernuka.no/api/saml2/acs",
-  "attributes" => ["username"],
 ];
 
 // Pålogging på dugnadssystemet.
