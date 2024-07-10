@@ -7,6 +7,7 @@
     env:
       PMA_HOSTS: "mysql-1.zt.foreningenbs.no,uka-mysql.zt.foreningenbs.no,dugnaden-mysql.zt.foreningenbs.no"
       PMA_ABSOLUTE_URI: https://foreningenbs.no/tools/phpmyadmin/
+      UPLOAD_LIMIT: 1024M
     networks:
       - name: fbs0
         ipv4_address: "{{ phpmyadmin_ipv4_address }}"
