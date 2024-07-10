@@ -6,6 +6,8 @@
     group: root
     mode: 0700
 
+# TODO: Remove orphan /var/ansible/uka-billett/database.php
+
 - name: Copy config files
   copy:
     dest: "/var/ansible/uka-billett/{{ item }}"
@@ -15,7 +17,6 @@
     mode: 0644
   with_items:
     - fpm-secrets.env
-    - database.php
     - nginx.env
   register: file_copied
 
@@ -32,9 +33,7 @@
     env_file: /var/ansible/uka-billett/fpm-secrets.env
     hostname: uka-billett-fpm.zt.foreningenbs.no
     volumes:
-      - /var/mnt/data/uka-billett-data:/var/billett:Z
-      # Keeping an override here to avoid having to rebuild the image for now.
-      - /var/ansible/uka-billett/database.php:/var/www/html/app/config/prod/database.php:Z
+      - /var/mnt/data/uka-billett-data:/var/www/html/storage:z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
 
