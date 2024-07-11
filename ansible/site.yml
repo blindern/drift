@@ -96,7 +96,7 @@
     - role: service-postgresql-1
       tags: service-postgresql-1
       vars:
-        postgresql_1_image: postgres:12.1
+        postgresql_1_image: postgres:16.3
         postgresql_1_ipv4_address: "172.25.16.42"
     - role: service-mysql-1
       tags: service-mysql-1
