@@ -106,7 +106,7 @@
     - role: service-mongodb-2
       tags: service-mongodb-2
       vars:
-        mongodb_2_image: mongo:7.0.7
+        mongodb_2_image: mongo:7.0.12
         mongodb_2_ipv4_address: "172.25.16.53"
 
 # Services running on fcos-3.
