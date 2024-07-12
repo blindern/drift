@@ -126,14 +126,6 @@ data "openstack_compute_flavor_v2" "xlarge" {
   name = "m1.xlarge"
 }
 
-resource "openstack_blockstorage_volume_v3" "volume_5" {
-  name = "volume_5"
-  size = 25
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 resource "openstack_blockstorage_volume_v3" "volume_7" {
   name = "volume_7"
   size = 50
@@ -149,6 +141,14 @@ resource "openstack_blockstorage_volume_v3" "volume_8" {
   name = "volume_8"
   size = 20
   volume_type = "mass-storage-ssd"
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "openstack_blockstorage_volume_v3" "volume_9" {
+  name = "volume_9"
+  size = 25
   lifecycle {
     prevent_destroy = true
   }
@@ -220,11 +220,6 @@ resource "openstack_compute_instance_v2" "fcos_3" {
   }
 }
 
-resource "openstack_compute_volume_attach_v2" "va_5" {
-  instance_id = openstack_compute_instance_v2.fcos_1.id
-  volume_id   = openstack_blockstorage_volume_v3.volume_5.id
-}
-
 resource "openstack_compute_volume_attach_v2" "va_7" {
   instance_id = openstack_compute_instance_v2.fcos_3.id
   volume_id   = openstack_blockstorage_volume_v3.volume_7.id
@@ -233,6 +228,11 @@ resource "openstack_compute_volume_attach_v2" "va_7" {
 resource "openstack_compute_volume_attach_v2" "va_8" {
   instance_id = openstack_compute_instance_v2.fcos_2.id
   volume_id   = openstack_blockstorage_volume_v3.volume_8.id
+}
+
+resource "openstack_compute_volume_attach_v2" "va_9" {
+  instance_id = openstack_compute_instance_v2.fcos_1.id
+  volume_id   = openstack_blockstorage_volume_v3.volume_9.id
 }
 
 # --------------------------------------
