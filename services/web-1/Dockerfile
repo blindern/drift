@@ -9,6 +9,7 @@ RUN set -eux; \
       graphviz \
       libapache2-mod-auth-mellon \
       libssl-dev \
+      msmtp \
       zlib1g-dev \
     ; \
     rm -rf /var/lib/apt/lists/*
