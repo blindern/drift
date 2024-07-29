@@ -13,7 +13,7 @@ importers:
         version: 1.45.3
       checkly:
         specifier: ^4
-        version: 4.7.0(@types/node@22.0.0)(typescript@5.5.4)
+        version: 4.8.0(@types/node@22.0.0)(typescript@5.5.4)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -272,8 +272,8 @@ packages:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
-  checkly@4.7.0:
-    resolution: {integrity: sha512-OVEn7iUrtTs/YrxmNcWo7jQkH+e5LS0/KhF+MmIi8DbrCc8sCBppO1JyEnjoKcslCkV/Rilad66LShI6V/cqvQ==}
+  checkly@4.8.0:
+    resolution: {integrity: sha512-IMr1qSjGaQWLzKdeVsfw95F2pyawDHyZnlQqRoTaTIdR2AxygwAhb5/WVf9uh07NYxeW50Y89QIhIlgunu6u4A==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -1634,7 +1634,7 @@ snapshots:
 
   chalk@5.3.0: {}
 
-  checkly@4.7.0(@types/node@22.0.0)(typescript@5.5.4):
+  checkly@4.8.0(@types/node@22.0.0)(typescript@5.5.4):
     dependencies:
       '@oclif/core': 2.8.11(@types/node@22.0.0)(typescript@5.5.4)
       '@oclif/plugin-help': 5.1.20
