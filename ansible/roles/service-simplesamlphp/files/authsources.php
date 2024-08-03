@@ -23,12 +23,14 @@ $config = [
           "no" => "Logg inn med Google",
         ],
       ],
+      /*
       "vipps" => [
         "text" => [
           "en" => "Log in with Vipps",
           "no" => "Logg inn med Vipps",
         ],
       ],
+      */
     ],
   ],
   "google-connect" => [
