@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.4-apache
 
 ENV APACHE_DOCUMENT_ROOT /project/uka/web/public
 
