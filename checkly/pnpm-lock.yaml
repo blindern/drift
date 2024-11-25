@@ -13,7 +13,7 @@ importers:
         version: 1.49.0
       checkly:
         specifier: ^4
-        version: 4.10.0(@types/node@22.9.3)(typescript@5.7.2)
+        version: 4.11.0(@types/node@22.9.3)(typescript@5.7.2)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -279,8 +279,8 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  checkly@4.10.0:
-    resolution: {integrity: sha512-3URsPR3Jv7nm/ONBPj13aj/hFioQZz+b5Vyl8UbG4c3yP7HjJjx6/mGQyxfPNffOzrKcmbQgzZY/r6l0fN0Hzw==}
+  checkly@4.11.0:
+    resolution: {integrity: sha512-/qqLcOjWVCqYKk4ZntZSHGzYDwsq0SybklxiD5k+9JAi6UF40t53+KyJH3RGCgxBxGOECdirQ6oSUcP13WfZcQ==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -683,6 +683,10 @@ packages:
 
   json-schema-typed@7.0.3:
     resolution: {integrity: sha512-7DE8mpG+/fVw+dTpjbxnx47TaMnDfOI1jwft9g1VybltZCduyRQPJPvc+zzKY9WPHxhPWczyFuYa6I8Mw4iU5A==}
+
+  json-stream-stringify@3.1.6:
+    resolution: {integrity: sha512-x7fpwxOkbhFCaJDJ8vb1fBY3DdSa4AlITaz+HHILQJzdPMnHEFjxPwVUi1ALIbcIxDE0PNe/0i7frnY8QnBQog==}
+    engines: {node: '>=7.10.1'}
 
   json5@2.2.3:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
@@ -1615,7 +1619,7 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  checkly@4.10.0(@types/node@22.9.3)(typescript@5.7.2):
+  checkly@4.11.0(@types/node@22.9.3)(typescript@5.7.2):
     dependencies:
       '@oclif/core': 2.8.11(@types/node@22.9.3)(typescript@5.7.2)
       '@oclif/plugin-help': 5.1.20
@@ -1633,6 +1637,7 @@ snapshots:
       git-repo-info: 2.1.1
       glob: 10.3.1
       indent-string: 4.0.0
+      json-stream-stringify: 3.1.6
       json5: 2.2.3
       jwt-decode: 3.1.2
       log-symbols: 4.1.0
@@ -2012,6 +2017,8 @@ snapshots:
   json-schema-traverse@1.0.0: {}
 
   json-schema-typed@7.0.3: {}
+
+  json-stream-stringify@3.1.6: {}
 
   json5@2.2.3: {}
 
