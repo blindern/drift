@@ -13,7 +13,7 @@ importers:
         version: 1.49.0
       checkly:
         specifier: ^4
-        version: 4.10.0(@types/node@22.9.0)(typescript@5.7.2)
+        version: 4.10.0(@types/node@22.9.3)(typescript@5.7.2)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -75,8 +75,8 @@ packages:
     resolution: {integrity: sha512-9wYW6KRSWfB/D+tqeyl/jxmEz/xPXkFJGVWfKaptqHz6FPWNJREjAM945MuJL2Y8NRhMe+ScRlZ3WpdToX5aVQ==}
     engines: {node: '>=14.0.0'}
 
-  '@oclif/core@4.0.32':
-    resolution: {integrity: sha512-O3jfIAhqaJxXI2dzF81PLTMhKpFFA0Nyz8kfBnc9WYDJnvdmXK0fVAOSpwpi2mHTow/9FXxY6Kww8+Kbe7/sag==}
+  '@oclif/core@4.0.33':
+    resolution: {integrity: sha512-NoTDwJ2L/ywpsSjcN7jAAHf3m70Px4Yim2SJrm16r70XpnfbNOdlj1x0HEJ0t95gfD+p/y5uy+qPT/VXTh/1gw==}
     engines: {node: '>=18.0.0'}
 
   '@oclif/linewrap@1.0.0':
@@ -127,8 +127,8 @@ packages:
   '@types/cli-progress@3.11.6':
     resolution: {integrity: sha512-cE3+jb9WRlu+uOSAugewNpITJDt1VF8dHOopPO4IABFc3SXYL5WE/+PTz/FCdZRRfIujiWW3n3aMbv1eIGVRWA==}
 
-  '@types/node@22.9.0':
-    resolution: {integrity: sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==}
+  '@types/node@22.9.3':
+    resolution: {integrity: sha512-F3u1fs/fce3FFk+DAxbxc78DF8x0cY09RRL8GnXLmkJ1jvx3TtPdWoTT5/NiYfI5ASqXBmfqJi9dZ3gxMx4lzw==}
 
   '@types/readable-stream@4.0.18':
     resolution: {integrity: sha512-21jK/1j+Wg+7jVw1xnSwy/2Q1VgVjWuFssbYGTREPUBeZ+rqVFl2udq0IkxzPC0ZhOzVceUbyIACFZKLqKEBlA==}
@@ -332,8 +332,8 @@ packages:
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
 
-  cross-spawn@7.0.5:
-    resolution: {integrity: sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==}
+  cross-spawn@7.0.6:
+    resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
   debounce-fn@4.0.0:
@@ -792,8 +792,8 @@ packages:
     resolution: {integrity: sha512-ppwTtiJZq0O/ai0z7yfudtBpWIoxM8yE6nHi1X47eFR2EWORqfbu6CnPlNsjeN683eT0qG6H/Pyf9fCcvjnnnQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  npm@10.9.0:
-    resolution: {integrity: sha512-ZanDioFylI9helNhl2LNd+ErmVD+H5I53ry41ixlLyCBgkuYb+58CvbAp99hW+zr5L9W4X7CchSoeqKdngOLSw==}
+  npm@10.9.1:
+    resolution: {integrity: sha512-yJUw03xLqjiv1D52oHeoS5qmOEC5hkJlhP1cWlSrCgshuxWVyFEEK3M3hLC0NwbTaklLTYrhoIanYsuNP5WUKg==}
     engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
     bundledDependencies:
@@ -1121,8 +1121,8 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  ts-api-utils@1.4.0:
-    resolution: {integrity: sha512-032cPxaEKwM+GT3vA5JXNzIaizx388rhsSW79vGRNGXfRRAdEAn2mvk36PvK5HnOchyWZ7afLEXqYCvPCrzuzQ==}
+  ts-api-utils@1.4.1:
+    resolution: {integrity: sha512-5RU2/lxTA3YUZxju61HO2U6EoZLvBLtmV2mbTvqyu4a/7s7RmJPT+1YekhMVsQhznRWk/czIwDUg+V8Q9ZuG4w==}
     engines: {node: '>=16'}
     peerDependencies:
       typescript: '>=4.2.0'
@@ -1325,7 +1325,7 @@ snapshots:
       widest-line: 3.1.0
       wrap-ansi: 7.0.0
 
-  '@oclif/core@2.8.11(@types/node@22.9.0)(typescript@5.7.2)':
+  '@oclif/core@2.8.11(@types/node@22.9.3)(typescript@5.7.2)':
     dependencies:
       '@types/cli-progress': 3.11.6
       ansi-escapes: 4.3.2
@@ -1351,7 +1351,7 @@ snapshots:
       strip-ansi: 6.0.1
       supports-color: 8.1.1
       supports-hyperlinks: 2.3.0
-      ts-node: 10.9.2(@types/node@22.9.0)(typescript@5.7.2)
+      ts-node: 10.9.2(@types/node@22.9.3)(typescript@5.7.2)
       tslib: 2.8.1
       widest-line: 3.1.0
       wordwrap: 1.0.0
@@ -1362,7 +1362,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@oclif/core@4.0.32':
+  '@oclif/core@4.0.33':
     dependencies:
       ansi-escapes: 4.3.2
       ansis: 3.3.2
@@ -1389,10 +1389,10 @@ snapshots:
     dependencies:
       '@oclif/core': 1.26.2
 
-  '@oclif/plugin-not-found@2.3.23(@types/node@22.9.0)(typescript@5.7.2)':
+  '@oclif/plugin-not-found@2.3.23(@types/node@22.9.3)(typescript@5.7.2)':
     dependencies:
       '@oclif/color': 1.0.13
-      '@oclif/core': 2.8.11(@types/node@22.9.0)(typescript@5.7.2)
+      '@oclif/core': 2.8.11(@types/node@22.9.3)(typescript@5.7.2)
       fast-levenshtein: 3.0.0
       lodash: 4.17.21
     transitivePeerDependencies:
@@ -1403,10 +1403,10 @@ snapshots:
 
   '@oclif/plugin-plugins@5.4.4':
     dependencies:
-      '@oclif/core': 4.0.32
+      '@oclif/core': 4.0.33
       ansis: 3.3.2
       debug: 4.3.7(supports-color@8.1.1)
-      npm: 10.9.0
+      npm: 10.9.1
       npm-package-arg: 11.0.3
       npm-run-path: 5.3.0
       object-treeify: 4.0.1
@@ -1417,9 +1417,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@oclif/plugin-warn-if-update-available@2.0.24(@types/node@22.9.0)(typescript@5.7.2)':
+  '@oclif/plugin-warn-if-update-available@2.0.24(@types/node@22.9.3)(typescript@5.7.2)':
     dependencies:
-      '@oclif/core': 2.8.11(@types/node@22.9.0)(typescript@5.7.2)
+      '@oclif/core': 2.8.11(@types/node@22.9.3)(typescript@5.7.2)
       chalk: 4.1.2
       debug: 4.3.7(supports-color@8.1.1)
       fs-extra: 9.1.0
@@ -1452,20 +1452,20 @@ snapshots:
 
   '@types/cli-progress@3.11.6':
     dependencies:
-      '@types/node': 22.9.0
+      '@types/node': 22.9.3
 
-  '@types/node@22.9.0':
+  '@types/node@22.9.3':
     dependencies:
       undici-types: 6.19.8
 
   '@types/readable-stream@4.0.18':
     dependencies:
-      '@types/node': 22.9.0
+      '@types/node': 22.9.3
       safe-buffer: 5.1.2
 
   '@types/ws@8.5.13':
     dependencies:
-      '@types/node': 22.9.0
+      '@types/node': 22.9.3
 
   '@typescript-eslint/types@6.19.0': {}
 
@@ -1478,7 +1478,7 @@ snapshots:
       is-glob: 4.0.3
       minimatch: 9.0.3
       semver: 7.6.3
-      ts-api-utils: 1.4.0(typescript@5.7.2)
+      ts-api-utils: 1.4.1(typescript@5.7.2)
     optionalDependencies:
       typescript: 5.7.2
     transitivePeerDependencies:
@@ -1615,13 +1615,13 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  checkly@4.10.0(@types/node@22.9.0)(typescript@5.7.2):
+  checkly@4.10.0(@types/node@22.9.3)(typescript@5.7.2):
     dependencies:
-      '@oclif/core': 2.8.11(@types/node@22.9.0)(typescript@5.7.2)
+      '@oclif/core': 2.8.11(@types/node@22.9.3)(typescript@5.7.2)
       '@oclif/plugin-help': 5.1.20
-      '@oclif/plugin-not-found': 2.3.23(@types/node@22.9.0)(typescript@5.7.2)
+      '@oclif/plugin-not-found': 2.3.23(@types/node@22.9.3)(typescript@5.7.2)
       '@oclif/plugin-plugins': 5.4.4
-      '@oclif/plugin-warn-if-update-available': 2.0.24(@types/node@22.9.0)(typescript@5.7.2)
+      '@oclif/plugin-warn-if-update-available': 2.0.24(@types/node@22.9.3)(typescript@5.7.2)
       '@typescript-eslint/typescript-estree': 6.19.0(typescript@5.7.2)
       acorn: 8.8.1
       acorn-walk: 8.2.0
@@ -1705,7 +1705,7 @@ snapshots:
 
   create-require@1.1.1: {}
 
-  cross-spawn@7.0.5:
+  cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0
@@ -1832,7 +1832,7 @@ snapshots:
 
   foreground-child@3.3.0:
     dependencies:
-      cross-spawn: 7.0.5
+      cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
   form-data@4.0.1:
@@ -2128,7 +2128,7 @@ snapshots:
     dependencies:
       path-key: 4.0.0
 
-  npm@10.9.0: {}
+  npm@10.9.1: {}
 
   number-allocator@1.0.14:
     dependencies:
@@ -2194,7 +2194,7 @@ snapshots:
   password-prompt@1.1.3:
     dependencies:
       ansi-escapes: 4.3.2
-      cross-spawn: 7.0.5
+      cross-spawn: 7.0.6
 
   path-exists@3.0.0: {}
 
@@ -2361,18 +2361,18 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  ts-api-utils@1.4.0(typescript@5.7.2):
+  ts-api-utils@1.4.1(typescript@5.7.2):
     dependencies:
       typescript: 5.7.2
 
-  ts-node@10.9.2(@types/node@22.9.0)(typescript@5.7.2):
+  ts-node@10.9.2(@types/node@22.9.3)(typescript@5.7.2):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 22.9.0
+      '@types/node': 22.9.3
       acorn: 8.8.1
       acorn-walk: 8.2.0
       arg: 4.1.3
