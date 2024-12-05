@@ -11,7 +11,7 @@ const config = defineConfig({
   logicalId: "fbs",
   repoUrl: "https://github.com/blindern/drift",
   checks: {
-    frequency: 120,
+    frequency: 360, // every 6 hours
     locations: ["eu-north-1"],
     runtimeId: "2024.02",
     checkMatch: "**/__checks__/**/*.check.ts",

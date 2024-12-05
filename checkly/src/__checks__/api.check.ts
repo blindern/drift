@@ -6,6 +6,7 @@ new ApiCheck("fbs-matmeny-api-check", {
   group: fbsGroup,
   degradedResponseTime: 10000,
   maxResponseTime: 20000,
+  frequency: 30,
   request: {
     url: "https://foreningenbs.no/intern/api/matmeny?from=2024-05-21&to=2024-05-22",
     method: "GET",
