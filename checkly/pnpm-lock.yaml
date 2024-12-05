@@ -16,7 +16,7 @@ importers:
         version: 4.14.0(@types/node@22.10.1)(typescript@5.7.2)
       dotenv:
         specifier: ^16.4.5
-        version: 16.4.6
+        version: 16.4.7
       prettier:
         specifier: ^3
         version: 3.4.1
@@ -381,8 +381,8 @@ packages:
     resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
 
-  dotenv@16.4.6:
-    resolution: {integrity: sha512-JhcR/+KIjkkjiU8yEpaB/USlzVi3i5whwOjpIRNGi9svKEXZSe+Qp6IWAjFjv+2GViAoDRCUv/QLNziQxsLqDg==}
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
     engines: {node: '>=12'}
 
   eastasianwidth@0.2.0:
@@ -1755,7 +1755,7 @@ snapshots:
 
   dotenv@16.3.1: {}
 
-  dotenv@16.4.6: {}
+  dotenv@16.4.7: {}
 
   eastasianwidth@0.2.0: {}
 
