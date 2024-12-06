@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21
 
 RUN set -eux; \
     # Create the user first so we control the uid/gid.
