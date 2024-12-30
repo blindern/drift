@@ -200,8 +200,8 @@ packages:
   ansicolors@0.3.2:
     resolution: {integrity: sha512-QXu7BPrP29VllRxH8GwB7x5iX5qWKAAMLqKQGWTeLWVlNHNOpVMJ91dsxQAIWXpjuW5wqvxu3Jd/nRjrJ+0pqg==}
 
-  ansis@3.4.0:
-    resolution: {integrity: sha512-zVESKSQhWaPhGaWiKj1k+UqvpC7vPBBgG3hjQEeIx2YGzylWt8qA3ziAzRuUtm0OnaGsZKjIvfl8D/sJTt/I0w==}
+  ansis@3.5.2:
+    resolution: {integrity: sha512-5uGcUZRbORJeEppVdWfZOSybTMz+Ou+84HepgK081Yk5+pPMMzWf/XGxiAT6bfBqCghRB4MwBtYn0CHqINRVag==}
     engines: {node: '>=16'}
 
   arg@4.1.3:
@@ -248,8 +248,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  bl@6.0.16:
-    resolution: {integrity: sha512-V/kz+z2Mx5/6qDfRCilmrukUXcXuCoXKg3/3hDvzKKoSUx8CJKudfIoT29XZc3UE9xBvxs5qictiHdprwtteEg==}
+  bl@6.0.18:
+    resolution: {integrity: sha512-2k76XmWCuvu9HTvu3tFOl5HDdCH0wLZ/jHYva/LBVJmc9oX8yUtNQjxrFmbTdXsCSmIxwVTANZPNDfMQrvHFUw==}
 
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -1386,7 +1386,7 @@ snapshots:
   '@oclif/core@4.2.0':
     dependencies:
       ansi-escapes: 4.3.2
-      ansis: 3.4.0
+      ansis: 3.5.2
       clean-stack: 3.0.1
       cli-spinners: 2.9.2
       debug: 4.4.0(supports-color@8.1.1)
@@ -1425,7 +1425,7 @@ snapshots:
   '@oclif/plugin-plugins@5.4.4':
     dependencies:
       '@oclif/core': 4.2.0
-      ansis: 3.4.0
+      ansis: 3.5.2
       debug: 4.4.0(supports-color@8.1.1)
       npm: 10.9.2
       npm-package-arg: 11.0.3
@@ -1545,7 +1545,7 @@ snapshots:
 
   ansicolors@0.3.2: {}
 
-  ansis@3.4.0: {}
+  ansis@3.5.2: {}
 
   arg@4.1.3: {}
 
@@ -1591,7 +1591,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  bl@6.0.16:
+  bl@6.0.18:
     dependencies:
       '@types/readable-stream': 4.0.18
       buffer: 6.0.3
@@ -2128,7 +2128,7 @@ snapshots:
 
   mqtt-packet@9.0.1:
     dependencies:
-      bl: 6.0.16
+      bl: 6.0.18
       debug: 4.4.0(supports-color@8.1.1)
       process-nextick-args: 2.0.1
     transitivePeerDependencies:
