@@ -13,7 +13,7 @@ importers:
         version: 1.49.1
       checkly:
         specifier: ^4
-        version: 4.17.0(@types/node@22.10.7)(typescript@5.7.3)
+        version: 4.18.0(@types/node@22.10.7)(typescript@5.7.3)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.7
@@ -287,8 +287,8 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  checkly@4.17.0:
-    resolution: {integrity: sha512-yRhS0xW+CeBmVVWIyQ/nw6fFTZyh1BOFgKo1lC7er/XihjCDO8/dJOb1O8l/mXalPpmG812RYo+zzY047UeG+Q==}
+  checkly@4.18.0:
+    resolution: {integrity: sha512-0Z4fxxGseL6zKqIJL82NvPLzdTJr6z24kaPsfji8Lk27PB6be1br0w8xCuntStiO8uZrLbSiR24bcfnXEohNcA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -1657,7 +1657,7 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  checkly@4.17.0(@types/node@22.10.7)(typescript@5.7.3):
+  checkly@4.18.0(@types/node@22.10.7)(typescript@5.7.3):
     dependencies:
       '@oclif/core': 2.8.11(@types/node@22.10.7)(typescript@5.7.3)
       '@oclif/plugin-help': 5.1.20
