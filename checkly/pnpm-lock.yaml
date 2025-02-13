@@ -19,10 +19,10 @@ importers:
         version: 16.4.7
       prettier:
         specifier: ^3
-        version: 3.5.0
+        version: 3.5.1
       prettier-plugin-organize-imports:
         specifier: ^4.0.0
-        version: 4.1.0(prettier@3.5.0)(typescript@5.7.3)
+        version: 4.1.0(prettier@3.5.1)(typescript@5.7.3)
       typescript:
         specifier: ~5.7.0
         version: 5.7.3
@@ -1010,8 +1010,8 @@ packages:
       vue-tsc:
         optional: true
 
-  prettier@3.5.0:
-    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2299,12 +2299,12 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  prettier-plugin-organize-imports@4.1.0(prettier@3.5.0)(typescript@5.7.3):
+  prettier-plugin-organize-imports@4.1.0(prettier@3.5.1)(typescript@5.7.3):
     dependencies:
-      prettier: 3.5.0
+      prettier: 3.5.1
       typescript: 5.7.3
 
-  prettier@3.5.0: {}
+  prettier@3.5.1: {}
 
   proc-log@4.2.0: {}
 
