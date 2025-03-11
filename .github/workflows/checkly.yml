@@ -26,7 +26,7 @@ jobs:
           package_json_file: "checkly/package.json"
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "pnpm"
           cache-dependency-path: "checkly/pnpm-lock.yaml"
       - run: pnpm install --frozen-lockfile
