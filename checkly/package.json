@@ -8,12 +8,13 @@
   "author": "Foreningen Blindern Studenterhjem",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1",
-    "checkly": "^4",
-    "dotenv": "^16.4.5",
-    "prettier": "^3",
-    "prettier-plugin-organize-imports": "^4.0.0",
-    "typescript": "~5.8.0"
+    "@playwright/test": "^1.51.1",
+    "checkly": "^5.0.1",
+    "dotenv": "^16.4.7",
+    "prettier": "^3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.2"
   },
   "prettier": {
     "plugins": [
