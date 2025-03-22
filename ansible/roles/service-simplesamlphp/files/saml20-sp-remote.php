@@ -7,66 +7,182 @@ require "/var/simplesamlphp/config/secrets.php";
 
 // Pålogging via beskyttede sider under Apache webserver.
 $metadata["https://foreningenbs.no/mellon"] = [
-  "SingleLogoutService" => "https://foreningenbs.no/mellon/logout",
-  "AssertionConsumerService" => "https://foreningenbs.no/mellon/postResponse",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://foreningenbs.no/mellon/logout",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/mellon/postResponse",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // webdavcgi - produksjon
 $metadata["https://foreningenbs.no/filer-mellon"] = [
-  "SingleLogoutService" => "https://foreningenbs.no/filer-mellon/logout",
-  "AssertionConsumerService" => "https://foreningenbs.no/filer-mellon/postResponse",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://foreningenbs.no/filer-mellon/logout",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/filer-mellon/postResponse",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // webdavcgi - lokal utvikling
 $metadata["https://localhost:8820/filer-mellon"] = [
-  "SingleLogoutService" => "https://localhost:8820/filer-mellon/logout",
-  "AssertionConsumerService" => "https://localhost:8820/filer-mellon/postResponse",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://localhost:8820/filer-mellon/logout",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://localhost:8820/filer-mellon/postResponse",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på gamle wikien (wiki-2015)
 $metadata["https://foreningenbs.no/w/saml/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-logout.php/default-sp",
-  "AssertionConsumerService" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/w/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på UKAs billettsystem - lokal utviklerversjon. Gammel versjon.
 $metadata["http://localhost:8081/saml/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => "http://localhost:8081/saml/module.php/saml/sp/saml2-logout.php/default-sp",
-  "AssertionConsumerService" => "http://localhost:8081/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://localhost:8081/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://localhost:8081/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på UKAs billettsystem. Gammel versjon.
 $metadata["https://billett.blindernuka.no/saml/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-logout.php/default-sp",
-  "AssertionConsumerService" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://billett.blindernuka.no/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på UKAs billettsystem - lokal utviklerversjon. 2024-versjon.
 $metadata["http://localhost:8081/api/saml2/metadata"] = [
-  "SingleLogoutService" => "http://localhost:8081/api/saml2/sls",
-  "AssertionConsumerService" => "http://localhost:8081/api/saml2/acs",
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://localhost:8081/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://localhost:8081/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på UKAs billettsystem. 2024-versjon.
 $metadata["https://billett.blindernuka.no/api/saml2/metadata"] = [
-  "SingleLogoutService" => "https://billett.blindernuka.no/api/saml2/sls",
-  "AssertionConsumerService" => "https://billett.blindernuka.no/api/saml2/acs",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://billett.blindernuka.no/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://billett.blindernuka.no/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på dugnadssystemet.
 $metadata["https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
-  "AssertionConsumerService" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 // For utvikling.
 $metadata["http://localhost:8080/dugnaden/saml/module.php/saml/sp/metadata.php/default-sp"] = [
-  "SingleLogoutService" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
-  "AssertionConsumerService" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-logout.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://localhost:8080/dugnaden/saml/module.php/saml/sp/saml2-acs.php/default-sp",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
 ];
 
 // Pålogging på wiki (Confluence).
 $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
-  "AssertionConsumerService" => "https://foreningenbs.no/confluence/plugins/servlet/samlsso",
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/confluence/plugins/servlet/samlsso",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
   "NameIDFormat" => "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
   "saml20.sign.assertion" => true,
   "authproc" => [
@@ -80,7 +196,13 @@ $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
 
 // Pålogging på Google Apps for UKA.
 $metadata["google.com/a/blindernuka.no"] = [
-  "AssertionConsumerService" => "https://www.google.com/a/blindernuka.no/acs",
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://www.google.com/a/blindernuka.no/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
   "NameIDFormat" => "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
   "simplesaml.attributes" => false,
   "saml20.sign.assertion" => true,
@@ -101,22 +223,55 @@ $metadata["google.com/a/blindernuka.no"] = [
 
 // Internside - produksjon
 $metadata["https://foreningenbs.no/intern/api/saml2/metadata"] = [
-  "SingleLogoutService" => "https://foreningenbs.no/intern/api/saml2/sls",
-  "AssertionConsumerService" => "https://foreningenbs.no/intern/api/saml2/acs",
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://foreningenbs.no/intern/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://foreningenbs.no/intern/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
   "attributes" => ["username"],
 ];
 
 
 // Internside - produksjon (sekundær URL)
 $metadata["http://intern-backend.zt.foreningenbs.no/intern/api/saml2/metadata"] = [
-  "SingleLogoutService" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/sls",
-  "AssertionConsumerService" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/acs",
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://intern-backend.zt.foreningenbs.no/intern/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
   "attributes" => ["username"],
 ];
 
 // Internside - utvikling
 $metadata["http://localhost:8081/intern/api/saml2/metadata"] = [
-  "SingleLogoutService" => "http://localhost:8081/intern/api/saml2/sls",
-  "AssertionConsumerService" => "http://localhost:8081/intern/api/saml2/acs",
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://localhost:8081/intern/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://localhost:8081/intern/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
   "attributes" => ["username"],
 ];
