@@ -10,8 +10,8 @@ For enkle endringer i LDAP bruk https://foreningenbs.no/tools/phpldapadmin/
 
 ```bash
 ./load-to-dev.sh consumer
-docker-compose up
-docker-compose exec openldap bash
+docker compose up
+docker compose exec openldap bash
 ldapsearch -Y EXTERNAL -Q -H ldapi:/// -LLL -b ou=Users,dc=foreningenbs,dc=no name
 ```
 

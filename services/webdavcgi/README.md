@@ -27,7 +27,7 @@ that you can reach the LDAP server.
 mkdir share
 
 # Run server.
-docker-compose up --build
+docker compose up --build
 ```
 
 https://localhost:8820/filer/
