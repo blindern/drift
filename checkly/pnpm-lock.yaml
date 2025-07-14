@@ -12,8 +12,8 @@ importers:
         specifier: ^1.51.1
         version: 1.54.1
       checkly:
-        specifier: ^5.0.1
-        version: 5.6.0(@types/node@24.0.13)(typescript@5.8.3)
+        specifier: ^6.0.0
+        version: 6.1.1(@types/node@24.0.13)(typescript@5.8.3)
       dotenv:
         specifier: ^16.4.7
         version: 16.6.1
@@ -410,8 +410,8 @@ packages:
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
 
-  checkly@5.6.0:
-    resolution: {integrity: sha512-WayIftfm4hVKam9Hx28URszUVZBsBIY6HkQFPi6FBLpeFY3MJ7LVNdrXPn77UCEVbLrH+OcEvpCIXWQmSA6AVg==}
+  checkly@6.1.1:
+    resolution: {integrity: sha512-NElnSoIQSPtn35LaC/cO9hJzn6x7bi8Xv5aUTOh6Q1aW7SP5HVew/A/RVmWCTJTEb/iI28iPWvzJ4BRdpUsxQw==}
     engines: {node: ^18.19.0 || >=20.5.0}
     hasBin: true
     peerDependencies:
@@ -1887,7 +1887,7 @@ snapshots:
 
   chardet@0.7.0: {}
 
-  checkly@5.6.0(@types/node@24.0.13)(typescript@5.8.3):
+  checkly@6.1.1(@types/node@24.0.13)(typescript@5.8.3):
     dependencies:
       '@oclif/core': 4.5.1
       '@oclif/plugin-help': 6.2.31
