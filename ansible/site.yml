@@ -6,10 +6,14 @@
       tags: base
     - role: zerotier
       tags: zerotier
+    - role: docker-credential-gcr
+      tags: docker-credential-gcr
     - role: docker-network
       tags: docker-network
     - role: docker
       tags: docker
+    - role: gcp-credentials
+      tags: gcp-credentials
     - role: ssh-keys
       tags: ssh-keys
     - role: zincati

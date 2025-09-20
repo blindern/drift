@@ -1,0 +1,24 @@
+# https://cloud.google.com/artifact-registry/docs/docker/authentication
+
+- name: Download docker-credential-gcr
+  ansible.builtin.unarchive:
+    src: "https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v{{ docker_credential_gcr_version }}/docker-credential-gcr_linux_amd64-{{ docker_credential_gcr_version }}.tar.gz"
+    remote_src: yes
+    dest: /usr/local/bin
+    include: docker-credential-gcr
+    mode: "0755"
+
+- name: Check if already configured
+  ansible.builtin.shell: |
+    set -e
+    if grep -Fxq "europe-north2-docker.pkg.dev" /root/.docker/config.json; then
+      echo "ok"
+    else
+      echo "need_configure"
+    fi
+  register: checkmyconf
+  changed_when: "'need_configure' in checkmyconf.stdout"
+
+- name: Configure Docker to use docker-credential-gcr
+  ansible.builtin.shell: docker-credential-gcr configure-docker --registries=europe-north2-docker.pkg.dev
+  when: checkmyconf.changed

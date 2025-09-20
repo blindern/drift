@@ -1,0 +1,15 @@
+- name: Ensure config dir exists
+  file:
+    path: /root/.config/gcloud
+    state: directory
+    owner: 0
+    group: 0
+    mode: 0700
+
+- name: Ensure service account symlink exists
+  file:
+    src: /var/mnt/data/google_cloud_service_account.json
+    dest: /root/.config/gcloud/application_default_credentials.json
+    state: link
+    owner: 0
+    group: 0

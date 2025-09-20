@@ -13,6 +13,18 @@
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sENV .*?_VERSION=(?<currentValue>.*)\\s",
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) tag=(?<currentValue>.*)\\sENV .*?_COMMIT=(?<currentDigest>[a-f0-9]{40})\\s"
       ]
+    },
+    {
+      "description": "Keep docker-credential-gcp version up-to-date.",
+      "fileMatch": [
+        "ansible/roles/docker-credential-gcr/vars/main.yml"
+      ],
+      "matchStrings": [
+        "docker_credential_gcr_version: \"(?<currentValue>.+?)\""
+      ],
+      "depNameTemplate": "GoogleCloudPlatform/docker-credential-gcr",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ],
   "lockFileMaintenance": {

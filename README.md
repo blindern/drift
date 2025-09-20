@@ -144,6 +144,23 @@ https://admin.google.com/u/0/ac/apps/gmail/routing
 
 More details: https://support.google.com/a/answer/176600
 
+## Google Cloud credentials
+
+Each of the fcos-x hosts has its own Google Cloud credentials.
+This is used to pull images from Google Artifact Registry.
+
+Create service account for a new host at https://console.cloud.google.com/iam-admin/serviceaccounts/create?project=foreningenbs.
+See e.g. https://console.cloud.google.com/iam-admin/serviceaccounts/details/116341634353047058328?project=foreningenbs
+
+Permissions needed:
+
+- `Artifact Registry Reader`
+
+Create a service account key for for it.
+Upload it to the host at `/var/mnt/data/google_cloud_service_account.json`.
+
+The `gcp-credentials` Ansible role will place relevant symlinks.
+
 ## Encryption in this repo
 
 This repo uses [git-crypt](https://github.com/AGWA/git-crypt)
