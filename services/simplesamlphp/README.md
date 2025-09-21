@@ -9,7 +9,7 @@ instance where you can log in with "foreningsbruker".
 docker compose up --build
 
 # fix volume on first run
-docker compose exec simplesamlphp chown www-data:www-data /storage
+docker compose exec -u root simplesamlphp chown www-data:www-data /storage
 ```
 
 http://localhost:8888/simplesaml/
