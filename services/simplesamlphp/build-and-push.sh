@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-image="blindern/simplesamlphp:latest"
+image="ghcr.io/blindern/simplesamlphp:latest"
 
 docker build --pull -t "$image" .
 docker push "$image"
