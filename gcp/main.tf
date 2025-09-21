@@ -14,9 +14,6 @@ resource "google_artifact_registry_repository" "fbs_docker" {
   description            = "Docker registry for FBS - Provisioned by Terraform"
   format                 = "DOCKER"
   cleanup_policy_dry_run = true
-  docker_config {
-    immutable_tags = true
-  }
 }
 
 resource "google_iam_workload_identity_pool" "github" {
