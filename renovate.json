@@ -36,6 +36,10 @@
       "matchFileNames": ["checkly/**"],
       "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
       "automerge": true
+    },
+    {
+      "matchFileNames": ["services/**"],
+      "additionalBranchPrefix": "{{parentDir}}-"
     }
   ]
 }
