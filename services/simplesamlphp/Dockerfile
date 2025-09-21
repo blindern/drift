@@ -24,7 +24,7 @@ ENV SIMPLESAMLPHP_VERSION=v2.3.7
 ENV AUTHOAUTH2_COMMIT=b4bd0163ed99f80b9d642214b08bf5d6b73c182b
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-fbs.git tag=master
-ENV FBS_COMMIT=a22334f77916ed8ea1324f22afd34369d39ea645
+ENV FBS_COMMIT=92166d984f2eab0d0c0adf37ea77bf1c511af116
 
 USER www-data
 
