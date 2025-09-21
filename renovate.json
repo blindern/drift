@@ -41,5 +41,8 @@
       "matchFileNames": ["services/**"],
       "additionalBranchPrefix": "{{parentDir}}-"
     }
-  ]
+  ],
+  "minimumReleaseAge": "3 days",
+  "prNotPendingHours": 74,
+  "prConcurrentLimit": 30
 }
