@@ -1,6 +1,6 @@
 - name: Ensure shared config directory exists ({{ deployer_variant }})
   file:
-    path: "/var/ansible/deployer
+    path: /var/ansible/deployer
     state: directory
     owner: root
     group: root
