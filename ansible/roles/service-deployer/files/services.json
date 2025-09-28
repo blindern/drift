@@ -55,6 +55,7 @@
     "ansible_host": "fcos-3",
     "mappings": {
       "backend_image": "deployer_intern_backend_image",
+      "calendar_api_image": "deployer_intern_calendar_api_image",
       "frontend_image": "deployer_intern_frontend_image"
     }
   },
