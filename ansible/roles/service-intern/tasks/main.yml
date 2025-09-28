@@ -48,3 +48,16 @@
     networks_cli_compatible: yes
     hostname: intern-frontend.zt.foreningenbs.no
     log_driver: journald
+
+- name: Start intern-calendar-api container
+  docker_container:
+    name: intern-calendar-api
+    state: started
+    image: "{{ intern_calendar_api_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ intern_calendar_api_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: intern-calendar-api.zt.foreningenbs.no
+    log_driver: journald

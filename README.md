@@ -69,8 +69,8 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
 - Allocated services:
   - 172.25.16.1 web-1.zt.foreningenbs.no
   - 172.25.16.2 users-api.zt.foreningenbs.no
-  - 172.25.16.3 intern-backend.zt.foreningenbs.no (not set up yet, using web-1)
-  - 172.25.16.4 intern-frontend.zt.foreningenbs.no (not set up yet, using web-1)
+  - 172.25.16.3 intern-backend.zt.foreningenbs.no
+  - 172.25.16.4 intern-frontend.zt.foreningenbs.no
   - 172.25.16.5 okoreports-backend.zt.foreningenbs.no
   - 172.25.16.6 okoreports-frontend.zt.foreningenbs.no
   - 172.25.16.7 smaabruket-availability-api.zt.foreningenbs.no
@@ -83,6 +83,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
   - 172.25.16.14 nginx-front-1.zt.foreningenbs.no
   - 172.25.16.15 storage-1-samba.zt.foreningenbs.no (not set up yet)
   - 172.25.16.16 webdavcgi.zt.foreningenbs.no
+  - 172.25.16.17 intern-calendar-api.zt.foreningenbs.no
   - 172.25.16.30 ldap-master.zt.foreningenbs.no
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no
