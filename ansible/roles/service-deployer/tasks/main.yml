@@ -1,6 +1,14 @@
+- name: Ensure shared config directory exists ({{ deployer_variant }})
+  file:
+    path: "/var/ansible/deployer
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
 - name: Ensure config directory exists ({{ deployer_variant }})
   file:
-    path: /var/ansible/deployer
+    path: "/var/ansible/deployer-{{ deployer_variant }}"
     state: directory
     owner: root
     group: root
@@ -8,7 +16,7 @@
 
 - name: Copy files ({{ deployer_variant }})
   copy:
-    dest: "/var/ansible/deployer/{{ item }}"
+    dest: "/var/ansible/deployer-{{ deployer_variant }}/{{ item }}"
     src: "{{ item }}"
     owner: root
     group: root
@@ -33,10 +41,10 @@
       GIT_CRYPT_KEY_PATH: /git-crypt-key
       GIT_REPO: git@github.com:blindern/drift.git
       SERVICES_FILE: /services.json
-    env_file: /var/ansible/deployer/variables.env
+    env_file: /var/ansible/deployer-{{ deployer_variant }}/variables.env
     restart: "{{ file_copied.changed }}"
     volumes:
-      - /var/ansible/deployer/services.json:/services.json:z
+      - /var/ansible/deployer-{{ deployer_variant }}/services.json:/services.json:z
 
       # NOTE: These files are MANUALLY copied into the host to avoid keeping them elsewhere.
 
