@@ -126,6 +126,13 @@
     "type": "A"
   },
   {
+    "data": "172.25.16.17",
+    "host": "intern-calendar-api.zt",
+    "id": 7429692,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
     "data": "172.25.16.4",
     "host": "intern-frontend.zt",
     "id": 2534115,
