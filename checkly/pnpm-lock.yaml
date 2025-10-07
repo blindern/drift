@@ -212,8 +212,8 @@ packages:
     resolution: {integrity: sha512-Uv0AiXESEwrIbfN1IA68lcw4/7/L+Z3nFHMHG03jjDXHTVOfpTZDaKyPx/6rf2AL/CIhQQxQF3foDvs6psS3tA==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-plugins@5.4.48':
-    resolution: {integrity: sha512-He579UlYewPKiqPq4ufq+AhO8NLXChyN7+mQtEs2ExwigIJuKeAEBTNukTwI1B4c5ctMj3a7cAoiY3tUgZTSHg==}
+  '@oclif/plugin-plugins@5.4.49':
+    resolution: {integrity: sha512-OeDLxEjbfEj5AN/wEKXzSY4VC+svBVdjrlHjxm4/e1ZnK3ZuSe1MeABmJc4mXmWwG/zagtNtSAKmTOWhe+WmmA==}
     engines: {node: '>=18.0.0'}
 
   '@oclif/plugin-warn-if-update-available@3.1.48':
@@ -438,8 +438,8 @@ packages:
       jiti:
         optional: true
 
-  ci-info@4.3.0:
-    resolution: {integrity: sha512-l+2bNRMiQgcfILUi33labAZYIWlH1kWDp+ecNo5iisRKrbm0xcRyCww71/YU0Fkw0mAFpz9bJayXPjey6vkmaQ==}
+  ci-info@4.3.1:
+    resolution: {integrity: sha512-Wdy2Igu8OcBpI2pZePZ5oWjPC38tmDVx5WKUXKwlLYkA0ozo85sLsLvkBbBn/sZaSCMFOGZJ14fvW9t5/d7kdA==}
     engines: {node: '>=8'}
 
   clean-stack@3.0.1:
@@ -1663,7 +1663,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@oclif/plugin-plugins@5.4.48':
+  '@oclif/plugin-plugins@5.4.49':
     dependencies:
       '@oclif/core': 4.5.4
       ansis: 3.17.0
@@ -1912,7 +1912,7 @@ snapshots:
       '@oclif/core': 4.5.4
       '@oclif/plugin-help': 6.2.33
       '@oclif/plugin-not-found': 3.2.68(@types/node@24.6.2)
-      '@oclif/plugin-plugins': 5.4.48
+      '@oclif/plugin-plugins': 5.4.49
       '@oclif/plugin-warn-if-update-available': 3.1.48
       '@types/archiver': 6.0.3
       '@typescript-eslint/typescript-estree': 8.45.0(typescript@5.9.3)
@@ -1921,7 +1921,7 @@ snapshots:
       archiver: 7.0.1
       axios: 1.12.2
       chalk: 4.1.2
-      ci-info: 4.3.0
+      ci-info: 4.3.1
       conf: 10.2.0
       dotenv: 16.6.1
       execa: 9.6.0
@@ -1952,7 +1952,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  ci-info@4.3.0: {}
+  ci-info@4.3.1: {}
 
   clean-stack@3.0.1:
     dependencies:
