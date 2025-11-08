@@ -13,7 +13,7 @@ importers:
         version: 1.56.1
       checkly:
         specifier: ^6.0.0
-        version: 6.9.0(@types/node@24.10.0)(typescript@5.9.3)
+        version: 6.9.1(@types/node@24.10.0)(typescript@5.9.3)
       dotenv:
         specifier: ^17.0.0
         version: 17.2.3
@@ -388,8 +388,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  bare-events@2.8.1:
-    resolution: {integrity: sha512-oxSAxTS1hRfnyit2CL5QpAOS5ixfBjj6ex3yTNvXyY/kE719jQ/IjuESJBK2w5v4wwQRAHGseVJXx9QBYOtFGQ==}
+  bare-events@2.8.2:
+    resolution: {integrity: sha512-riJjyv1/mHLIPX4RwiK+oW9/4c3TEUeORHKefKAKnZ5kyslbN+HXowtbaVEqt4IMUB7OXlfixcs6gsFeo/jhiQ==}
     peerDependencies:
       bare-abort-controller: '*'
     peerDependenciesMeta:
@@ -433,8 +433,8 @@ packages:
   chardet@2.1.1:
     resolution: {integrity: sha512-PsezH1rqdV9VvyNhxxOW32/d75r01NY7TQCmOqomRo15ZSOKbpTFVsfjghxo6JloQUCGnH4k1LGu0R4yCLlWQQ==}
 
-  checkly@6.9.0:
-    resolution: {integrity: sha512-JsryQOE+fE7CFWtCSABHAioPoEK2VVtBop3GQuRZo+BImXvbYfAAeAYcQExVmH6vrs9msKMUCrp/nZ+9WGVzTQ==}
+  checkly@6.9.1:
+    resolution: {integrity: sha512-YbNlqjYiEYW0x2RJbAkEV7x/dvjVEQj96VZziNNJ/FQkaio+DvzxJDXv3lhAQa/UpGiN0L0nLGBK1Cy5s7ujcw==}
     engines: {node: ^18.19.0 || >=20.5.0}
     hasBin: true
     peerDependencies:
@@ -1866,7 +1866,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  bare-events@2.8.1: {}
+  bare-events@2.8.2: {}
 
   base64-js@1.5.1: {}
 
@@ -1913,7 +1913,7 @@ snapshots:
 
   chardet@2.1.1: {}
 
-  checkly@6.9.0(@types/node@24.10.0)(typescript@5.9.3):
+  checkly@6.9.1(@types/node@24.10.0)(typescript@5.9.3):
     dependencies:
       '@oclif/core': 4.8.0
       '@oclif/plugin-help': 6.2.35
@@ -2106,7 +2106,7 @@ snapshots:
 
   events-universal@1.0.1:
     dependencies:
-      bare-events: 2.8.1
+      bare-events: 2.8.2
     transitivePeerDependencies:
       - bare-abort-controller
 
