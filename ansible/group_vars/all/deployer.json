@@ -1,6 +1,6 @@
 {
   "deployer_confluence_image": "ghcr.io/blindern/confluence@sha256:eee8b74c5a71ba05702a669b921d63142b59947bc70bbf36d6f8274857a6dbe3",
-  "deployer_deployer_primary_image": "ghcr.io/blindern/deployer@sha256:3e072d90e06f131cd3bc767f97b451538413c2f02de0af43849dda975803aa05",
+  "deployer_deployer_primary_image": "ghcr.io/blindern/deployer@sha256:6c8f0a46e1a016d6637ae2d884046f5cab64e21873312315a76d489905114b7a",
   "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:6c8f0a46e1a016d6637ae2d884046f5cab64e21873312315a76d489905114b7a",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:3b11cb5c1751114b2cf98b8abc2ed0a764c7a7cd54812acc6f4b74d799f22192",
   "deployer_energi_extractor_image": "ghcr.io/blindern/energi-extractor@sha256:c0a14dcabae42460288f4427d488db43d162ae5e11fb31e84015febc7bd35dd3",
