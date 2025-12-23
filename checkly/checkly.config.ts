@@ -1,8 +1,4 @@
 import { defineConfig } from "checkly"
-import {
-  AlertEscalationBuilder,
-  RetryStrategyBuilder,
-} from "checkly/constructs"
 
 // See https://www.checklyhq.com/docs/cli/project-structure/
 

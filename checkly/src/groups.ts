@@ -1,11 +1,11 @@
 import {
   AlertEscalationBuilder,
-  CheckGroup,
+  CheckGroupV2,
   RetryStrategyBuilder,
 } from "checkly/constructs"
 import { emailChannel } from "./alert-channels"
 
-export const fbsGroup = new CheckGroup("fbs-check-group", {
+export const fbsGroup = new CheckGroupV2("fbs-check-group", {
   name: "foreningenbs.no",
   activated: true,
   muted: false,
