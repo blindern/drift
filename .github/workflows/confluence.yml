@@ -49,6 +49,8 @@ jobs:
   checkly:
     if: github.ref == 'refs/heads/main'
     needs: build
+    permissions:
+      contents: read
     uses: ./.github/workflows/run-checkly.yml
     with:
       tags: confluence
