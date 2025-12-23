@@ -59,8 +59,10 @@ jobs:
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
 
-      - name: Test deployment
-        if: github.ref == 'refs/heads/main'
-        uses: ./.github/workflows/run-checkly.yml
-        with:
-          tags: "openldap"
+  checkly:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: ./.github/workflows/run-checkly.yml
+    with:
+      tags: openldap
+    secrets: inherit
