@@ -9,7 +9,7 @@ export const fbsGroup = new CheckGroupV2("fbs-check-group", {
   name: "foreningenbs.no",
   activated: true,
   muted: false,
-  locations: ["eu-north-1"],
+  locations: ["eu-central-1"],
   environmentVariables: [],
   apiCheckDefaults: {},
   concurrency: 100,

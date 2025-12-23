@@ -8,7 +8,7 @@ const config = defineConfig({
   repoUrl: "https://github.com/blindern/drift",
   checks: {
     frequency: 360, // every 6 hours
-    locations: ["eu-north-1"],
+    locations: ["eu-central-1"],
     runtimeId: "2024.02",
     checkMatch: "**/__checks__/**/*.check.ts",
     playwrightConfig: {
@@ -23,7 +23,7 @@ const config = defineConfig({
     },
   },
   cli: {
-    runLocation: "eu-north-1",
+    runLocation: "eu-central-1",
     reporters: ["list"],
   },
 })
