@@ -18,4 +18,11 @@ new BrowserCheck("intern-login-browser-check", {
     entrypoint: path.join(__dirname, "intern.spec.ts"),
   },
   runParallel: true,
+  tags: [
+    "intern",
+    // This test will also cover simplesamlphp as part of the login flow.
+    "simplesamlphp",
+    // This test will also cover openldap as part of the login flow.
+    "openldap",
+  ],
 })

@@ -3,10 +3,11 @@ import * as path from "path"
 import { emailChannel } from "../alert-channels"
 import { fbsGroup } from "../groups"
 
-new BrowserCheck("wiki-can-login-browser-check", {
-  name: "Kan nå beboersiden på wiki",
+new BrowserCheck("webdavcgi-browser-check", {
+  name: "webdavcgi",
   alertChannels: [emailChannel],
   group: fbsGroup,
+  testOnly: true,
   playwrightConfig: {
     timeout: 120000,
     use: {
@@ -15,8 +16,8 @@ new BrowserCheck("wiki-can-login-browser-check", {
     },
   },
   code: {
-    entrypoint: path.join(__dirname, "wiki.spec.ts"),
+    entrypoint: path.join(__dirname, "webdavcgi.spec.ts"),
   },
   runParallel: true,
-  tags: ["confluence"],
+  tags: ["webdavcgi"],
 })

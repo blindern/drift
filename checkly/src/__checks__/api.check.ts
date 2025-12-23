@@ -16,4 +16,5 @@ new ApiCheck("fbs-matmeny-api-check", {
     ],
   },
   runParallel: true,
+  tags: ["intern"],
 })
