@@ -8,7 +8,7 @@
   "deployer_intern_calendar_api_image": "ghcr.io/blindern/intern-calendar-api@sha256:b74d57d9ca8330507bd9ded94893e452c0c4133cb484fe74886ef77f4075f21c",
   "deployer_intern_frontend_image": "ghcr.io/blindern/intern-frontend@sha256:2ed9d2d02f4a620bd4e0abcd5da4e69215b017b55442bb48b20579a5d4961be0",
   "deployer_ldap_master_image": "ghcr.io/blindern/openldap@sha256:b139c7cf651a6b7a40738d0b7dd91aa478968aa80d3549968cfe83dfeb99467f",
-  "deployer_ldap_slave_image": "ghcr.io/blindern/openldap@sha256:bb375ed872dfebfc2c065f1b509d5898326188294269473a4c1fa320fcb16682",
+  "deployer_ldap_slave_image": "ghcr.io/blindern/openldap@sha256:b139c7cf651a6b7a40738d0b7dd91aa478968aa80d3549968cfe83dfeb99467f",
   "deployer_ldap_toolbox_image": "ghcr.io/blindern/ldap-toolbox@sha256:7556abf8dea84d8524c3c5321e53b533cca62926223b714fe5bf77fdb03619a8",
   "deployer_nginx_front_1_image": "henrist/nginx-letsencrypt",
   "deployer_okoreports_backend_image": "cybernetisk/okoreports-backend@sha256:97d66c2d54a2b025ecd4f19c4a78f70f612de8a3a56fa1ce67cef32f583e33c0",
