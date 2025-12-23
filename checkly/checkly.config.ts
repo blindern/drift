@@ -9,7 +9,7 @@ const config = defineConfig({
   checks: {
     frequency: 360, // every 6 hours
     locations: ["eu-central-1"],
-    runtimeId: "2024.02",
+    runtimeId: "2025.04",
     checkMatch: "**/__checks__/**/*.check.ts",
     playwrightConfig: {
       timeout: 30000,
