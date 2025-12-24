@@ -7,7 +7,7 @@ new BrowserCheck("wiki-can-login-browser-check", {
   name: "Kan nå beboersiden på wiki",
   group: fbsGroup,
   playwrightConfig: {
-    timeout: 120000,
+    timeout: 240000,
     use: {
       viewport: { width: 1280, height: 720 },
       locale: "nb-NO",

@@ -6,6 +6,11 @@ on:
         description: "Optional tag filter passed to Checkly test runs"
         required: true
         type: string
+      retries:
+        description: "Number of retries for Checkly test runs"
+        required: false
+        type: number
+        default: 0
 
 env:
   CHECKLY_ACCOUNT_ID: ${{ vars.CHECKLY_ACCOUNT_ID }}
@@ -34,6 +39,6 @@ jobs:
           cache-dependency-path: "checkly/pnpm-lock.yaml"
       - run: pnpm install --frozen-lockfile
       - run: pnpm checkly -v
-      - run: pnpm checkly test --reporter=github --record --tags "${{ inputs.tags }}"
+      - run: pnpm checkly test --reporter=github --record --tags "${{ inputs.tags }}" --retries ${{ inputs.retries }}
       - run: cat checkly-github-report.md > $GITHUB_STEP_SUMMARY
         if: always()

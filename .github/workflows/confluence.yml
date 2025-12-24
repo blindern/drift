@@ -54,4 +54,6 @@ jobs:
     uses: ./.github/workflows/run-checkly.yml
     with:
       tags: confluence
+      # It might take time to get Confluence healthy, so retry a couple times.
+      retries: 3
     secrets: inherit
