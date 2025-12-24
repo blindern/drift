@@ -5,7 +5,6 @@ import { fbsGroup } from "../groups"
 
 new BrowserCheck("intern-login-browser-check", {
   name: "Kan logge inn på foreningenbs.no",
-  alertChannels: [emailChannel],
   group: fbsGroup,
   playwrightConfig: {
     timeout: 120000,

@@ -5,7 +5,6 @@ import { fbsGroup } from "../groups"
 
 new BrowserCheck("webdavcgi-browser-check", {
   name: "webdavcgi",
-  alertChannels: [emailChannel],
   group: fbsGroup,
   testOnly: true,
   playwrightConfig: {

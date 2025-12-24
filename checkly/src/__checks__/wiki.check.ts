@@ -5,7 +5,6 @@ import { fbsGroup } from "../groups"
 
 new BrowserCheck("wiki-can-login-browser-check", {
   name: "Kan nå beboersiden på wiki",
-  alertChannels: [emailChannel],
   group: fbsGroup,
   playwrightConfig: {
     timeout: 120000,
