@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.1-apache@sha256:72f0c0134922985022d55a39b0390d35dc7a10e961aa6c44fa35b4c3102f4268
 
 ENV APACHE_DOCUMENT_ROOT /project/uka/web/public
 
@@ -69,7 +69,7 @@ RUN set -ex \
 RUN set -eux; \
     npm install -g uglifycss
 
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY --from=composer@sha256:f746ca10fd351429e13a6fc9599ccd41d4fc413e036ae8b0dad9e2041adcffcd /usr/bin/composer /usr/bin/composer
 
 COPY entrypoint.sh /entrypoint.sh
 COPY php.ini /usr/local/etc/php/php.ini
