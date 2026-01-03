@@ -1,4 +1,4 @@
-name: Build slack-invite-automation
+name: slack-invite-automation
 on:
   workflow_dispatch:
   push:

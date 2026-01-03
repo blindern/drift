@@ -1,4 +1,4 @@
-name: Build uka-webserver
+name: uka-webserver
 on:
   workflow_dispatch:
   push:

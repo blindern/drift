@@ -1,4 +1,4 @@
-name: Build confluence
+name: confluence
 on:
   workflow_dispatch:
   push:

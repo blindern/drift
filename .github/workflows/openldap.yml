@@ -1,4 +1,4 @@
-name: Build openldap
+name: openldap
 on:
   workflow_dispatch:
   push:

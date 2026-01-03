@@ -1,4 +1,4 @@
-name: Build webdavcgi
+name: webdavcgi
 on:
   workflow_dispatch:
   push:

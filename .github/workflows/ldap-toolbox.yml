@@ -1,4 +1,4 @@
-name: Build ldap-toolbox
+name: ldap-toolbox
 on:
   workflow_dispatch:
   push:
