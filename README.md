@@ -1,5 +1,19 @@
 # drift
 
+[![Deploy Ansible common tag](https://github.com/blindern/drift/actions/workflows/ansible-common.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-common.yml?query=branch%3Amain)
+[![Deploy deployer](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml?query=branch%3Amain)
+[![Deploy all Ansible services](https://github.com/blindern/drift/actions/workflows/ansible-services.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-services.yml?query=branch%3Amain)
+[![Checkly](https://github.com/blindern/drift/actions/workflows/checkly.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/checkly.yml?query=branch%3Amain)
+[![Build confluence](https://github.com/blindern/drift/actions/workflows/confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/confluence.yml?query=branch%3Amain)
+[![Build ldap-toolbox](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml?query=branch%3Amain)
+[![Build openldap](https://github.com/blindern/drift/actions/workflows/openldap.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/openldap.yml?query=branch%3Amain)
+[![Build simplesamlphp](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml?query=branch%3Amain)
+[![Build slack-invite-automation](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml?query=branch%3Amain)
+[![Build uka-webserver](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml?query=branch%3Amain)
+[![Update DNS snapshot](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml?query=branch%3Amain)
+[![Build web-1](https://github.com/blindern/drift/actions/workflows/web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/web-1.yml?query=branch%3Amain)
+[![Build webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
+
 This Git-repo describes the setup of some our services.
 For more details, see
 https://foreningenbs.no/confluence/display/FBS/IT-gruppa
