@@ -43,13 +43,15 @@
         "patch",
         "lockFileMaintenance"
       ],
-      "automerge": true
+      "automerge": true,
+      "commitMessageSuffix": "({{parentDir}})"
     },
     {
       "matchFileNames": [
         "services/**"
       ],
-      "additionalBranchPrefix": "{{parentDir}}-"
+      "additionalBranchPrefix": "{{parentDir}}-",
+      "commitMessageSuffix": "({{parentDir}})"
     },
     {
       "matchDepNames": ["php"],
