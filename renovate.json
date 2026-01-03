@@ -3,11 +3,12 @@
   "extends": [
     "config:best-practices"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": [
-        "(^|/|\\.)Dockerfile$",
-        "(^|/)Dockerfile[^/]*$"
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/|\\.)Dockerfile$/",
+        "/(^|/)Dockerfile[^/]*$/"
       ],
       "matchStrings": [
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\sENV .*?_VERSION=(?<currentValue>.*)\\s",
@@ -15,9 +16,10 @@
       ]
     },
     {
+      "customType": "regex",
       "description": "Keep docker-credential-gcp version up-to-date.",
-      "fileMatch": [
-        "ansible/roles/docker-credential-gcr/vars/main.yml"
+      "managerFilePatterns": [
+        "/ansible/roles/docker-credential-gcr/vars/main.yml/"
       ],
       "matchStrings": [
         "docker_credential_gcr_version: \"(?<currentValue>.+?)\""
@@ -33,12 +35,20 @@
   },
   "packageRules": [
     {
-      "matchFileNames": ["checkly/**"],
-      "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
+      "matchFileNames": [
+        "checkly/**"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "lockFileMaintenance"
+      ],
       "automerge": true
     },
     {
-      "matchFileNames": ["services/**"],
+      "matchFileNames": [
+        "services/**"
+      ],
       "additionalBranchPrefix": "{{parentDir}}-"
     }
   ],
