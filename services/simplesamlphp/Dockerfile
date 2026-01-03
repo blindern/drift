@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.3-apache@sha256:f065c176b479938a11d4d893904ce412584bf1272d2ba2ce0955671e6236826e
 
 RUN set -eux; \
     apt-get update; \
@@ -11,7 +11,7 @@ RUN set -eux; \
     ; \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2@sha256:f746ca10fd351429e13a6fc9599ccd41d4fc413e036ae8b0dad9e2041adcffcd /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
     mkdir /var/simplesamlphp; \
