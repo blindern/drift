@@ -64,6 +64,11 @@
     {
       "matchDepNames": ["php"],
       "separateMultipleMinor": true
+    },
+    {
+      "matchFileNames": ["ansible/**"],
+      "additionalBranchPrefix": "v{{currentMajor}}.{{currentMinor}}-",
+      "commitMessageExtra": "(from {{currentVersion}})"
     }
   ],
   "minimumReleaseAge": "3 days",
