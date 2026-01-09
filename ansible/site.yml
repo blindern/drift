@@ -160,7 +160,7 @@
     - role: service-phpmyadmin
       tags: service-phpmyadmin
       vars:
-        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2@sha256:ae6dadd9cf3c158e42937788f7255fa820ea3daef0349226d8d43f32e76535e1 # renovate
+        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2@sha256:42a200db07b4e70fbf32c594ad4521cf16399b8e54bbb5adceae98e7566dfbeb # renovate
         phpmyadmin_ipv4_address: "172.25.16.12"
     - role: service-ldap-slave
       tags: service-ldap-slave
