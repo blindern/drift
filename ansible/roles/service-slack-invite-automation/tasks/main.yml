@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current slack-invite-automation image info
+  docker_image_info:
+    name: "{{ slack_invite_automation_image }}"
+  register: slack_invite_automation_image_before
+
+- name: Pull slack-invite-automation image
+  docker_image:
+    name: "{{ slack_invite_automation_image }}"
+    source: pull
+  register: slack_invite_automation_image_pull
+  changed_when: >-
+    slack_invite_automation_image_before.images | length == 0 or
+    slack_invite_automation_image_before.images[0].Id != slack_invite_automation_image_pull.image.Id
+
 # Uses port 3000.
 - name: Start slack-invite-automation container
   docker_container:

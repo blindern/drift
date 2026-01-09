@@ -30,6 +30,20 @@
     - ldap-slave.key
   register: file_copied2
 
+- name: Get current ldap-slave image info
+  docker_image_info:
+    name: "{{ ldap_slave_image }}"
+  register: ldap_slave_image_before
+
+- name: Pull ldap-slave image
+  docker_image:
+    name: "{{ ldap_slave_image }}"
+    source: pull
+  register: ldap_slave_image_pull
+  changed_when: >-
+    ldap_slave_image_before.images | length == 0 or
+    ldap_slave_image_before.images[0].Id != ldap_slave_image_pull.image.Id
+
 - name: Start ldap-slave container
   docker_container:
     name: ldap-slave

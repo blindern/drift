@@ -35,6 +35,20 @@
     - idp.foreningenbs.no.key
   register: file_copied2
 
+- name: Get current simplesamlphp image info
+  docker_image_info:
+    name: "{{ simplesamlphp_image }}"
+  register: simplesamlphp_image_before
+
+- name: Pull simplesamlphp image
+  docker_image:
+    name: "{{ simplesamlphp_image }}"
+    source: pull
+  register: simplesamlphp_image_pull
+  changed_when: >-
+    simplesamlphp_image_before.images | length == 0 or
+    simplesamlphp_image_before.images[0].Id != simplesamlphp_image_pull.image.Id
+
 - name: Start simplesamlphp container
   docker_container:
     name: simplesamlphp

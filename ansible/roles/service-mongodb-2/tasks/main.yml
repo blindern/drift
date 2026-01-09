@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current mongodb image info
+  docker_image_info:
+    name: "{{ mongodb_2_image }}"
+  register: mongodb_2_image_before
+
+- name: Pull mongodb image
+  docker_image:
+    name: "{{ mongodb_2_image }}"
+    source: pull
+  register: mongodb_2_image_pull
+  changed_when: >-
+    mongodb_2_image_before.images | length == 0 or
+    mongodb_2_image_before.images[0].Id != mongodb_2_image_pull.image.Id
+
 - name: Start mongodb container
   docker_container:
     name: mongodb-2

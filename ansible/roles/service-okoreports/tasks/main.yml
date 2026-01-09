@@ -24,6 +24,34 @@
     mode: 0644
   register: file_copied2
 
+- name: Get current okoreports-backend image info
+  docker_image_info:
+    name: "{{ okoreports_backend_image }}"
+  register: okoreports_backend_image_before
+
+- name: Pull okoreports-backend image
+  docker_image:
+    name: "{{ okoreports_backend_image }}"
+    source: pull
+  register: okoreports_backend_image_pull
+  changed_when: >-
+    okoreports_backend_image_before.images | length == 0 or
+    okoreports_backend_image_before.images[0].Id != okoreports_backend_image_pull.image.Id
+
+- name: Get current okoreports-frontend image info
+  docker_image_info:
+    name: "{{ okoreports_frontend_image }}"
+  register: okoreports_frontend_image_before
+
+- name: Pull okoreports-frontend image
+  docker_image:
+    name: "{{ okoreports_frontend_image }}"
+    source: pull
+  register: okoreports_frontend_image_pull
+  changed_when: >-
+    okoreports_frontend_image_before.images | length == 0 or
+    okoreports_frontend_image_before.images[0].Id != okoreports_frontend_image_pull.image.Id
+
 # Uses port 8000.
 - name: Start okoreports-backend container
   docker_container:

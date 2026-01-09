@@ -1,3 +1,17 @@
+- name: Get current phpmyadmin image info
+  docker_image_info:
+    name: "{{ phpmyadmin_image }}"
+  register: phpmyadmin_image_before
+
+- name: Pull phpmyadmin image
+  docker_image:
+    name: "{{ phpmyadmin_image }}"
+    source: pull
+  register: phpmyadmin_image_pull
+  changed_when: >-
+    phpmyadmin_image_before.images | length == 0 or
+    phpmyadmin_image_before.images[0].Id != phpmyadmin_image_pull.image.Id
+
 - name: Start phpmyadmin container
   docker_container:
     name: phpmyadmin

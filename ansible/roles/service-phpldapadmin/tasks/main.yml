@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current phpldapadmin image info
+  docker_image_info:
+    name: "{{ phpldapadmin_image }}"
+  register: phpldapadmin_image_before
+
+- name: Pull phpldapadmin image
+  docker_image:
+    name: "{{ phpldapadmin_image }}"
+    source: pull
+  register: phpldapadmin_image_pull
+  changed_when: >-
+    phpldapadmin_image_before.images | length == 0 or
+    phpldapadmin_image_before.images[0].Id != phpldapadmin_image_pull.image.Id
+
 # When we change config, it seems we have to recreate the container
 # for the new configuration to take effect.
 - name: Delete container if config changed

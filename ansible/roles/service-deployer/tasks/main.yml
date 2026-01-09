@@ -26,6 +26,20 @@
     - services.json
   register: file_copied
 
+- name: Get current deployer image info ({{ deployer_variant }})
+  docker_image_info:
+    name: "{{ deployer_image }}"
+  register: deployer_image_before
+
+- name: Pull deployer image ({{ deployer_variant }})
+  docker_image:
+    name: "{{ deployer_image }}"
+    source: pull
+  register: deployer_image_pull
+  changed_when: >-
+    deployer_image_before.images | length == 0 or
+    deployer_image_before.images[0].Id != deployer_image_pull.image.Id
+
 - name: Start deployer container ({{ deployer_variant }})
   docker_container:
     name: "{{ deployer_container_name }}"

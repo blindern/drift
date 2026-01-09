@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current energi-extractor image info
+  docker_image_info:
+    name: "{{ energi_extractor_image }}"
+  register: energi_extractor_image_before
+
+- name: Pull energi-extractor image
+  docker_image:
+    name: "{{ energi_extractor_image }}"
+    source: pull
+  register: energi_extractor_image_pull
+  changed_when: >-
+    energi_extractor_image_before.images | length == 0 or
+    energi_extractor_image_before.images[0].Id != energi_extractor_image_pull.image.Id
+
 - name: Start energi-extractor container
   docker_container:
     name: energi-extractor

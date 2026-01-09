@@ -25,6 +25,20 @@
     group: core
     mode: 0644
 
+- name: Get current uka-webserver image info
+  docker_image_info:
+    name: "{{ uka_webserver_image }}"
+  register: uka_webserver_image_before
+
+- name: Pull uka-webserver image
+  docker_image:
+    name: "{{ uka_webserver_image }}"
+    source: pull
+  register: uka_webserver_image_pull
+  changed_when: >-
+    uka_webserver_image_before.images | length == 0 or
+    uka_webserver_image_before.images[0].Id != uka_webserver_image_pull.image.Id
+
 - name: Start uka-webserver container
   docker_container:
     name: uka-webserver

@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current users-api image info
+  docker_image_info:
+    name: "{{ users_api_image }}"
+  register: users_api_image_before
+
+- name: Pull users-api image
+  docker_image:
+    name: "{{ users_api_image }}"
+    source: pull
+  register: users_api_image_pull
+  changed_when: >-
+    users_api_image_before.images | length == 0 or
+    users_api_image_before.images[0].Id != users_api_image_pull.image.Id
+
 - name: Start users-api container
   docker_container:
     name: users-api

@@ -20,6 +20,20 @@
     - nginx.conf
   register: file_copied
 
+- name: Get current nginx-front-1 image info
+  docker_image_info:
+    name: "{{ nginx_front_1_image }}"
+  register: nginx_front_1_image_before
+
+- name: Pull nginx-front-1 image
+  docker_image:
+    name: "{{ nginx_front_1_image }}"
+    source: pull
+  register: nginx_front_1_image_pull
+  changed_when: >-
+    nginx_front_1_image_before.images | length == 0 or
+    nginx_front_1_image_before.images[0].Id != nginx_front_1_image_pull.image.Id
+
 - name: Start nginx-front-1 container
   docker_container:
     name: nginx-front-1

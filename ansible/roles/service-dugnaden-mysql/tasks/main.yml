@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current dugnaden-mysql image info
+  docker_image_info:
+    name: "{{ dugnaden_mysql_image }}"
+  register: dugnaden_mysql_image_before
+
+- name: Pull dugnaden-mysql image
+  docker_image:
+    name: "{{ dugnaden_mysql_image }}"
+    source: pull
+  register: dugnaden_mysql_image_pull
+  changed_when: >-
+    dugnaden_mysql_image_before.images | length == 0 or
+    dugnaden_mysql_image_before.images[0].Id != dugnaden_mysql_image_pull.image.Id
+
 - name: Start mysql container
   docker_container:
     name: dugnaden-mysql

@@ -15,6 +15,20 @@
     mode: 0644
   register: file_copied
 
+- name: Get current uka-mysql image info
+  docker_image_info:
+    name: "{{ uka_mysql_image }}"
+  register: uka_mysql_image_before
+
+- name: Pull uka-mysql image
+  docker_image:
+    name: "{{ uka_mysql_image }}"
+    source: pull
+  register: uka_mysql_image_pull
+  changed_when: >-
+    uka_mysql_image_before.images | length == 0 or
+    uka_mysql_image_before.images[0].Id != uka_mysql_image_pull.image.Id
+
 - name: Start mysql container
   docker_container:
     name: uka-mysql

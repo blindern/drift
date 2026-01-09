@@ -1,3 +1,17 @@
+- name: Get current confluence image info
+  docker_image_info:
+    name: "{{ confluence_image }}"
+  register: confluence_image_before
+
+- name: Pull confluence image
+  docker_image:
+    name: "{{ confluence_image }}"
+    source: pull
+  register: confluence_image_pull
+  changed_when: >-
+    confluence_image_before.images | length == 0 or
+    confluence_image_before.images[0].Id != confluence_image_pull.image.Id
+
 # Uses port 8090 and 8091.
 - name: Start confluence container
   docker_container:

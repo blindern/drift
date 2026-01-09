@@ -24,6 +24,20 @@
     mode: 0644
   register: file_copied2
 
+- name: Get current smaabruket-availability-api image info
+  docker_image_info:
+    name: "{{ smaabruket_availability_api_image }}"
+  register: smaabruket_availability_api_image_before
+
+- name: Pull smaabruket-availability-api image
+  docker_image:
+    name: "{{ smaabruket_availability_api_image }}"
+    source: pull
+  register: smaabruket_availability_api_image_pull
+  changed_when: >-
+    smaabruket_availability_api_image_before.images | length == 0 or
+    smaabruket_availability_api_image_before.images[0].Id != smaabruket_availability_api_image_pull.image.Id
+
 - name: Start smaabruket-availability-api container
   docker_container:
     name: smaabruket-availability-api

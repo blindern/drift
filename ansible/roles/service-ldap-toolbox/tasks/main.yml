@@ -44,6 +44,20 @@
     - process.sh
   register: file_copied3
 
+- name: Get current ldap-toolbox image info
+  docker_image_info:
+    name: "{{ ldap_toolbox_image }}"
+  register: ldap_toolbox_image_before
+
+- name: Pull ldap-toolbox image
+  docker_image:
+    name: "{{ ldap_toolbox_image }}"
+    source: pull
+  register: ldap_toolbox_image_pull
+  changed_when: >-
+    ldap_toolbox_image_before.images | length == 0 or
+    ldap_toolbox_image_before.images[0].Id != ldap_toolbox_image_pull.image.Id
+
 - name: Start container
   docker_container:
     name: ldap-toolbox

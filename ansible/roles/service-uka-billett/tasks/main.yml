@@ -20,6 +20,48 @@
     - nginx.env
   register: file_copied
 
+- name: Get current uka-billett-fpm image info
+  docker_image_info:
+    name: "{{ uka_billett_fpm_image }}"
+  register: uka_billett_fpm_image_before
+
+- name: Pull uka-billett-fpm image
+  docker_image:
+    name: "{{ uka_billett_fpm_image }}"
+    source: pull
+  register: uka_billett_fpm_image_pull
+  changed_when: >-
+    uka_billett_fpm_image_before.images | length == 0 or
+    uka_billett_fpm_image_before.images[0].Id != uka_billett_fpm_image_pull.image.Id
+
+- name: Get current uka-billett-proxy image info
+  docker_image_info:
+    name: "{{ uka_billett_proxy_image }}"
+  register: uka_billett_proxy_image_before
+
+- name: Pull uka-billett-proxy image
+  docker_image:
+    name: "{{ uka_billett_proxy_image }}"
+    source: pull
+  register: uka_billett_proxy_image_pull
+  changed_when: >-
+    uka_billett_proxy_image_before.images | length == 0 or
+    uka_billett_proxy_image_before.images[0].Id != uka_billett_proxy_image_pull.image.Id
+
+- name: Get current uka-billett-frontend image info
+  docker_image_info:
+    name: "{{ uka_billett_frontend_image }}"
+  register: uka_billett_frontend_image_before
+
+- name: Pull uka-billett-frontend image
+  docker_image:
+    name: "{{ uka_billett_frontend_image }}"
+    source: pull
+  register: uka_billett_frontend_image_pull
+  changed_when: >-
+    uka_billett_frontend_image_before.images | length == 0 or
+    uka_billett_frontend_image_before.images[0].Id != uka_billett_frontend_image_pull.image.Id
+
 - name: Start uka-billett-fpm container
   docker_container:
     name: uka-billett-fpm

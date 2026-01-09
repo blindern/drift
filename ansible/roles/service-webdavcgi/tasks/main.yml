@@ -29,6 +29,20 @@
     - https_foreningenbs.no_filer_mellon.xml
   register: file_copied2
 
+- name: Get current webdavcgi image info
+  docker_image_info:
+    name: "{{ webdavcgi_image }}"
+  register: webdavcgi_image_before
+
+- name: Pull webdavcgi image
+  docker_image:
+    name: "{{ webdavcgi_image }}"
+    source: pull
+  register: webdavcgi_image_pull
+  changed_when: >-
+    webdavcgi_image_before.images | length == 0 or
+    webdavcgi_image_before.images[0].Id != webdavcgi_image_pull.image.Id
+
 - name: Start webdavcgi container
   docker_container:
     name: webdavcgi

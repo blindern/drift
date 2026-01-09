@@ -30,6 +30,20 @@
     - idp.foreningenbs.no.crt
   register: file_copied2
 
+- name: Get current dugnaden image info
+  docker_image_info:
+    name: "{{ dugnaden_image }}"
+  register: dugnaden_image_before
+
+- name: Pull dugnaden image
+  docker_image:
+    name: "{{ dugnaden_image }}"
+    source: pull
+  register: dugnaden_image_pull
+  changed_when: >-
+    dugnaden_image_before.images | length == 0 or
+    dugnaden_image_before.images[0].Id != dugnaden_image_pull.image.Id
+
 - name: Start container
   docker_container:
     name: dugnaden

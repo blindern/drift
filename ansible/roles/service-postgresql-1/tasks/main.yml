@@ -19,6 +19,20 @@
     - postgresql.conf
   register: file_copied
 
+- name: Get current postgresql image info
+  docker_image_info:
+    name: "{{ postgresql_1_image }}"
+  register: postgresql_1_image_before
+
+- name: Pull postgresql image
+  docker_image:
+    name: "{{ postgresql_1_image }}"
+    source: pull
+  register: postgresql_1_image_pull
+  changed_when: >-
+    postgresql_1_image_before.images | length == 0 or
+    postgresql_1_image_before.images[0].Id != postgresql_1_image_pull.image.Id
+
 - name: Start postgresql container
   docker_container:
     name: postgresql-1

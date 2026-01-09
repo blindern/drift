@@ -47,6 +47,20 @@
     repo: https://github.com/blindern/statutter-arkiv.git
     dest: /var/ansible/statutter-arkiv
 
+- name: Get current web-1 image info
+  docker_image_info:
+    name: "{{ web_1_image }}"
+  register: web_1_image_before
+
+- name: Pull web-1 image
+  docker_image:
+    name: "{{ web_1_image }}"
+    source: pull
+  register: web_1_image_pull
+  changed_when: >-
+    web_1_image_before.images | length == 0 or
+    web_1_image_before.images[0].Id != web_1_image_pull.image.Id
+
 - name: Start web-1 container
   docker_container:
     name: web-1

@@ -30,6 +30,20 @@
     - ldap-master.key
   register: file_copied2
 
+- name: Get current ldap-master image info
+  docker_image_info:
+    name: "{{ ldap_master_image }}"
+  register: ldap_master_image_before
+
+- name: Pull ldap-master image
+  docker_image:
+    name: "{{ ldap_master_image }}"
+    source: pull
+  register: ldap_master_image_pull
+  changed_when: >-
+    ldap_master_image_before.images | length == 0 or
+    ldap_master_image_before.images[0].Id != ldap_master_image_pull.image.Id
+
 - name: Start ldap-master container
   docker_container:
     name: ldap-master

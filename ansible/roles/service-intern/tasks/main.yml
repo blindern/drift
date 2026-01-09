@@ -18,6 +18,48 @@
     - backend-secrets.env
   register: file_copied
 
+- name: Get current intern-backend image info
+  docker_image_info:
+    name: "{{ intern_backend_image }}"
+  register: intern_backend_image_before
+
+- name: Pull intern-backend image
+  docker_image:
+    name: "{{ intern_backend_image }}"
+    source: pull
+  register: intern_backend_image_pull
+  changed_when: >-
+    intern_backend_image_before.images | length == 0 or
+    intern_backend_image_before.images[0].Id != intern_backend_image_pull.image.Id
+
+- name: Get current intern-frontend image info
+  docker_image_info:
+    name: "{{ intern_frontend_image }}"
+  register: intern_frontend_image_before
+
+- name: Pull intern-frontend image
+  docker_image:
+    name: "{{ intern_frontend_image }}"
+    source: pull
+  register: intern_frontend_image_pull
+  changed_when: >-
+    intern_frontend_image_before.images | length == 0 or
+    intern_frontend_image_before.images[0].Id != intern_frontend_image_pull.image.Id
+
+- name: Get current intern-calendar-api image info
+  docker_image_info:
+    name: "{{ intern_calendar_api_image }}"
+  register: intern_calendar_api_image_before
+
+- name: Pull intern-calendar-api image
+  docker_image:
+    name: "{{ intern_calendar_api_image }}"
+    source: pull
+  register: intern_calendar_api_image_pull
+  changed_when: >-
+    intern_calendar_api_image_before.images | length == 0 or
+    intern_calendar_api_image_before.images[0].Id != intern_calendar_api_image_pull.image.Id
+
 - name: Start intern-backend container
   docker_container:
     name: intern-backend
