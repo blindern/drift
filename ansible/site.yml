@@ -86,7 +86,7 @@
     - role: service-snipeit
       tags: service-snipeit
       vars:
-        snipeit_image: snipe/snipe-it:v6.0.2@sha256:07969e95e2ea96f515813c5a3310a0b55cc741797b63f60de6b468927c211b3f # renovate
+        snipeit_image: snipe/snipe-it:v6.4.2@sha256:a3516ae4537684ffe640ee0292d6aab210c869f5f698271d5d882fa06574b2fc # renovate
         snipeit_ipv4_address: "172.25.16.44"
         snipe_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
         snipe_mysql_ipv4_address: "172.25.16.45"
