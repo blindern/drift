@@ -34,7 +34,7 @@
     - role: service-uka-mysql
       tags: service-uka-mysql
       vars:
-        uka_mysql_image: mysql:5.6
+        uka_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
         uka_mysql_ipv4_address: "172.25.16.46"
     - role: service-uka-webserver
       tags: service-uka-webserver
@@ -86,9 +86,9 @@
     - role: service-snipeit
       tags: service-snipeit
       vars:
-        snipeit_image: snipe/snipe-it:v6.0.2
+        snipeit_image: snipe/snipe-it:v6.0.2@sha256:07969e95e2ea96f515813c5a3310a0b55cc741797b63f60de6b468927c211b3f # renovate
         snipeit_ipv4_address: "172.25.16.44"
-        snipe_mysql_image: mysql:5.6
+        snipe_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
         snipe_mysql_ipv4_address: "172.25.16.45"
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
@@ -100,17 +100,17 @@
     - role: service-postgresql-1
       tags: service-postgresql-1
       vars:
-        postgresql_1_image: postgres:12.1
+        postgresql_1_image: postgres:12.1@sha256:5181eccc7c903e4f1beffa89a735cb7ed72e0c81d6c34c471552c3fa8bff0858 # renovate
         postgresql_1_ipv4_address: "172.25.16.42"
     - role: service-mysql-1
       tags: service-mysql-1
       vars:
-        mysql_1_image: mysql:8.4.1
+        mysql_1_image: mysql:8.4.1@sha256:a7dc4a4e07a9c5d53c0cf36b5b4e8a1b3bb677cb0d544256a0581114a93ddf0f # renovate
         mysql_1_ipv4_address: "172.25.16.40"
     - role: service-mongodb-2
       tags: service-mongodb-2
       vars:
-        mongodb_2_image: mongo:7.0.12
+        mongodb_2_image: mongo:7.0.12@sha256:54996a559c724c726a31fb8131e1c9088a05f7e531760e2897212389bbf20fed # renovate
         mongodb_2_ipv4_address: "172.25.16.53"
 
 # Services running on fcos-3.
@@ -150,17 +150,17 @@
     - role: service-dugnaden-mysql
       tags: service-dugnaden-mysql
       vars:
-        dugnaden_mysql_image: mysql:8.1.0
+        dugnaden_mysql_image: mysql:8.1.0@sha256:f61944ff3f2961363a4d22913b2ac581523273679d7e14dd26e8db8c9f571a7e # renovate
         dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
       vars:
-        phpldapadmin_image: osixia/phpldapadmin:0.9.0
+        phpldapadmin_image: osixia/phpldapadmin:0.9.0@sha256:d112b82be1336f91e028b0348755133fda333992355b533419355a65c32ff9ad # renovate
         phpldapadmin_ipv4_address: "172.25.16.11"
     - role: service-phpmyadmin
       tags: service-phpmyadmin
       vars:
-        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2
+        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2@sha256:ae6dadd9cf3c158e42937788f7255fa820ea3daef0349226d8d43f32e76535e1 # renovate
         phpmyadmin_ipv4_address: "172.25.16.12"
     - role: service-ldap-slave
       tags: service-ldap-slave

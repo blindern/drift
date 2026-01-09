@@ -56,6 +56,14 @@
     {
       "matchDepNames": ["php"],
       "separateMultipleMinor": true
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^ansible/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "_image: (?<depName>.*?):(?<currentValue>.*?)(@(?<currentDigest>sha256:[a-f0-9]+))? # renovate"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
   "minimumReleaseAge": "3 days",
