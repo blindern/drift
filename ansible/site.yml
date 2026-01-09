@@ -34,7 +34,7 @@
     - role: service-uka-mysql
       tags: service-uka-mysql
       vars:
-        uka_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
+        uka_mysql_image: mysql:5.7@sha256:4bc6bc963e6d8443453676cae56536f4b8156d78bae03c0145cbe47c2aad73bb # renovate
         uka_mysql_ipv4_address: "172.25.16.46"
     - role: service-uka-webserver
       tags: service-uka-webserver
@@ -88,7 +88,7 @@
       vars:
         snipeit_image: snipe/snipe-it:v6.0.2@sha256:07969e95e2ea96f515813c5a3310a0b55cc741797b63f60de6b468927c211b3f # renovate
         snipeit_ipv4_address: "172.25.16.44"
-        snipe_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
+        snipe_mysql_image: mysql:5.7@sha256:4bc6bc963e6d8443453676cae56536f4b8156d78bae03c0145cbe47c2aad73bb # renovate
         snipe_mysql_ipv4_address: "172.25.16.45"
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
