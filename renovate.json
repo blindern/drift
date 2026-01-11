@@ -67,7 +67,7 @@
     },
     {
       "matchFileNames": ["ansible/**"],
-      "additionalBranchPrefix": "v{{currentMajor}}.{{currentMinor}}-",
+      "additionalBranchPrefix": "v{{currentVersion}}-",
       "commitMessageExtra": "(from {{currentVersion}})"
     }
   ],
