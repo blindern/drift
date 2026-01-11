@@ -105,7 +105,7 @@
     - role: service-mysql-1
       tags: service-mysql-1
       vars:
-        mysql_1_image: mysql:8.4.1@sha256:a7dc4a4e07a9c5d53c0cf36b5b4e8a1b3bb677cb0d544256a0581114a93ddf0f # renovate
+        mysql_1_image: mysql:9.5.0@sha256:c9f0c66a87356518d4b30dbc065eb4567e4a04aff4d0ff194dea0973e5985b57 # renovate
         mysql_1_ipv4_address: "172.25.16.40"
     - role: service-mongodb-2
       tags: service-mongodb-2
