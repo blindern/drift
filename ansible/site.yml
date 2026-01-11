@@ -150,7 +150,7 @@
     - role: service-dugnaden-mysql
       tags: service-dugnaden-mysql
       vars:
-        dugnaden_mysql_image: mysql:8.1.0@sha256:f61944ff3f2961363a4d22913b2ac581523273679d7e14dd26e8db8c9f571a7e # renovate
+        dugnaden_mysql_image: mysql:9.5.0@sha256:c9f0c66a87356518d4b30dbc065eb4567e4a04aff4d0ff194dea0973e5985b57 # renovate
         dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
