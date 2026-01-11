@@ -39,7 +39,8 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "minimumReleaseAgeBehaviour": "timestamp-optional"
   },
   "packageRules": [
     {
@@ -74,6 +75,11 @@
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
       "automerge": true
+    },
+    {
+      "description": "Disable minimum release age for sources without release timestamps",
+      "matchDatasources": ["docker"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
     }
   ],
   "minimumReleaseAge": "3 days",
