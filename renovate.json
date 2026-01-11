@@ -69,6 +69,11 @@
       "matchFileNames": ["ansible/**"],
       "additionalBranchPrefix": "v{{currentVersion}}-",
       "commitMessageExtra": "(from {{currentVersion}})"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true
     }
   ],
   "minimumReleaseAge": "3 days",
