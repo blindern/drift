@@ -110,7 +110,7 @@
     - role: service-mongodb-2
       tags: service-mongodb-2
       vars:
-        mongodb_2_image: mongo:7.0.12@sha256:ae1cf99fa7bfb007db8416ad4f3980c46054d949fa55d28e6d301a813fee6c06 # renovate
+        mongodb_2_image: mongo:8.2.3@sha256:7f5bbdafebde7c42e42e33396d01c0eda3eb753da8dae99071a30e350568a0a4 # renovate
         mongodb_2_ipv4_address: "172.25.16.53"
 
 # Services running on fcos-3.
