@@ -30,8 +30,8 @@ jobs:
           context: services/web-1
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: ghcr.io/blindern/internal-web-1:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ github.workflow }}
+          cache-to: type=gha,mode=max,scope=${{ github.workflow }}
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
