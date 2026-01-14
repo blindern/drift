@@ -69,7 +69,7 @@ RUN set -ex \
 RUN set -eux; \
     npm install -g uglifycss
 
-COPY --from=composer@sha256:631d7c9ef9cca5fd2f87f691bb9175c89df3c69fbced73148314c11df270a108 /usr/bin/composer /usr/bin/composer
+COPY --from=composer@sha256:f5e5bb7048c7b0182ea153fed4a63d021f3c77d4a654d6572da4a42aaff547e3 /usr/bin/composer /usr/bin/composer
 
 COPY entrypoint.sh /entrypoint.sh
 COPY php.ini /usr/local/etc/php/php.ini
