@@ -3,7 +3,7 @@
   "deployer_deployer_primary_image": "ghcr.io/blindern/deployer@sha256:8b4af97cb143869cd6a59ab133a91ff4af8bb0e97057996c0d85791dbf6e2699",
   "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:8b4af97cb143869cd6a59ab133a91ff4af8bb0e97057996c0d85791dbf6e2699",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:3b11cb5c1751114b2cf98b8abc2ed0a764c7a7cd54812acc6f4b74d799f22192",
-  "deployer_energi_extractor_image": "ghcr.io/blindern/energi-extractor@sha256:a743fc9d5db113bc5c5cde5ac7f1ed0a127817e494c3e99dc94d2518d75707dc",
+  "deployer_energi_extractor_image": "ghcr.io/blindern/energi-extractor@sha256:25de8219d9b2e147dea8c731e09243d1177e25e00498611e8c960ed95b857a17",
   "deployer_intern_backend_image": "ghcr.io/blindern/intern-backend@sha256:7302b1cde7a8c7bd40a00b18365e4c92c71d13ada4464230e53959fa517133af",
   "deployer_intern_calendar_api_image": "ghcr.io/blindern/intern-calendar-api@sha256:42c5becb2cef951bcf3d5ea83d38b22af269d07ba9adead22cf76521bcc5556e",
   "deployer_intern_frontend_image": "ghcr.io/blindern/intern-frontend@sha256:f4190664352e14947ee37e193ee6367a19463e4c713cd0c4e7c9dc681659bfb2",
