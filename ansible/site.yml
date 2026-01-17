@@ -105,7 +105,7 @@
     - role: service-mysql-1
       tags: service-mysql-1
       vars:
-        mysql_1_image: mysql:8.4.7@sha256:90544b3775490579867a30988d48f0215fc3b88d78d8d62b2c0d96ee9226a2b7 # renovate
+        mysql_1_image: mysql:9.4.0@sha256:135bc87cce147c3d28cecb9ad270b814cb52805af7ddeea83bfcaf157d05a6b2 # renovate
         mysql_1_ipv4_address: "172.25.16.40"
     - role: service-mongodb-2
       tags: service-mongodb-2
@@ -150,7 +150,7 @@
     - role: service-dugnaden-mysql
       tags: service-dugnaden-mysql
       vars:
-        dugnaden_mysql_image: mysql:8.4.7@sha256:90544b3775490579867a30988d48f0215fc3b88d78d8d62b2c0d96ee9226a2b7 # renovate
+        dugnaden_mysql_image: mysql:9.4.0@sha256:135bc87cce147c3d28cecb9ad270b814cb52805af7ddeea83bfcaf157d05a6b2 # renovate
         dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
