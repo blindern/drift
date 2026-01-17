@@ -74,7 +74,8 @@
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
-      "automerge": true
+      "automerge": true,
+      "schedule": ["before 9am on monday"]
     },
     {
       "description": "Disable minimum release age for sources without release timestamps",
