@@ -72,7 +72,7 @@
       "commitMessageExtra": "(from {{currentVersion}})"
     },
     {
-      "matchDatasources": ["docker"],
+      "matchDatasources": ["docker", "github-actions"],
       "matchUpdateTypes": ["digest"],
       "automerge": true,
       "schedule": ["before 9am on monday"]
