@@ -13,10 +13,6 @@ on:
         type: number
         default: 0
 
-env:
-  FBS_TEST_USERNAME: ${{ vars.FBS_TEST_USERNAME }}
-  FBS_TEST_PASSWORD: ${{ secrets.FBS_TEST_PASSWORD }}
-
 defaults:
   run:
     working-directory: ./e2e-tests
@@ -39,6 +35,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm exec playwright test ${{ inputs.tests }} --retries ${{ inputs.retries }}
+        env:
+          FBS_TEST_USERNAME: ${{ vars.FBS_TEST_USERNAME }}
+          FBS_TEST_PASSWORD: ${{ secrets.FBS_TEST_PASSWORD }}
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: failure()
         with:
