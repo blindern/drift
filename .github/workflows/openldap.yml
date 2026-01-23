@@ -66,5 +66,5 @@ jobs:
       contents: read
     uses: ./.github/workflows/run-e2e-tests.yml
     with:
-      tests: intern.spec.ts
+      tag: "@openldap"
     secrets: inherit

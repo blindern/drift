@@ -2,11 +2,10 @@ name: Run E2E Tests
 on:
   workflow_call:
     inputs:
-      tests:
-        description: "Test file(s) to run (e.g., 'wiki.spec.ts' or 'intern.spec.ts wiki.spec.ts')"
-        required: false
+      tag:
+        description: "Tag to filter tests (e.g., '@confluence' or '@intern')"
+        required: true
         type: string
-        default: ""
       retries:
         description: "Number of retries"
         required: false
@@ -34,7 +33,7 @@ jobs:
           cache-dependency-path: "e2e-tests/pnpm-lock.yaml"
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm exec playwright test ${{ inputs.tests }} --retries ${{ inputs.retries }}
+      - run: pnpm exec playwright test --grep "${{ inputs.tag }}" --retries ${{ inputs.retries }}
         env:
           FBS_TEST_USERNAME: ${{ vars.FBS_TEST_USERNAME }}
           FBS_TEST_PASSWORD: ${{ secrets.FBS_TEST_PASSWORD }}
@@ -50,5 +49,5 @@ jobs:
           curl --fail -X POST \
             -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
             -H "Content-type: application/json" \
-            --data '{"channel":"C0AAS4Q42RJ","text":"❌ E2E tests failed (${{ inputs.tests || '\''all'\'' }}): ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
+            --data '{"channel":"C0AAS4Q42RJ","text":"❌ E2E tests failed (${{ inputs.tag }}): ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \
             https://slack.com/api/chat.postMessage

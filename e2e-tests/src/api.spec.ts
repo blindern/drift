@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test"
 
-test("matmeny API returns data", async ({ request }) => {
+test("matmeny API returns data", { tag: "@intern" }, async ({ request }) => {
   // Use dates relative to a known working date
   const response = await request.get(
     "https://foreningenbs.no/intern/api/matmeny?from=2024-05-21&to=2024-05-22",
