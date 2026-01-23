@@ -47,7 +47,7 @@ jobs:
       - name: Notify Slack on failure
         if: failure()
         run: |
-          curl -X POST \
+          curl --fail -X POST \
             -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
             -H "Content-type: application/json" \
             --data '{"channel":"C0AAS4Q42RJ","text":"❌ E2E tests failed (${{ inputs.tests || '\''all'\'' }}): ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}' \

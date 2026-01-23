@@ -14,5 +14,7 @@ test("can login at foreningenbs.no (intern)", async ({ page }) => {
 
   await loginAtSsp(page)
 
-  await expect(page.getByText("Du er innlogget som halvargimnes")).toBeVisible()
+  await expect(
+    page.getByText(`Du er innlogget som ${process.env.FBS_TEST_USERNAME}`),
+  ).toBeVisible()
 })
