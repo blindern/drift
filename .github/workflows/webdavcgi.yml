@@ -46,12 +46,12 @@ jobs:
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
 
-  checkly:
+  e2e-tests:
     if: github.ref == 'refs/heads/main'
     needs: build
     permissions:
       contents: read
-    uses: ./.github/workflows/run-checkly.yml
+    uses: ./.github/workflows/run-e2e-tests.yml
     with:
-      tags: webdavcgi
+      tests: webdavcgi.spec.ts
     secrets: inherit

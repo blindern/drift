@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test"
-import { loginAtSsp } from "../login-helpers"
+import { loginAtSsp } from "./login-helpers"
 
 test("can login to wiki and see main page", async ({ page }) => {
   await page.goto("https://foreningenbs.no/confluence/")
