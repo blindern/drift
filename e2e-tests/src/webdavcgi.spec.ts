@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test"
-import { loginAtSsp } from "../login-helpers"
+import { loginAtSsp } from "./login-helpers"
 
-test("can login to webdavcgi and see main page", async ({ page }) => {
+test("can login to webdavcgi and see main page", { tag: "@webdavcgi" }, async ({ page }) => {
   await page.goto("https://foreningenbs.no/filer/")
   await loginAtSsp(page)
 
