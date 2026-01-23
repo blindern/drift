@@ -7,7 +7,7 @@ export default defineConfig({
   timeout: 120000,
   expect: { timeout: 10000 },
   retries: 2,
-  reporter: process.env.CI ? [["github"], ["html"]] : [["list"], ["html"]],
+  reporter: process.env.CI ? [["list"], ["github"], ["html"]] : [["list"], ["html"]],
   projects: [
     {
       name: "chromium",
