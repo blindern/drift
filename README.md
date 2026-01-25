@@ -116,7 +116,11 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.53 mongodb-2.zt.foreningenbs.no
   - 172.25.16.54 energi-extractor (no DNS record created, only outband traffic)
   - 172.25.16.55 dugnaden-mysql.zt.foreningenbs.no
-  - 127.25.16.56 ldap-toolbox.zt.foreningenbs.no
+  - 172.25.16.56 ldap-toolbox.zt.foreningenbs.no
+  - 172.25.16.60 signoz-zookeeper.zt.foreningenbs.no
+  - 172.25.16.61 signoz-clickhouse.zt.foreningenbs.no
+  - 172.25.16.62 signoz-otel-collector.zt.foreningenbs.no (OTLP: 4317/4318)
+  - 172.25.16.63 signoz.zt.foreningenbs.no (UI: port 8080)
 
 ### Public web
 
@@ -148,6 +152,16 @@ To add a new ad-hoc client to the network:
 - Authorize the client in the ZeroTier dashboard linked above.
 - Give the client a description so we keep track of what is connected.
 - You should now be able to ping e.g. fcos-1.zt.foreningenbs.no.
+
+### SigNoz (Observability)
+
+SigNoz provides observability (traces, metrics, logs) for our services.
+
+- **UI**: http://signoz.zt.foreningenbs.no:8080 (requires ZeroTier)
+- **OTLP gRPC**: signoz-otel-collector.zt.foreningenbs.no:4317
+- **OTLP HTTP**: signoz-otel-collector.zt.foreningenbs.no:4318
+
+To send data from a service, configure it to export OTLP to the collector endpoint.
 
 ## Outgoing email
 

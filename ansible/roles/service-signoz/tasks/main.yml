@@ -1,0 +1,284 @@
+- name: Ensure signoz config directory exists
+  file:
+    path: /var/ansible/signoz
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Ensure signoz data directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - /var/mnt/data/signoz-data
+    - /var/mnt/data/signoz-data/clickhouse
+    - /var/mnt/data/signoz-data/clickhouse-user-scripts
+    - /var/mnt/data/signoz-data/zookeeper
+    - /var/mnt/data/signoz-data/sqlite
+
+- name: Copy ClickHouse config files
+  copy:
+    dest: "/var/ansible/signoz/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - clickhouse-config.xml
+    - clickhouse-users.xml
+    - clickhouse-cluster.xml
+    - clickhouse-custom-function.xml
+  register: clickhouse_configs
+
+- name: Copy SigNoz config files
+  copy:
+    dest: "/var/ansible/signoz/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  loop:
+    - prometheus.yml
+    - otel-collector-config.yaml
+    - otel-collector-opamp-config.yaml
+  register: signoz_configs
+
+# Pull all images
+- name: Pull signoz images
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  loop:
+    - "{{ signoz_zookeeper_image }}"
+    - "{{ signoz_clickhouse_image }}"
+    - "{{ signoz_image }}"
+    - "{{ signoz_otel_collector_image }}"
+    - "{{ signoz_schema_migrator_image }}"
+
+# Init container: download histogram binary
+- name: Run signoz-init-clickhouse container
+  docker_container:
+    name: signoz-init-clickhouse
+    state: started
+    image: "{{ signoz_clickhouse_image }}"
+    restart_policy: "no"
+    command:
+      - bash
+      - -c
+      - |
+        if [ -f /var/lib/clickhouse/user_scripts/histogramQuantile ]; then
+          echo "histogramQuantile already exists, skipping download"
+          exit 0
+        fi
+        version="v0.0.1"
+        node_os=$(uname -s | tr '[:upper:]' '[:lower:]')
+        node_arch=$(uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/)
+        echo "Fetching histogram-binary for ${node_os}/${node_arch}"
+        cd /tmp
+        wget -O histogram-quantile.tar.gz "https://github.com/SigNoz/signoz/releases/download/histogram-quantile%2F${version}/histogram-quantile_${node_os}_${node_arch}.tar.gz"
+        tar -xvzf histogram-quantile.tar.gz
+        mv histogram-quantile /var/lib/clickhouse/user_scripts/histogramQuantile
+    volumes:
+      - /var/mnt/data/signoz-data/clickhouse-user-scripts:/var/lib/clickhouse/user_scripts/:z
+    log_driver: journald
+  register: init_clickhouse
+
+- name: Wait for init-clickhouse to complete
+  docker_container_info:
+    name: signoz-init-clickhouse
+  register: init_clickhouse_info
+  until: init_clickhouse_info.container.State.Running == false
+  retries: 30
+  delay: 5
+  when: init_clickhouse.changed
+
+# Zookeeper
+- name: Start signoz-zookeeper container
+  docker_container:
+    name: signoz-zookeeper
+    state: started
+    image: "{{ signoz_zookeeper_image }}"
+    restart_policy: unless-stopped
+    user: root
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ signoz_zookeeper_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: signoz-zookeeper.zt.foreningenbs.no
+    env:
+      ZOO_SERVER_ID: "1"
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      ZOO_AUTOPURGE_INTERVAL: "1"
+      ZOO_ENABLE_PROMETHEUS_METRICS: "yes"
+      ZOO_PROMETHEUS_METRICS_PORT_NUMBER: "9141"
+    volumes:
+      - /var/mnt/data/signoz-data/zookeeper:/bitnami/zookeeper:z
+    log_driver: journald
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -m 2 http://localhost:8080/commands/ruok | grep error | grep null"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+- name: Wait for zookeeper to be healthy
+  docker_container_info:
+    name: signoz-zookeeper
+  register: zk_info
+  until: zk_info.container.State.Health.Status == "healthy"
+  retries: 30
+  delay: 5
+
+# ClickHouse
+- name: Start signoz-clickhouse container
+  docker_container:
+    name: signoz-clickhouse
+    state: started
+    image: "{{ signoz_clickhouse_image }}"
+    restart_policy: unless-stopped
+    tty: yes
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ signoz_clickhouse_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: signoz-clickhouse.zt.foreningenbs.no
+    env:
+      CLICKHOUSE_SKIP_USER_SETUP: "1"
+    ulimits:
+      - "nproc:65535:65535"
+      - "nofile:262144:262144"
+    volumes:
+      - /var/ansible/signoz/clickhouse-config.xml:/etc/clickhouse-server/config.xml:Z
+      - /var/ansible/signoz/clickhouse-users.xml:/etc/clickhouse-server/users.xml:Z
+      - /var/ansible/signoz/clickhouse-custom-function.xml:/etc/clickhouse-server/custom-function.xml:Z
+      - /var/mnt/data/signoz-data/clickhouse-user-scripts:/var/lib/clickhouse/user_scripts/:z
+      - /var/ansible/signoz/clickhouse-cluster.xml:/etc/clickhouse-server/config.d/cluster.xml:Z
+      - /var/mnt/data/signoz-data/clickhouse:/var/lib/clickhouse/:z
+    log_driver: journald
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "0.0.0.0:8123/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: "{{ clickhouse_configs.changed }}"
+
+- name: Wait for clickhouse to be healthy
+  docker_container_info:
+    name: signoz-clickhouse
+  register: ch_info
+  until: ch_info.container.State.Health.Status == "healthy"
+  retries: 60
+  delay: 5
+
+# Schema migrator (sync)
+- name: Run signoz-schema-migrator-sync container
+  docker_container:
+    name: signoz-schema-migrator-sync
+    state: started
+    image: "{{ signoz_schema_migrator_image }}"
+    restart_policy: on-failure
+    command:
+      - sync
+      - "--dsn=tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
+      - --up=
+    networks:
+      - name: fbs0
+    networks_cli_compatible: yes
+    log_driver: journald
+  register: schema_sync
+
+- name: Wait for schema-migrator-sync to complete
+  docker_container_info:
+    name: signoz-schema-migrator-sync
+  register: schema_sync_info
+  until: schema_sync_info.container.State.Running == false
+  retries: 60
+  delay: 5
+  when: schema_sync.changed
+
+# SigNoz main app
+- name: Start signoz container
+  docker_container:
+    name: signoz
+    state: started
+    image: "{{ signoz_image }}"
+    restart_policy: unless-stopped
+    command:
+      - --config=/root/config/prometheus.yml
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ signoz_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: signoz.zt.foreningenbs.no
+    env:
+      SIGNOZ_ALERTMANAGER_PROVIDER: signoz
+      SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: "tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
+      SIGNOZ_SQLSTORE_SQLITE_PATH: /var/lib/signoz/signoz.db
+      STORAGE: clickhouse
+      GODEBUG: netdns=go
+      TELEMETRY_ENABLED: "true"
+      DEPLOYMENT_TYPE: docker-standalone-amd
+      DOT_METRICS_ENABLED: "true"
+    volumes:
+      - /var/ansible/signoz/prometheus.yml:/root/config/prometheus.yml:Z
+      - /var/mnt/data/signoz-data/sqlite:/var/lib/signoz/:z
+    log_driver: journald
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "localhost:8080/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: "{{ signoz_configs.changed }}"
+
+- name: Wait for signoz to be healthy
+  docker_container_info:
+    name: signoz
+  register: signoz_info
+  until: signoz_info.container.State.Health.Status == "healthy"
+  retries: 60
+  delay: 5
+
+# Schema migrator (async) - runs after sync
+- name: Run signoz-schema-migrator-async container
+  docker_container:
+    name: signoz-schema-migrator-async
+    state: started
+    image: "{{ signoz_schema_migrator_image }}"
+    restart_policy: on-failure
+    command:
+      - async
+      - "--dsn=tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
+      - --up=
+    networks:
+      - name: fbs0
+    networks_cli_compatible: yes
+    log_driver: journald
+
+# OTel Collector
+- name: Start signoz-otel-collector container
+  docker_container:
+    name: signoz-otel-collector
+    state: started
+    image: "{{ signoz_otel_collector_image }}"
+    restart_policy: unless-stopped
+    command:
+      - --config=/etc/otel-collector-config.yaml
+      - --manager-config=/etc/manager-config.yaml
+      - --copy-path=/var/tmp/collector-config.yaml
+      - --feature-gates=-pkg.translator.prometheus.NormalizeName
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ signoz_otel_collector_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: signoz-otel-collector.zt.foreningenbs.no
+    env:
+      OTEL_RESOURCE_ATTRIBUTES: host.name=signoz-host,os.type=linux
+      LOW_CARDINAL_EXCEPTION_GROUPING: "false"
+    volumes:
+      - /var/ansible/signoz/otel-collector-config.yaml:/etc/otel-collector-config.yaml:Z
+      - /var/ansible/signoz/otel-collector-opamp-config.yaml:/etc/manager-config.yaml:Z
+    log_driver: journald
+    restart: "{{ signoz_configs.changed }}"
