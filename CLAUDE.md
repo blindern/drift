@@ -20,6 +20,14 @@ gcp/            - Google Cloud Terraform (manual deploy)
 **Data:** `/var/mnt/data` on each host (survives VM recreation)
 **Network:** ZeroTier 172.25.0.0/16, services get static IPs and are reached by hostname
 
+## Adding a new service
+
+When adding a new service with a ZeroTier IP:
+1. Allocate IP in `README.md` (next available in 172.25.16.x range)
+2. Create DNS record: `./dns/manage-record.sh set <name>.zt <ip> --apply`
+3. Add Ansible role in `ansible/roles/service-<name>/`
+4. Add to `ansible/site.yml`
+
 ## Important: README.md tracking
 
 README.md tracks items that may need updates:

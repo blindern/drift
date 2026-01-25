@@ -51,8 +51,8 @@ more HA capabilities or a platform to control services deployment.
 
 ## Network details
 
-Note: The DNS entries must be added manually to Domeneshop.
-See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop
+Note: ZeroTier DNS entries (`*.zt`) can be managed via `dns/manage-record.sh`.
+See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for API credentials.
 
 - ZeroTier is set up to use:
   - 172.25.0.0/16
