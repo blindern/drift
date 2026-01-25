@@ -45,18 +45,6 @@
   "packageRules": [
     {
       "matchFileNames": [
-        "checkly/**"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "lockFileMaintenance"
-      ],
-      "automerge": true,
-      "commitMessageSuffix": "({{parentDir}})"
-    },
-    {
-      "matchFileNames": [
         "services/**"
       ],
       "additionalBranchPrefix": "{{parentDir}}-",
