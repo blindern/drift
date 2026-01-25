@@ -2,7 +2,7 @@ name: E2E Tests
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "35 * * * *"
   push:
     paths:
       - ".github/workflows/e2e-tests.yml"
