@@ -1,0 +1,47 @@
+name: otel-collector
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/otel-collector.yml"
+      - "services/otel-collector/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      - uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build container
+        id: docker_build
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6
+        with:
+          context: services/otel-collector
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: ghcr.io/blindern/otel-collector:latest
+          cache-from: type=gha,scope=${{ github.workflow }}
+          cache-to: type=gha,mode=max,scope=${{ github.workflow }}
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          {
+            "service": "otel-collector",
+            "attributes": {
+              "image": "ghcr.io/blindern/otel-collector@${{ steps.docker_build.outputs.digest }}"
+            }
+          }'
+        env:
+          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}

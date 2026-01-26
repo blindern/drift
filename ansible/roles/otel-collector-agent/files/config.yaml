@@ -1,0 +1,42 @@
+receivers:
+  hostmetrics:
+    root_path: /hostfs
+    collection_interval: 60s
+    scrapers:
+      cpu:
+      memory:
+      disk:
+      filesystem:
+      network:
+      load:
+      paging:
+  journald:
+    directory: /var/log/journal
+
+processors:
+  resourcedetection:
+    detectors: [env, system]
+    system:
+      hostname_sources: [os]
+  batch:
+
+extensions:
+  health_check: {}
+
+exporters:
+  otlp:
+    endpoint: signoz-otel-collector.zt.foreningenbs.no:4317
+    tls:
+      insecure: true
+
+service:
+  extensions: [health_check]
+  pipelines:
+    metrics:
+      receivers: [hostmetrics]
+      processors: [resourcedetection, batch]
+      exporters: [otlp]
+    logs:
+      receivers: [journald]
+      processors: [resourcedetection, batch]
+      exporters: [otlp]

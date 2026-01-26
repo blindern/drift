@@ -18,6 +18,10 @@
       tags: ssh-keys
     - role: zincati
       tags: zincati
+    - role: otel-collector-agent
+      tags: otel-collector-agent
+      vars:
+        otel_collector_agent_image: "{{ deployer_otel_collector_image }}"
 
 - hosts: fcos-1
   become: yes

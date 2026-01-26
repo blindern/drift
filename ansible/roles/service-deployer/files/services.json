@@ -18,6 +18,14 @@
     }
   },
   {
+    "service_name": "otel-collector",
+    "ansible_tag": "otel-collector-agent",
+    "ansible_host": "all",
+    "mappings": {
+      "image": "deployer_otel_collector_image"
+    }
+  },
+  {
     "service_name": "deployer-primary",
     "ansible_tag": "service-deployer-primary",
     "ansible_host": "fcos-3",

@@ -7,6 +7,7 @@
 [![confluence](https://github.com/blindern/drift/actions/workflows/confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/confluence.yml?query=branch%3Amain)
 [![ldap-toolbox](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml?query=branch%3Amain)
 [![openldap](https://github.com/blindern/drift/actions/workflows/openldap.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/openldap.yml?query=branch%3Amain)
+[![otel-collector](https://github.com/blindern/drift/actions/workflows/otel-collector.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/otel-collector.yml?query=branch%3Amain)
 [![simplesamlphp](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml?query=branch%3Amain)
 [![slack-invite-automation](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml?query=branch%3Amain)
 [![uka-webserver](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml?query=branch%3Amain)

@@ -1,0 +1,57 @@
+- name: Ensure otel-collector-agent config directory exists
+  file:
+    path: /var/ansible/otel-collector-agent
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy otel-collector-agent config
+  copy:
+    dest: /var/ansible/otel-collector-agent/config.yaml
+    src: config.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: config_copied
+
+- name: Get current otel-collector-agent image info
+  docker_image_info:
+    name: "{{ otel_collector_agent_image }}"
+  register: otel_collector_agent_image_before
+
+- name: Pull otel-collector-agent image
+  docker_image:
+    name: "{{ otel_collector_agent_image }}"
+    source: pull
+  register: otel_collector_agent_image_pull
+  changed_when: >-
+    otel_collector_agent_image_before.images | length == 0 or
+    otel_collector_agent_image_before.images[0].Id != otel_collector_agent_image_pull.image.Id
+
+- name: Get systemd-journal group ID
+  getent:
+    database: group
+    key: systemd-journal
+  register: systemd_journal_group
+
+- name: Start otel-collector-agent container
+  docker_container:
+    name: otel-collector-agent
+    state: started
+    image: "{{ otel_collector_agent_image }}"
+    restart_policy: unless-stopped
+    network_mode: host
+    command:
+      - --config=/etc/otelcol-contrib/config.yaml
+    groups:
+      - "{{ systemd_journal_group.ansible_facts.getent_group['systemd-journal'][1] }}"
+    security_opts:
+      - label=type:spc_t
+    volumes:
+      - /var/ansible/otel-collector-agent/config.yaml:/etc/otelcol-contrib/config.yaml:Z
+      - /:/hostfs:ro
+      - /var/log/journal:/var/log/journal:ro
+      - /etc/machine-id:/etc/machine-id:ro
+    log_driver: journald
+    restart: "{{ config_copied.changed }}"
