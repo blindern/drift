@@ -19,6 +19,40 @@ processors:
     system:
       hostname_sources: [os]
   batch:
+  transform/journald:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          # Map PRIORITY to OpenTelemetry severity
+          # https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where Int(body["PRIORITY"]) == 7
+          - set(severity_number, SEVERITY_NUMBER_INFO) where Int(body["PRIORITY"]) == 6
+          - set(severity_number, SEVERITY_NUMBER_INFO2) where Int(body["PRIORITY"]) == 5
+          - set(severity_number, SEVERITY_NUMBER_WARN) where Int(body["PRIORITY"]) == 4
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where Int(body["PRIORITY"]) == 3
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where Int(body["PRIORITY"]) <= 2
+
+          # Container-specific fields
+          - set(attributes["container.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
+          - set(attributes["container.id"], body["CONTAINER_ID"]) where body["CONTAINER_ID"] != nil
+          - set(attributes["container.image.name"], body["IMAGE_NAME"]) where body["IMAGE_NAME"] != nil
+
+          # Process info (semantic conventions)
+          - set(attributes["process.command"], body["_COMM"]) where body["_COMM"] != nil
+          - set(attributes["process.executable.path"], body["_EXE"]) where body["_EXE"] != nil
+          - set(attributes["process.pid"], body["_PID"]) where body["_PID"] != nil
+          - set(attributes["process.user.id"], body["_UID"]) where body["_UID"] != nil
+          - set(attributes["process.group.id"], body["_GID"]) where body["_GID"] != nil
+
+          # Systemd fields
+          - set(attributes["systemd.unit"], body["_SYSTEMD_UNIT"]) where body["_SYSTEMD_UNIT"] != nil
+          - set(attributes["syslog.identifier"], body["SYSLOG_IDENTIFIER"]) where body["SYSLOG_IDENTIFIER"] != nil
+          - set(attributes["syslog.priority"], body["PRIORITY"]) where body["PRIORITY"] != nil
+          - set(attributes["log.transport"], body["_TRANSPORT"]) where body["_TRANSPORT"] != nil
+
+          # Set body to just the message
+          - set(body, body["MESSAGE"])
 
 extensions:
   health_check: {}
@@ -38,5 +72,5 @@ service:
       exporters: [otlp]
     logs:
       receivers: [journald]
-      processors: [resourcedetection, batch]
+      processors: [transform/journald, resourcedetection, batch]
       exporters: [otlp]
