@@ -1,1 +1,1 @@
-server_endpoint: ws://signoz.zt.foreningenbs.no:8080/v1/opamp
+server_endpoint: ws://signoz.zt.foreningenbs.no:4320/v1/opamp
