@@ -245,6 +245,34 @@
     "type": "A"
   },
   {
+    "data": "172.25.16.61",
+    "host": "signoz-clickhouse.zt",
+    "id": 7736335,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.62",
+    "host": "signoz-otel-collector.zt",
+    "id": 7736336,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.60",
+    "host": "signoz-zookeeper.zt",
+    "id": 7736334,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
+    "data": "172.25.16.63",
+    "host": "signoz.zt",
+    "id": 7736337,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
     "data": "172.25.16.13",
     "host": "simplesamlphp.zt",
     "id": 2534123,
