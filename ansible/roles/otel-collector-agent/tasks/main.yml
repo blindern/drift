@@ -1,10 +1,13 @@
-- name: Ensure otel-collector-agent config directory exists
+- name: Ensure otel-collector-agent directories exist
   file:
-    path: /var/ansible/otel-collector-agent
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
     mode: 0755
+  loop:
+    - /var/ansible/otel-collector-agent
+    - /var/ansible/otel-collector-agent/state
 
 - name: Copy otel-collector-agent config
   copy:
@@ -50,6 +53,7 @@
       - label=type:spc_t
     volumes:
       - /var/ansible/otel-collector-agent/config.yaml:/etc/otelcol-contrib/config.yaml:Z
+      - /var/ansible/otel-collector-agent/state:/var/otel/state:Z
       - /:/hostfs:ro
       - /var/log/journal:/var/log/journal:ro
       - /etc/machine-id:/etc/machine-id:ro

@@ -7,11 +7,18 @@ receivers:
       memory:
       disk:
       filesystem:
+        include_mount_points:
+          mount_points: [/var/mnt/data, /etc]
+          match_type: strict
+        metrics:
+          system.filesystem.utilization:
+            enabled: true
       network:
       load:
       paging:
   journald:
     directory: /var/log/journal
+    storage: file_storage
 
 processors:
   resourcedetection:
@@ -24,19 +31,27 @@ processors:
     log_statements:
       - context: log
         statements:
-          # Map PRIORITY to OpenTelemetry severity
+          # Preserve raw journald fields before transformation
+          - set(attributes["journald.raw"], body)
+
+          # Map PRIORITY to OpenTelemetry severity (non-container logs only)
           # https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
-          - set(severity_number, SEVERITY_NUMBER_DEBUG) where Int(body["PRIORITY"]) == 7
-          - set(severity_number, SEVERITY_NUMBER_INFO) where Int(body["PRIORITY"]) == 6
-          - set(severity_number, SEVERITY_NUMBER_INFO2) where Int(body["PRIORITY"]) == 5
-          - set(severity_number, SEVERITY_NUMBER_WARN) where Int(body["PRIORITY"]) == 4
-          - set(severity_number, SEVERITY_NUMBER_ERROR) where Int(body["PRIORITY"]) == 3
-          - set(severity_number, SEVERITY_NUMBER_FATAL) where Int(body["PRIORITY"]) <= 2
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 7
+          - set(severity_number, SEVERITY_NUMBER_INFO) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 6
+          - set(severity_number, SEVERITY_NUMBER_INFO2) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 5
+          - set(severity_number, SEVERITY_NUMBER_WARN) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 4
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 3
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) <= 2
 
           # Container-specific fields
           - set(attributes["container.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
           - set(attributes["container.id"], body["CONTAINER_ID"]) where body["CONTAINER_ID"] != nil
           - set(attributes["container.image.name"], body["IMAGE_NAME"]) where body["IMAGE_NAME"] != nil
+
+          # Set service.name: container name for Docker, syslog identifier for systemd, fallback to unknown
+          - set(resource.attributes["service.name"], "unknown")
+          - set(resource.attributes["service.name"], body["SYSLOG_IDENTIFIER"]) where body["SYSLOG_IDENTIFIER"] != nil
+          - set(resource.attributes["service.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
 
           # Process info (semantic conventions)
           - set(attributes["process.command"], body["_COMM"]) where body["_COMM"] != nil
@@ -56,6 +71,8 @@ processors:
 
 extensions:
   health_check: {}
+  file_storage:
+    directory: /var/otel/state
 
 exporters:
   otlp:
@@ -64,7 +81,7 @@ exporters:
       insecure: true
 
 service:
-  extensions: [health_check]
+  extensions: [health_check, file_storage]
   pipelines:
     metrics:
       receivers: [hostmetrics]
