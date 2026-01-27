@@ -55,6 +55,7 @@
       - /var/ansible/otel-collector-agent/config.yaml:/etc/otelcol-contrib/config.yaml:Z
       - /var/ansible/otel-collector-agent/state:/var/otel/state:Z
       - /:/hostfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /var/log/journal:/var/log/journal:ro
       - /etc/machine-id:/etc/machine-id:ro
     log_driver: journald

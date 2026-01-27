@@ -16,6 +16,8 @@ receivers:
       network:
       load:
       paging:
+  docker_stats:
+    collection_interval: 60s
   journald:
     directory: /var/log/journal
     storage: file_storage
@@ -84,7 +86,7 @@ service:
   extensions: [health_check, file_storage]
   pipelines:
     metrics:
-      receivers: [hostmetrics]
+      receivers: [hostmetrics, docker_stats]
       processors: [resourcedetection, batch]
       exporters: [otlp]
     logs:
