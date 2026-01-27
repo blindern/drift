@@ -45,7 +45,7 @@
 - name: Clone statutter-arkiv
   git:
     repo: https://github.com/blindern/statutter-arkiv.git
-    dest: /var/ansible/statutter-arkiv
+    dest: /var/mnt/data/statutter-arkiv
 
 - name: Get current web-1 image info
   docker_image_info:
@@ -74,7 +74,7 @@
     hostname: web-1.zt.foreningenbs.no
     volumes:
       - /var/mnt/data/web-1-www:/var/www:z
-      - /var/ansible/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv:Z
+      - /var/mnt/data/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv:Z
       - /var/ansible/web-1/msmtprc:/etc/msmtprc:Z
       - /var/ansible/web-1/php.ini:/usr/local/etc/php/php.ini:Z
       - /var/ansible/web-1/foreningenbs.conf:/etc/apache2/sites-enabled/foreningenbs.conf:Z
