@@ -45,6 +45,18 @@
   "packageRules": [
     {
       "matchFileNames": [
+        "e2e-tests/**"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "lockFileMaintenance"
+      ],
+      "automerge": true,
+      "commitMessageSuffix": "({{parentDir}})"
+    },
+    {
+      "matchFileNames": [
         "services/**"
       ],
       "additionalBranchPrefix": "{{parentDir}}-",
