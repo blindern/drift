@@ -21,6 +21,7 @@ receivers:
   journald:
     directory: /var/log/journal
     storage: file_storage
+    convert_message_bytes: true
 
 processors:
   resourcedetection:
