@@ -27,6 +27,8 @@ processors:
     detectors: [env, system]
     system:
       hostname_sources: [os]
+  groupbyattrs/service:
+    keys: [service.name]
   batch:
   transform/journald:
     error_mode: ignore
@@ -51,9 +53,10 @@ processors:
           - set(attributes["container.image.name"], body["IMAGE_NAME"]) where body["IMAGE_NAME"] != nil
 
           # Set service.name: container name for Docker, syslog identifier for systemd, fallback to unknown
-          - set(resource.attributes["service.name"], "unknown")
-          - set(resource.attributes["service.name"], body["SYSLOG_IDENTIFIER"]) where body["SYSLOG_IDENTIFIER"] != nil
-          - set(resource.attributes["service.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
+          # Set as regular attribute first; groupbyattrs processor promotes it to resource attribute
+          - set(attributes["service.name"], "unknown")
+          - set(attributes["service.name"], body["SYSLOG_IDENTIFIER"]) where body["SYSLOG_IDENTIFIER"] != nil
+          - set(attributes["service.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
 
           # Process info (semantic conventions)
           - set(attributes["process.command"], body["_COMM"]) where body["_COMM"] != nil
@@ -91,5 +94,5 @@ service:
       exporters: [otlp]
     logs:
       receivers: [journald]
-      processors: [transform/journald, resourcedetection, batch]
+      processors: [transform/journald, groupbyattrs/service, resourcedetection, batch]
       exporters: [otlp]
