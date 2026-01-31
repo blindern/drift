@@ -195,7 +195,7 @@
         signoz_clickhouse_ipv4_address: "172.25.16.61"
         signoz_otel_collector_image: signoz/signoz-otel-collector:v0.129.12@sha256:84df7d9786ce12ee5983fc8460225371a204bca6320c85717801bf110b84ed65 # renovate
         signoz_otel_collector_ipv4_address: "172.25.16.62"
-        signoz_image: signoz/signoz:v0.108.0@sha256:1e95fb1b8b35936d9ab6a845385dc346aece43bcb6490e3fcc52a47161d43bbb # renovate
+        signoz_image: signoz/signoz:v0.110.0@sha256:a118398061d90891ed8d4171b8981728ed9e3d05d56e429755a06722ad26e6e8 # renovate
         signoz_ipv4_address: "172.25.16.63"
         signoz_schema_migrator_image: signoz/signoz-schema-migrator:v0.129.12@sha256:43044b0666c60ad9c0e8c1240d478f846d0c2b7fccfea142fa043f327c8be279 # renovate
 
