@@ -11,7 +11,7 @@ RUN set -eux; \
     ; \
     rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:2@sha256:1872bdb4a2080390498e75e7eb55f9d7e70c689ab5ab072a01da80720a68c6da /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2@sha256:e4ff7e012505df43b4404cf73a4590e06a3f752a7f77d9079a89f770d257eb84 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
     mkdir /var/simplesamlphp; \
