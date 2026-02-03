@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test"
+import { expect, test } from "./fixtures"
 import { loginAtSsp } from "./login-helpers"
 
 test("can login at foreningenbs.no (intern)", { tag: ["@intern", "@simplesamlphp", "@openldap"] }, async ({ page }) => {

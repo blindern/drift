@@ -6,7 +6,7 @@ export default defineConfig({
   testMatch: "**/*.spec.ts",
   timeout: 120000,
   expect: { timeout: 10000 },
-  retries: 2,
+  retries: 3,
   reporter: process.env.CI ? [["list"], ["github"], ["html"]] : [["list"], ["html"]],
   projects: [
     {

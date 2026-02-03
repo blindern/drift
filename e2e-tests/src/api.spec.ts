@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test"
+import { test, expect } from "./fixtures"
 
 test("matmeny API returns data", { tag: "@intern" }, async ({ request }) => {
   // Use dates relative to a known working date

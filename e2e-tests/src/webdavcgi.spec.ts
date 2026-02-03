@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test"
+import { expect, test } from "./fixtures"
 import { loginAtSsp } from "./login-helpers"
 
 test("can login to webdavcgi and see main page", { tag: "@webdavcgi" }, async ({ page }) => {
