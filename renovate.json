@@ -83,6 +83,7 @@
       "minimumReleaseAgeBehaviour": "timestamp-optional"
     }
   ],
+  "rebaseWhen": "conflicted",
   "minimumReleaseAge": "3 days",
   "prNotPendingHours": 74,
   "prConcurrentLimit": 30,
