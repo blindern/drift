@@ -81,6 +81,17 @@
       "description": "Disable minimum release age for sources without release timestamps",
       "matchDatasources": ["docker"],
       "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
+      "description": "Group signoz updates",
+      "matchDepNames": [
+        "signoz/signoz",
+        "signoz/signoz-otel-collector",
+        "signoz/signoz-schema-migrator",
+        "signoz/zookeeper",
+        "clickhouse/clickhouse-server"
+      ],
+      "groupName": "signoz"
     }
   ],
   "rebaseWhen": "conflicted",
