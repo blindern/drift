@@ -91,7 +91,8 @@
         "signoz/zookeeper",
         "clickhouse/clickhouse-server"
       ],
-      "groupName": "signoz"
+      "groupName": "signoz",
+      "additionalBranchPrefix": ""
     }
   ],
   "rebaseWhen": "conflicted",
