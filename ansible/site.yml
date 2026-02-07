@@ -191,13 +191,13 @@
       vars:
         signoz_zookeeper_image: signoz/zookeeper:3.9.3@sha256:2982759ec21211d52514154a5c87d2bbe6725d94cfa864cdfea2f7040b7bd365 # renovate
         signoz_zookeeper_ipv4_address: "172.25.16.60"
-        signoz_clickhouse_image: clickhouse/clickhouse-server:25.12.4@sha256:6ac0386b9be731b72b318f026e9bd200eebb0f449b341d452b49722c704a3a15 # renovate
+        signoz_clickhouse_image: clickhouse/clickhouse-server:25.12.5@sha256:cacf32d6884291dc2ff5e0156a97f46fc53ff7c929a7906d114e268a929dfd3a # renovate
         signoz_clickhouse_ipv4_address: "172.25.16.61"
-        signoz_otel_collector_image: signoz/signoz-otel-collector:v0.129.12@sha256:84df7d9786ce12ee5983fc8460225371a204bca6320c85717801bf110b84ed65 # renovate
+        signoz_otel_collector_image: signoz/signoz-otel-collector:v0.129.13@sha256:432feb1755922bcc9a41406fd953410d1848488bbd5215621605ee0dfcf37622 # renovate
         signoz_otel_collector_ipv4_address: "172.25.16.62"
-        signoz_image: signoz/signoz:v0.108.0@sha256:1e95fb1b8b35936d9ab6a845385dc346aece43bcb6490e3fcc52a47161d43bbb # renovate
+        signoz_image: signoz/signoz:v0.110.2@sha256:52269855ff7dd617d4e26273192ad11065e977d4487caf9e66af062a266ad5bd # renovate
         signoz_ipv4_address: "172.25.16.63"
-        signoz_schema_migrator_image: signoz/signoz-schema-migrator:v0.129.12@sha256:43044b0666c60ad9c0e8c1240d478f846d0c2b7fccfea142fa043f327c8be279 # renovate
+        signoz_schema_migrator_image: signoz/signoz-schema-migrator:v0.129.13@sha256:562d193f00683d917bfb37d06c37cc8ce1f0885f13f399272e339b86a65498b7 # renovate
 
 # Deployer.
 # Two instances of deployer is used so that the deployer can
