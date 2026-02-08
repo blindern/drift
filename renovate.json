@@ -39,7 +39,8 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true
+    "automerge": true,
+    "prTitle": "{{{commitMessage}}} [auto-merge]"
   },
   "packageRules": [
     {
@@ -52,7 +53,8 @@
         "lockFileMaintenance"
       ],
       "automerge": true,
-      "commitMessageSuffix": "({{parentDir}})"
+      "commitMessageSuffix": "({{parentDir}})",
+      "prTitle": "{{{commitMessage}}} [auto-merge]"
     },
     {
       "matchFileNames": [
@@ -74,7 +76,8 @@
       "matchDatasources": ["docker", "github-actions"],
       "matchUpdateTypes": ["digest"],
       "automerge": true,
-      "schedule": ["before 9am on monday"]
+      "schedule": ["before 9am on monday"],
+      "prTitle": "{{{commitMessage}}} [auto-merge]"
     },
     {
       "description": "Group signoz updates",
