@@ -39,14 +39,15 @@ processors:
           # Preserve raw journald fields before transformation
           - set(attributes["journald.raw"], body)
 
-          # Map PRIORITY to OpenTelemetry severity (non-container logs only)
+          # Map PRIORITY to severity for all logs (baseline)
+          # For containers: stdout→PRIORITY=6(INFO), stderr→PRIORITY=3(ERROR)
           # https://www.freedesktop.org/software/systemd/man/latest/systemd.journal-fields.html
-          - set(severity_number, SEVERITY_NUMBER_DEBUG) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 7
-          - set(severity_number, SEVERITY_NUMBER_INFO) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 6
-          - set(severity_number, SEVERITY_NUMBER_INFO2) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 5
-          - set(severity_number, SEVERITY_NUMBER_WARN) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 4
-          - set(severity_number, SEVERITY_NUMBER_ERROR) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) == 3
-          - set(severity_number, SEVERITY_NUMBER_FATAL) where body["CONTAINER_NAME"] == nil and Int(body["PRIORITY"]) <= 2
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where Int(body["PRIORITY"]) == 7
+          - set(severity_number, SEVERITY_NUMBER_INFO) where Int(body["PRIORITY"]) == 6
+          - set(severity_number, SEVERITY_NUMBER_INFO2) where Int(body["PRIORITY"]) == 5
+          - set(severity_number, SEVERITY_NUMBER_WARN) where Int(body["PRIORITY"]) == 4
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where Int(body["PRIORITY"]) == 3
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where Int(body["PRIORITY"]) <= 2
 
           # Container-specific fields
           - set(attributes["container.name"], body["CONTAINER_NAME"]) where body["CONTAINER_NAME"] != nil
@@ -72,8 +73,127 @@ processors:
           - set(attributes["syslog.priority"], body["PRIORITY"]) where body["PRIORITY"] != nil
           - set(attributes["log.transport"], body["_TRANSPORT"]) where body["_TRANSPORT"] != nil
 
-          # Set body to just the message
-          - set(body, body["MESSAGE"])
+          # Extract MESSAGE as body (handle null MESSAGE from e.g. signoz-clickhouse heartbeats)
+          - set(body, body["MESSAGE"]) where body["MESSAGE"] != nil
+          - set(body, "") where not IsString(body)
+
+          # --- JSON severity extraction ---
+          # Try to parse body as JSON. Non-JSON bodies silently skip (error_mode: ignore).
+          - merge_maps(cache, ParseJSON(body), "upsert") where IsString(body) and body != ""
+
+          # JSON "level" field (case-insensitive)
+          # Services: signoz-clickhouse (Error/Information/Warning/Debug/Trace),
+          #   signoz-otel-collector (warn/info/error/debug),
+          #   signoz (INFO/WARN/ERROR), users-api (INFO/WARN/ERROR)
+          # Example: {"level":"warn","ts":"...","msg":"firstSeen/lastSeen not provided"}
+          - set(severity_number, SEVERITY_NUMBER_TRACE) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^trace$")
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^debug$")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^info(rmation)?$")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^warn(ing)?$")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^error$")
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where cache["level"] != nil and IsMatch(cache["level"], "(?i)^(fatal|panic|dpanic)$")
+
+          # JSON "L" field (case-insensitive)
+          # Services: signoz-schema-migrator-sync, signoz-schema-migrator-async
+          # Example: {"L":"info","C":"signozschemamigrator/main.go:92","M":"Running migrations in sync mode"}
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^debug$")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^info$")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^warn(ing)?$")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^error$")
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^(fatal|panic|dpanic)$")
+
+          # JSON "s" field — MongoDB single-letter severity
+          # Services: mongodb-2
+          # Example: {"t":{"$date":"..."},"s":"I","c":"WTCHKPT","msg":"WiredTiger message"}
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where cache["s"] != nil and IsMatch(cache["s"], "^D")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where cache["s"] == "I"
+          - set(severity_number, SEVERITY_NUMBER_WARN) where cache["s"] == "W"
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where cache["s"] == "E"
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where cache["s"] == "F"
+
+          # --- Text severity extraction ---
+
+          # logfmt "level=X" pattern
+          # Services: containerd, dockerd
+          # Example: time="2026-02-08T03:48:55Z" level=info msg="connecting to shim"
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where IsMatch(body, "level=debug")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "level=info")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "level=warn(ing)?[^a-z]")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "level=error")
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where IsMatch(body, "level=fatal")
+
+          # Tab-separated format: timestamp\tlevel\tfile\tmessage
+          # Services: otel-collector-agent
+          # Example: 2026-02-08T20:03:30.680Z\twarn\tgrpc@v1.78.0/clientconn.go:1526\t[core] ...
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where IsMatch(body, "^\\d{4}-\\d{2}-\\d{2}T[^\\t]*\\tdebug\\t")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "^\\d{4}-\\d{2}-\\d{2}T[^\\t]*\\tinfo\\t")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "^\\d{4}-\\d{2}-\\d{2}T[^\\t]*\\twarn\\t")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "^\\d{4}-\\d{2}-\\d{2}T[^\\t]*\\terror\\t")
+
+          # Java-style "LEVEL [thread]" pattern
+          # Services: confluence (Tomcat), signoz-zookeeper
+          # Example (confluence): 08-Feb-2026 10:47:30.173 SEVERE [http-nio-8090-exec-5] org.glassfish...
+          # Example (zookeeper): 2026-02-08 19:40:36,729 [myid:] - INFO  [PurgeTask:o.a.z.s...]
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where IsMatch(body, "\\bDEBUG\\s+\\[")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "\\bINFO\\s+\\[")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "\\b(WARN|WARNING)\\s+\\[")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "\\b(ERROR|SEVERE)\\s+\\[")
+          - set(severity_number, SEVERITY_NUMBER_FATAL) where IsMatch(body, "\\bFATAL\\s+\\[")
+
+          # Angle brackets "<level>" pattern
+          # Services: NetworkManager
+          # Example: <info>  [1770501815.9570] dhcp4 (ens3): state changed new lease
+          - set(severity_number, SEVERITY_NUMBER_DEBUG) where IsMatch(body, "^<debug>")
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "^<info>")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "^<warn>")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "^<error>")
+
+          # MySQL bracket "[Level]" pattern
+          # Services: mysql-1
+          # Example: 2026-02-08T05:24:58Z 0 [System] [MY-010931] [Server] ready for connections
+          # Example: 2026-02-08 05:24:30+00:00 [Note] [Entrypoint]: Entrypoint script started
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "\\[(System|Note)\\]")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "\\[Warning\\]")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "\\[ERROR\\]")
+
+          # PostgreSQL "] LEVEL: " pattern
+          # Services: postgresql-1
+          # Example: 2026-02-08 05:23:55.892 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+          - 'set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(body, "\\] LOG: ")'
+          - 'set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(body, "\\] WARNING: ")'
+          - 'set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(body, "\\] ERROR: ")'
+          - 'set(severity_number, SEVERITY_NUMBER_FATAL) where IsMatch(body, "\\] (FATAL|PANIC): ")'
+
+          # HTTP access log status codes (scoped to uka-* services)
+          # Services: uka-webserver, uka-billett-frontend, uka-billett-proxy, uka-billett-fpm
+          # Example: 172.25.16.48 - - [08/Feb/2026:20:22:23 +0000] "GET / HTTP/1.0" 200 1795
+          - set(severity_number, SEVERITY_NUMBER_INFO) where IsMatch(attributes["service.name"], "^uka-") and IsMatch(body, " [23]\\d{2}")
+          - set(severity_number, SEVERITY_NUMBER_WARN) where IsMatch(attributes["service.name"], "^uka-") and IsMatch(body, " 4\\d{2}")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(attributes["service.name"], "^uka-") and IsMatch(body, " 5\\d{2}")
+
+          # Service-specific overrides (add per-service rules here as needed)
+          # Example: set(severity_number, ...) where attributes["service.name"] == "my-service" and ...
+
+          # --- JSON field expansion ---
+          # For JSON logs, expand all parsed fields into OTel attributes and set body
+          # to the human-readable message. The full JSON is preserved in journald.raw.
+          # Uses "insert" strategy to not overwrite attributes set above (service.name, etc.)
+          - merge_maps(attributes, cache, "insert")
+          # Set body to the message field (varies by logger)
+          # Services using "msg": signoz-clickhouse, signoz-otel-collector, signoz, mongodb-2
+          # Services using "message": users-api
+          # Services using "M": signoz-schema-migrator-sync, signoz-schema-migrator-async
+          - set(body, cache["msg"]) where cache["msg"] != nil
+          - set(body, cache["message"]) where cache["message"] != nil
+          - set(body, cache["M"]) where cache["M"] != nil
+
+          # Derive severity_text from final severity_number
+          - set(severity_text, "TRACE") where severity_number >= 1 and severity_number < 5
+          - set(severity_text, "DEBUG") where severity_number >= 5 and severity_number < 9
+          - set(severity_text, "INFO") where severity_number >= 9 and severity_number < 13
+          - set(severity_text, "WARN") where severity_number >= 13 and severity_number < 17
+          - set(severity_text, "ERROR") where severity_number >= 17 and severity_number < 21
+          - set(severity_text, "FATAL") where severity_number >= 21
 
 extensions:
   health_check: {}
