@@ -52,8 +52,10 @@
     networks_cli_compatible: yes
     log_driver: journald
     env:
-      GIT_CRYPT_KEY_PATH: /git-crypt-key
-      GIT_REPO: git@github.com:blindern/drift.git
+      GIT_REPO: https://github.com/blindern/drift.git
+      GITHUB_APP_ID: 2824237
+      GITHUB_APP_INSTALLATION_ID: 108887063
+      GITHUB_APP_PRIVATE_KEY_PATH: /github-app-private-key.pem
       SERVICES_FILE: /services.json
     env_file: /var/ansible/deployer-{{ deployer_variant }}/variables.env
     restart: "{{ file_copied.changed }}"
@@ -61,6 +63,7 @@
       - /var/ansible/deployer-{{ deployer_variant }}/services.json:/services.json:z
 
       # NOTE: These files are MANUALLY copied into the host to avoid keeping them elsewhere.
+      # chmod 600 and owned by root
 
       # Key used to encrypt the drift repo.
       # scp .git/git-crypt/keys/default root@fcos-3.nrec.foreningenbs.no:/var/ansible/deployer/git-crypt-key
@@ -70,3 +73,7 @@
       # The public key is added to the ssh-keys role.
       # To generate new: ssh-keygen -C fbs-deployer -t ed25519 -f ssh-key
       - /var/ansible/deployer/ssh-key:/root/.ssh/id_ed25519:z
+
+      # GitHub app private key.
+      # From https://github.com/organizations/blindern/settings/apps/fbs-deployer
+      - /var/ansible/deployer/github-app-private-key.pem:/github-app-private-key.pem:z
