@@ -5,8 +5,10 @@
 fcos-1 ansible_host=fcos-1.nrec.foreningenbs.no
 fcos-2 ansible_host=fcos-2.nrec.foreningenbs.no
 fcos-3 ansible_host=fcos-3.nrec.foreningenbs.no
+fbshs1 ansible_host=fbshs1.zt.foreningenbs.no
 
 [fcos]
 fcos-1
 fcos-2
 fcos-3
+fbshs1

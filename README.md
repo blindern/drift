@@ -70,6 +70,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.12.1 fcos-1.zt.foreningenbs.no
   - 172.25.12.2 fcos-2.zt.foreningenbs.no
   - 172.25.12.3 fcos-3.zt.foreningenbs.no
+  - 172.25.12.4 fbshs1.zt.foreningenbs.no
 - IP-ranges for ad-hoc containers with Docker:
   - 172.25.21.0/24 coreos-1 (decommissioned)
   - 172.25.22.0/24 coreos-2 (decommissioned)
@@ -79,6 +80,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.26.0/24 fcos-1
   - 172.25.27.0/24 fcos-2
   - 172.25.28.0/24 fcos-3
+  - 172.25.29.0/24 fbshs1
 - IP-range used for allocation of services:
   - 172.25.16.0/22 (172.25.16.0-172.25.19.255)
 - Allocated services:
@@ -176,20 +178,12 @@ More details: https://support.google.com/a/answer/176600
 
 ## Google Cloud credentials
 
-Each of the fcos-x hosts has its own Google Cloud credentials.
-This is used to pull images from Google Artifact Registry.
+Each host has its own GCP service account to pull images from Artifact Registry.
+The `gcp-credentials` Ansible role places relevant symlinks.
 
-Create service account for a new host at https://console.cloud.google.com/iam-admin/serviceaccounts/create?project=foreningenbs.
-See e.g. https://console.cloud.google.com/iam-admin/serviceaccounts/details/116341634353047058328?project=foreningenbs
-
-Permissions needed:
-
-- `Artifact Registry Reader`
-
-Create a service account key for for it.
-Upload it to the host at `/var/mnt/data/google_cloud_service_account.json`.
-
-The `gcp-credentials` Ansible role will place relevant symlinks.
+fcos-1/2/3 have manually created service accounts.
+New hosts (fbshs1+) are managed via Terraform in [`gcp/`](./gcp/).
+See [`gcp/README.md`](./gcp/README.md) for key creation steps.
 
 ## Encryption in this repo
 

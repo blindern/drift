@@ -11,5 +11,6 @@
     src: /var/mnt/data/google_cloud_service_account.json
     dest: /root/.config/gcloud/application_default_credentials.json
     state: link
+    force: yes
     owner: 0
     group: 0
