@@ -53,8 +53,8 @@
     log_driver: journald
     env:
       GIT_REPO: https://github.com/blindern/drift.git
-      GITHUB_APP_ID: 2824237
-      GITHUB_APP_INSTALLATION_ID: 108887063
+      GITHUB_APP_ID: "2824237"
+      GITHUB_APP_INSTALLATION_ID: "108887063"
       GITHUB_APP_PRIVATE_KEY_PATH: /github-app-private-key.pem
       SERVICES_FILE: /services.json
     env_file: /var/ansible/deployer-{{ deployer_variant }}/variables.env
