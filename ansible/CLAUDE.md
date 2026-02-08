@@ -2,6 +2,8 @@
 
 ## Commands
 
+All ansible commands must be run from within the `ansible/` directory.
+
 ```bash
 # Deploy specific service to host
 ansible-playbook site.yml -i hosts -l fcos-3 -t service-simplesamlphp
