@@ -186,6 +186,12 @@
       vars:
         webdavcgi_image: "{{ deployer_webdavcgi_image }}"
         webdavcgi_ipv4_address: "172.25.16.16"
+
+# Services running on fbshs1.
+- hosts: fbshs1
+  become: yes
+  tags: all-services
+  roles:
     - role: service-signoz
       tags: service-signoz
       vars:
