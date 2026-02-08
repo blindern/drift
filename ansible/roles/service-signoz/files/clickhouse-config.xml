@@ -855,10 +855,10 @@
             engine MergeTree
             partition by toYYYYMM(finish_date)
             order by (finish_date, finish_time_us, trace_id)
+            TTL finish_date + INTERVAL 30 DAY DELETE
         </engine>
         <database>system</database>
         <table>opentelemetry_span_log</table>
-        <ttl>finish_date + INTERVAL 30 DAY DELETE</ttl>
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
     </opentelemetry_span_log>
 
