@@ -179,11 +179,7 @@ More details: https://support.google.com/a/answer/176600
 ## Google Cloud credentials
 
 Each host has its own GCP service account to pull images from Artifact Registry.
-The `gcp-credentials` Ansible role places relevant symlinks.
-
-fcos-1/2/3 have manually created service accounts.
-New hosts (fbshs1+) are managed via Terraform in [`gcp/`](./gcp/).
-See [`gcp/README.md`](./gcp/README.md) for key creation steps.
+Managed via Terraform in [`gcp/`](./gcp/). The `gcp-credentials` Ansible role places relevant symlinks.
 
 ## Encryption in this repo
 
