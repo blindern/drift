@@ -73,7 +73,14 @@
       "commitMessageExtra": "(from {{currentVersion}})"
     },
     {
-      "matchDatasources": ["docker", "github-actions"],
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true,
+      "schedule": ["before 9am on monday"],
+      "prTitle": "{{{commitMessage}}} [auto-merge]"
+    },
+    {
+      "matchDepTypes": ["action"],
       "matchUpdateTypes": ["digest"],
       "automerge": true,
       "schedule": ["before 9am on monday"],
