@@ -2,7 +2,11 @@
 <clickhouse>
     <profiles>
         <default>
-            <max_memory_usage>10000000000</max_memory_usage>
+            <max_memory_usage>2000000000</max_memory_usage>
+            <max_block_size>8192</max_block_size>
+            <max_download_threads>1</max_download_threads>
+            <input_format_parallel_parsing>0</input_format_parallel_parsing>
+            <output_format_parallel_formatting>0</output_format_parallel_formatting>
             <load_balancing>random</load_balancing>
         </default>
         <readonly>

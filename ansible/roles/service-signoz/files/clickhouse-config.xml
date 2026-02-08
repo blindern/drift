@@ -295,7 +295,7 @@
     of the time, in which case a higher number of threads might be required.
     -->
 
-    <max_thread_pool_size>10000</max_thread_pool_size>
+    <max_thread_pool_size>1000</max_thread_pool_size>
 
     <!-- Number of workers to recycle connections in background (see also drain_timeout).
          If the pool is full, connection will be drained synchronously. -->
@@ -332,13 +332,13 @@
          is slower than multi-core decompression on some server configurations.
          Enabling it can sometimes paradoxically make queries slower.
       -->
-    <uncompressed_cache_size>8589934592</uncompressed_cache_size>
+    <uncompressed_cache_size>268435456</uncompressed_cache_size>
 
     <!-- Approximate size of mark cache, used in tables of MergeTree family.
          In bytes. Cache is single for server. Memory is allocated only on demand.
          You should not lower this value.
       -->
-    <mark_cache_size>5368709120</mark_cache_size>
+    <mark_cache_size>536870912</mark_cache_size>
 
 
     <!-- If you enable the `min_bytes_to_use_mmap_io` setting,
@@ -761,8 +761,7 @@
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
     </query_log>
 
-    <!-- Trace log. Stores stack traces collected by query profilers.
-         See query_profiler_real_time_period_ns and query_profiler_cpu_time_period_ns settings. -->
+    <!-- Trace log disabled to reduce memory usage on low-RAM systems.
     <trace_log>
         <database>system</database>
         <table>trace_log</table>
@@ -771,6 +770,7 @@
         <ttl>event_date + INTERVAL 30 DAY DELETE</ttl>
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
     </trace_log>
+    -->
 
     <!-- Query thread log. Has information about all threads participated in query execution.
          Used only for queries with setting log_query_threads = 1. -->
@@ -813,7 +813,7 @@
     </text_log>
     -->
 
-    <!-- Metric log contains rows with current values of ProfileEvents, CurrentMetrics collected with "collect_interval_milliseconds" interval. -->
+    <!-- Metric log disabled to reduce memory usage on low-RAM systems.
     <metric_log>
         <database>system</database>
         <table>metric_log</table>
@@ -821,21 +821,16 @@
         <flush_interval_milliseconds>7500</flush_interval_milliseconds>
         <collect_interval_milliseconds>1000</collect_interval_milliseconds>
     </metric_log>
-
-    <!--
-        Asynchronous metric log contains values of metrics from
-        system.asynchronous_metrics.
     -->
+
+    <!-- Asynchronous metric log disabled to reduce memory usage on low-RAM systems.
     <asynchronous_metric_log>
         <database>system</database>
         <table>asynchronous_metric_log</table>
         <ttl>event_date + INTERVAL 30 DAY DELETE</ttl>
-        <!--
-            Asynchronous metrics are updated once a minute, so there is
-            no need to flush more often.
-        -->
         <flush_interval_milliseconds>7000</flush_interval_milliseconds>
     </asynchronous_metric_log>
+    -->
 
     <!--
         OpenTelemetry log contains OpenTelemetry trace spans.
@@ -995,6 +990,11 @@
         <max_suspicious_broken_parts>5</max_suspicious_broken_parts>
     </merge_tree>
     -->
+
+    <merge_tree>
+        <!-- Limit merge input size to 1 GiB (default 150 GiB) to prevent OOM during background merges -->
+        <max_bytes_to_merge_at_max_space_in_pool>1073741824</max_bytes_to_merge_at_max_space_in_pool>
+    </merge_tree>
 
     <!-- Protection from accidental DROP.
          If size of a MergeTree table is greater than max_table_size_to_drop (in bytes) than table could not be dropped with any DROP query.
