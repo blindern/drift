@@ -39,8 +39,7 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true,
-    "minimumReleaseAgeBehaviour": "timestamp-optional"
+    "automerge": true
   },
   "packageRules": [
     {
@@ -78,11 +77,6 @@
       "schedule": ["before 9am on monday"]
     },
     {
-      "description": "Disable minimum release age for sources without release timestamps",
-      "matchDatasources": ["docker"],
-      "minimumReleaseAgeBehaviour": "timestamp-optional"
-    },
-    {
       "description": "Group signoz updates",
       "matchDepNames": [
         "signoz/signoz",
@@ -97,6 +91,7 @@
   ],
   "rebaseWhen": "conflicted",
   "minimumReleaseAge": "3 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
   "prNotPendingHours": 74,
   "prConcurrentLimit": 30,
   "prHourlyLimit": 10
