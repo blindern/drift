@@ -135,6 +135,7 @@ set up for this for the physical host this is running at:
 - www.foreningenbs.no: 158.39.48.49 (fcos-3)
 - deployer.foreningenbs.no: 158.39.48.49 (fcos-3)
 - deployer-secondary.foreningenbs.no: 158.39.48.49 (fcos-3)
+- signoz.foreningenbs.no: 158.39.48.49 (fcos-3)
 - blindernuka.no: 158.39.48.49 (fcos-3)
 - www.blindernuka.no: 158.39.48.49 (fcos-3)
 - billett.blindernuka.no: 158.39.48.49 (fcos-3)
@@ -160,7 +161,7 @@ To add a new ad-hoc client to the network:
 
 SigNoz provides observability (traces, metrics, logs) for our services.
 
-- **UI**: http://signoz.zt.foreningenbs.no:8080 (requires ZeroTier)
+- **UI**: https://signoz.foreningenbs.no (or http://signoz.zt.foreningenbs.no:8080 via ZeroTier)
 - **OTLP gRPC**: signoz-otel-collector.zt.foreningenbs.no:4317
 - **OTLP HTTP**: signoz-otel-collector.zt.foreningenbs.no:4318
 
