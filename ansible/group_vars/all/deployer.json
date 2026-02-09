@@ -14,7 +14,7 @@
   "deployer_nginx_front_1_image": "henrist/nginx-letsencrypt",
   "deployer_okoreports_backend_image": "cybernetisk/okoreports-backend@sha256:97d66c2d54a2b025ecd4f19c4a78f70f612de8a3a56fa1ce67cef32f583e33c0",
   "deployer_okoreports_frontend_image": "cybernetisk/okoreports-frontend@sha256:d335040b7286fe8987982be01620688b6a3e8a166f4bf08f35160b14624db325",
-  "deployer_simplesamlphp_image": "ghcr.io/blindern/simplesamlphp@sha256:5cf423344311f440a0c4f04748f00dd855e4c4a7d29a648236eccd221eb0d670",
+  "deployer_simplesamlphp_image": "ghcr.io/blindern/simplesamlphp@sha256:241f124271d2027b273fab4440c9a382f6d25dd32a8fb1753bfcd483d98bd08b",
   "deployer_slack_invite_automation_image": "ghcr.io/blindern/slack-invite-automation@sha256:d781deac219e6fab5d54c56531ec08d44e13d5c75d94b701f1a8228b2a6ab9dc",
   "deployer_smaabruket_availability_api_image": "ghcr.io/blindern/smaabruket-availability-api@sha256:8cfb70868f2c6f79b3ee752fb7d476bbb32228ad97606441d85c629499143339",
   "deployer_uka_billett_proxy_image": "ghcr.io/blindern/billett-proxy@sha256:6937c956b57240715c0ac9cd05521900c54bdf211619d14382c9cad0188bf3fb",
