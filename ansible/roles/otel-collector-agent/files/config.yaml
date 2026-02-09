@@ -31,6 +31,8 @@ processors:
   groupbyattrs/service:
     keys: [service.name]
   batch:
+    send_batch_size: 2000
+    send_batch_max_size: 2000
   transform/journald:
     error_mode: ignore
     log_statements:
@@ -193,6 +195,18 @@ processors:
           - set(body, cache["M"]) where cache["M"] != nil
 
           # Derive severity_text from final severity_number
+          - set(severity_text, "TRACE") where severity_number >= 1 and severity_number < 5
+          - set(severity_text, "DEBUG") where severity_number >= 5 and severity_number < 9
+          - set(severity_text, "INFO") where severity_number >= 9 and severity_number < 13
+          - set(severity_text, "WARN") where severity_number >= 13 and severity_number < 17
+          - set(severity_text, "ERROR") where severity_number >= 17 and severity_number < 21
+          - set(severity_text, "FATAL") where severity_number >= 21
+
+  transform/severity-text:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
           - set(severity_text, "TRACE") where severity_number >= 1 and severity_number < 5
           - set(severity_text, "DEBUG") where severity_number >= 5 and severity_number < 9
           - set(severity_text, "INFO") where severity_number >= 9 and severity_number < 13

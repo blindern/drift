@@ -1,0 +1,21 @@
+receivers:
+  filelog/webdavcgi:
+    include:
+      - /hostfs/var/mnt/data/webdavcgi-data/webdavcgi.log
+    start_at: end
+    storage: file_storage
+    resource:
+      service.name: webdavcgi
+    operators:
+      - type: regex_parser
+        regex: '^(?P<timestamp>\w{3} \w{3}\s+\d{1,2} \d{2}:\d{2}:\d{2} \d{4})'
+        timestamp:
+          parse_from: attributes.timestamp
+          layout: '%a %b %e %H:%M:%S %Y'
+        on_error: send
+service:
+  pipelines:
+    logs/webdavcgi-filelog:
+      receivers: [filelog/webdavcgi]
+      processors: [resourcedetection, transform/severity-text, batch]
+      exporters: [otlp]

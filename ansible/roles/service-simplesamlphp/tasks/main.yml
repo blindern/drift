@@ -76,3 +76,16 @@
       - /var/mnt/data/simplesamlphp-storage:/storage:z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
+
+- name: Deploy simplesamlphp otel-filelog config
+  copy:
+    src: otel-filelog.yaml
+    dest: /var/ansible/otel-collector-agent/config.d/simplesamlphp.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: otel_filelog_copied
+
+- name: Restart otel-collector-agent for simplesamlphp logs
+  shell: docker restart otel-collector-agent
+  when: otel_filelog_copied.changed

@@ -8,6 +8,7 @@
   loop:
     - /var/ansible/otel-collector-agent
     - /var/ansible/otel-collector-agent/state
+    - /var/ansible/otel-collector-agent/config.d
 
 - name: Copy otel-collector-agent config
   copy:
@@ -45,14 +46,20 @@
     image: "{{ otel_collector_agent_image }}"
     restart_policy: unless-stopped
     network_mode: host
-    command:
-      - --config=/etc/otelcol-contrib/config.yaml
+    entrypoint:
+      - sh
+      - -c
+      - >-
+        exec /otelcol-contrib
+        --config=/etc/otelcol-contrib/config.yaml
+        $(for f in /etc/otelcol-contrib/config.d/*.yaml; do [ -f "$f" ] && echo "--config=$f"; done)
     groups:
       - "{{ systemd_journal_group.ansible_facts.getent_group['systemd-journal'][1] }}"
     security_opts:
       - label=type:spc_t
     volumes:
       - /var/ansible/otel-collector-agent/config.yaml:/etc/otelcol-contrib/config.yaml:Z
+      - /var/ansible/otel-collector-agent/config.d:/etc/otelcol-contrib/config.d:Z
       - /var/ansible/otel-collector-agent/state:/var/otel/state:Z
       - /:/hostfs:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro

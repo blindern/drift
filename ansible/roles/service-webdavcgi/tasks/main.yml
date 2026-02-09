@@ -64,3 +64,16 @@
       - /var/ansible/webdavcgi/ca.crt:/etc/fbs-ca.pem:Z
     log_driver: journald
     restart: "{{ file_copied1.changed or file_copied2.changed }}"
+
+- name: Deploy webdavcgi otel-filelog config
+  copy:
+    src: otel-filelog.yaml
+    dest: /var/ansible/otel-collector-agent/config.d/webdavcgi.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: otel_filelog_copied
+
+- name: Restart otel-collector-agent for webdavcgi logs
+  shell: docker restart otel-collector-agent
+  when: otel_filelog_copied.changed

@@ -43,3 +43,16 @@
     # Confluence spends a long time starting when doing e.g. upgrades.
     # Increase from default 60 seconds timeout.
     timeout: 600
+
+- name: Deploy confluence otel-filelog config
+  copy:
+    src: otel-filelog.yaml
+    dest: /var/ansible/otel-collector-agent/config.d/confluence.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: otel_filelog_copied
+
+- name: Restart otel-collector-agent for confluence logs
+  shell: docker restart otel-collector-agent
+  when: otel_filelog_copied.changed

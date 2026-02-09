@@ -105,3 +105,16 @@
     networks_cli_compatible: yes
     hostname: uka-billett-frontend.zt.foreningenbs.no
     log_driver: journald
+
+- name: Deploy uka-billett otel-filelog config
+  copy:
+    src: otel-filelog.yaml
+    dest: /var/ansible/otel-collector-agent/config.d/uka-billett.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: otel_filelog_copied
+
+- name: Restart otel-collector-agent for uka-billett logs
+  shell: docker restart otel-collector-agent
+  when: otel_filelog_copied.changed

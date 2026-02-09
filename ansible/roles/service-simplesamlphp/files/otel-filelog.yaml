@@ -1,0 +1,25 @@
+receivers:
+  filelog/simplesamlphp:
+    include:
+      - /hostfs/var/mnt/data/simplesamlphp-storage/log/simplesamlphp*.log
+    start_at: end
+    storage: file_storage
+    resource:
+      service.name: simplesamlphp
+    operators:
+      - type: regex_parser
+        regex: '^(?P<timestamp>\w{3}\s+\d{1,2} \d{2}:\d{2}:\d{2})\s+\w+\s+(?P<level>\w+)\s+'
+        timestamp:
+          parse_from: attributes.timestamp
+          layout: '%b %e %H:%M:%S'
+        severity:
+          parse_from: attributes.level
+          mapping:
+            info2: notice
+        on_error: send
+service:
+  pipelines:
+    logs/simplesamlphp-filelog:
+      receivers: [filelog/simplesamlphp]
+      processors: [resourcedetection, transform/severity-text, batch]
+      exporters: [otlp]

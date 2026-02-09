@@ -1,0 +1,58 @@
+receivers:
+  filelog/confluence:
+    include:
+      - /hostfs/var/mnt/data/confluence-data/logs/atlassian-confluence.log
+    include_file_path: true
+    start_at: end
+    storage: file_storage
+    resource:
+      service.name: confluence
+    operators:
+      - type: recombine
+        combine_field: body
+        is_first_entry: body matches "^\\d{4}-\\d{2}-\\d{2}"
+        source_identifier: attributes["log.file.path"]
+        max_log_size: 65536
+      - type: regex_parser
+        regex: '^(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3})\s+(?P<level>\w+)\s+'
+        timestamp:
+          parse_from: attributes.timestamp
+          layout_type: gotime
+          layout: '2006-01-02 15:04:05,000'
+        severity:
+          parse_from: attributes.level
+          mapping:
+            error: severe
+        on_error: send
+  filelog/confluence-access:
+    include:
+      - /hostfs/var/mnt/data/confluence-logs/confluence_access.*.log
+    exclude:
+      - /hostfs/var/mnt/data/confluence-logs/confluence_access.202[0-5]-*.log
+    start_at: end
+    storage: file_storage
+    resource:
+      service.name: confluence-access
+    operators:
+      - type: regex_parser
+        regex: '\[(?P<timestamp>[^\]]+)\].*"\s+(?P<status_class>\d)\d{2}\s'
+        timestamp:
+          parse_from: attributes.timestamp
+          layout: '%d/%b/%Y:%H:%M:%S %z'
+        on_error: send
+      - type: severity_parser
+        parse_from: attributes.status_class
+        mapping:
+          info: "2"
+          info2: "3"
+          warn: "4"
+          error: "5"
+        on_error: send
+service:
+  pipelines:
+    logs/confluence-filelog:
+      receivers:
+        - filelog/confluence
+        - filelog/confluence-access
+      processors: [resourcedetection, transform/severity-text, batch]
+      exporters: [otlp]
