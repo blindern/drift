@@ -197,7 +197,7 @@
       vars:
         signoz_zookeeper_image: signoz/zookeeper:3.9.3@sha256:2982759ec21211d52514154a5c87d2bbe6725d94cfa864cdfea2f7040b7bd365 # renovate
         signoz_zookeeper_ipv4_address: "172.25.16.60"
-        signoz_clickhouse_image: clickhouse/clickhouse-server:25.12.5@sha256:cacf32d6884291dc2ff5e0156a97f46fc53ff7c929a7906d114e268a929dfd3a # renovate
+        signoz_clickhouse_image: clickhouse/clickhouse-server:26.1.2@sha256:be0cb54cf637cf6132081882bfdb33adc9826e4d87ec6fb65c8ab4e27fa91cbf # renovate
         signoz_clickhouse_ipv4_address: "172.25.16.61"
         signoz_otel_collector_image: signoz/signoz-otel-collector:v0.129.13@sha256:432feb1755922bcc9a41406fd953410d1848488bbd5215621605ee0dfcf37622 # renovate
         signoz_otel_collector_ipv4_address: "172.25.16.62"
