@@ -15,6 +15,8 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         locale: "nb-NO",
         viewport: { width: 1280, height: 720 },
+        video: "retain-on-failure",
+        trace: "retain-on-failure",
       },
     },
   ],

@@ -54,6 +54,4 @@ jobs:
     uses: ./.github/workflows/run-e2e-tests.yml
     with:
       tag: "@confluence"
-      # It might take time to get Confluence healthy, so retry a couple times.
-      retries: 3
     secrets: inherit
