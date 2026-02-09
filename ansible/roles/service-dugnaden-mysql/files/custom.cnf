@@ -1,4 +1,3 @@
 [mysqld]
-default_authentication_plugin = mysql_native_password
 max_allowed_packet = 1G
 character-set-server=utf8
