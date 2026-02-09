@@ -172,7 +172,12 @@ processors:
           - set(severity_number, SEVERITY_NUMBER_ERROR) where IsMatch(attributes["service.name"], "^uka-") and IsMatch(body, " 5\\d{2}")
 
           # Service-specific overrides (add per-service rules here as needed)
-          # Example: set(severity_number, ...) where attributes["service.name"] == "my-service" and ...
+
+          # OpenLDAP slapd writes all output to stderr → PRIORITY=3(ERROR), but these
+          # are normal operational logs. Reset to INFO, then detect actual errors.
+          - set(severity_number, SEVERITY_NUMBER_INFO) where attributes["service.name"] == "ldap-master" or attributes["service.name"] == "ldap-slave"
+          - set(severity_number, SEVERITY_NUMBER_WARN) where (attributes["service.name"] == "ldap-master" or attributes["service.name"] == "ldap-slave") and IsMatch(body, "\\berr=(?:[1-9]|[1-9]\\d+)\\b")
+          - set(severity_number, SEVERITY_NUMBER_ERROR) where (attributes["service.name"] == "ldap-master" or attributes["service.name"] == "ldap-slave") and IsMatch(body, "\\berr=(1|51|52|53|80)\\b")
 
           # --- JSON field expansion ---
           # For JSON logs, expand all parsed fields into OTel attributes and set body
