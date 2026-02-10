@@ -7,6 +7,12 @@ receivers:
     resource:
       service.name: simplesamlphp
     operators:
+      # Combine stack trace lines (Backtrace:, numbered frames, Caused by:)
+      # with the preceding error line into a single log entry.
+      - type: recombine
+        combine_field: body
+        is_first_entry: 'not (body matches "\\[\\w+\\]\\s+(\\d+ |Backtrace:|Caused by:)")'
+        combine_with: "\n"
       - type: regex_parser
         regex: '^(?P<timestamp>\w{3}\s+\d{1,2} \d{2}:\d{2}:\d{2})\s+\w+\s+(?P<level>\w+)\s+'
         timestamp:
