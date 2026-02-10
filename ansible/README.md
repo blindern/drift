@@ -40,7 +40,7 @@ Use the tag specified in `site.yml` and limit to the host the
 service is running on (see the `site.yml` file):
 
 ```bash
-ansible-playbook site.yml -i hosts -l fcos-3 -t service-simplesamlphp
+ansible-playbook site.yml -l fcos-3 -t service-simplesamlphp
 ```
 
 ### Other ansible commands
@@ -49,16 +49,16 @@ Example runs:
 
 ```bash
 # Show uptime on all hosts.
-ansible all -i hosts -m shell -a uptime
+ansible all -m shell -a uptime
 
 # Run the site.yml playbook for a specific tag on a specific host.
-ansible-playbook site.yml -i hosts -t base -l fcos-1
+ansible-playbook site.yml -t base -l fcos-1
 
 # Run the site.yml playbook for everything.
-ansible-playbook site.yml -i hosts
+ansible-playbook site.yml
 
 # Run a more complex command on all hosts.
-ansible all -i hosts -m shell -a 'cat /proc/cpuinfo | grep "core id" | wc -l'
+ansible all -m shell -a 'cat /proc/cpuinfo | grep "core id" | wc -l'
 ```
 
 ## Steps for adding new hosts

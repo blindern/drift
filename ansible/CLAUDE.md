@@ -6,16 +6,16 @@ All ansible commands must be run from within the `ansible/` directory.
 
 ```bash
 # Deploy specific service to host
-ansible-playbook site.yml -i hosts -l fcos-3 -t service-simplesamlphp
+ansible-playbook site.yml -l fcos-3 -t service-simplesamlphp
 
 # Deploy all common config to host
-ansible-playbook site.yml -i hosts -t base -l fcos-1
+ansible-playbook site.yml -t base -l fcos-1
 
 # Deploy everything
-ansible-playbook site.yml -i hosts
+ansible-playbook site.yml
 
 # Run command on all hosts
-ansible all -i hosts -m shell -a uptime
+ansible all -m shell -a uptime
 ```
 
 ## SSH access

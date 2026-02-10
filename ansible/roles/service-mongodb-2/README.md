@@ -3,7 +3,7 @@
 Deploy service:
 
 ```bash
-ansible-playbook site.yml -i hosts -t service-mongodb-2 -l fcos-2
+ansible-playbook site.yml -t service-mongodb-2 -l fcos-2
 ```
 
 ## Manual operations
