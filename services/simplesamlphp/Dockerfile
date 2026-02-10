@@ -11,6 +11,10 @@ RUN set -eux; \
     ; \
     rm -rf /var/lib/apt/lists/*
 
+RUN pecl install opentelemetry \
+    && pecl install protobuf \
+    && docker-php-ext-enable opentelemetry protobuf
+
 COPY --from=composer:2@sha256:e4ff7e012505df43b4404cf73a4590e06a3f752a7f77d9079a89f770d257eb84 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
@@ -47,8 +51,22 @@ RUN set -eux; \
       >composer.json; \
     composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-ssp2#${AUTHOAUTH2_COMMIT}"; \
     composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#${FBS_COMMIT}"; \
+    composer require --ignore-platform-reqs \
+      open-telemetry/sdk \
+      open-telemetry/exporter-otlp \
+      open-telemetry/opentelemetry-auto-curl \
+      open-telemetry/opentelemetry-auto-guzzle \
+      open-telemetry/opentelemetry-auto-pdo \
+      open-telemetry/opentelemetry-auto-symfony; \
     composer clear-cache
 
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
+
+ENV OTEL_PHP_AUTOLOAD_ENABLED=true
+ENV OTEL_SERVICE_NAME=simplesamlphp
+ENV OTEL_TRACES_EXPORTER=otlp
+ENV OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://signoz-otel-collector.zt.foreningenbs.no:4318
+ENV OTEL_PROPAGATORS=baggage,tracecontext
 
 EXPOSE 80
