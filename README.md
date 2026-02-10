@@ -162,6 +162,7 @@ To add a new ad-hoc client to the network:
 SigNoz provides observability (traces, metrics, logs) for our services.
 
 - **UI**: https://signoz.foreningenbs.no (or http://signoz.zt.foreningenbs.no:8080 via ZeroTier)
+- **Auth**: Google OAuth SSO (OAuth client `signoz` in GCP project `foreningenbs`) — any @blindernuka.no account can login (viewer access by default)
 - **OTLP gRPC**: signoz-otel-collector.zt.foreningenbs.no:4317
 - **OTLP HTTP**: signoz-otel-collector.zt.foreningenbs.no:4318
 
