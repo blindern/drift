@@ -14,6 +14,23 @@ Connect to the ZeroTier network to have direct access.
 mysql --defaults-extra-file=mysql.cnf -h mysql-1.zt.foreningenbs.no
 ```
 
+### MongoDB
+
+Credentials are stored in mongodb-uri.txt.
+
+Connect to the ZeroTier network to have direct access.
+
+```bash
+mongosh "$(cat mongodb-uri.txt)"
+```
+
+Or via SSH (see mongodb-uri.txt for password):
+
+```bash
+ssh root@fcos-2.nrec.foreningenbs.no
+docker exec -it mongodb-2 mongosh -u superuser --authenticationDatabase admin
+```
+
 ### PostgreSQL-database
 
 Credentials are stored in pgpass.conf.
@@ -29,6 +46,20 @@ Or via SSH:
 ```bash
 ssh root@fcos-2.nrec.foreningenbs.no
 docker exec -it -u postgres postgresql-1 psql
+```
+
+## Backups
+
+Standalone playbooks for each database:
+
+```bash
+cd ansible
+ansible-playbook postgresql-1-backup.yml
+ansible-playbook mysql-1-backup.yml
+ansible-playbook dugnaden-mysql-backup.yml
+ansible-playbook uka-mysql-backup.yml
+ansible-playbook snipe-mysql-backup.yml
+ansible-playbook mongodb-2-backup.yml
 ```
 
 ## Upgrading PostgreSQL

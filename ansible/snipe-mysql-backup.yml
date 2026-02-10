@@ -1,0 +1,37 @@
+- hosts: fcos-2
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Set backup filename
+      set_fact:
+        backup_file: "/var/mnt/data/snipe-mysql-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
+
+    - name: Copy credentials to host
+      copy:
+        src: "{{ playbook_dir }}/../mysql-snipe.cnf"
+        dest: /tmp/ansible-mysqldump-snipe-mysql.cnf
+        mode: "0600"
+
+    - name: Copy credentials into container
+      command: docker cp /tmp/ansible-mysqldump-snipe-mysql.cnf snipe-mysql:/tmp/ansible-mysqldump-snipe-mysql.cnf
+
+    - name: Remove credentials from host
+      file:
+        path: /tmp/ansible-mysqldump-snipe-mysql.cnf
+        state: absent
+
+    - name: Create MySQL backup (mysqldump)
+      shell: "docker exec snipe-mysql mysqldump --defaults-extra-file=/tmp/ansible-mysqldump-snipe-mysql.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
+
+    - name: Remove credentials from container
+      command: docker exec snipe-mysql rm /tmp/ansible-mysqldump-snipe-mysql.cnf
+
+    - name: Verify backup file is non-empty
+      stat:
+        path: "{{ backup_file }}"
+      register: backup_stat
+      failed_when: not backup_stat.stat.exists or backup_stat.stat.size < 100
+
+    - name: Show backup info
+      debug:
+        msg: "Backup created: {{ backup_file }} ({{ backup_stat.stat.size }} bytes)"

@@ -5,3 +5,5 @@ mysql.cnf filter=git-crypt diff=git-crypt
 pgpass.conf filter=git-crypt diff=git-crypt
 mysql-dugnaden.cnf filter=git-crypt diff=git-crypt
 mysql-uka.cnf filter=git-crypt diff=git-crypt
+mysql-snipe.cnf filter=git-crypt diff=git-crypt
+mongodb-uri.txt filter=git-crypt diff=git-crypt
