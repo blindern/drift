@@ -40,9 +40,6 @@
     state: started
     image: "{{ nginx_front_1_image }}"
     restart_policy: unless-stopped
-    env:
-      LE_CONTACT_EMAIL: "it-gruppa@foreningenbs.no"
-      LE_STAGING: "0"
     networks:
       - name: fbs0
         ipv4_address: "{{ nginx_front_1_ipv4_address }}"
@@ -51,8 +48,7 @@
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"
     volumes:
-      - /var/mnt/data/nginx-front-1-certs:/opt/dehydrated/certs:z
-      - /var/mnt/data/nginx-front-1-accounts:/opt/dehydrated/accounts:z
+      - /var/mnt/data/nginx-front-1-acme:/var/cache/nginx/acme-letsencrypt:z
       - /var/ansible/nginx-front-1/default.conf:/etc/nginx/conf.d/default.conf:Z
       - /var/ansible/nginx-front-1/blindernuka.conf:/etc/nginx/conf.d/blindernuka.conf:Z
       - /var/ansible/nginx-front-1/foreningenbs.conf:/etc/nginx/conf.d/foreningenbs.conf:Z

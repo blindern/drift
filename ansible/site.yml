@@ -135,7 +135,7 @@
     - role: service-nginx-front-1
       tags: service-nginx-front-1
       vars:
-        nginx_front_1_image: "{{ deployer_nginx_front_1_image }}"
+        nginx_front_1_image: nginx:1.29.5-alpine-otel@sha256:01b37847a8c85f16578be1b710e4558da611b57608547fd5362b4bd35b692698 # renovate
         nginx_front_1_ipv4_address: "172.25.16.14"
     - role: service-intern
       tags: service-intern
