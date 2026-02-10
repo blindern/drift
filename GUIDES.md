@@ -16,15 +16,19 @@ mysql --defaults-extra-file=mysql.cnf -h mysql-1.zt.foreningenbs.no
 
 ### PostgreSQL-database
 
-As of Oct 2022 the PostgreSQL database is only
-used to store print jobs from Pykota.
+Credentials are stored in pgpass.conf.
 
-See https://foreningenbs.no/confluence/x/twcf
-for more details on Pykota usage.
+Connect to the ZeroTier network to have direct access.
+
+```bash
+PGPASSFILE=pgpass.conf psql -h postgresql-1.zt.foreningenbs.no -U postgres
+```
+
+Or via SSH:
 
 ```bash
 ssh root@fcos-2.nrec.foreningenbs.no
-docker exec -it -u postgres postgresql-1 psql pykota
+docker exec -it -u postgres postgresql-1 psql
 ```
 
 ## Upgrading PostgreSQL
