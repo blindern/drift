@@ -17,19 +17,21 @@ jobs:
       - name: Deploy secondary from primary
         if: github.ref == 'refs/heads/main'
         run: |
-          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
           {
             "service": "deployer-secondary"
-          }'
+          }' | tee /tmp/deploy-output.txt
+          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
 
       - name: Deploy primary from secondary
         if: github.ref == 'refs/heads/main'
         run: |
-          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer-secondary.foreningenbs.no/deploy -d '
+          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer-secondary.foreningenbs.no/deploy?stream" -d '
           {
             "service": "deployer-primary"
-          }'
+          }' | tee /tmp/deploy-output.txt
+          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}

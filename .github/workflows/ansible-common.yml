@@ -24,9 +24,10 @@ jobs:
 
       - name: Deploy
         run: |
-          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
           {
             "service": "all-common"
-          }'
+          }' | tee /tmp/deploy-output.txt
+          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}

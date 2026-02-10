@@ -36,13 +36,14 @@ jobs:
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         run: |
-          curl --fail -L -i -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST https://deployer.foreningenbs.no/deploy -d '
+          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
           {
             "service": "simplesamlphp",
             "attributes": {
               "image": "ghcr.io/blindern/simplesamlphp@${{ steps.docker_build.outputs.digest }}"
             }
-          }'
+          }' | tee /tmp/deploy-output.txt
+          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
         env:
           DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
 
