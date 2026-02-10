@@ -252,6 +252,13 @@
     "type": "A"
   },
   {
+    "data": "158.39.48.49",
+    "host": "signoz",
+    "id": 7781250,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
     "data": "172.25.16.61",
     "host": "signoz-clickhouse.zt",
     "id": 7736335,
