@@ -5,11 +5,14 @@ RUN set -eux; \
     apt-get install -y --no-install-recommends \
       git \
       jq \
+      libpq-dev \
       unzip \
       wget \
       zip \
     ; \
     rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install pdo_pgsql
 
 RUN pecl install opentelemetry \
     && pecl install protobuf \
