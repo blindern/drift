@@ -34,6 +34,17 @@ processors:
     send_batch_max_size: 25000
     send_batch_size: 20000
     timeout: 1s
+  transform/severity-text:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          - set(severity_text, "TRACE") where severity_number >= 1 and severity_number < 5
+          - set(severity_text, "DEBUG") where severity_number >= 5 and severity_number < 9
+          - set(severity_text, "INFO") where severity_number >= 9 and severity_number < 13
+          - set(severity_text, "WARN") where severity_number >= 13 and severity_number < 17
+          - set(severity_text, "ERROR") where severity_number >= 17 and severity_number < 21
+          - set(severity_text, "FATAL") where severity_number >= 21
   resourcedetection:
     detectors: [env, system]
     timeout: 2s
@@ -105,7 +116,7 @@ service:
       exporters: [signozclickhousemetrics, signozmeter]
     logs:
       receivers: [otlp]
-      processors: [batch]
+      processors: [transform/severity-text, batch]
       exporters: [clickhouselogsexporter, signozmeter]
     metrics/meter:
       receivers: [signozmeter]
