@@ -47,7 +47,7 @@
       - /var/ansible/postgresql-1/postgresql.conf:/postgresql.conf:Z
       - /var/ansible/postgresql-1/pg_hba.conf:/pg_hba.conf:Z
       - /var/ansible/postgresql-1/pg_ident.conf:/pg_ident.conf:Z
-      - /var/mnt/data/postgresql-1-data:/var/lib/postgresql/data:Z
+      - /var/mnt/data/postgresql-1-data:/var/lib/postgresql/18/docker:Z
     log_driver: journald
     command: -c 'config_file=/postgresql.conf'
     restart: "{{ file_copied.changed }}"

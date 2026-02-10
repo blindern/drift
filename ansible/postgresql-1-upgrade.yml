@@ -1,0 +1,78 @@
+# See GUIDES.md for full instructions and rollback steps.
+
+- import_playbook: postgresql-1-backup.yml
+
+- hosts: fcos-2
+  become: yes
+  gather_facts: no
+  vars:
+    postgresql_1_image: postgres:18@sha256:1090bc3a8ccfb0b55f78a494d76f8d603434f7e4553543d6e807bc7bd6bbd17f # renovate
+  tasks:
+    # --- Stop old container ---
+    - name: Stop and remove PostgreSQL container
+      docker_container:
+        name: postgresql-1
+        state: absent
+
+    # --- Swap data directory ---
+    - name: Rename old data directory
+      command: mv /var/mnt/data/postgresql-1-data /var/mnt/data/postgresql-1-data-pre-upgrade
+      args:
+        creates: /var/mnt/data/postgresql-1-data-pre-upgrade
+
+    # --- Deploy updated config files ---
+    - name: Copy config files
+      copy:
+        dest: "/var/ansible/postgresql-1/{{ item }}"
+        src: "roles/service-postgresql-1/files/{{ item }}"
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        - pg_hba.conf
+        - pg_ident.conf
+        - postgresql.conf
+
+    - name: Create fresh data directory
+      file:
+        path: /var/mnt/data/postgresql-1-data
+        state: directory
+
+    # --- Temp container for restore ---
+    - name: Start temporary PG container for restore
+      docker_container:
+        name: postgresql-1-temp
+        state: started
+        image: "{{ postgresql_1_image }}"
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        volumes:
+          - /var/ansible/postgresql-1/postgresql.conf:/postgresql.conf:Z
+          - /var/ansible/postgresql-1/pg_hba.conf:/pg_hba.conf:Z
+          - /var/ansible/postgresql-1/pg_ident.conf:/pg_ident.conf:Z
+          - /var/mnt/data/postgresql-1-data:/var/lib/postgresql/18/docker:Z
+        command: -c 'config_file=/postgresql.conf'
+
+    - name: Wait for PostgreSQL to be ready
+      command: docker exec postgresql-1-temp pg_isready
+      register: pg_ready
+      until: pg_ready.rc == 0
+      retries: 30
+      delay: 2
+
+    - name: Restore backup
+      shell: "xz -dc {{ pg_backup_file }} | docker exec -i -u postgres postgresql-1-temp psql"
+
+    - name: List databases after restore
+      command: docker exec -u postgres postgresql-1-temp psql -l
+      register: db_list
+
+    - name: Show restored databases
+      debug:
+        var: db_list.stdout_lines
+
+    # --- Cleanup temp container ---
+    - name: Stop and remove temp container
+      docker_container:
+        name: postgresql-1-temp
+        state: absent

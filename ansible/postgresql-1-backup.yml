@@ -1,0 +1,30 @@
+# See GUIDES.md for usage and rollback instructions.
+# Skip backup by passing an existing file: -e pg_backup_file=/path/to/backup.sql.xz
+
+- hosts: fcos-2
+  become: yes
+  gather_facts: no
+  tasks:
+    - when: pg_backup_file is not defined
+      block:
+        - name: Set backup filename
+          set_fact:
+            pg_backup_file: "/var/mnt/data/postgresql-1-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
+
+        - name: Create PostgreSQL backup (pg_dumpall)
+          shell: "docker exec -u postgres postgresql-1 pg_dumpall | xz > {{ pg_backup_file }}"
+
+        - name: Verify backup file is non-empty
+          stat:
+            path: "{{ pg_backup_file }}"
+          register: backup_stat
+          failed_when: not backup_stat.stat.exists or backup_stat.stat.size < 100
+
+        - name: Show backup info
+          debug:
+            msg: "Backup created: {{ pg_backup_file }} ({{ backup_stat.stat.size }} bytes)"
+
+    - name: Using existing backup
+      debug:
+        msg: "Using backup: {{ pg_backup_file }}"
+      when: pg_backup_file is defined
