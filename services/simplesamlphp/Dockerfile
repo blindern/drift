@@ -15,10 +15,13 @@ RUN pecl install opentelemetry \
     && pecl install protobuf \
     && docker-php-ext-enable opentelemetry protobuf
 
+RUN echo 'auto_prepend_file=/var/simplesamlphp/otel-prepend.php' > "$PHP_INI_DIR/conf.d/otel-prepend.ini" \
+    && mkdir -p /var/simplesamlphp \
+    && touch /var/simplesamlphp/otel-prepend.php
+
 COPY --from=composer:2@sha256:e4ff7e012505df43b4404cf73a4590e06a3f752a7f77d9079a89f770d257eb84 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
-    mkdir /var/simplesamlphp; \
     chown www-data:www-data /var/simplesamlphp /var/www
 
 # renovate: datasource=github-tags depName=simplesamlphp/simplesamlphp
@@ -60,6 +63,7 @@ RUN set -eux; \
       open-telemetry/opentelemetry-auto-symfony; \
     composer clear-cache
 
+COPY --chown=www-data:www-data otel-prepend.php /var/simplesamlphp/otel-prepend.php
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 
 ENV OTEL_PHP_AUTOLOAD_ENABLED=true
