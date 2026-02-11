@@ -107,8 +107,8 @@ processors:
           - set(body, "") where not IsString(body)
 
           # --- JSON severity extraction ---
-          # Try to parse body as JSON. Non-JSON bodies silently skip (error_mode: ignore).
-          - merge_maps(cache, ParseJSON(body), "upsert") where IsString(body) and body != ""
+          # Try to parse body as JSON. Guard with "^{" to avoid warn-level log noise from ParseJSON on non-JSON.
+          - merge_maps(cache, ParseJSON(body), "upsert") where IsString(body) and body != "" and IsMatch(body, "^\\{")
 
           # JSON "level" field (case-insensitive)
           # Services: signoz-clickhouse (Error/Information/Warning/Debug/Trace),
