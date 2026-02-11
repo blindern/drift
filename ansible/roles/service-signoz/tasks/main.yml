@@ -268,7 +268,6 @@
       - --config=/etc/otel-collector-config.yaml
       - --manager-config=/etc/manager-config.yaml
       - --copy-path=/var/tmp/collector-config.yaml
-      - --feature-gates=-pkg.translator.prometheus.NormalizeName
     networks:
       - name: fbs0
         ipv4_address: "{{ signoz_otel_collector_ipv4_address }}"
