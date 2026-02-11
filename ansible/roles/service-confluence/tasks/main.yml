@@ -30,6 +30,13 @@
       JVM_SUPPORT_RECOMMENDED_ARGS: >-
         -Ddocument.conversion.sandbox.request.time.limit.secs=300
         -Dconversion.sandbox.memory.limit.megabytes=1024
+        -javaagent:/opt/opentelemetry-javaagent.jar
+      OTEL_SERVICE_NAME: confluence
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://signoz-otel-collector.zt.foreningenbs.no:4317
+      OTEL_EXPORTER_OTLP_PROTOCOL: grpc
+      OTEL_METRICS_EXPORTER: otlp
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_LOGS_EXPORTER: otlp
     networks:
       - name: fbs0
         ipv4_address: "{{ confluence_ipv4_address }}"
