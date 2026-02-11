@@ -41,6 +41,14 @@ receivers:
     directory: /var/log/journal
     storage: file_storage
     convert_message_bytes: true
+    operators:
+      - type: recombine
+        combine_field: body.MESSAGE
+        source_identifier: body.SYSLOG_IDENTIFIER
+        is_first_entry: body.MESSAGE == nil or body.MESSAGE matches "^[^\\t]"
+        combine_with: "\n"
+        max_log_size: 65536
+        on_error: send
 
 processors:
   resourcedetection:
