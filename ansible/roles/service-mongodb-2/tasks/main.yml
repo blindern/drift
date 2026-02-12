@@ -32,7 +32,7 @@
 - name: Start mongodb container
   docker_container:
     name: mongodb-2
-    state: started
+    state: stopped
     image: "{{ mongodb_2_image }}"
     restart_policy: unless-stopped
     networks:
