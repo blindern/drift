@@ -59,8 +59,8 @@ gh variable set FBS_TEST_USERNAME --body "halvargimnes"
 # Test user password
 gh secret set FBS_TEST_PASSWORD
 
-# Slack bot OAuth token for alerts
-gh secret set SLACK_BOT_TOKEN
+# Slack bot OAuth token (org-level secret, available to all repos)
+gh secret set SLACK_BOT_TOKEN --org blindern --visibility all
 ```
 
 ## Slack App Setup
@@ -69,5 +69,5 @@ gh secret set SLACK_BOT_TOKEN
 2. App Name: "GitHub Actions"
 3. OAuth & Permissions → Bot Token Scopes → Add `chat:write`
 4. Install to Workspace → Copy Bot User OAuth Token (`xoxb-...`)
-5. Add as GitHub secret: `SLACK_BOT_TOKEN`
+5. Set as org secret: `gh secret set SLACK_BOT_TOKEN --org blindern --visibility all`
 6. Invite bot to alerts channel: `/invite @GitHub Actions`
