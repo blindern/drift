@@ -275,3 +275,21 @@ $metadata["http://localhost:8081/intern/api/saml2/metadata"] = [
   ],
   "attributes" => ["username"],
 ];
+
+// Internside - utvikling
+$metadata["http://localhost:5173/intern/api/saml2/metadata"] = [
+  "SingleLogoutService" => [
+    [
+      "Location" => "http://localhost:5173/intern/api/saml2/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "http://localhost:5173/intern/api/saml2/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
+  "attributes" => ["username"],
+];
