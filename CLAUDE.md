@@ -44,6 +44,14 @@ README.md tracks items that may need updates:
 
 ## Deployment
 
+Deploy: `ansible-playbook site.yml -l <host> -t <tag>` (run from `ansible/`)
+
+Service-to-host mapping (check `ansible/site.yml` for authoritative list):
+- **fcos-1**: confluence, uka-*
+- **fcos-2**: users-api, okoreports, snipeit, ldap-master, postgresql-1, mysql-1, gatus, smaabruket-availability-api, slack-invite-automation
+- **fcos-3**: nginx-front-1, intern, web-1, simplesamlphp, dugnaden, ldap-slave, ldap-toolbox, phpldapadmin, phpmyadmin, webdavcgi, deployer, energi-extractor
+- **fbshs1**: signoz
+
 Most services auto-deploy via [deployer](https://github.com/blindern/deployer) when images are built.
 
 ## Encryption
