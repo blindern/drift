@@ -111,11 +111,6 @@
       vars:
         mysql_1_image: mysql:8.4.7@sha256:0426ec38c7a10aa45ba383887df7878f74ee70e2fd589c7b69207f3577901903 # renovate
         mysql_1_ipv4_address: "172.25.16.40"
-    - role: service-mongodb-2
-      tags: service-mongodb-2
-      vars:
-        mongodb_2_image: mongo:7.0.29@sha256:606f8e029603330411a7dd10b5ffd50eefc297fc80cee89f10a455e496a76ae7 # renovate
-        mongodb_2_ipv4_address: "172.25.16.53"
 
 # Services running on fcos-3.
 - hosts: fcos-3

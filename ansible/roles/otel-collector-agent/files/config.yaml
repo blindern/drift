@@ -131,15 +131,6 @@ processors:
           - set(severity_number, SEVERITY_NUMBER_ERROR) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^error$")
           - set(severity_number, SEVERITY_NUMBER_FATAL) where cache["L"] != nil and IsMatch(cache["L"], "(?i)^(fatal|panic|dpanic)$")
 
-          # JSON "s" field — MongoDB single-letter severity
-          # Services: mongodb-2
-          # Example: {"t":{"$date":"..."},"s":"I","c":"WTCHKPT","msg":"WiredTiger message"}
-          - set(severity_number, SEVERITY_NUMBER_DEBUG) where cache["s"] != nil and IsMatch(cache["s"], "^D")
-          - set(severity_number, SEVERITY_NUMBER_INFO) where cache["s"] == "I"
-          - set(severity_number, SEVERITY_NUMBER_WARN) where cache["s"] == "W"
-          - set(severity_number, SEVERITY_NUMBER_ERROR) where cache["s"] == "E"
-          - set(severity_number, SEVERITY_NUMBER_FATAL) where cache["s"] == "F"
-
           # --- Text severity extraction ---
 
           # logfmt "level=X" pattern
@@ -214,7 +205,7 @@ processors:
           # Uses "insert" strategy to not overwrite attributes set above (service.name, etc.)
           - merge_maps(attributes, cache, "insert")
           # Set body to the message field (varies by logger)
-          # Services using "msg": signoz-clickhouse, signoz-otel-collector, signoz, mongodb-2
+          # Services using "msg": signoz-clickhouse, signoz-otel-collector, signoz
           # Services using "message": users-api
           # Services using "M": signoz-schema-migrator-sync, signoz-schema-migrator-async
           - set(body, cache["msg"]) where cache["msg"] != nil
