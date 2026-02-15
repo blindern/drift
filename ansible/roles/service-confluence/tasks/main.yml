@@ -37,6 +37,9 @@
       OTEL_METRICS_EXPORTER: otlp
       OTEL_TRACES_EXPORTER: otlp
       OTEL_LOGS_EXPORTER: otlp
+      # Disable noisy JDBC/Hibernate instrumentation - a single request generates ~5k DB spans
+      OTEL_INSTRUMENTATION_JDBC_ENABLED: "false"
+      OTEL_INSTRUMENTATION_HIBERNATE_ENABLED: "false"
     networks:
       - name: fbs0
         ipv4_address: "{{ confluence_ipv4_address }}"
