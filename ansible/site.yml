@@ -111,6 +111,11 @@
       vars:
         mysql_1_image: mysql:8.4.7@sha256:0426ec38c7a10aa45ba383887df7878f74ee70e2fd589c7b69207f3577901903 # renovate
         mysql_1_ipv4_address: "172.25.16.40"
+    - role: service-gatus
+      tags: service-gatus
+      vars:
+        gatus_image: ghcr.io/twin/gatus:v5.34.0@sha256:3fff895e77d35ee62e898860f4613755bc2344127d93e3f326429d40270e2115 # renovate
+        gatus_ipv4_address: "172.25.16.18"
 
 # Services running on fcos-3.
 - hosts: fcos-3

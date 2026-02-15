@@ -15,6 +15,8 @@
 [![web-1](https://github.com/blindern/drift/actions/workflows/web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/web-1.yml?query=branch%3Amain)
 [![webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
 
+Service status: https://status.foreningenbs.no
+
 This Git-repo describes the setup of some our services.
 For more details, see
 https://foreningenbs.no/confluence/display/FBS/IT-gruppa
@@ -101,6 +103,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.15 storage-1-samba.zt.foreningenbs.no (not set up yet)
   - 172.25.16.16 webdavcgi.zt.foreningenbs.no
   - 172.25.16.17 intern-calendar-api.zt.foreningenbs.no
+  - 172.25.16.18 gatus.zt.foreningenbs.no
   - 172.25.16.30 ldap-master.zt.foreningenbs.no
   - 172.25.16.31 ldap-slave.zt.foreningenbs.no
   - 172.25.16.40 mysql-1.zt.foreningenbs.no
@@ -136,6 +139,7 @@ set up for this for the physical host this is running at:
 - deployer.foreningenbs.no: 158.39.48.49 (fcos-3)
 - deployer-secondary.foreningenbs.no: 158.39.48.49 (fcos-3)
 - signoz.foreningenbs.no: 158.39.48.49 (fcos-3)
+- status.foreningenbs.no: 158.39.48.49 (fcos-3)
 - blindernuka.no: 158.39.48.49 (fcos-3)
 - www.blindernuka.no: 158.39.48.49 (fcos-3)
 - billett.blindernuka.no: 158.39.48.49 (fcos-3)

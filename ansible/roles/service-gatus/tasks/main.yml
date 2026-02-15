@@ -1,0 +1,54 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/gatus
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Ensure data directory exists
+  file:
+    path: /var/mnt/data/gatus-data
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy config file
+  copy:
+    dest: /var/ansible/gatus/config.yaml
+    src: config.yaml
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+- name: Get current gatus image info
+  docker_image_info:
+    name: "{{ gatus_image }}"
+  register: gatus_image_before
+
+- name: Pull gatus image
+  docker_image:
+    name: "{{ gatus_image }}"
+    source: pull
+  register: gatus_image_pull
+  changed_when: >-
+    gatus_image_before.images | length == 0 or
+    gatus_image_before.images[0].Id != gatus_image_pull.image.Id
+
+- name: Start gatus container
+  docker_container:
+    name: gatus
+    state: started
+    image: "{{ gatus_image }}"
+    restart_policy: unless-stopped
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ gatus_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/ansible/gatus/config.yaml:/config/config.yaml:Z
+      - /var/mnt/data/gatus-data:/data:z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"

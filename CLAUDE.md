@@ -28,12 +28,19 @@ When adding a new service with a ZeroTier IP:
 3. Add Ansible role in `ansible/roles/service-<name>/`
 4. Add to `ansible/site.yml`
 
+If the service is publicly exposed via nginx-front-1:
+5. Add server block to `ansible/roles/service-nginx-front-1/files/foreningenbs.conf` (HTTPS + HTTP redirect)
+6. Add public DNS record in Domeneshop (A record → fcos-3 IP `158.39.48.49`)
+7. Update `README.md` public web DNS list
+8. Add endpoint to `ansible/roles/service-gatus/files/config.yaml` for health monitoring
+
 ## Important: README.md tracking
 
 README.md tracks items that may need updates:
 - GitHub workflow badges (update when adding/removing workflows)
 - Host IP allocations
 - Service IP allocations (when adding new services)
+- Public web DNS entries (when exposing new services via nginx-front-1)
 
 ## Deployment
 

@@ -1,0 +1,246 @@
+ui:
+  title: "Foreningen Blindern Studenterhjem Status"
+  header: "Foreningen Blindern Studenterhjem"
+  link: "https://foreningenbs.no"
+  default-sort-by: group
+
+storage:
+  type: sqlite
+  path: /data/data.db
+
+endpoints:
+  # Public sites (full chain through nginx-front)
+  - name: foreningenbs.no
+    group: public
+    url: "https://foreningenbs.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: foreningenbs.no/intern
+    group: public
+    url: "https://foreningenbs.no/intern/"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: foreningenbs.no/dugnaden
+    group: public
+    url: "https://foreningenbs.no/dugnaden/"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: foreningenbs.no/confluence
+    group: public
+    url: "https://foreningenbs.no/confluence/"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 10000"
+
+  - name: blindernuka.no
+    group: public
+    url: "https://blindernuka.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: billett.blindernuka.no
+    group: public
+    url: "https://billett.blindernuka.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: inventar.foreningenbs.no
+    group: public
+    url: "https://inventar.foreningenbs.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: deployer.foreningenbs.no
+    group: public
+    url: "https://deployer.foreningenbs.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  - name: signoz.foreningenbs.no
+    group: public
+    url: "https://signoz.foreningenbs.no"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 5000"
+
+  # Internal HTTP services (ZeroTier direct)
+  - name: users-api
+    group: internal
+    url: "http://users-api.zt.foreningenbs.no:8000"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: intern-backend
+    group: internal
+    url: "http://intern-backend.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: intern-frontend
+    group: internal
+    url: "http://intern-frontend.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: intern-calendar-api
+    group: internal
+    url: "http://intern-calendar-api.zt.foreningenbs.no:8000"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: okoreports-backend
+    group: internal
+    url: "http://okoreports-backend.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: smaabruket-availability-api
+    group: internal
+    url: "http://smaabruket-availability-api.zt.foreningenbs.no:8000"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: confluence
+    group: internal
+    url: "http://confluence.zt.foreningenbs.no:8090"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: dugnaden
+    group: internal
+    url: "http://dugnaden.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: web-1
+    group: internal
+    url: "http://web-1.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: deployer
+    group: internal
+    url: "http://deployer.zt.foreningenbs.no:8000"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: deployer-secondary
+    group: internal
+    url: "http://deployer-secondary.zt.foreningenbs.no:8000"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: simplesamlphp
+    group: internal
+    url: "http://simplesamlphp.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: phpmyadmin
+    group: internal
+    url: "http://phpmyadmin.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: webdavcgi
+    group: internal
+    url: "http://webdavcgi.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: snipeit
+    group: internal
+    url: "http://snipeit.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: uka-webserver
+    group: internal
+    url: "http://uka-webserver.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: uka-billett-proxy
+    group: internal
+    url: "http://uka-billett-proxy.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: nginx-front-1
+    group: internal
+    url: "http://nginx-front-1.zt.foreningenbs.no"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  - name: signoz
+    group: internal
+    url: "http://signoz.zt.foreningenbs.no:8080"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
+  # Databases (TCP)
+  - name: mysql-1
+    group: databases
+    url: "tcp://mysql-1.zt.foreningenbs.no:3306"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: postgresql-1
+    group: databases
+    url: "tcp://postgresql-1.zt.foreningenbs.no:5432"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: ldap-master
+    group: databases
+    url: "tcp://ldap-master.zt.foreningenbs.no:389"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+
+  - name: ldap-slave
+    group: databases
+    url: "tcp://ldap-slave.zt.foreningenbs.no:389"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
