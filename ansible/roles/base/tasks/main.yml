@@ -22,3 +22,22 @@
     value: it-gruppa@foreningenbs.no
     scope: global
   become_user: core
+
+- name: Create journald conf dir
+  file:
+    path: /etc/systemd/journald.conf.d
+    state: directory
+
+- name: Configure journald retention
+  copy:
+    dest: /etc/systemd/journald.conf.d/retention.conf
+    content: |
+      [Journal]
+      SystemMaxUse=500M
+  register: journald_conf
+
+- name: Restart journald
+  systemd:
+    name: systemd-journald
+    state: restarted
+  when: journald_conf.changed
