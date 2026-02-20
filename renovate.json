@@ -87,6 +87,13 @@
       "prTitle": "{{{commitMessage}}} [auto-merge]"
     },
     {
+      "description": "Auto-merge non-major gatus updates",
+      "matchDepNames": ["ghcr.io/twin/gatus"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "prTitle": "{{{commitMessage}}} [auto-merge]"
+    },
+    {
       "description": "Group signoz updates",
       "matchDepNames": [
         "signoz/signoz",
