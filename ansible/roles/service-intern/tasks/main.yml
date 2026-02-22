@@ -14,7 +14,6 @@
     group: root
     mode: 0644
   with_items:
-    - apache-extra.conf
     - backend-secrets.env
   register: file_copied
 
@@ -31,20 +30,6 @@
   changed_when: >-
     intern_backend_image_before.images | length == 0 or
     intern_backend_image_before.images[0].Id != intern_backend_image_pull.image.Id
-
-- name: Get current intern-frontend image info
-  docker_image_info:
-    name: "{{ intern_frontend_image }}"
-  register: intern_frontend_image_before
-
-- name: Pull intern-frontend image
-  docker_image:
-    name: "{{ intern_frontend_image }}"
-    source: pull
-  register: intern_frontend_image_pull
-  changed_when: >-
-    intern_frontend_image_before.images | length == 0 or
-    intern_frontend_image_before.images[0].Id != intern_frontend_image_pull.image.Id
 
 - name: Get current intern-calendar-api image info
   docker_image_info:
@@ -72,24 +57,8 @@
     networks_cli_compatible: yes
     env_file: /var/ansible/intern/backend-secrets.env
     hostname: intern-backend.zt.foreningenbs.no
-    volumes:
-      - /var/mnt/data/intern-backend-data:/var/www/html/storage:z
-      - /var/ansible/web-1/apache-extra.conf:/etc/apache2/conf-enabled/apache-extra.conf:Z
     log_driver: journald
     restart: "{{ file_copied.changed }}"
-
-- name: Start intern-frontend container
-  docker_container:
-    name: intern-frontend
-    state: started
-    image: "{{ intern_frontend_image }}"
-    restart_policy: unless-stopped
-    networks:
-      - name: fbs0
-        ipv4_address: "{{ intern_frontend_ipv4_address }}"
-    networks_cli_compatible: yes
-    hostname: intern-frontend.zt.foreningenbs.no
-    log_driver: journald
 
 - name: Start intern-calendar-api container
   docker_container:

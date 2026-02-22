@@ -92,14 +92,7 @@ endpoints:
 
   - name: intern-backend
     group: internal
-    url: "http://intern-backend.zt.foreningenbs.no"
-    interval: 1m
-    conditions:
-      - "[STATUS] < 500"
-
-  - name: intern-frontend
-    group: internal
-    url: "http://intern-frontend.zt.foreningenbs.no"
+    url: "http://intern-backend.zt.foreningenbs.no:3000/intern/"
     interval: 1m
     conditions:
       - "[STATUS] < 500"

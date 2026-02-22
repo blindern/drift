@@ -142,8 +142,6 @@
       vars:
         intern_backend_image: "{{ deployer_intern_backend_image }}"
         intern_backend_ipv4_address: "172.25.16.3"
-        intern_frontend_image: "{{ deployer_intern_frontend_image }}"
-        intern_frontend_ipv4_address: "172.25.16.4"
         intern_calendar_api_image: "{{ deployer_intern_calendar_api_image }}"
         intern_calendar_api_ipv4_address: "172.25.16.17"
     - role: service-dugnaden

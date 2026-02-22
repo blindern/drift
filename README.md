@@ -89,7 +89,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.1 web-1.zt.foreningenbs.no
   - 172.25.16.2 users-api.zt.foreningenbs.no
   - 172.25.16.3 intern-backend.zt.foreningenbs.no
-  - 172.25.16.4 intern-frontend.zt.foreningenbs.no
+  - 172.25.16.4 intern-frontend.zt.foreningenbs.no (decommissioned)
   - 172.25.16.5 okoreports-backend.zt.foreningenbs.no
   - 172.25.16.6 okoreports-frontend.zt.foreningenbs.no
   - 172.25.16.7 smaabruket-availability-api.zt.foreningenbs.no
