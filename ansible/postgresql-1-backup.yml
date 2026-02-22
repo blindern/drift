@@ -5,7 +5,11 @@
   become: yes
   gather_facts: no
   tasks:
-    - when: pg_backup_file is not defined
+    - name: Check if backup file was provided
+      set_fact:
+        _create_backup: "{{ pg_backup_file is not defined }}"
+
+    - when: _create_backup | bool
       block:
         - name: Set backup filename
           set_fact:
