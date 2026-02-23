@@ -2,7 +2,7 @@
   "deployer_otel_collector_image": "ghcr.io/blindern/otel-collector@sha256:456896135c402792173de25b9c73e236351cad3dbcc98c12d848d25d8b3a2e64",
   "deployer_confluence_image": "ghcr.io/blindern/confluence@sha256:15437abb54627052650d4e8d7c2ffb9b84de488c1f094fc85f04f1d117d127a9",
   "deployer_deployer_primary_image": "ghcr.io/blindern/deployer@sha256:5d15641efb02ccf101865402ddf5920517e339235de11cb492fc7f33417643bc",
-  "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:5d15641efb02ccf101865402ddf5920517e339235de11cb492fc7f33417643bc",
+  "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:76cbd84ffda2d6a7215192b982f3e70b273685661b98f8710b900e762dcb6b7a",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:912b0343394bf3cac9b8c2664b7899b28cab214d93ef65131cebf44db08d5ba3",
   "deployer_energi_extractor_image": "ghcr.io/blindern/energi-extractor@sha256:8b00516161ec42e877127b6e3f4a6b5eaa726b836aca4a90c2fd22ccb895d8da",
   "deployer_intern_backend_image": "ghcr.io/blindern/intern-backend@sha256:f296292f0cecd645fcd3b4ca796585c459883bb12fe79c6ecac8e015767dde8e",
