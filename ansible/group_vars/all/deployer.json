@@ -19,7 +19,7 @@
   "deployer_uka_billett_fpm_image": "ghcr.io/blindern/billett-backend@sha256:9d05b47ebdff87936ee4758647754d1e5e8868778d3a8cfddaf1d2cf69acaa23",
   "deployer_uka_billett_frontend_image": "ghcr.io/blindern/billett-frontend@sha256:ae513f48ac80f92d07aa5f78e701d216e7522bc2053b1e4a11e70d8359570ebb",
   "deployer_uka_webserver_image": "ghcr.io/blindern/uka-webserver@sha256:d17e79af9cb1c00377e57224eb7b7dee091b3795cba50af78ae2a6597fbf167f",
-  "deployer_users_api_image": "europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/users-api@sha256:5b20d1b6a05a9e4120464bc891c34d22a512aff744d419412cb2c9bb8caf9304",
+  "deployer_users_api_image": "europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/users-api@sha256:04fe322bd2e03704d23d46929aa8604ab805489304010367058b706ecc74a773",
   "deployer_web_1_image": "ghcr.io/blindern/internal-web-1@sha256:0da44614c2d4f1b6473caaba9c648c1cd37879ae29e6539b73b310d03b67df8c",
   "deployer_webdavcgi_image": "ghcr.io/blindern/webdavcgi@sha256:a6f537903649a4b90538c11e276ea983f641345a7ce67e0d204e025fa8f4e135"
 }
