@@ -44,7 +44,6 @@
   loop:
     - prometheus.yml
     - otel-collector-config.yaml
-    - otel-collector-opamp-config.yaml
   register: signoz_configs
 
 # Pull all images
@@ -266,8 +265,6 @@
     restart_policy: unless-stopped
     command:
       - --config=/etc/otel-collector-config.yaml
-      - --manager-config=/etc/manager-config.yaml
-      - --copy-path=/var/tmp/collector-config.yaml
     networks:
       - name: fbs0
         ipv4_address: "{{ signoz_otel_collector_ipv4_address }}"
@@ -278,6 +275,5 @@
       LOW_CARDINAL_EXCEPTION_GROUPING: "false"
     volumes:
       - /var/ansible/signoz/otel-collector-config.yaml:/etc/otel-collector-config.yaml:Z
-      - /var/ansible/signoz/otel-collector-opamp-config.yaml:/etc/manager-config.yaml:Z
     log_driver: journald
     restart: "{{ signoz_configs.changed }}"
