@@ -209,6 +209,12 @@ endpoints:
     conditions:
       - "[STATUS] < 500"
 
+  - name: signoz-otel-collector
+    group: internal
+    url: "http://signoz-otel-collector.zt.foreningenbs.no:13133/"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
   # Databases (TCP)
   - name: mysql-1
     group: databases
