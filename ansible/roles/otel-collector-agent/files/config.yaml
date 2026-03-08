@@ -242,6 +242,12 @@ exporters:
     endpoint: signoz-otel-collector.zt.foreningenbs.no:4317
     tls:
       insecure: true
+    retry_on_failure:
+      max_elapsed_time: 0
+    sending_queue:
+      storage: file_storage
+      sizer: items
+      queue_size: 1000000
 
 service:
   extensions: [health_check, file_storage]
