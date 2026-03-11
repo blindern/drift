@@ -18,20 +18,18 @@ on:
       - "ansible/site.yml"
       - "ansible/hosts"
 jobs:
-  build:
+  deploy:
     if: vars.DEPLOY_DISABLED != 'true'
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-common
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Deploy
-        run: |
-          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
-          {
-            "service": "all-common"
-          }' | tee /tmp/deploy-output.txt
-          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
-        env:
-          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
+      - uses: ./.github/actions/setup-ansible
+        with:
+          ssh-private-key: ${{ secrets.FBS_SSH_KEY }}
+          git-crypt-key: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: ansible-playbook site.yml -t common
+        working-directory: ansible

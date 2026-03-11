@@ -7,32 +7,20 @@ on:
     paths:
       - "ansible/roles/service-deployer/**"
 jobs:
-  build:
+  deploy:
     if: vars.DEPLOY_DISABLED != 'true'
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-deployer
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Deploy secondary from primary
-        if: github.ref == 'refs/heads/main'
-        run: |
-          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer.foreningenbs.no/deploy?stream" -d '
-          {
-            "service": "deployer-secondary"
-          }' | tee /tmp/deploy-output.txt
-          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
-        env:
-          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
-
-      - name: Deploy primary from secondary
-        if: github.ref == 'refs/heads/main'
-        run: |
-          curl -sS -i -N -L -H "authorization: bearer $DEPLOYER_TOKEN" -H "content-type: application/json" -X POST "https://deployer-secondary.foreningenbs.no/deploy?stream" -d '
-          {
-            "service": "deployer-primary"
-          }' | tee /tmp/deploy-output.txt
-          tail -1 /tmp/deploy-output.txt | grep -q "DEPLOY OK"
-        env:
-          DEPLOYER_TOKEN: ${{ secrets.DEPLOYER_TOKEN }}
+      - uses: ./.github/actions/setup-ansible
+        with:
+          ssh-private-key: ${{ secrets.FBS_SSH_KEY }}
+          git-crypt-key: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: ansible-playbook site.yml -l fcos-3 -t service-deployer-secondary
+        working-directory: ansible
+      - run: ansible-playbook site.yml -l fcos-3 -t service-deployer-primary
+        working-directory: ansible
