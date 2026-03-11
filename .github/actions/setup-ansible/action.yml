@@ -1,4 +1,5 @@
 name: Setup Ansible
+description: Unlock secrets, configure SSH, and install Ansible
 inputs:
   ssh-private-key:
     description: 'SSH private key'

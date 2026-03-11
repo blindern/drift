@@ -1,4 +1,5 @@
 name: Setup SSH
+description: Load SSH key and configure known hosts
 inputs:
   ssh-private-key:
     description: 'SSH private key'
