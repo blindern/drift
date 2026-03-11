@@ -117,7 +117,8 @@
       "groupName": "okoreports",
       "additionalBranchPrefix": "",
       "schedule": ["at any time"],
-      "automerge": false
+      "automerge": false,
+      "prTitle": "{{{commitMessage}}}"
     }
   ],
   "rebaseWhen": "conflicted",
