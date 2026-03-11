@@ -1,9 +1,10 @@
 # drift
 
-[![Deploy Ansible common tag](https://github.com/blindern/drift/actions/workflows/ansible-common.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-common.yml?query=branch%3Amain)
-[![Deploy deployer](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml?query=branch%3Amain)
-[![Deploy all Ansible services](https://github.com/blindern/drift/actions/workflows/ansible-services.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-services.yml?query=branch%3Amain)
+**CI:**
 [![E2E Tests](https://github.com/blindern/drift/actions/workflows/e2e-tests.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/e2e-tests.yml?query=branch%3Amain)
+[![Update DNS snapshot](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml?query=branch%3Amain)
+
+**Image builds:**
 [![confluence](https://github.com/blindern/drift/actions/workflows/confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/confluence.yml?query=branch%3Amain)
 [![ldap-toolbox](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml?query=branch%3Amain)
 [![openldap](https://github.com/blindern/drift/actions/workflows/openldap.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/openldap.yml?query=branch%3Amain)
@@ -11,10 +12,14 @@
 [![simplesamlphp](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml?query=branch%3Amain)
 [![slack-invite-automation](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml?query=branch%3Amain)
 [![uka-webserver](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml?query=branch%3Amain)
-[![Update DNS snapshot](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml?query=branch%3Amain)
 [![web-1](https://github.com/blindern/drift/actions/workflows/web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/web-1.yml?query=branch%3Amain)
 [![webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
+
+**Deploys:**
+[![Deploy Ansible common tag](https://github.com/blindern/drift/actions/workflows/ansible-common.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-common.yml?query=branch%3Amain)
+[![Deploy all Ansible services](https://github.com/blindern/drift/actions/workflows/ansible-services.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-services.yml?query=branch%3Amain)
 [![Deploy confluence](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml?query=branch%3Amain)
+[![Deploy deployer](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml?query=branch%3Amain)
 [![Deploy dugnaden](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml?query=branch%3Amain)
 [![Deploy dugnaden-mysql](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml?query=branch%3Amain)
 [![Deploy energi-extractor](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml?query=branch%3Amain)
