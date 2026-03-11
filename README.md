@@ -1,10 +1,12 @@
 # drift
 
 **CI:**
+
 [![E2E Tests](https://github.com/blindern/drift/actions/workflows/e2e-tests.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/e2e-tests.yml?query=branch%3Amain)
 [![Update DNS snapshot](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml?query=branch%3Amain)
 
 **Image builds:**
+
 [![confluence](https://github.com/blindern/drift/actions/workflows/confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/confluence.yml?query=branch%3Amain)
 [![ldap-toolbox](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ldap-toolbox.yml?query=branch%3Amain)
 [![openldap](https://github.com/blindern/drift/actions/workflows/openldap.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/openldap.yml?query=branch%3Amain)
@@ -16,6 +18,7 @@
 [![webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
 
 **Deploys:**
+
 [![Deploy Ansible common tag](https://github.com/blindern/drift/actions/workflows/ansible-common.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-common.yml?query=branch%3Amain)
 [![Deploy all Ansible services](https://github.com/blindern/drift/actions/workflows/ansible-services.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-services.yml?query=branch%3Amain)
 [![Deploy confluence](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml?query=branch%3Amain)
