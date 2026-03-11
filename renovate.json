@@ -108,6 +108,15 @@
       "groupName": "signoz",
       "additionalBranchPrefix": ""
     }
+    ,{
+      "description": "Group okoreports updates",
+      "matchDepNames": [
+        "cybernetisk/okoreports-backend",
+        "cybernetisk/okoreports-frontend"
+      ],
+      "groupName": "okoreports",
+      "additionalBranchPrefix": ""
+    }
   ],
   "rebaseWhen": "conflicted",
   "minimumReleaseAge": "3 days",
