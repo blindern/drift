@@ -1,0 +1,2 @@
+okoreports_backend_image: cybernetisk/okoreports-backend:latest@sha256:97d66c2d54a2b025ecd4f19c4a78f70f612de8a3a56fa1ce67cef32f583e33c0 # renovate
+okoreports_frontend_image: cybernetisk/okoreports-frontend:latest@sha256:d335040b7286fe8987982be01620688b6a3e8a166f4bf08f35160b14624db325 # renovate

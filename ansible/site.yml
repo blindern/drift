@@ -77,9 +77,7 @@
     - role: service-okoreports
       tags: service-okoreports
       vars:
-        okoreports_backend_image: "{{ deployer_okoreports_backend_image }}"
         okoreports_backend_ipv4_address: "172.25.16.5"
-        okoreports_frontend_image: "{{ deployer_okoreports_frontend_image }}"
         okoreports_frontend_ipv4_address: "172.25.16.6"
     - role: service-slack-invite-automation
       tags: service-slack-invite-automation

@@ -91,15 +91,6 @@
     }
   },
   {
-    "service_name": "okoreports",
-    "ansible_tag": "service-okoreports",
-    "ansible_host": "fcos-2",
-    "mappings": {
-      "backend_image": "deployer_okoreports_backend_image",
-      "frontend_image": "deployer_okoreports_frontend_image"
-    }
-  },
-  {
     "service_name": "simplesamlphp",
     "ansible_tag": "service-simplesamlphp",
     "ansible_host": "fcos-3",
