@@ -1,0 +1,24 @@
+name: Deploy web-1
+on:
+  push:
+    branches: [main]
+    paths:
+      - ansible/roles/service-web-1/**
+      - .github/workflows/deploy-web-1.yml
+  workflow_dispatch:
+jobs:
+  deploy:
+    if: vars.DEPLOY_DISABLED != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    concurrency:
+      group: deploy-web-1
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: ./.github/actions/setup-ansible
+        with:
+          ssh-private-key: ${{ secrets.FBS_SSH_KEY }}
+          git-crypt-key: ${{ secrets.GIT_CRYPT_KEY }}
+      - run: ansible-playbook site.yml -l fcos-3 -t service-web-1
+        working-directory: ansible

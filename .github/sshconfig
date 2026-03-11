@@ -1,0 +1,2 @@
+Host fbshs1.zt.foreningenbs.no
+  ProxyCommand ssh -q -W %h:%p core@fcos-3.nrec.foreningenbs.no

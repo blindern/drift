@@ -38,7 +38,6 @@
     - role: service-uka-mysql
       tags: service-uka-mysql
       vars:
-        uka_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
         uka_mysql_ipv4_address: "172.25.16.46"
     - role: service-uka-webserver
       tags: service-uka-webserver
@@ -90,9 +89,7 @@
     - role: service-snipeit
       tags: service-snipeit
       vars:
-        snipeit_image: snipe/snipe-it:v6.4.2@sha256:a3516ae4537684ffe640ee0292d6aab210c869f5f698271d5d882fa06574b2fc # renovate
         snipeit_ipv4_address: "172.25.16.44"
-        snipe_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
         snipe_mysql_ipv4_address: "172.25.16.45"
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
@@ -104,17 +101,14 @@
     - role: service-postgresql-1
       tags: service-postgresql-1
       vars:
-        postgresql_1_image: postgres:18@sha256:b6b4d0b75c699a2c94dfc5a94fe09f38630f3b67ab0e1653ede1b7ac8e13c197 # renovate
         postgresql_1_ipv4_address: "172.25.16.42"
     - role: service-mysql-1
       tags: service-mysql-1
       vars:
-        mysql_1_image: mysql:8.4.7@sha256:0426ec38c7a10aa45ba383887df7878f74ee70e2fd589c7b69207f3577901903 # renovate
         mysql_1_ipv4_address: "172.25.16.40"
     - role: service-gatus
       tags: service-gatus
       vars:
-        gatus_image: ghcr.io/twin/gatus:v5.35.0@sha256:21609f31be8c4e680ce3004b24276305666239c99aff58391503f3fb6142f39d # renovate
         gatus_ipv4_address: "172.25.16.18"
 
 # Services running on fcos-3.
@@ -135,7 +129,6 @@
     - role: service-nginx-front-1
       tags: service-nginx-front-1
       vars:
-        nginx_front_1_image: nginx:1.29.5-alpine-otel@sha256:01b37847a8c85f16578be1b710e4558da611b57608547fd5362b4bd35b692698 # renovate
         nginx_front_1_ipv4_address: "172.25.16.14"
     - role: service-intern
       tags: service-intern
@@ -152,17 +145,14 @@
     - role: service-dugnaden-mysql
       tags: service-dugnaden-mysql
       vars:
-        dugnaden_mysql_image: mysql:8.4.7@sha256:0426ec38c7a10aa45ba383887df7878f74ee70e2fd589c7b69207f3577901903 # renovate
         dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
       vars:
-        phpldapadmin_image: osixia/phpldapadmin:0.9.0@sha256:d112b82be1336f91e028b0348755133fda333992355b533419355a65c32ff9ad # renovate
         phpldapadmin_ipv4_address: "172.25.16.11"
     - role: service-phpmyadmin
       tags: service-phpmyadmin
       vars:
-        phpmyadmin_image: phpmyadmin/phpmyadmin:5.2@sha256:42a200db07b4e70fbf32c594ad4521cf16399b8e54bbb5adceae98e7566dfbeb # renovate
         phpmyadmin_ipv4_address: "172.25.16.12"
     - role: service-ldap-slave
       tags: service-ldap-slave
@@ -193,15 +183,10 @@
     - role: service-signoz
       tags: service-signoz
       vars:
-        signoz_zookeeper_image: signoz/zookeeper:3.9.3@sha256:2982759ec21211d52514154a5c87d2bbe6725d94cfa864cdfea2f7040b7bd365 # renovate
         signoz_zookeeper_ipv4_address: "172.25.16.60"
-        signoz_clickhouse_image: clickhouse/clickhouse-server:26.2.4@sha256:51beb66e790213a53ddacacf133d3067106f5aa0c446c5b40b9b0c3ae0cd39fc # renovate
         signoz_clickhouse_ipv4_address: "172.25.16.61"
-        signoz_otel_collector_image: signoz/signoz-otel-collector:v0.144.2@sha256:cc3e1559f0968f10a27977323c20323ca072ea3858af2233263e82532d551516 # renovate
         signoz_otel_collector_ipv4_address: "172.25.16.62"
-        signoz_image: signoz/signoz:v0.114.1@sha256:ad7f46883b16e1f8df465b51256829a21768e93d2c143608f74f536e35b0800f # renovate
         signoz_ipv4_address: "172.25.16.63"
-        signoz_schema_migrator_image: signoz/signoz-schema-migrator:v0.144.2@sha256:ed1d4bd65bc4a4d9b22d3c41e127f1aedebfdfa343ab94b7e8c57072bbf3129f # renovate
 
 # Deployer.
 # Two instances of deployer is used so that the deployer can

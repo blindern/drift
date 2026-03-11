@@ -42,12 +42,13 @@ curl -s 'http://signoz-clickhouse.zt.foreningenbs.no:8123/' -d "SELECT severity_
 ## Structure
 
 - `site.yml` - Main playbook, defines which services run on which host
-- `hosts` - Inventory (fcos-1, fcos-2, fcos-3)
+- `hosts` - Inventory (fcos-1, fcos-2, fcos-3, fbshs1)
 - `roles/service-*` - Individual service definitions
 - `host_vars/` - Per-host variables including deployer image refs
 
 ## Deployment
 
-- Changes to `roles/service-*` require manual trigger via GitHub Actions
-- Other changes deploy automatically via GitHub Actions
-- Service images auto-deploy via deployer when built
+- Changes to `roles/service-*` auto-deploy via per-service `deploy-*.yml` GHA workflows
+- Common role changes auto-deploy via `ansible-common.yml`
+- Service images auto-deploy via deployer when built in external repos
+- Non-deployer images stored in `roles/service-<name>/defaults/main.yml` with `# renovate` comment

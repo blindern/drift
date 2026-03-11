@@ -1,0 +1,5 @@
+name: Setup Git Crypt
+description: Unlock git-crypt encrypted files
+runs:
+  using: docker
+  image: Dockerfile

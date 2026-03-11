@@ -8,6 +8,7 @@ on:
       - "ansible/roles/service-deployer/**"
 jobs:
   build:
+    if: vars.DEPLOY_DISABLED != 'true'
     permissions:
       contents: read
     runs-on: ubuntu-latest
