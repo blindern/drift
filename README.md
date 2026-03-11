@@ -14,6 +14,33 @@
 [![Update DNS snapshot](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/update-dns-snapshot.yml?query=branch%3Amain)
 [![web-1](https://github.com/blindern/drift/actions/workflows/web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/web-1.yml?query=branch%3Amain)
 [![webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
+[![Deploy confluence](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml?query=branch%3Amain)
+[![Deploy dugnaden](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml?query=branch%3Amain)
+[![Deploy dugnaden-mysql](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml?query=branch%3Amain)
+[![Deploy energi-extractor](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml?query=branch%3Amain)
+[![Deploy gatus](https://github.com/blindern/drift/actions/workflows/deploy-gatus.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-gatus.yml?query=branch%3Amain)
+[![Deploy intern](https://github.com/blindern/drift/actions/workflows/deploy-intern.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-intern.yml?query=branch%3Amain)
+[![Deploy ldap-master](https://github.com/blindern/drift/actions/workflows/deploy-ldap-master.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-ldap-master.yml?query=branch%3Amain)
+[![Deploy ldap-slave](https://github.com/blindern/drift/actions/workflows/deploy-ldap-slave.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-ldap-slave.yml?query=branch%3Amain)
+[![Deploy ldap-toolbox](https://github.com/blindern/drift/actions/workflows/deploy-ldap-toolbox.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-ldap-toolbox.yml?query=branch%3Amain)
+[![Deploy mysql-1](https://github.com/blindern/drift/actions/workflows/deploy-mysql-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-mysql-1.yml?query=branch%3Amain)
+[![Deploy nginx-front-1](https://github.com/blindern/drift/actions/workflows/deploy-nginx-front-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-nginx-front-1.yml?query=branch%3Amain)
+[![Deploy okoreports](https://github.com/blindern/drift/actions/workflows/deploy-okoreports.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-okoreports.yml?query=branch%3Amain)
+[![Deploy otel-collector-agent](https://github.com/blindern/drift/actions/workflows/deploy-otel-collector-agent.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-otel-collector-agent.yml?query=branch%3Amain)
+[![Deploy phpldapadmin](https://github.com/blindern/drift/actions/workflows/deploy-phpldapadmin.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-phpldapadmin.yml?query=branch%3Amain)
+[![Deploy phpmyadmin](https://github.com/blindern/drift/actions/workflows/deploy-phpmyadmin.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-phpmyadmin.yml?query=branch%3Amain)
+[![Deploy postgresql-1](https://github.com/blindern/drift/actions/workflows/deploy-postgresql-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-postgresql-1.yml?query=branch%3Amain)
+[![Deploy signoz](https://github.com/blindern/drift/actions/workflows/deploy-signoz.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-signoz.yml?query=branch%3Amain)
+[![Deploy simplesamlphp](https://github.com/blindern/drift/actions/workflows/deploy-simplesamlphp.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-simplesamlphp.yml?query=branch%3Amain)
+[![Deploy slack-invite-automation](https://github.com/blindern/drift/actions/workflows/deploy-slack-invite-automation.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-slack-invite-automation.yml?query=branch%3Amain)
+[![Deploy smaabruket-availability-api](https://github.com/blindern/drift/actions/workflows/deploy-smaabruket-availability-api.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-smaabruket-availability-api.yml?query=branch%3Amain)
+[![Deploy snipeit](https://github.com/blindern/drift/actions/workflows/deploy-snipeit.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-snipeit.yml?query=branch%3Amain)
+[![Deploy uka-billett](https://github.com/blindern/drift/actions/workflows/deploy-uka-billett.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-billett.yml?query=branch%3Amain)
+[![Deploy uka-mysql](https://github.com/blindern/drift/actions/workflows/deploy-uka-mysql.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-mysql.yml?query=branch%3Amain)
+[![Deploy uka-webserver](https://github.com/blindern/drift/actions/workflows/deploy-uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-webserver.yml?query=branch%3Amain)
+[![Deploy users-api](https://github.com/blindern/drift/actions/workflows/deploy-users-api.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-users-api.yml?query=branch%3Amain)
+[![Deploy web-1](https://github.com/blindern/drift/actions/workflows/deploy-web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-web-1.yml?query=branch%3Amain)
+[![Deploy webdavcgi](https://github.com/blindern/drift/actions/workflows/deploy-webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-webdavcgi.yml?query=branch%3Amain)
 
 Service status: https://status.foreningenbs.no
 
@@ -171,6 +198,12 @@ SigNoz provides observability (traces, metrics, logs) for our services.
 - **OTLP HTTP**: signoz-otel-collector.zt.foreningenbs.no:4318
 
 To send data from a service, configure it to export OTLP to the collector endpoint.
+
+## Deployment kill switch
+
+To temporarily disable all automated deployments, set the repository variable
+`DEPLOY_DISABLED` to `true` in [Settings → Variables → Actions](https://github.com/blindern/drift/settings/variables/actions).
+Remove or set to any other value to re-enable.
 
 ## Outgoing email
 

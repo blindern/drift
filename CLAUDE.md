@@ -16,7 +16,7 @@ e2e-tests/      - Playwright tests for production services
 gcp/            - Google Cloud Terraform (manual deploy)
 ```
 
-**Hosts:** fcos-1, fcos-2, fcos-3 (see `ansible/hosts`)
+**Hosts:** fcos-1, fcos-2, fcos-3, fbshs1 (see `ansible/hosts`)
 **Data:** `/var/mnt/data` on each host (survives VM recreation)
 **Network:** ZeroTier 172.25.0.0/16, services get static IPs and are reached by hostname
 
@@ -27,6 +27,8 @@ When adding a new service with a ZeroTier IP:
 2. Create DNS record: `./dns/manage-record.sh set <name>.zt <ip> --apply`
 3. Add Ansible role in `ansible/roles/service-<name>/`
 4. Add to `ansible/site.yml`
+5. Create deploy workflow in `.github/workflows/deploy-<name>.yml` (see existing ones for template)
+6. Add workflow badge to `README.md`
 
 If the service is publicly exposed via nginx-front-1:
 5. Add server block to `ansible/roles/service-nginx-front-1/files/foreningenbs.conf` (HTTPS + HTTP redirect)
@@ -52,7 +54,12 @@ Service-to-host mapping (check `ansible/site.yml` for authoritative list):
 - **fcos-3**: nginx-front-1, intern, web-1, simplesamlphp, dugnaden, ldap-slave, ldap-toolbox, phpldapadmin, phpmyadmin, webdavcgi, deployer, energi-extractor
 - **fbshs1**: signoz
 
-Most services auto-deploy via [deployer](https://github.com/blindern/deployer) when images are built.
+Two auto-deploy mechanisms:
+- **Deployer service**: Deploys when container images are built in external repos (uses `deployer.json` image refs)
+- **Per-service GHA workflows**: `deploy-*.yml` workflows run Ansible on push to main when `ansible/roles/service-*/**` files change
+
+Non-deployer-managed images go in `ansible/roles/service-<name>/defaults/main.yml` with `# renovate` comment.
+Set repo variable `DEPLOY_DISABLED=true` to pause all automated deploys.
 
 ## Encryption
 

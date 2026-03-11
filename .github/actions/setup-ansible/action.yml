@@ -1,0 +1,22 @@
+name: Setup Ansible
+inputs:
+  ssh-private-key:
+    description: 'SSH private key'
+    required: true
+  git-crypt-key:
+    description: 'Git crypt key'
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Unlock secrets
+      uses: ./.github/actions/setup-git-crypt
+      env:
+        GIT_CRYPT_KEY: ${{ inputs.git-crypt-key }}
+    - uses: ./.github/actions/setup-ssh
+      with:
+        ssh-private-key: ${{ inputs.ssh-private-key }}
+    - run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends ansible
+      shell: bash

@@ -12,10 +12,14 @@ on:
       - "ansible/roles/ssh-keys/**"
       - "ansible/roles/zerotier/**"
       - "ansible/roles/zincati/**"
+      - "ansible/roles/otel-collector-agent/**"
+      - "ansible/roles/gcp-credentials/**"
+      - "ansible/roles/docker-credential-gcr/**"
       - "ansible/site.yml"
       - "ansible/hosts"
 jobs:
   build:
+    if: vars.DEPLOY_DISABLED != 'true'
     permissions:
       contents: read
     runs-on: ubuntu-latest

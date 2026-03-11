@@ -1,0 +1,4 @@
+name: Setup Git Crypt
+runs:
+  using: docker
+  image: Dockerfile
