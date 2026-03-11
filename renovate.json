@@ -115,7 +115,9 @@
         "cybernetisk/okoreports-frontend"
       ],
       "groupName": "okoreports",
-      "additionalBranchPrefix": ""
+      "additionalBranchPrefix": "",
+      "schedule": ["at any time"],
+      "automerge": false
     }
   ],
   "rebaseWhen": "conflicted",
