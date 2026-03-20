@@ -286,7 +286,7 @@
          It is not practical to set this constraint to small values like just a few gigabytes,
           because memory allocator will keep this amount of memory in caches and the server will deny service of queries.
       -->
-    <max_server_memory_usage>0</max_server_memory_usage>
+    <max_server_memory_usage>3221225472</max_server_memory_usage>
 
     <!-- Maximum number of threads in the Global thread pool.
     This will default to a maximum of 10000 threads if not specified.
