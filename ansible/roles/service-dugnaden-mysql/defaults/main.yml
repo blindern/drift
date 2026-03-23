@@ -1,1 +1,1 @@
-dugnaden_mysql_image: mysql:8.4.7@sha256:0426ec38c7a10aa45ba383887df7878f74ee70e2fd589c7b69207f3577901903 # renovate
+dugnaden_mysql_image: mysql:8.4.8@sha256:da906917ca4ace3ba55538b7c2ee97a9bc865ef14a4b6920b021f0249d603f3d # renovate
