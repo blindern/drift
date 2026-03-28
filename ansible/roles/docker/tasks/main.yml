@@ -32,7 +32,7 @@
 
       [Service]
       Type=oneshot
-      ExecStart=/bin/bash -c "docker image prune -f --filter until=1h"
+      ExecStart=/bin/bash -c "docker image prune -af --filter until=1h"
     dest: /etc/systemd/system/docker-cleanup.service
     owner: root
     group: root
