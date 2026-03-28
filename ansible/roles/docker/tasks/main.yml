@@ -32,7 +32,7 @@
 
       [Service]
       Type=oneshot
-      ExecStart=/bin/bash -c "docker images -qf dangling=true | xargs --no-run-if-empty docker rmi || true"
+      ExecStart=/bin/bash -c "docker image prune -f --filter until=1h"
     dest: /etc/systemd/system/docker-cleanup.service
     owner: root
     group: root
