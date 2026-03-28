@@ -12,7 +12,7 @@
   "deployer_ldap_toolbox_image": "ghcr.io/blindern/ldap-toolbox@sha256:212458aec94d909fef5d18dac06822f285f8e1b6de56bd6c0ac09e45271c54ab",
   "deployer_simplesamlphp_image": "ghcr.io/blindern/simplesamlphp@sha256:f94bc26ddb3fe456437533abbeeee1b2dd3e95c0b3a3c89422528ac61e25b301",
   "deployer_slack_invite_automation_image": "ghcr.io/blindern/slack-invite-automation@sha256:05eb52dc1e7c310c2aaf099b2c93662f0c9d2a3a79a7c098f7a55943589fde62",
-  "deployer_smaabruket_availability_api_image": "ghcr.io/blindern/smaabruket-availability-api@sha256:81848b62323c9e6a0039b9d8dd3a8fc7d4b42e50fa6d7b850732e7a905fc34db",
+  "deployer_smaabruket_availability_api_image": "ghcr.io/blindern/smaabruket-availability-api@sha256:2d995d8bf6e7af1b670c92f93b5120af2183a340b723148ae97e9f6a430d7a7d",
   "deployer_uka_billett_proxy_image": "ghcr.io/blindern/billett-proxy@sha256:252d17f775be550e015a2fb6f89613063eec13e4d7972cc6b9d4b8eba9a4a5af",
   "deployer_uka_billett_fpm_image": "ghcr.io/blindern/billett-backend@sha256:b03c11e6f276e52ee7b1e6bb9d52091fffa1e0e454728392bc23fae20e7501e1",
   "deployer_uka_billett_frontend_image": "ghcr.io/blindern/billett-frontend@sha256:5a626c98907c142c86d715754212322d0a3a44061308c6f63f7343d695e4cd3d",
