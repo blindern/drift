@@ -28,7 +28,7 @@ RUN set -eux; \
     chown www-data:www-data /var/simplesamlphp /var/www
 
 # renovate: datasource=github-tags depName=simplesamlphp/simplesamlphp
-ENV SIMPLESAMLPHP_VERSION=v2.4.4
+ENV SIMPLESAMLPHP_VERSION=v2.5.0
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-authoauth2.git tag=master
 ENV AUTHOAUTH2_COMMIT=6e0227ddbad64a612dea84cd2073a9932563d5b2
