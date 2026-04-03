@@ -1,2 +1,2 @@
 snipeit_image: snipe/snipe-it:v6.4.2@sha256:a3516ae4537684ffe640ee0292d6aab210c869f5f698271d5d882fa06574b2fc # renovate
-snipe_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
+snipe_mysql_image: mysql:9.6@sha256:24e450bbd24f621c71b10404c946cc9ea1cbb0e6e7464b2be2de5193dcf1d05b # renovate
