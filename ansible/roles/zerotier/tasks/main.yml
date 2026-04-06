@@ -37,8 +37,16 @@
 
       # I've been unsuccessful in getting this to work with nmcli,
       # so this is a workaround to add the interface to the bridge.
+      # The detach/reattach cycle works around a boot race condition where
+      # the bridge port can end up non-functional for IP traffic.
       ExecStartPost=sleep 2
-      ExecStartPost=/usr/bin/bash -c 'if [ -e {{ data_dir }}/zerotier-one/networks.d/{{ zerotier_network_id }}.conf ]; then while ! /usr/sbin/ip link set ztfbs0 master fbs0; do sleep 1; done; fi'
+      ExecStartPost=/usr/bin/bash -c '\
+        if [ ! -e {{ data_dir }}/zerotier-one/networks.d/{{ zerotier_network_id }}.conf ]; then exit 0; fi; \
+        while ! /usr/sbin/ip link set ztfbs0 master fbs0; do sleep 1; done; \
+        sleep 3; \
+        /usr/sbin/ip link set ztfbs0 nomaster; \
+        sleep 1; \
+        /usr/sbin/ip link set ztfbs0 master fbs0 || true'
 
       Restart=on-failure
       KillMode=process
