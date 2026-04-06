@@ -28,13 +28,13 @@ RUN set -eux; \
     chown www-data:www-data /var/simplesamlphp /var/www
 
 # renovate: datasource=github-tags depName=simplesamlphp/simplesamlphp
-ENV SIMPLESAMLPHP_VERSION=v2.4.4
+ENV SIMPLESAMLPHP_VERSION=v2.5.0
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-authoauth2.git tag=master
 ENV AUTHOAUTH2_COMMIT=6e0227ddbad64a612dea84cd2073a9932563d5b2
 
 # renovate: datasource=git-refs depName=https://github.com/blindern/simplesamlphp-module-fbs.git tag=master
-ENV FBS_COMMIT=92166d984f2eab0d0c0adf37ea77bf1c511af116
+ENV FBS_COMMIT=21cb18bad5862d63ec304158012d966778f455d0
 
 USER www-data
 
