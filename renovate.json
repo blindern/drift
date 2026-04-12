@@ -90,7 +90,9 @@
       "description": "Auto-merge non-major updates for low-risk dependencies",
       "matchDepNames": [
         "ghcr.io/twin/gatus",
-        "GoogleCloudPlatform/docker-credential-gcr"
+        "GoogleCloudPlatform/docker-credential-gcr",
+        "nginx",
+        "debian"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
