@@ -111,6 +111,11 @@
       "additionalBranchPrefix": ""
     }
     ,{
+      "description": "Lower release age for Confluence",
+      "matchDepNames": ["atlassian/confluence"],
+      "minimumReleaseAge": "1 day"
+    },
+    {
       "description": "Group okoreports updates",
       "matchDepNames": [
         "cybernetisk/okoreports-backend",
