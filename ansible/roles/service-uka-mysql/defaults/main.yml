@@ -1,1 +1,1 @@
-uka_mysql_image: mysql:5.6@sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae # renovate
+uka_mysql_image: mysql:9.7@sha256:c9e48b0c008f1936d4139d1c0dcd5950a9dbe57d4d40f383013cde432fa6d6aa # renovate
