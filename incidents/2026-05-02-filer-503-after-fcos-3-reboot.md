@@ -54,5 +54,5 @@ exec apachectl -DFOREGROUND "$@"
 
 ## Follow-ups
 
-- Investigate the SigNoz log shipping gap (otel-collector-agent on fcos hosts vs. SigNoz on fbshs1, OTLP `172.25.16.62:4317`).
+- Investigate the SigNoz log shipping gap (otel-collector-agent on fcos hosts vs. SigNoz on fbshs1, OTLP `172.25.16.62:4317`). Same `no route to host` symptom from a fbs0 container to a ZT-bridged peer recurred for the deployer container — see `2026-05-02-otel-collector-deploy-fbshs1-unreachable.md`. Bouncing the container restored connectivity in both cases.
 - Check whether other containers using `unless-stopped` and Apache mod_cgid have the same stale-socket failure mode.
