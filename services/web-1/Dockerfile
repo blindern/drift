@@ -1,4 +1,4 @@
-FROM php:8.5-apache@sha256:d81a85c0b4bd74737aa544de4db38ee6270d0006dcb8cb446b569cf3bf1525f1
+FROM php:8.5-apache@sha256:613544da9bc080551901e6ee7784e6c573bcbc635453b96ce6f14be13d29b03d
 
 RUN set -eux; \
     apt-get update; \
