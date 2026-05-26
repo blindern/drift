@@ -1,1 +1,1 @@
-nginx_front_1_image: nginx:1.31.0-alpine-otel@sha256:f1752c78616d50251e0a8221103c9e2df4de1209509df36e0200902cdc7f2df1 # renovate
+nginx_front_1_image: nginx:1.31.1-alpine-otel@sha256:23e7496a4e0e446c1629514a957b1a3f584cf3398f51789515a0789111263af7 # renovate
