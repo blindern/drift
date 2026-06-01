@@ -51,12 +51,18 @@ reaches_a_peer() {
 now=$(date +%s)
 declare -a stranded=()
 
-# Fields are space-separated; the only field that can be empty (no fbs0 IP) is
-# last, so it cannot shift the others. An empty/non-172.25 ip is filtered out.
-while read -r name status started_at pid ip; do
-  case " $EXCLUDE " in *" $name "*) continue ;; esac
+# IP is the last (possibly multi-token) field so it can't shift the others.
+# Docker's network order is not stable, so scan all addresses for the fbs0 one.
+while read -r name status started_at pid ips; do
+  # zerotier-one is hardcoded out: `docker restart zerotier-one` un-enslaves
+  # ztfbs0 and black-holes all cross-host traffic (see incident report).
+  case " zerotier-one $EXCLUDE " in *" $name "*) continue ;; esac
   [ "$status" = running ] || continue
-  case "$ip" in 172.25.*) ;; *) continue ;; esac   # only fbs0-attached
+  ip=""
+  for addr in $ips; do
+    case "$addr" in 172.25.*) ip=$addr; break ;; esac
+  done
+  [ -n "$ip" ] || continue   # only fbs0-attached
   [ "$pid" -gt 0 ] 2>/dev/null || continue
   started=$(date -d "$started_at" +%s 2>/dev/null || echo 0)
   # Skip freshly (re)created containers so deploys/upgrades are not raced.
