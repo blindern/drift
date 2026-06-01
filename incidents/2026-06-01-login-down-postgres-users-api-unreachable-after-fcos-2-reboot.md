@@ -2,8 +2,8 @@
 
 ## Timeline
 
-- **2026-06-01 00:04:06 UTC** — fcos-2 rebooted (Fedora CoreOS / Zincati automatic OS update; previous boot 2026-05-18 22:14). All fcos-2 containers recreated at 00:04:30 with fresh veths/MACs.
 - **2026-05-31 23:53:09 UTC** — last green scheduled `e2e-tests` run.
+- **2026-06-01 00:04:06 UTC** — fcos-2 rebooted (Fedora CoreOS / Zincati automatic OS update; previous boot 2026-05-18 22:14). All fcos-2 containers recreated at 00:04:30 with fresh veths/MACs; three came up stranded.
 - **2026-06-01 01:33:40 UTC** — first failing `e2e-tests` run (first scheduled run after the reboot). Failing hourly thereafter; failing runs took ~21m (retries/timeouts) vs ~3m green.
 - **2026-06-01 ~13:00 UTC** — user reported "unable to login in simplesaml, e2e failing"; investigation started.
 - **2026-06-01 13:38 UTC** — `docker restart postgresql-1 users-api slack-invite-automation` on fcos-2. All three reachable cross-host immediately.
