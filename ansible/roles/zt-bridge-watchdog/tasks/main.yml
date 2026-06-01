@@ -1,0 +1,60 @@
+- name: Install watchdog script
+  copy:
+    src: zt-bridge-watchdog.sh
+    dest: /usr/local/bin/zt-bridge-watchdog.sh
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install watchdog service
+  copy:
+    content: |
+      [Unit]
+      Description=ZeroTier bridge stranded-container watchdog
+      Requires=docker.service
+      After=docker.service zerotier-one.service
+
+      [Service]
+      Type=oneshot
+      Environment="PEER_IPS={{ zt_host_ips | dict2items | rejectattr('key', 'equalto', inventory_hostname) | map(attribute='value') | join(' ') }}"
+      Environment=PING_TIMEOUT={{ zt_watchdog_ping_timeout }}
+      Environment=FAIL_THRESHOLD={{ zt_watchdog_fail_threshold }}
+      Environment=COOLDOWN_SEC={{ zt_watchdog_cooldown_sec }}
+      Environment=GRACE_SEC={{ zt_watchdog_grace_sec }}
+      Environment=AUTO_HEAL={{ zt_watchdog_auto_heal | string | lower }}
+      Environment=ZTWD_MAX_HEAL={{ zt_watchdog_max_heal }}
+      Environment="EXCLUDE={{ zt_watchdog_exclude }}"
+      ExecStart=/usr/local/bin/zt-bridge-watchdog.sh
+    dest: /etc/systemd/system/zt-bridge-watchdog.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+- name: Install watchdog timer
+  copy:
+    content: |
+      [Unit]
+      Description=Run zt-bridge-watchdog on a schedule
+
+      [Timer]
+      OnBootSec=90s
+      OnUnitActiveSec={{ zt_watchdog_interval }}
+
+      [Install]
+      WantedBy=timers.target
+    dest: /etc/systemd/system/zt-bridge-watchdog.timer
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+- meta: flush_handlers
+
+- name: Activate watchdog timer
+  systemd:
+    name: zt-bridge-watchdog.timer
+    state: started
+    enabled: yes

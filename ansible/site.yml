@@ -22,6 +22,8 @@
       tags: otel-collector-agent
       vars:
         otel_collector_agent_image: "{{ deployer_otel_collector_image }}"
+    - role: zt-bridge-watchdog
+      tags: zt-bridge-watchdog
 
 - hosts: fcos-1
   become: yes

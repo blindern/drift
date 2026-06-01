@@ -1,0 +1,22 @@
+# Each host's ZeroTier bridge IP (172.25.12.0/24 host range). Every host pings
+# the OTHERS from inside each local container's netns; a container that can
+# reach none of them is stranded. Host IPs are used (not container/service
+# endpoints) so the check is independent of whether any service is up.
+zt_host_ips:
+  fcos-1: 172.25.12.1
+  fcos-2: 172.25.12.2
+  fcos-3: 172.25.12.3
+  fbshs1: 172.25.12.4
+
+zt_watchdog_ping_timeout: 2
+zt_watchdog_fail_threshold: 3       # consecutive stranded passes before acting
+zt_watchdog_cooldown_sec: 900       # min seconds between restarts of the same container
+zt_watchdog_grace_sec: 180          # ignore containers (re)started within this window (deploys/upgrades)
+zt_watchdog_interval: "30s"
+zt_watchdog_auto_heal: true
+# If more than this many local containers look stranded at once it's a
+# host-level ZeroTier fault (restart won't help) — alert only, never mass-restart.
+zt_watchdog_max_heal: 5
+# net=host containers (no fbs0 IP) are skipped automatically; add any others
+# that should never be auto-restarted.
+zt_watchdog_exclude: "zerotier-one otel-collector-agent"
