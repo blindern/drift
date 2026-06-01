@@ -32,7 +32,7 @@ FAIL_THRESHOLD="${FAIL_THRESHOLD:-3}"
 COOLDOWN_SEC="${COOLDOWN_SEC:-900}"
 AUTO_HEAL="${AUTO_HEAL:-true}"
 MAX_HEAL="${ZTWD_MAX_HEAL:-5}"
-EXCLUDE="${EXCLUDE:-zerotier-one otel-collector-agent}"
+EXCLUDE="${EXCLUDE:-otel-collector-agent}"
 
 mkdir -p "$STATE_DIR"
 log() { echo "zt-bridge-watchdog: $*"; }

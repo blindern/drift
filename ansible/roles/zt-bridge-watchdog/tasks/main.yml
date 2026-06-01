@@ -16,7 +16,7 @@
 
       [Service]
       Type=oneshot
-      Environment="PEER_IPS={{ zt_host_ips | dict2items | rejectattr('key', 'equalto', inventory_hostname) | map(attribute='value') | join(' ') }}"
+      Environment="PEER_IPS={{ groups['fcos'] | difference([inventory_hostname]) | map('extract', hostvars, 'zerotier_host_ip') | join(' ') }}"
       Environment=PING_TIMEOUT={{ zt_watchdog_ping_timeout }}
       Environment=FAIL_THRESHOLD={{ zt_watchdog_fail_threshold }}
       Environment=COOLDOWN_SEC={{ zt_watchdog_cooldown_sec }}
