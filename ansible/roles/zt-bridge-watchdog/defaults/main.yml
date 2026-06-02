@@ -1,0 +1,16 @@
+# Each host pings the OTHER hosts' ZeroTier IPs (zerotier_host_ip, from
+# host_vars) from inside each local container's netns; a container that reaches
+# none is stranded. Host IPs are used (not service endpoints) so the check is
+# independent of whether any app is up.
+zt_watchdog_ping_timeout: 1
+zt_watchdog_fail_threshold: 3       # consecutive stranded passes before acting
+zt_watchdog_cooldown_sec: 900       # min seconds between restarts of the same container
+zt_watchdog_grace_sec: 180          # ignore containers (re)started within this window (deploys/upgrades)
+zt_watchdog_interval: "30s"
+zt_watchdog_auto_heal: true
+# If more than this many local containers look stranded at once it's a
+# host-level ZeroTier fault (restart won't help) — alert only, never mass-restart.
+zt_watchdog_max_heal: 5
+# Extra fbs0 containers to never auto-restart. net=host containers are skipped
+# automatically; zerotier-one is unconditionally excluded in the script.
+zt_watchdog_exclude: "otel-collector-agent"
