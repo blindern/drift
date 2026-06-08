@@ -1,4 +1,4 @@
-FROM atlassian/confluence:10.2.11@sha256:647a6b4548234c0f3211441e79f9e6f4de0585d2cfbd57089fb74d7dc595d9c0
+FROM atlassian/confluence:10.2.11@sha256:591e78bb414659b01de465ff1e2d6d736cb77799882cc0c6e9c75897dfd17da7
 
 USER root
 
