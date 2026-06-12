@@ -6,7 +6,7 @@
   become: yes
   gather_facts: no
   vars:
-    postgresql_1_image: postgres:18@sha256:a9abf4275f9e99bff8e6aed712b3b7dfec9cac1341bba01c1ffdfce9ff9fc34a # renovate
+    postgresql_1_image: postgres:18@sha256:29ee7bb30d804447dc9a91fd0d74322ae1dc3a4072cc6346f70a5ed6e783b565 # renovate
   tasks:
     # --- Stop old container ---
     - name: Stop and remove PostgreSQL container
