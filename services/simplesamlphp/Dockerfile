@@ -22,7 +22,7 @@ RUN echo 'auto_prepend_file=/var/simplesamlphp/otel-prepend.php' > "$PHP_INI_DIR
     && mkdir -p /var/simplesamlphp \
     && touch /var/simplesamlphp/otel-prepend.php
 
-COPY --from=composer:2@sha256:1c62c57bb5228569034b7b4d1415b17ba6b731619f7de226eaa33ad1845785ec /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2@sha256:7725eb4545c438629ae8bde3ef0bb9a5038ef566126ad878442a69007242d267 /usr/bin/composer /usr/local/bin/composer
 
 RUN set -eux; \
     chown www-data:www-data /var/simplesamlphp /var/www
