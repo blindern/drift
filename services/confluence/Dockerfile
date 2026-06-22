@@ -3,7 +3,7 @@ FROM atlassian/confluence:10.2.11@sha256:03cb2b6b79286d50fa088491ad31504cb055539
 USER root
 
 # renovate: datasource=github-releases depName=open-telemetry/opentelemetry-java-instrumentation
-ENV OTEL_JAVAAGENT_VERSION=v2.28.1
+ENV OTEL_JAVAAGENT_VERSION=v2.29.0
 
 RUN curl -Ls "https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/${OTEL_JAVAAGENT_VERSION}/opentelemetry-javaagent.jar" \
       -o /opt/opentelemetry-javaagent.jar
