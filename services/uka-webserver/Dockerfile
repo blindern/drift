@@ -1,4 +1,4 @@
-FROM php:8.1-apache@sha256:72f0c0134922985022d55a39b0390d35dc7a10e961aa6c44fa35b4c3102f4268
+FROM php:8.2-apache@sha256:a90a8c57defa80ecea1c405d6a6a74a7870e65aebcd003e04afdb86bbda63ee7
 
 ENV APACHE_DOCUMENT_ROOT /project/uka/web/public
 
