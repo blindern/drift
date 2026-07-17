@@ -1,4 +1,4 @@
-FROM debian:trixie-20260623@sha256:d07d1b51c39f51188e60be9b64e6bf769fa94e187f092bc32b91305cfa34ba5a
+FROM debian:13@sha256:fac46bff2e02f51425b6e33b0e1169f55dfb053d83511ca28aa50c09fd5ed7a4
 
 # renovate: datasource=git-refs depName=https://github.com/DanRohde/webdavcgi.git tag=master
 ENV WEBDAVCGI_COMMIT=4c55a1b383db78f61888af86ef201a5610f4595b
