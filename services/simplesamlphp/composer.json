@@ -1,0 +1,36 @@
+{
+  "name": "blindern/simplesamlphp",
+  "description": "SimpleSAMLphp IdP for Foreningen Blindern Studenterhjem",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/blindern/simplesamlphp-module-fbs",
+      "no-api": true
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/blindern/simplesamlphp-module-authoauth2",
+      "no-api": true
+    }
+  ],
+  "require": {
+    "simplesamlphp/simplesamlphp": "2.5.2",
+    "cirrusidentity/simplesamlphp-module-authoauth2": "dev-master",
+    "blindern/simplesamlphp-module-fbs": "dev-master",
+    "open-telemetry/sdk": "1.15.0",
+    "open-telemetry/exporter-otlp": "1.4.0",
+    "open-telemetry/opentelemetry-auto-curl": "0.3.0",
+    "open-telemetry/opentelemetry-auto-guzzle": "1.4.0",
+    "open-telemetry/opentelemetry-auto-pdo": "0.5.0",
+    "open-telemetry/opentelemetry-auto-symfony": "1.4.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "simplesamlphp/composer-module-installer": true,
+      "simplesamlphp/composer-xmlprovider-installer": true,
+      "php-http/discovery": true,
+      "tbachert/spi": true
+    }
+  }
+}

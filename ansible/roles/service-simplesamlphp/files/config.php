@@ -8,7 +8,7 @@ $httpUtils = new \SimpleSAML\Utils\HTTP();
 
 $config = [
   "baseurlpath" => "https://foreningenbs.no/simplesaml/",
-  "certdir" => "cert/",
+  "certdir" => "/var/simplesamlphp/cert/",
   "loggingdir" => "/storage/log/",
   "datadir" => "/storage/data/",
   "tempdir" => "/tmp/simplesamlphp",
@@ -84,7 +84,7 @@ $config = [
   "authproc.sp" => [
     90 => "core:LanguageAdaptor",
   ],
-  "metadatadir" => "metadata",
+  "metadatadir" => "/var/simplesamlphp/metadata",
   "metadata.sources" => [
     ["type" => "flatfile"],
   ],

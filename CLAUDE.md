@@ -2,7 +2,7 @@
 
 ## Overview
 
-Infrastructure-as-code repo for Foreningenbs (Blindern Studenterhjem). VMs on NREC (Norwegian Research and Education Cloud), configured with Ansible, running Docker containers connected via ZeroTier L2 network.
+Infrastructure-as-code repo for Foreningen Blindern Studenterhjem (shorthand FBS or Foreningen BS, domain foreningenbs.no — never "Foreningenbs" as a name). VMs on NREC (Norwegian Research and Education Cloud), configured with Ansible, running Docker containers connected via ZeroTier L2 network.
 
 ## Architecture
 
