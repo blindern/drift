@@ -37,6 +37,12 @@
       "datasourceTemplate": "docker"
     }
   ],
+  "customDatasources": {
+    "pecl": {
+      "defaultRegistryUrlTemplate": "https://pecl.php.net/rest/r/{{packageName}}/stable.txt",
+      "format": "plain"
+    }
+  },
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
