@@ -55,9 +55,9 @@ RUN set -eux; \
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-fbs"},\
         {"type": "git", "url": "https://github.com/blindern/simplesamlphp-module-authoauth2"}]' \
       >composer.json; \
-    composer require --ignore-platform-reqs cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#${AUTHOAUTH2_COMMIT}"; \
-    composer require --ignore-platform-reqs blindern/simplesamlphp-module-fbs "dev-master#${FBS_COMMIT}"; \
-    composer require --ignore-platform-reqs \
+    composer require --ignore-platform-reqs --with-all-dependencies cirrusidentity/simplesamlphp-module-authoauth2 "dev-master#${AUTHOAUTH2_COMMIT}"; \
+    composer require --ignore-platform-reqs --with-all-dependencies blindern/simplesamlphp-module-fbs "dev-master#${FBS_COMMIT}"; \
+    composer require --ignore-platform-reqs --with-all-dependencies \
       open-telemetry/sdk \
       open-telemetry/exporter-otlp \
       open-telemetry/opentelemetry-auto-curl \
