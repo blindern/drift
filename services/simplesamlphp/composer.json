@@ -1,6 +1,6 @@
 {
   "name": "blindern/simplesamlphp",
-  "description": "SimpleSAMLphp IdP for Foreningenbs",
+  "description": "SimpleSAMLphp IdP for Foreningen Blindern Studenterhjem",
   "type": "project",
   "repositories": [
     {
