@@ -1,3 +1,21 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/phpmyadmin
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+# uid 33 = www-data in the container
+- name: Copy config.user.inc.php
+  template:
+    dest: /var/ansible/phpmyadmin/config.user.inc.php
+    src: config.user.inc.php.j2
+    owner: 33
+    group: 33
+    mode: 0400
+  register: config_copied
+
 - name: Get current phpmyadmin image info
   docker_image_info:
     name: "{{ phpmyadmin_image }}"
@@ -26,4 +44,7 @@
       - name: fbs0
         ipv4_address: "{{ phpmyadmin_ipv4_address }}"
     networks_cli_compatible: yes
+    volumes:
+      - /var/ansible/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php:ro,Z
     log_driver: journald
+    restart: "{{ config_copied.changed }}"
