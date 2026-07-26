@@ -7,7 +7,7 @@
         backup_file: "/var/mnt/data/snipe-mysql-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
 
     - name: Create MySQL backup (mysqldump)
-      shell: "docker exec snipe-mysql sh -c 'MYSQL_PWD=$MYSQL_ROOT_PASSWORD mysqldump -uroot --all-databases --single-transaction' | xz > {{ backup_file }}"
+      shell: "docker exec snipe-mysql mysqldump --defaults-extra-file=/etc/mysql/conf.d/backup.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
 
     - name: Verify backup file is non-empty
       stat:
