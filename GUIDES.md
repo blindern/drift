@@ -41,7 +41,6 @@ ansible-playbook postgresql-1-backup.yml
 ansible-playbook mysql-1-backup.yml
 ansible-playbook dugnaden-mysql-backup.yml
 ansible-playbook uka-mysql-backup.yml
-ansible-playbook snipe-mysql-backup.yml
 ```
 
 ## Upgrading PostgreSQL
