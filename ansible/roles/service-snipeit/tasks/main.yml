@@ -40,6 +40,14 @@
     chdir: /var/www/html
   when: not ansible_check_mode
 
+- name: Install ldap-sync script
+  copy:
+    src: snipeit-ldap-sync.sh
+    dest: /usr/local/bin/snipeit-ldap-sync.sh
+    owner: root
+    group: root
+    mode: "0755"
+
 - name: Install ldap-sync service
   copy:
     content: |
@@ -50,7 +58,7 @@
 
       [Service]
       Type=oneshot
-      ExecStart=/usr/bin/docker exec snipeit php artisan snipeit:ldap-sync
+      ExecStart=/usr/local/bin/snipeit-ldap-sync.sh
     dest: /etc/systemd/system/snipeit-ldap-sync.service
     owner: root
     group: root
