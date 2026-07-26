@@ -11,7 +11,6 @@
 [![otel-collector](https://github.com/blindern/drift/actions/workflows/otel-collector.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/otel-collector.yml?query=branch%3Amain)
 [![simplesamlphp](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/simplesamlphp.yml?query=branch%3Amain)
 [![slack-invite-automation](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/slack-invite-automation.yml?query=branch%3Amain)
-[![uka-webserver](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/uka-webserver.yml?query=branch%3Amain)
 [![web-1](https://github.com/blindern/drift/actions/workflows/web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/web-1.yml?query=branch%3Amain)
 [![webdavcgi](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/webdavcgi.yml?query=branch%3Amain)
 
