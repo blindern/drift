@@ -315,6 +315,13 @@
     "type": "A"
   },
   {
+    "data": "172.25.16.45",
+    "host": "snipe-mysql.zt",
+    "id": 4888933,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
     "data": "172.25.16.44",
     "host": "snipeit.zt",
     "id": 4888932,
