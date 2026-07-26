@@ -174,6 +174,30 @@ $metadata["http://localhost:8080/dugnaden/saml/module.php/saml/sp/metadata.php/d
   ],
 ];
 
+// Pålogging på Snipe-IT (inventar).
+$metadata["https://inventar.foreningenbs.no/saml/metadata"] = [
+  "SingleLogoutService" => [
+    [
+      "Location" => "https://inventar.foreningenbs.no/saml/sls",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    ],
+  ],
+  "AssertionConsumerService" => [
+    [
+      "index" => 1,
+      "Location" => "https://inventar.foreningenbs.no/saml/acs",
+      "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
+    ],
+  ],
+  "authproc" => [
+    20 => [
+      "class" => "saml:AttributeNameID",
+      "identifyingAttribute" => "username",
+      "Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
+    ],
+  ],
+];
+
 // Pålogging på wiki (Confluence).
 $metadata["https://foreningenbs.no/confluence/plugins/servlet/samlsso"] = [
   "AssertionConsumerService" => [
