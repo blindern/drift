@@ -143,6 +143,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.42 postgresql-1.zt.foreningenbs.no
   - 172.25.16.43 mysql-2.zt.foreningenbs.no (decommissioned)
   - 172.25.16.44 snipeit.zt.foreningenbs.no
+  - 172.25.16.45 snipe-mysql.zt.foreningenbs.no (decommissioned)
   - 172.25.16.46 uka-mysql.zt.foreningenbs.no
   - 172.25.16.47 uka-webserver.zt.foreningenbs.no
   - 172.25.16.48 uka-billett-proxy.zt.foreningenbs.no
