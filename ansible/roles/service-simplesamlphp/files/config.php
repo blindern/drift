@@ -34,11 +34,14 @@ $config = [
   "statistics.out" => [],
   "enable.saml20-idp" => true,
   "enable.adfs-idp" => false,
-  "session.duration" => 8 * (60 * 60), // 8 hours.
+  // Max login validity. Remember me cannot outlive this (doLogin clamps to it),
+  // so it must match session.rememberme.lifetime for remember me to work.
+  "session.duration" => 14 * 86400,
   "session.datastore.timeout" => (4 * 60 * 60), // 4 hours
   "session.state.timeout" => (60 * 60), // 1 hour
   "session.cookie.name" => "_saml_idp_sid",
-  "session.cookie.lifetime" => 14 * 86400,
+  // Session cookie by default; remember me extends it to rememberme.lifetime.
+  "session.cookie.lifetime" => 0,
   "session.cookie.path" => "/",
   "session.cookie.domain" => null,
   "session.cookie.secure" => true,
