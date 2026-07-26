@@ -90,7 +90,6 @@
       tags: service-snipeit
       vars:
         snipeit_ipv4_address: "172.25.16.44"
-        snipe_mysql_ipv4_address: "172.25.16.45"
     # - role: service-storage-1-samba
     #   tags: service-storage-1-samba
     - role: service-ldap-master

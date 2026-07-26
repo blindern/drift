@@ -14,31 +14,6 @@
     group: root
     mode: 0644
 
-- name: Copy backup credentials
-  ansible.builtin.copy:
-    dest: /var/ansible/snipeit/backup.cnf
-    src: "{{ playbook_dir }}/../mysql-snipe.cnf"
-    owner: root
-    group: root
-    mode: 0600
-
-- name: download and start mysql
-  community.docker.docker_container:
-    name: snipe-mysql
-    state: started
-    image: "{{ snipe_mysql_image }}"
-    pull: true
-    env_file: /var/ansible/snipeit/.env
-    volumes:
-      - /var/mnt/data/snipesql-vol:/var/lib/mysql:Z
-      - /var/ansible/snipeit/backup.cnf:/etc/mysql/conf.d/backup.cnf:ro,Z
-    networks:
-      - name: fbs0
-        ipv4_address: "{{ snipe_mysql_ipv4_address }}"
-    networks_cli_compatible: yes
-    restart_policy: unless-stopped
-  when: not ansible_check_mode
-
 - name: download and start snipeit
   community.docker.docker_container:
     name: snipeit
