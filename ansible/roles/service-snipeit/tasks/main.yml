@@ -39,3 +39,49 @@
       - "chown -R docker:root storage"
     chdir: /var/www/html
   when: not ansible_check_mode
+
+- name: Install ldap-sync service
+  copy:
+    content: |
+      [Unit]
+      Description=Snipe-IT LDAP sync
+      Requires=docker.service
+      After=docker.service
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/bin/docker exec snipeit php artisan snipeit:ldap-sync
+    dest: /etc/systemd/system/snipeit-ldap-sync.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+- name: Install ldap-sync timer
+  copy:
+    content: |
+      [Unit]
+      Description=Run Snipe-IT LDAP sync daily
+
+      [Timer]
+      OnCalendar=*-*-* 04:00:00
+      RandomizedDelaySec=30m
+      Persistent=true
+
+      [Install]
+      WantedBy=timers.target
+    dest: /etc/systemd/system/snipeit-ldap-sync.timer
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - reload systemd
+
+- meta: flush_handlers
+
+- name: Activate ldap-sync timer
+  systemd:
+    name: snipeit-ldap-sync.timer
+    state: started
+    enabled: yes
