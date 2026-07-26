@@ -7,7 +7,9 @@
         backup_file: "/var/mnt/data/uka-mysql-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
 
     - name: Create MySQL backup (mysqldump)
-      shell: "docker exec uka-mysql mysqldump --defaults-extra-file=/etc/mysql/conf.d/backup.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
+      shell: "set -o pipefail; docker exec uka-mysql mysqldump --defaults-extra-file=/etc/mysql/conf.d/backup.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
+      args:
+        executable: /bin/bash
 
     - name: Verify backup file is non-empty
       stat:
