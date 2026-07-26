@@ -141,10 +141,6 @@
       vars:
         dugnaden_image: "{{ deployer_dugnaden_image }}"
         dugnaden_ipv4_address: "172.25.16.10"
-    - role: service-dugnaden-mysql
-      tags: service-dugnaden-mysql
-      vars:
-        dugnaden_mysql_ipv4_address: "172.25.16.55"
     - role: service-phpldapadmin
       tags: service-phpldapadmin
       vars:

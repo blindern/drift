@@ -20,7 +20,6 @@
 [![Deploy confluence](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-confluence.yml?query=branch%3Amain)
 [![Deploy deployer](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/ansible-deployer.yml?query=branch%3Amain)
 [![Deploy dugnaden](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden.yml?query=branch%3Amain)
-[![Deploy dugnaden-mysql](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-dugnaden-mysql.yml?query=branch%3Amain)
 [![Deploy energi-extractor](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-energi-extractor.yml?query=branch%3Amain)
 [![Deploy gatus](https://github.com/blindern/drift/actions/workflows/deploy-gatus.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-gatus.yml?query=branch%3Amain)
 [![Deploy intern](https://github.com/blindern/drift/actions/workflows/deploy-intern.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-intern.yml?query=branch%3Amain)
@@ -153,7 +152,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.52 deployer-secondary.zt.foreningenbs.no
   - 172.25.16.53 mongodb-2.zt.foreningenbs.no (decommissioned)
   - 172.25.16.54 energi-extractor (no DNS record created, only outband traffic)
-  - 172.25.16.55 dugnaden-mysql.zt.foreningenbs.no
+  - 172.25.16.55 dugnaden-mysql.zt.foreningenbs.no (decommissioned)
   - 172.25.16.56 ldap-toolbox.zt.foreningenbs.no
   - 172.25.16.57 pgadmin.zt.foreningenbs.no
   - 172.25.16.60 signoz-zookeeper.zt.foreningenbs.no
