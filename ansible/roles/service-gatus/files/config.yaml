@@ -60,7 +60,7 @@ endpoints:
 
   - name: inventar.foreningenbs.no
     group: public
-    url: "https://inventar.foreningenbs.no"
+    url: "https://inventar.foreningenbs.no/health"
     interval: 2m
     conditions:
       - "[STATUS] == 200"
@@ -183,7 +183,7 @@ endpoints:
 
   - name: snipeit
     group: internal
-    url: "http://snipeit.zt.foreningenbs.no"
+    url: "http://snipeit.zt.foreningenbs.no/health"
     interval: 1m
     conditions:
       - "[STATUS] < 500"

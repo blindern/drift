@@ -189,6 +189,7 @@ $metadata["https://inventar.foreningenbs.no"] = [
       "Binding" => "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST",
     ],
   ],
+  "NameIDFormat" => "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent",
   "authproc" => [
     20 => [
       "class" => "saml:AttributeNameID",
