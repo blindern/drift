@@ -19,6 +19,15 @@
     - php.ini
   register: file_copied1
 
+- name: Copy tools files
+  copy:
+    dest: /var/ansible/web-1/tools/
+    src: tools/
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied_tools
+
 - name: Copy config files (2/2)
   template:
     dest: "/var/ansible/web-1/foreningenbs.conf"
@@ -74,6 +83,7 @@
     hostname: web-1.zt.foreningenbs.no
     volumes:
       - /var/mnt/data/web-1-www:/var/www:z
+      - /var/ansible/web-1/tools:/var/www/root/tools:Z
       - /var/mnt/data/statutter-arkiv/arkiv:/var/www/statutter-arkiv/arkiv:Z
       - /var/ansible/web-1/msmtprc:/etc/msmtprc:Z
       - /var/ansible/web-1/php.ini:/usr/local/etc/php/php.ini:Z
@@ -84,6 +94,6 @@
       - /var/ansible/web-1/sp.xml:/mellon-sp.xml:Z
       - /var/ansible/web-1/idp.xml:/mellon-idp.xml:Z
     log_driver: journald
-    restart: "{{ file_copied1.changed or file_copied2.changed or file_copied3.changed }}"
+    restart: "{{ file_copied1.changed or file_copied2.changed or file_copied3.changed or file_copied_tools.changed }}"
     ulimits:
       - nofile:1048576:1048576

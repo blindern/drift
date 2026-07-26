@@ -78,6 +78,7 @@
     MellonEnable "auth"
   </Location>
 
+  RewriteRule ^/tools/(phpmyadmin|phpldapadmin)$ /tools/$1/ [R=301,L]
   ProxyPass /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
   ProxyPassReverse /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
   ProxyPass /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
