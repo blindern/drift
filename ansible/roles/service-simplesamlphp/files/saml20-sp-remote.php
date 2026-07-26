@@ -175,7 +175,7 @@ $metadata["http://localhost:8080/dugnaden/saml/module.php/saml/sp/metadata.php/d
 ];
 
 // Pålogging på Snipe-IT (inventar).
-$metadata["https://inventar.foreningenbs.no/saml/metadata"] = [
+$metadata["https://inventar.foreningenbs.no"] = [
   "SingleLogoutService" => [
     [
       "Location" => "https://inventar.foreningenbs.no/saml/sls",
