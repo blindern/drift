@@ -15,6 +15,54 @@
     mode: 0644
   register: file_copied
 
+- name: Copy firewall scripts
+  copy:
+    dest: "/var/ansible/pgadmin/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0744
+  with_items:
+    - install-rules.sh
+    - remove-rules.sh
+  register: rules_copied
+
+- name: Install pgadmin-allowlist service
+  copy:
+    content: |
+      [Unit]
+      Description=pgadmin-allowlist
+      After=docker.service
+
+      [Service]
+      Type=oneshot
+      TimeoutStartSec=0
+      RemainAfterExit=true
+
+      ExecStartPre=/usr/bin/chcon -t bin_t /var/ansible/pgadmin/install-rules.sh
+      ExecStart=/var/ansible/pgadmin/install-rules.sh
+
+      ExecStop=/usr/bin/chcon -t bin_t /var/ansible/pgadmin/remove-rules.sh
+      ExecStop=/var/ansible/pgadmin/remove-rules.sh
+
+      [Install]
+      WantedBy=multi-user.target
+    dest: /etc/systemd/system/pgadmin-allowlist.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+  register: unit_copied
+
+- meta: flush_handlers
+
+- name: Enable pgadmin-allowlist service
+  service:
+    name: pgadmin-allowlist.service
+    state: "{{ 'restarted' if rules_copied.changed or unit_copied.changed else 'started' }}"
+    enabled: yes
+
 # libpq requires the passfile to be owned by the connecting user (5050) with mode 0600
 - name: Copy pgpass
   copy:
