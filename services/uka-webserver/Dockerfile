@@ -52,6 +52,11 @@ COPY apache-extra.conf /etc/apache2/conf-enabled/apache-extra.conf
 # See entrypoint.sh for description.
 ENV CONTAINER_USER app
 
+# Pre-create the user so it exists even when the entrypoint takes the
+# uid-0 path (Docker Desktop mounts are root-owned), where no user is
+# created and Apache would fail on APACHE_RUN_USER=app.
+RUN useradd -m app
+
 # The file to copy uid/gid from when creating user.
 ENV CONTAINER_USERFILE /project/uka/web/README.md
 
