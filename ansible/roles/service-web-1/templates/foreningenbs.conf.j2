@@ -78,11 +78,13 @@
     MellonEnable "auth"
   </Location>
 
-  RewriteRule ^/tools/(phpmyadmin|phpldapadmin)$ /tools/$1/ [R=301,L]
+  RewriteRule ^/tools/(phpmyadmin|phpldapadmin|pgadmin)$ /tools/$1/ [R=301,L]
   ProxyPass /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
   ProxyPassReverse /tools/phpmyadmin/ http://phpmyadmin.zt.foreningenbs.no/
   ProxyPass /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
   ProxyPassReverse /tools/phpldapadmin/ http://phpldapadmin.zt.foreningenbs.no/
+  ProxyPass /tools/pgadmin/ http://pgadmin.zt.foreningenbs.no/tools/pgadmin/
+  ProxyPassReverse /tools/pgadmin/ http://pgadmin.zt.foreningenbs.no/tools/pgadmin/
 
   # Slack invitasjoner
   RewriteRule ^/slack/invite$ /slack/invite/ [R=301,L]

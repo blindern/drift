@@ -154,6 +154,10 @@
       tags: service-phpmyadmin
       vars:
         phpmyadmin_ipv4_address: "172.25.16.12"
+    - role: service-pgadmin
+      tags: service-pgadmin
+      vars:
+        pgadmin_ipv4_address: "172.25.16.57"
     - role: service-ldap-slave
       tags: service-ldap-slave
       vars:

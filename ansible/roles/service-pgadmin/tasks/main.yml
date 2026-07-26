@@ -1,0 +1,63 @@
+- name: Ensure config directory exists
+  file:
+    path: /var/ansible/pgadmin
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
+- name: Copy servers.json
+  copy:
+    dest: /var/ansible/pgadmin/servers.json
+    src: servers.json
+    owner: root
+    group: root
+    mode: 0644
+  register: file_copied
+
+# pgadmin runs as uid/gid 5050
+- name: Ensure data directory exists
+  file:
+    path: /var/mnt/data/pgadmin-data
+    state: directory
+    owner: 5050
+    group: 5050
+    mode: 0700
+
+- name: Get current pgadmin image info
+  docker_image_info:
+    name: "{{ pgadmin_image }}"
+  register: pgadmin_image_before
+
+- name: Pull pgadmin image
+  docker_image:
+    name: "{{ pgadmin_image }}"
+    source: pull
+  register: pgadmin_image_pull
+  changed_when: >-
+    pgadmin_image_before.images | length == 0 or
+    pgadmin_image_before.images[0].Id != pgadmin_image_pull.image.Id
+
+- name: Start pgadmin container
+  docker_container:
+    name: pgadmin
+    state: started
+    image: "{{ pgadmin_image }}"
+    restart_policy: unless-stopped
+    env:
+      # Auth handled by SAML in web-1, so run without pgadmin's own login (desktop mode).
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      # Required by the entrypoint, but unused in desktop mode.
+      PGADMIN_DEFAULT_EMAIL: drift@foreningenbs.no
+      PGADMIN_DEFAULT_PASSWORD: unused
+      SCRIPT_NAME: /tools/pgadmin
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ pgadmin_ipv4_address }}"
+    networks_cli_compatible: yes
+    volumes:
+      - /var/mnt/data/pgadmin-data:/var/lib/pgadmin:Z
+      - /var/ansible/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z
+    log_driver: journald
+    restart: "{{ file_copied.changed }}"

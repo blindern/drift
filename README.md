@@ -31,6 +31,7 @@
 [![Deploy nginx-front-1](https://github.com/blindern/drift/actions/workflows/deploy-nginx-front-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-nginx-front-1.yml?query=branch%3Amain)
 [![Deploy okoreports](https://github.com/blindern/drift/actions/workflows/deploy-okoreports.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-okoreports.yml?query=branch%3Amain)
 [![Deploy otel-collector-agent](https://github.com/blindern/drift/actions/workflows/deploy-otel-collector-agent.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-otel-collector-agent.yml?query=branch%3Amain)
+[![Deploy pgadmin](https://github.com/blindern/drift/actions/workflows/deploy-pgadmin.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-pgadmin.yml?query=branch%3Amain)
 [![Deploy phpldapadmin](https://github.com/blindern/drift/actions/workflows/deploy-phpldapadmin.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-phpldapadmin.yml?query=branch%3Amain)
 [![Deploy phpmyadmin](https://github.com/blindern/drift/actions/workflows/deploy-phpmyadmin.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-phpmyadmin.yml?query=branch%3Amain)
 [![Deploy postgresql-1](https://github.com/blindern/drift/actions/workflows/deploy-postgresql-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-postgresql-1.yml?query=branch%3Amain)
@@ -154,6 +155,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.54 energi-extractor (no DNS record created, only outband traffic)
   - 172.25.16.55 dugnaden-mysql.zt.foreningenbs.no
   - 172.25.16.56 ldap-toolbox.zt.foreningenbs.no
+  - 172.25.16.57 pgadmin.zt.foreningenbs.no
   - 172.25.16.60 signoz-zookeeper.zt.foreningenbs.no
   - 172.25.16.61 signoz-clickhouse.zt.foreningenbs.no
   - 172.25.16.62 signoz-otel-collector.zt.foreningenbs.no (OTLP: 4317/4318)

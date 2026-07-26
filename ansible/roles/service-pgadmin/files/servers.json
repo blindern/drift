@@ -1,0 +1,12 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "postgresql-1",
+      "Group": "Servers",
+      "Host": "postgresql-1.zt.foreningenbs.no",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "postgres"
+    }
+  }
+}

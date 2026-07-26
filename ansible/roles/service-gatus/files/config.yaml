@@ -167,6 +167,13 @@ endpoints:
     conditions:
       - "[STATUS] < 500"
 
+  - name: pgadmin
+    group: internal
+    url: "http://pgadmin.zt.foreningenbs.no/tools/pgadmin/"
+    interval: 1m
+    conditions:
+      - "[STATUS] < 500"
+
   - name: webdavcgi
     group: internal
     url: "http://webdavcgi.zt.foreningenbs.no"
