@@ -6,25 +6,8 @@
       set_fact:
         backup_file: "/var/mnt/data/mysql-1-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
 
-    - name: Copy credentials to host
-      copy:
-        src: "{{ playbook_dir }}/../mysql.cnf"
-        dest: /tmp/ansible-mysqldump-mysql-1.cnf
-        mode: "0600"
-
-    - name: Copy credentials into container
-      command: docker cp /tmp/ansible-mysqldump-mysql-1.cnf mysql-1:/tmp/ansible-mysqldump-mysql-1.cnf
-
-    - name: Remove credentials from host
-      file:
-        path: /tmp/ansible-mysqldump-mysql-1.cnf
-        state: absent
-
     - name: Create MySQL backup (mysqldump)
-      shell: "docker exec mysql-1 mysqldump --defaults-extra-file=/tmp/ansible-mysqldump-mysql-1.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
-
-    - name: Remove credentials from container
-      command: docker exec mysql-1 rm /tmp/ansible-mysqldump-mysql-1.cnf
+      shell: "docker exec mysql-1 mysqldump --defaults-extra-file=/etc/mysql/conf.d/backup.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
 
     - name: Verify backup file is non-empty
       stat:

@@ -6,25 +6,8 @@
       set_fact:
         backup_file: "/var/mnt/data/uka-mysql-backup-{{ now(utc=true, fmt='%Y%m%dT%H%M%SZ') }}.sql.xz"
 
-    - name: Copy credentials to host
-      copy:
-        src: "{{ playbook_dir }}/../mysql-uka.cnf"
-        dest: /tmp/ansible-mysqldump-uka-mysql.cnf
-        mode: "0600"
-
-    - name: Copy credentials into container
-      command: docker cp /tmp/ansible-mysqldump-uka-mysql.cnf uka-mysql:/tmp/ansible-mysqldump-uka-mysql.cnf
-
-    - name: Remove credentials from host
-      file:
-        path: /tmp/ansible-mysqldump-uka-mysql.cnf
-        state: absent
-
     - name: Create MySQL backup (mysqldump)
-      shell: "docker exec uka-mysql mysqldump --defaults-extra-file=/tmp/ansible-mysqldump-uka-mysql.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
-
-    - name: Remove credentials from container
-      command: docker exec uka-mysql rm /tmp/ansible-mysqldump-uka-mysql.cnf
+      shell: "docker exec uka-mysql mysqldump --defaults-extra-file=/etc/mysql/conf.d/backup.cnf --all-databases --single-transaction | xz > {{ backup_file }}"
 
     - name: Verify backup file is non-empty
       stat:

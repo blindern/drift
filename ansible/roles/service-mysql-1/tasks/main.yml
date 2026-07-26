@@ -15,6 +15,15 @@
     mode: 0644
   register: file_copied
 
+- name: Copy backup credentials
+  copy:
+    dest: /var/ansible/mysql-1/backup.cnf
+    src: "{{ playbook_dir }}/../mysql.cnf"
+    owner: root
+    group: root
+    mode: 0600
+  register: backup_cnf_copied
+
 - name: Get current mysql image info
   docker_image_info:
     name: "{{ mysql_1_image }}"
@@ -44,8 +53,9 @@
     volumes:
       - /var/mnt/data/mysql-1-data:/var/lib/mysql:Z
       - /var/ansible/mysql-1/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
+      - /var/ansible/mysql-1/backup.cnf:/etc/mysql/conf.d/backup.cnf:ro,Z
     log_driver: journald
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied.changed or backup_cnf_copied.changed }}"
     capabilities:
       # https://stackoverflow.com/a/55706057
       - sys_nice
