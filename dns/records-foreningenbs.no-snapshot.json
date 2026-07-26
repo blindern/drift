@@ -231,6 +231,13 @@
     "type": "A"
   },
   {
+    "data": "172.25.16.57",
+    "host": "pgadmin.zt",
+    "id": 8378990,
+    "ttl": 3600,
+    "type": "A"
+  },
+  {
     "data": "172.25.16.11",
     "host": "phpldapadmin.zt",
     "id": 2534121,
@@ -304,13 +311,6 @@
     "data": "172.25.16.7",
     "host": "smaabruket-availability-api.zt",
     "id": 2532317,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
-    "data": "172.25.16.45",
-    "host": "snipe-mysql.zt",
-    "id": 4888933,
     "ttl": 3600,
     "type": "A"
   },
