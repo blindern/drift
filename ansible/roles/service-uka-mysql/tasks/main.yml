@@ -15,6 +15,15 @@
     mode: 0644
   register: file_copied
 
+- name: Copy backup credentials
+  copy:
+    dest: /var/uka-mysql/backup.cnf
+    src: "{{ playbook_dir }}/../mysql-uka.cnf"
+    owner: root
+    group: root
+    mode: 0600
+  register: backup_cnf_copied
+
 - name: Get current uka-mysql image info
   docker_image_info:
     name: "{{ uka_mysql_image }}"
@@ -44,5 +53,6 @@
     volumes:
       - /var/mnt/data/uka-mysql-data:/var/lib/mysql:Z
       - /var/uka-mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
+      - /var/uka-mysql/backup.cnf:/etc/mysql/conf.d/backup.cnf:ro,Z
     log_driver: journald
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied.changed or backup_cnf_copied.changed }}"

@@ -15,6 +15,15 @@
     mode: 0644
   register: file_copied
 
+- name: Copy backup credentials
+  copy:
+    dest: /var/ansible/dugnaden-mysql/backup.cnf
+    src: "{{ playbook_dir }}/../mysql-dugnaden.cnf"
+    owner: root
+    group: root
+    mode: 0600
+  register: backup_cnf_copied
+
 - name: Get current dugnaden-mysql image info
   docker_image_info:
     name: "{{ dugnaden_mysql_image }}"
@@ -44,8 +53,9 @@
     volumes:
       - /var/mnt/data/dugnaden-mysql-data:/var/lib/mysql:Z
       - /var/ansible/dugnaden-mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf:Z
+      - /var/ansible/dugnaden-mysql/backup.cnf:/etc/mysql/conf.d/backup.cnf:ro,Z
     log_driver: journald
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied.changed or backup_cnf_copied.changed }}"
     capabilities:
       # https://stackoverflow.com/a/55706057
       - sys_nice
