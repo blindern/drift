@@ -40,7 +40,6 @@
 [![Deploy smaabruket-availability-api](https://github.com/blindern/drift/actions/workflows/deploy-smaabruket-availability-api.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-smaabruket-availability-api.yml?query=branch%3Amain)
 [![Deploy snipeit](https://github.com/blindern/drift/actions/workflows/deploy-snipeit.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-snipeit.yml?query=branch%3Amain)
 [![Deploy uka-billett](https://github.com/blindern/drift/actions/workflows/deploy-uka-billett.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-billett.yml?query=branch%3Amain)
-[![Deploy uka-mysql](https://github.com/blindern/drift/actions/workflows/deploy-uka-mysql.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-mysql.yml?query=branch%3Amain)
 [![Deploy uka-webserver](https://github.com/blindern/drift/actions/workflows/deploy-uka-webserver.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-uka-webserver.yml?query=branch%3Amain)
 [![Deploy users-api](https://github.com/blindern/drift/actions/workflows/deploy-users-api.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-users-api.yml?query=branch%3Amain)
 [![Deploy web-1](https://github.com/blindern/drift/actions/workflows/deploy-web-1.yml/badge.svg?branch=main)](https://github.com/blindern/drift/actions/workflows/deploy-web-1.yml?query=branch%3Amain)
@@ -143,7 +142,7 @@ See https://foreningenbs.no/confluence/display/FBS/Kundedetaljer+Domeneshop for 
   - 172.25.16.43 mysql-2.zt.foreningenbs.no (decommissioned)
   - 172.25.16.44 snipeit.zt.foreningenbs.no
   - 172.25.16.45 snipe-mysql.zt.foreningenbs.no (decommissioned)
-  - 172.25.16.46 uka-mysql.zt.foreningenbs.no
+  - 172.25.16.46 uka-mysql.zt.foreningenbs.no (decommissioned)
   - 172.25.16.47 uka-webserver.zt.foreningenbs.no
   - 172.25.16.48 uka-billett-proxy.zt.foreningenbs.no
   - 172.25.16.49 uka-billett-fpm.zt.foreningenbs.no

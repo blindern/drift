@@ -74,6 +74,11 @@
       "separateMultipleMinor": true
     },
     {
+      "description": "Confluence supports max MySQL 8.4",
+      "matchDepNames": ["mysql"],
+      "allowedVersions": "<9"
+    },
+    {
       "matchFileNames": ["ansible/**"],
       "additionalBranchPrefix": "v{{currentVersion}}-",
       "commitMessageExtra": "from {{currentVersion}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{#if isMajor}} (major){{/if}}"

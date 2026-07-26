@@ -4,7 +4,6 @@
 if (($_SERVER['REMOTE_ADDR'] ?? '') === '172.25.16.1') {
   $passwords = [
     1 => '{{ lookup("ansible.builtin.ini", "password", section="client", file=playbook_dir ~ "/../mysql.cnf") }}',
-    2 => '{{ lookup("ansible.builtin.ini", "password", section="client", file=playbook_dir ~ "/../mysql-uka.cnf") }}',
   ];
   foreach ($passwords as $i => $password) {
     $cfg['Servers'][$i]['auth_type'] = 'config';

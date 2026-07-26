@@ -37,10 +37,6 @@
   become: yes
   tags: all-services
   roles:
-    - role: service-uka-mysql
-      tags: service-uka-mysql
-      vars:
-        uka_mysql_ipv4_address: "172.25.16.46"
     - role: service-uka-webserver
       tags: service-uka-webserver
       vars:

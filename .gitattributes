@@ -3,4 +3,3 @@
 
 mysql.cnf filter=git-crypt diff=git-crypt
 pgpass.conf filter=git-crypt diff=git-crypt
-mysql-uka.cnf filter=git-crypt diff=git-crypt
