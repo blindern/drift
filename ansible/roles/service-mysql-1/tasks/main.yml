@@ -15,13 +15,14 @@
     mode: 0644
   register: file_copied
 
+# group 999 = mysql in the container, so its config-validation pass can read the file
 - name: Copy backup credentials
   copy:
     dest: /var/ansible/mysql-1/backup.cnf
     src: "{{ playbook_dir }}/../mysql.cnf"
     owner: root
-    group: root
-    mode: 0600
+    group: "999"
+    mode: 0640
   register: backup_cnf_copied
 
 - name: Get current mysql image info

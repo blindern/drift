@@ -1,6 +1,5 @@
 [mysqld]
 innodb_log_file_size = 256M
-mysql-native-password = ON
 transaction-isolation = READ-COMMITTED
 max_allowed_packet = 1G
 character-set-server=utf8mb4
