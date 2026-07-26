@@ -15,6 +15,16 @@
     mode: 0644
   register: file_copied
 
+# libpq requires the passfile to be owned by the connecting user (5050) with mode 0600
+- name: Copy pgpass
+  copy:
+    dest: /var/ansible/pgadmin/pgpass
+    src: pgpass
+    owner: 5050
+    group: 5050
+    mode: 0600
+  register: pgpass_copied
+
 # pgadmin runs as uid/gid 5050
 - name: Ensure data directory exists
   file:
@@ -59,5 +69,6 @@
     volumes:
       - /var/mnt/data/pgadmin-data:/var/lib/pgadmin:Z
       - /var/ansible/pgadmin/servers.json:/pgadmin4/servers.json:ro,Z
+      - /var/ansible/pgadmin/pgpass:/pgpass:ro,Z
     log_driver: journald
-    restart: "{{ file_copied.changed }}"
+    restart: "{{ file_copied.changed or pgpass_copied.changed }}"
