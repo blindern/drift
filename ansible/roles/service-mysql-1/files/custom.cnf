@@ -3,7 +3,7 @@ innodb_log_file_size = 256M
 mysql-native-password = ON
 transaction-isolation = READ-COMMITTED
 max_allowed_packet = 1G
-character-set-server=utf8
+character-set-server=utf8mb4
 log_bin_trust_function_creators = 1
 
 innodb_log_buffer_size = 128M
