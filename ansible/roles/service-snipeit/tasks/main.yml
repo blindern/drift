@@ -20,8 +20,6 @@
     state: started
     image: "{{ snipeit_image }}"
     pull: true
-#    links: snipe-mysql:mysql
-#    ports: 8000:80
     env_file: /var/ansible/snipeit/.env
     volumes:
       - /var/mnt/data/snipe-vol:/var/lib/snipeit:Z
