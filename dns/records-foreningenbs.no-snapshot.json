@@ -84,13 +84,6 @@
     "type": "A"
   },
   {
-    "data": "172.25.16.55",
-    "host": "dugnaden-mysql.zt",
-    "id": 5992120,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
     "data": "172.25.16.10",
     "host": "dugnaden.zt",
     "id": 2534120,
@@ -360,13 +353,6 @@
     "data": "172.25.16.48",
     "host": "uka-billett-proxy.zt",
     "id": 4948863,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
-    "data": "172.25.16.46",
-    "host": "uka-mysql.zt",
-    "id": 4902482,
     "ttl": 3600,
     "type": "A"
   },
