@@ -23,7 +23,7 @@ RUN pecl install "opentelemetry-$OPENTELEMETRY_EXT_VERSION" "protobuf-$PROTOBUF_
 
 RUN echo 'auto_prepend_file=/var/simplesamlphp/otel-prepend.php' > "$PHP_INI_DIR/conf.d/otel-prepend.ini"
 
-COPY --from=composer:2@sha256:5946476338742b200bb9ff88f8be56275ddae4b3949c72305cb0dbf10cfcb760 /usr/bin/composer /usr/local/bin/composer
+COPY --from=composer:2@sha256:4d71c3c2109c61d5415544264b59ad4087e4c5b7244481723664138fd36d5040 /usr/bin/composer /usr/local/bin/composer
 
 WORKDIR /var/simplesamlphp
 RUN chown www-data:www-data /var/simplesamlphp /var/www
