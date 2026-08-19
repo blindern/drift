@@ -5,7 +5,7 @@
   "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:fc1e8e46db1b7ae2892dfe800a0c2599390e3c6253595e611a88676713729fce",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:912b0343394bf3cac9b8c2664b7899b28cab214d93ef65131cebf44db08d5ba3",
   "deployer_energi_extractor_image": "ghcr.io/blindern/energi-extractor@sha256:87accd85c06d49f1d157b0d2c99fa14487a9c06a075b1986e24ce9e30e60d634",
-  "deployer_intern_backend_image": "ghcr.io/blindern/intern-backend@sha256:5b96df0f5066924e2eb61dd82a9f6e18bff0e8f38d1b04c29c42cd9b67c8ae18",
+  "deployer_intern_backend_image": "ghcr.io/blindern/intern-backend@sha256:38fc96a7b8edbda51061962ed0f2441205617736844066515b6e64e1a6343e39",
   "deployer_intern_calendar_api_image": "ghcr.io/blindern/intern-calendar-api@sha256:460aeb891177c80d46ad464a13520fd362a87e4883489b9c721d27e2a8c2e5ab",
   "deployer_ldap_master_image": "ghcr.io/blindern/openldap@sha256:020a81e42ddbbdf94b8f07fb2ede0fe518c526ed41643acefea7471c61cc6d60",
   "deployer_ldap_slave_image": "ghcr.io/blindern/openldap@sha256:020a81e42ddbbdf94b8f07fb2ede0fe518c526ed41643acefea7471c61cc6d60",
