@@ -16,7 +16,7 @@ RUN docker-php-ext-install pdo_pgsql
 ENV OPENTELEMETRY_EXT_VERSION=1.2.1
 
 # renovate: datasource=custom.pecl depName=protobuf
-ENV PROTOBUF_EXT_VERSION=5.35.1
+ENV PROTOBUF_EXT_VERSION=5.36.1
 
 RUN pecl install "opentelemetry-$OPENTELEMETRY_EXT_VERSION" "protobuf-$PROTOBUF_EXT_VERSION" \
     && docker-php-ext-enable opentelemetry protobuf
