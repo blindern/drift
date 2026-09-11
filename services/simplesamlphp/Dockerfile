@@ -13,7 +13,7 @@ RUN set -eux; \
 RUN docker-php-ext-install pdo_pgsql
 
 # renovate: datasource=custom.pecl depName=opentelemetry
-ENV OPENTELEMETRY_EXT_VERSION=1.2.1
+ENV OPENTELEMETRY_EXT_VERSION=1.4.1
 
 # renovate: datasource=custom.pecl depName=protobuf
 ENV PROTOBUF_EXT_VERSION=5.35.1
