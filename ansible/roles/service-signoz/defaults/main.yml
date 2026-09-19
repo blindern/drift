@@ -1,5 +1,5 @@
 signoz_zookeeper_image: signoz/zookeeper:3.9.3@sha256:2982759ec21211d52514154a5c87d2bbe6725d94cfa864cdfea2f7040b7bd365 # renovate
 signoz_clickhouse_image: clickhouse/clickhouse-server:26.8.5@sha256:5a55fb7517cbba97a99b8676a748fd13e4709049a4d1f5d5be5c20695da4c91b # renovate
 signoz_otel_collector_image: signoz/signoz-otel-collector:v0.144.10@sha256:34ecb436b687cc23bef5f706904cdf005998ca4ebe543653a634055a9fe204f6 # renovate
-signoz_image: signoz/signoz:v0.141.1@sha256:c10fa03e103c76bba2d67452bd26925f08a69f2a7b8d0f7982cea0e4f81ce88e # renovate
+signoz_image: signoz/signoz:v0.142.0@sha256:041de69ac78a2bd302aade6a11f619c96014e86973754fee024e397ca0eafd55 # renovate
 signoz_schema_migrator_image: signoz/signoz-schema-migrator:v0.144.10@sha256:9a4bbea6785f1fa91e787a4c3cefcc63bd89470a7ae4558b27cc12f1947cf258 # renovate
