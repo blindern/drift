@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cde677d3805496f9b7485fe5e1aed354",
+    "content-hash": "39d69d1e6be42cb48c2b2cd952cb8e22",
     "packages": [
         {
             "name": "blindern/simplesamlphp-module-fbs",
@@ -1768,38 +1768,39 @@
         },
         {
             "name": "open-telemetry/opentelemetry-auto-symfony",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/contrib-auto-symfony.git",
-                "reference": "030449d00e817b16d1420e97f16a29b00d96d403"
+                "reference": "0a4404f57b14625de6b04a2228d97f9da85a0114"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/contrib-auto-symfony/zipball/030449d00e817b16d1420e97f16a29b00d96d403",
-                "reference": "030449d00e817b16d1420e97f16a29b00d96d403",
+                "url": "https://api.github.com/repos/opentelemetry-php/contrib-auto-symfony/zipball/0a4404f57b14625de6b04a2228d97f9da85a0114",
+                "reference": "0a4404f57b14625de6b04a2228d97f9da85a0114",
                 "shasum": ""
             },
             "require": {
                 "ext-opentelemetry": "*",
                 "open-telemetry/api": "^1.6",
-                "open-telemetry/sem-conv": "^1.32",
+                "open-telemetry/sem-conv": "^1.38",
                 "php": "^8.1",
                 "symfony/http-client-contracts": "*",
                 "symfony/http-kernel": "*"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3",
+                "open-telemetry/opentelemetry-propagation-traceresponse": "*",
                 "open-telemetry/sdk": "^1.8",
-                "phan/phan": "^5.0",
+                "phan/phan": "^6.0",
                 "php-http/mock-client": "*",
-                "phpstan/phpstan": "^1.1",
-                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.5",
                 "psalm/plugin-phpunit": "^0.19.2",
                 "symfony/http-client": "^5.4||^6.0",
                 "symfony/messenger": "^5.4||^6.0",
-                "vimeo/psalm": "6.4.0"
+                "vimeo/psalm": "^6.4"
             },
             "suggest": {
                 "open-telemetry/opentelemetry-propagation-server-timing": "Automatically propagate the context to the client through server-timing headers.",
@@ -1829,9 +1830,9 @@
                 "tracing"
             ],
             "support": {
-                "source": "https://github.com/opentelemetry-php/contrib-auto-symfony/tree/1.4.0"
+                "source": "https://github.com/opentelemetry-php/contrib-auto-symfony/tree/1.5.0"
             },
-            "time": "2026-07-09T20:33:56+00:00"
+            "time": "2026-09-30T13:29:15+00:00"
         },
         {
             "name": "open-telemetry/sdk",
