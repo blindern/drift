@@ -1,4 +1,4 @@
-FROM php:8.5-apache@sha256:974e3a920309308e1690ed607e6cc3061d6906f90cc8d30fe519daa48bccf101
+FROM php:8.5.12-apache@sha256:4d1f268dd3b670bd003861c5385cb2f8ba7196dbc88ee84dcae47270c116f242
 
 RUN set -eux; \
     apt-get update; \
@@ -12,14 +12,32 @@ RUN set -eux; \
 
 RUN docker-php-ext-install pdo_pgsql
 
-# renovate: datasource=custom.pecl depName=opentelemetry
-ENV OPENTELEMETRY_EXT_VERSION=1.4.1
+# Build the same extensions from pinned upstream sources without depending on PECL downloads.
+# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-php-instrumentation tag=1.4.1
+ENV OPENTELEMETRY_EXT_COMMIT=7e501acaabb7839c52da8d782570a0cac1428c0f
 
-# renovate: datasource=custom.pecl depName=protobuf
-ENV PROTOBUF_EXT_VERSION=5.36.2
+# Protobuf upstream v36.2 provides PHP extension 5.36.2.
+# renovate: datasource=github-tags depName=protocolbuffers/protobuf tag=v36.2
+ENV PROTOBUF_EXT_COMMIT=2c74169b34066ceb8ddb6b882fcb3fb32d737a55
 
-RUN pecl install "opentelemetry-$OPENTELEMETRY_EXT_VERSION" "protobuf-$PROTOBUF_EXT_VERSION" \
-    && docker-php-ext-enable opentelemetry protobuf
+RUN set -eux; \
+    mkdir -p /tmp/opentelemetry /tmp/protobuf; \
+    curl -fSL --retry 3 \
+      "https://github.com/open-telemetry/opentelemetry-php-instrumentation/archive/$OPENTELEMETRY_EXT_COMMIT.tar.gz" \
+      -o /tmp/opentelemetry.tar.gz; \
+    curl -fSL --retry 3 \
+      "https://github.com/protocolbuffers/protobuf/archive/$PROTOBUF_EXT_COMMIT.tar.gz" \
+      -o /tmp/protobuf.tar.gz; \
+    tar -xzf /tmp/opentelemetry.tar.gz -C /tmp/opentelemetry --strip-components=1; \
+    tar -xzf /tmp/protobuf.tar.gz -C /tmp/protobuf --strip-components=1; \
+    # Match the layout of the Protobuf PECL source package.
+    mkdir -p /tmp/protobuf/php/ext/google/protobuf/third_party; \
+    cp -R /tmp/protobuf/third_party/utf8_range /tmp/protobuf/php/ext/google/protobuf/third_party/; \
+    docker-php-ext-install -j"$(nproc)" \
+      /tmp/opentelemetry/ext \
+      /tmp/protobuf/php/ext/google/protobuf; \
+    php -r 'exit(extension_loaded("opentelemetry") && extension_loaded("protobuf") ? 0 : 1);'; \
+    rm -rf /tmp/opentelemetry /tmp/protobuf /tmp/opentelemetry.tar.gz /tmp/protobuf.tar.gz
 
 RUN echo 'auto_prepend_file=/var/simplesamlphp/otel-prepend.php' > "$PHP_INI_DIR/conf.d/otel-prepend.ini"
 
