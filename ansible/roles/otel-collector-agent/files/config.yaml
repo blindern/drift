@@ -8,7 +8,7 @@ receivers:
       disk:
       filesystem:
         include_mount_points:
-          mount_points: [/var/mnt/data, /etc]
+          mount_points: [/var/mnt/data, /sysroot]
           match_type: strict
         metrics:
           system.filesystem.utilization:
@@ -236,6 +236,10 @@ extensions:
   health_check: {}
   file_storage:
     directory: /var/otel/state
+    compaction:
+      on_start: true
+      on_rebound: true
+      directory: /var/otel/state
 
 exporters:
   otlp:
