@@ -8,7 +8,7 @@
   "deployer_intern_backend_image": "ghcr.io/blindern/intern-backend@sha256:7208a0ee851fce515625ca226b2d1bd6ce2d40bfd8b8e7656f16dfc1433bcc56",
   "deployer_intern_calendar_api_image": "ghcr.io/blindern/intern-calendar-api@sha256:ee4eebf7601f55d27e1f26d2f4ee15ffbe238c6ea8f4c6da9f6dd2a3df43acfb",
   "deployer_ldap_master_image": "ghcr.io/blindern/openldap@sha256:6c0fc9d091edeb23cc425c68cf5865966fbc26e9707b9bb4ff55f3b47b078b73",
-  "deployer_ldap_slave_image": "ghcr.io/blindern/openldap@sha256:b44c20f29b2b5acd6fe3a5e6bb85c7698ffe8272172ccc6e038a13fc47cdadc4",
+  "deployer_ldap_slave_image": "ghcr.io/blindern/openldap@sha256:6c0fc9d091edeb23cc425c68cf5865966fbc26e9707b9bb4ff55f3b47b078b73",
   "deployer_ldap_toolbox_image": "ghcr.io/blindern/ldap-toolbox@sha256:bee50df0be58dd5db23b88259098855ec0502d42834aab22d42cef16d9a3b4dc",
   "deployer_simplesamlphp_image": "ghcr.io/blindern/simplesamlphp@sha256:da7fcca33313ab793ce14b634a236091fb1ec76aa7aad62e62d0a4f670c9e91c",
   "deployer_slack_invite_automation_image": "ghcr.io/blindern/slack-invite-automation@sha256:e660a53654025272e98ed73c55ae53a35890f28f9ea0734556e0280816b823ee",
