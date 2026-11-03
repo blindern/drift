@@ -19,5 +19,5 @@
   "deployer_uka_webserver_image": "ghcr.io/blindern/uka-webserver@sha256:5e34a98336d02c94540cc0f3c7e4125b2e5dfefdaf4b6a7d8c8c8915d9743a31",
   "deployer_users_api_image": "europe-north2-docker.pkg.dev/foreningenbs/fbs-docker/users-api@sha256:d57e51d53d3103a9abd62216d0a63e6ac3ebb9810c0bb89a1af860efaeadc76b",
   "deployer_web_1_image": "ghcr.io/blindern/internal-web-1@sha256:710a723df2c1d4c8d5c6444d430f2d1ca5fa3b28de92ee7ff5535ab572162ea5",
-  "deployer_webdavcgi_image": "ghcr.io/blindern/webdavcgi@sha256:c23c135ecac42af005dd563fd0351c4f420d39404044cf1eab7808ebbfe4a022"
+  "deployer_webdavcgi_image": "ghcr.io/blindern/webdavcgi@sha256:c67e99d19486a5c72d3ce318aa29710d81fb897129399ef6de67efb8bf992d7b"
 }
