@@ -174,8 +174,8 @@ importers:
         specifier: 1.65.0
         version: 1.65.0
       dotenv:
-        specifier: 18.0.9
-        version: 18.0.9
+        specifier: 18.0.10
+        version: 18.0.10
       typescript:
         specifier: 7.0.2
         version: 7.0.2
@@ -310,8 +310,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  dotenv@18.0.9:
-    resolution: {integrity: sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==}
+  dotenv@18.0.10:
+    resolution: {integrity: sha512-89FAA1xchzK2mxVWdr5F/0rldwiueXs6zJM86rO66EzekR1iBdiXRthyG+m5GvkJaFH3C2LESzamTkgndmLT2A==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -403,7 +403,7 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  dotenv@18.0.9: {}
+  dotenv@18.0.10: {}
 
   playwright-core@1.65.0: {}
 
