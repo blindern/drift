@@ -13,8 +13,8 @@ RUN set -eux; \
 RUN docker-php-ext-install pdo_pgsql
 
 # Build the same extensions from pinned upstream sources without depending on PECL downloads.
-# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-php-instrumentation tag=1.4.2
-ENV OPENTELEMETRY_EXT_COMMIT=273e09e15524ac3fa4f45120c0c2e7674e83ba2d
+# renovate: datasource=github-tags depName=open-telemetry/opentelemetry-php-instrumentation tag=1.5.0
+ENV OPENTELEMETRY_EXT_COMMIT=dd0e147a80d0aeac15c95ec119b146c0b2bc3285
 
 # Protobuf upstream v36.2 provides PHP extension 5.36.2.
 # renovate: datasource=github-tags depName=protocolbuffers/protobuf tag=v36.2
