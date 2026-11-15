@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9829b46447e4db277f019ee647465bac",
+    "content-hash": "d8b78b164a3a5e4c66ac716abb689e06",
     "packages": [
         {
             "name": "blindern/simplesamlphp-module-fbs",
@@ -1399,7 +1399,8 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-07-06T12:28:04+00:00"
+            "time": "2026-07-06T12:28:04+00:00",
+            "published-time": "2026-07-15T15:51:57+00:00"
         },
         {
             "name": "open-telemetry/context",
@@ -1458,7 +1459,8 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2025-10-19T06:44:33+00:00"
+            "time": "2025-10-19T06:44:33+00:00",
+            "published-time": "2026-03-25T14:04:42+00:00"
         },
         {
             "name": "open-telemetry/exporter-otlp",
@@ -1711,16 +1713,16 @@
         },
         {
             "name": "open-telemetry/opentelemetry-auto-pdo",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/contrib-auto-pdo.git",
-                "reference": "ef6f83d48f02669dbe9a812130bdb3fbd46651e6"
+                "reference": "e98f67b0fe58bda20518bf59418e9993b8a87a3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/contrib-auto-pdo/zipball/ef6f83d48f02669dbe9a812130bdb3fbd46651e6",
-                "reference": "ef6f83d48f02669dbe9a812130bdb3fbd46651e6",
+                "url": "https://api.github.com/repos/opentelemetry-php/contrib-auto-pdo/zipball/e98f67b0fe58bda20518bf59418e9993b8a87a3f",
+                "reference": "e98f67b0fe58bda20518bf59418e9993b8a87a3f",
                 "shasum": ""
             },
             "require": {
@@ -1733,15 +1735,16 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3",
+                "open-telemetry/opentelemetry-sqlcommenter": "^0.3",
                 "open-telemetry/sdk": "^1.0",
-                "open-telemetry/test-utils": "^0.2.0",
-                "phan/phan": "^5.0",
+                "open-telemetry/test-utils": "^0.3.0",
+                "phan/phan": "^6.0",
                 "php-http/mock-client": "*",
-                "phpstan/phpstan": "^1.1",
-                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.5",
                 "psalm/plugin-phpunit": "^0.19.2",
-                "vimeo/psalm": "6.4.0"
+                "vimeo/psalm": "^6.4"
             },
             "suggest": {
                 "ext-mbstring": "For better performance than symfony/polyfill-mbstring"
@@ -1770,9 +1773,10 @@
                 "tracing"
             ],
             "support": {
-                "source": "https://github.com/opentelemetry-php/contrib-auto-pdo/tree/0.5.0"
+                "source": "https://github.com/opentelemetry-php/contrib-auto-pdo/tree/0.6.0"
             },
-            "time": "2026-06-08T12:54:17+00:00"
+            "time": "2026-10-19T04:30:57+00:00",
+            "published-time": "2026-10-24T19:59:09+00:00"
         },
         {
             "name": "open-telemetry/opentelemetry-auto-symfony",
@@ -1997,7 +2001,8 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-09-09T22:06:17+00:00"
+            "time": "2026-09-09T22:06:17+00:00",
+            "published-time": "2026-09-10T00:15:38+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -2568,7 +2573,8 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2024-09-11T13:17:53+00:00"
+            "time": "2024-09-11T13:17:53+00:00",
+            "published-time": "2024-09-11T13:21:14+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5562,7 +5568,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T15:19:04+00:00"
+            "time": "2026-09-24T15:19:04+00:00",
+            "published-time": "2026-09-30T10:23:35+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -5646,7 +5653,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00"
+            "time": "2026-09-25T15:50:05+00:00",
+            "published-time": "2026-09-30T10:23:35+00:00"
         },
         {
             "name": "symfony/polyfill-php82",
@@ -5726,7 +5734,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00"
+            "time": "2026-09-25T15:50:05+00:00",
+            "published-time": "2026-09-30T10:23:32+00:00"
         },
         {
             "name": "symfony/polyfill-php83",
@@ -6965,5 +6974,5 @@
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
