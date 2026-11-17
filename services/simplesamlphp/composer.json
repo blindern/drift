@@ -15,7 +15,7 @@
     }
   ],
   "require": {
-    "simplesamlphp/simplesamlphp": "2.5.2",
+    "simplesamlphp/simplesamlphp": "2.5.4",
     "cirrusidentity/simplesamlphp-module-authoauth2": "dev-master",
     "blindern/simplesamlphp-module-fbs": "dev-master",
     "open-telemetry/sdk": "1.15.0",

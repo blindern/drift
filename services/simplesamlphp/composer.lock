@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9829b46447e4db277f019ee647465bac",
+    "content-hash": "35957d011ab12983d8f14070bf1ad63e",
     "packages": [
         {
             "name": "blindern/simplesamlphp-module-fbs",
@@ -3152,16 +3152,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp",
-            "version": "v2.5.2",
+            "version": "2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp.git",
-                "reference": "e04c29a772769bb0bacba0ba072b599779d158c4"
+                "reference": "3c74e4c93776ec1e25b8db1039053ac999f8c561"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp/zipball/e04c29a772769bb0bacba0ba072b599779d158c4",
-                "reference": "e04c29a772769bb0bacba0ba072b599779d158c4",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp/zipball/3c74e4c93776ec1e25b8db1039053ac999f8c561",
+                "reference": "3c74e4c93776ec1e25b8db1039053ac999f8c561",
                 "shasum": ""
             },
             "require": {
@@ -3225,7 +3225,7 @@
                 "ext-pdo_sqlite": "*",
                 "mikey179/vfsstream": "~1.6",
                 "predis/predis": "~3.3",
-                "simplesamlphp/simplesamlphp-test-framework": "~1.11.6 || dev-master"
+                "simplesamlphp/simplesamlphp-test-framework": "~1.11.7 || dev-master"
             },
             "suggest": {
                 "ext-curl": "Needed in order to check for updates automatically",
@@ -3293,8 +3293,8 @@
                 "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
                 "source": "https://github.com/simplesamlphp/simplesamlphp"
             },
-            "time": "2026-06-02T08:51:04+00:00",
-            "published-time": "2026-06-01T16:22:04+00:00"
+            "time": "2026-11-09T21:26:11+00:00",
+            "published-time": "2026-11-09T21:41:20+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-assets-base",
