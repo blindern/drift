@@ -155,7 +155,7 @@ endpoints:
 
   - name: simplesamlphp
     group: internal
-    url: "http://simplesamlphp.zt.foreningenbs.no"
+    url: "http://simplesamlphp.zt.foreningenbs.no/simplesaml/"
     interval: 1m
     conditions:
       - "[STATUS] < 500"
