@@ -23,8 +23,14 @@ This is to avoid race conditions when changing multiple things at once.
 
 ## Getting started
 
-Install Ansible locally using your package manager. E.g. on Arch:
-`pacman -S ansible`
+Install the pinned Ansible version from this directory, using Python >= 3.13
+(hosts need ansible-core >= 2.22):
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+source .venv/bin/activate
+```
 
 The file `hosts` holds our inventory. The file `site.yml` is the main playbook
 holding all the infrastructure.

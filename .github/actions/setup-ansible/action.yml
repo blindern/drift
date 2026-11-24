@@ -18,6 +18,7 @@ runs:
       with:
         ssh-private-key: ${{ inputs.ssh-private-key }}
     - run: |
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends ansible
+        python3 -m venv "$RUNNER_TEMP/ansible"
+        "$RUNNER_TEMP/ansible/bin/pip" install -q -r ansible/requirements.txt
+        echo "$RUNNER_TEMP/ansible/bin" >> "$GITHUB_PATH"
       shell: bash
