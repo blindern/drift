@@ -103,7 +103,11 @@
         "ghcr.io/twin/gatus",
         "GoogleCloudPlatform/docker-credential-gcr",
         "nginx",
-        "debian"
+        "debian",
+        "otel/opentelemetry-collector-contrib",
+        "open-telemetry/opentelemetry-java-instrumentation",
+        "dpage/pgadmin4",
+        "snipe/snipe-it"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
@@ -120,11 +124,31 @@
       ],
       "groupName": "signoz",
       "additionalBranchPrefix": ""
-    }
-    ,{
-      "description": "Lower release age for Confluence",
+    },
+    {
+      "description": "Lower release age for Confluence; split patches out so they can automerge",
       "matchDepNames": ["atlassian/confluence"],
-      "minimumReleaseAge": "1 day"
+      "minimumReleaseAge": "1 day",
+      "separateMinorPatch": true
+    },
+    {
+      "matchDepNames": ["atlassian/confluence"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "prTitle": "{{{commitMessage}}} [auto-merge]"
+    },
+    {
+      "description": "Versions must move together for composer to resolve",
+      "matchManagers": ["composer"],
+      "matchFileNames": ["services/simplesamlphp/**"],
+      "matchPackageNames": ["open-telemetry/**"],
+      "groupName": "opentelemetry-php"
+    },
+    {
+      "description": "league/oauth2-client (via authoauth2) requires PHP <8.6; regex since \"<8.6\" rejects every -apache tag",
+      "matchFileNames": ["services/simplesamlphp/**"],
+      "matchDepNames": ["php"],
+      "allowedVersions": "/^8\\.5\\./"
     },
     {
       "description": "Group okoreports updates",

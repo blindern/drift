@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35957d011ab12983d8f14070bf1ad63e",
+    "content-hash": "1c1922a36e3c47cad8289263fee6bba0",
     "packages": [
         {
             "name": "blindern/simplesamlphp-module-fbs",
@@ -7062,7 +7062,9 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": {},
+    "platform": {
+        "php": "~8.5.0"
+    },
     "platform-dev": {},
     "plugin-api-version": "2.11.0"
 }
