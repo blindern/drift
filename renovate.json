@@ -107,7 +107,11 @@
         "otel/opentelemetry-collector-contrib",
         "open-telemetry/opentelemetry-java-instrumentation",
         "dpage/pgadmin4",
-        "snipe/snipe-it"
+        "snipe/snipe-it",
+        "signoz/signoz",
+        "signoz/signoz-otel-collector",
+        "signoz/zookeeper",
+        "clickhouse/clickhouse-server"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
@@ -118,7 +122,6 @@
       "matchDepNames": [
         "signoz/signoz",
         "signoz/signoz-otel-collector",
-        "signoz/signoz-schema-migrator",
         "signoz/zookeeper",
         "clickhouse/clickhouse-server"
       ],
