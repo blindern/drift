@@ -140,13 +140,6 @@
     "type": "A"
   },
   {
-    "data": "172.25.16.4",
-    "host": "intern-frontend.zt",
-    "id": 2534115,
-    "ttl": 3600,
-    "type": "A"
-  },
-  {
     "data": "172.25.16.30",
     "host": "ldap-master.zt",
     "id": 2534125,
