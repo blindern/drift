@@ -56,7 +56,6 @@
     - "{{ signoz_clickhouse_image }}"
     - "{{ signoz_image }}"
     - "{{ signoz_otel_collector_image }}"
-    - "{{ signoz_schema_migrator_image }}"
 
 # Init container: download histogram binary
 - name: Run signoz-init-clickhouse container
@@ -172,31 +171,92 @@
   retries: 60
   delay: 5
 
-# Schema migrator (sync)
 - name: Run signoz-schema-migrator-sync container
   docker_container:
     name: signoz-schema-migrator-sync
     state: started
-    image: "{{ signoz_schema_migrator_image }}"
-    restart_policy: on-failure
+    image: "{{ signoz_otel_collector_image }}"
+    restart_policy: "no"
+    entrypoint:
+      - /bin/sh
+      - -c
     command:
-      - sync
-      - "--dsn=tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
-      - --up=
+      - >-
+        /signoz-otel-collector migrate ready &&
+        /signoz-otel-collector migrate bootstrap &&
+        /signoz-otel-collector migrate sync up
+    env: &signoz_migrator_env
+      SIGNOZ_OTEL_COLLECTOR_CLICKHOUSE_DSN: "tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
+      # Existing schema was created without replication; the collector's migrate defaults to true.
+      SIGNOZ_OTEL_COLLECTOR_CLICKHOUSE_REPLICATION: "false"
+      # Retry budget; default 10s is too short for transient ClickHouse/ZooKeeper errors. `migrate async up` ignores it.
+      SIGNOZ_OTEL_COLLECTOR_TIMEOUT: 10m
     networks:
       - name: fbs0
     networks_cli_compatible: yes
     log_driver: journald
-  register: schema_sync
 
-- name: Wait for schema-migrator-sync to complete
+- name: Wait for signoz-schema-migrator-sync to complete
   docker_container_info:
     name: signoz-schema-migrator-sync
   register: schema_sync_info
-  until: schema_sync_info.container.State.Running == false
-  retries: 60
+  until: not schema_sync_info.container.State.Running
+  retries: 360
   delay: 5
-  when: schema_sync.changed
+  failed_when: schema_sync_info.container.State.ExitCode != 0
+
+# OTel Collector, started before async migrations: an older collector may fail writing to a partly migrated schema.
+- name: Start signoz-otel-collector container
+  docker_container:
+    name: signoz-otel-collector
+    state: started
+    image: "{{ signoz_otel_collector_image }}"
+    restart_policy: unless-stopped
+    command:
+      - --config=/etc/otel-collector-config.yaml
+    networks:
+      - name: fbs0
+        ipv4_address: "{{ signoz_otel_collector_ipv4_address }}"
+    networks_cli_compatible: yes
+    hostname: signoz-otel-collector.zt.foreningenbs.no
+    env:
+      OTEL_RESOURCE_ATTRIBUTES: host.name=signoz-host,os.type=linux
+      LOW_CARDINAL_EXCEPTION_GROUPING: "false"
+    volumes:
+      - /var/ansible/signoz/otel-collector-config.yaml:/etc/otel-collector-config.yaml:Z
+    log_driver: journald
+    restart: "{{ signoz_configs.changed }}"
+
+- name: Run signoz-schema-migrator-async container
+  docker_container:
+    name: signoz-schema-migrator-async
+    state: started
+    image: "{{ signoz_otel_collector_image }}"
+    restart_policy: "no"
+    command:
+      - migrate
+      - async
+      - up
+    env: *signoz_migrator_env
+    networks:
+      - name: fbs0
+    networks_cli_compatible: yes
+    log_driver: journald
+
+- name: Wait for signoz-schema-migrator-async to complete
+  docker_container_info:
+    name: signoz-schema-migrator-async
+  register: schema_async_info
+  until: not schema_async_info.container.State.Running
+  retries: 360
+  delay: 5
+  failed_when: schema_async_info.container.State.ExitCode != 0
+
+# After async migrations and any collector restart, so only rows the new collector wrote to the final schema count.
+- name: Record migration completion time
+  command: date +%s%3N
+  register: migrations_done
+  changed_when: false
 
 # SigNoz main app
 - name: Start signoz container
@@ -240,40 +300,15 @@
   retries: 60
   delay: 5
 
-# Schema migrator (async) - runs after sync
-- name: Run signoz-schema-migrator-async container
-  docker_container:
-    name: signoz-schema-migrator-async
-    state: started
-    image: "{{ signoz_schema_migrator_image }}"
-    restart_policy: on-failure
-    command:
-      - async
-      - "--dsn=tcp://signoz-clickhouse.zt.foreningenbs.no:9000"
-      - --up=
-    networks:
-      - name: fbs0
-    networks_cli_compatible: yes
-    log_driver: journald
-
-# OTel Collector
-- name: Start signoz-otel-collector container
-  docker_container:
-    name: signoz-otel-collector
-    state: started
-    image: "{{ signoz_otel_collector_image }}"
-    restart_policy: unless-stopped
-    command:
-      - --config=/etc/otel-collector-config.yaml
-    networks:
-      - name: fbs0
-        ipv4_address: "{{ signoz_otel_collector_ipv4_address }}"
-    networks_cli_compatible: yes
-    hostname: signoz-otel-collector.zt.foreningenbs.no
-    env:
-      OTEL_RESOURCE_ATTRIBUTES: host.name=signoz-host,os.type=linux
-      LOW_CARDINAL_EXCEPTION_GROUPING: "false"
-    volumes:
-      - /var/ansible/signoz/otel-collector-config.yaml:/etc/otel-collector-config.yaml:Z
-    log_driver: journald
-    restart: "{{ signoz_configs.changed }}"
+- name: Wait for logs to be ingested
+  community.docker.docker_container_exec:
+    container: signoz-clickhouse
+    argv:
+      - clickhouse-client
+      - --query
+      - "SELECT count() FROM signoz_logs.logs_v2 WHERE inserted_at > fromUnixTimestamp64Milli({{ migrations_done.stdout }})"
+  register: ingested_logs
+  until: ingested_logs.stdout | int > 0
+  retries: 40
+  delay: 15
+  changed_when: false
