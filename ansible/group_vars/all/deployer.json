@@ -1,6 +1,6 @@
 {
   "deployer_otel_collector_image": "ghcr.io/blindern/otel-collector@sha256:941dfa2154c3cc2553ba2551abbcc3e422f1285dc60c5fcf613e6d80107f74e6",
-  "deployer_confluence_image": "ghcr.io/blindern/confluence@sha256:d884f8429fd23b54ae8994e0ab6f4bb33c465c5a6e8e48ae276689736d549ade",
+  "deployer_confluence_image": "ghcr.io/blindern/confluence@sha256:9c410617d9358cac97a76419c5ddbeb4f8f826ebf12b163faf223be8ac43551b",
   "deployer_deployer_primary_image": "ghcr.io/blindern/deployer@sha256:f11829d5743ebc008bd81246bb493dd7b007d404f3098d6d2de2456a92b2c2c5",
   "deployer_deployer_secondary_image": "ghcr.io/blindern/deployer@sha256:f11829d5743ebc008bd81246bb493dd7b007d404f3098d6d2de2456a92b2c2c5",
   "deployer_dugnaden_image": "blindern/dugnaden@sha256:729d5732b0d2ce30eaf70025e14035ace8521cb6aba3ef0e274aa04c49caf720",
